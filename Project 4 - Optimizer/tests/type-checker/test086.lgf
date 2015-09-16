@@ -1,0 +1,7 @@
+(* if expression with shadowed Bool *)
+datatype Bool = T | F
+val z = if 0 < 1 then T else F
+fun lt (x: Integer) (y: Integer) : Bool = if x < y then T else F
+val z = if lt 0 1 then T else F
+;
+z

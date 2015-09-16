@@ -1,0 +1,3 @@
+test030.lgf:5.2-test030.lgf:5.27 Error: 
+Data constructor Book given 1 arguments but takes 2 arguments.
+  in: Book {"Lawrence Paulson"}

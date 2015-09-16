@@ -1,0 +1,6 @@
+(* string ops *)
+type BinOp ['a, 'b] = 'a -> 'a -> 'b
+type StringBinOp = BinOp [String, String]
+val f : StringBinOp = fn (x: String) (y: String) => x ^ y
+;
+f

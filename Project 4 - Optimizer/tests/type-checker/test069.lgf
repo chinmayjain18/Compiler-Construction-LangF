@@ -1,0 +1,4 @@
+(* fun declaration *)
+fun add (a: Integer) (b: Integer) : Integer = a + b
+;
+add

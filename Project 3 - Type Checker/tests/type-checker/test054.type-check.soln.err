@@ -1,0 +1,8 @@
+test054.lgf:3.2-test054.lgf:3.9 Error: 
+Left operand of '! :=' not of type Array [?].
+  operand: String
+  in: "Array" ! i := x
+test054.lgf:3.2-test054.lgf:3.9 Error: 
+Right operand of '! :=' not of type ?.
+  operand: 'a
+  in: "Array" ! i := x

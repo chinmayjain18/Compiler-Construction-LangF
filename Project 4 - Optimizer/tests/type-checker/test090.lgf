@@ -1,0 +1,6 @@
+(* function application expressions *)
+val add : Integer -> Integer -> Integer = fn (x: Integer) (y: Integer) => x + y
+val add1 : Integer -> Integer = add 1
+val three : Integer = add1 2
+;
+three

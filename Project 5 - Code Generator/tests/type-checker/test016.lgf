@@ -1,0 +1,6 @@
+(* polymorphic val decls *)
+val revApp = fn ['a] (x: 'a) ['b] (f: 'a -> 'b) => f x
+val _ : ['b] -> (Integer -> 'b) -> 'b = revApp [Integer] 1
+val two = revApp [Integer] 1 [Integer] (fn (x: Integer) => x * 2)
+;
+two

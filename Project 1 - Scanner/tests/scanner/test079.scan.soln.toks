@@ -1,0 +1,7 @@
+val
+(* VAR_NAME *) s
+=
+(* STRING *) "goodbye"
+;
+(* VAR_NAME *) print
+(* VAR_NAME *) s

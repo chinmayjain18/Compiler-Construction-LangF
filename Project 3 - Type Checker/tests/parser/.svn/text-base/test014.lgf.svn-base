@@ -1,0 +1,3 @@
+(* right associativity of -> *)
+type T [] = ['a] -> ['b] -> ('a -> 'b) -> 'a -> 'b
+; 0

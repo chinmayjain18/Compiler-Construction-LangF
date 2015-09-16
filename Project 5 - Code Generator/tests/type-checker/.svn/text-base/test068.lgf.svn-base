@@ -1,0 +1,8 @@
+(* let expression, with unbound variable *)
+let
+  val one = 1
+  val two = 2
+in
+  one + two
+end + one
+

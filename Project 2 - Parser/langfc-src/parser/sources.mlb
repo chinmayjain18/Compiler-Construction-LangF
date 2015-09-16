@@ -1,0 +1,46 @@
+(* langfc-src/parser/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for front-end parser in the LangF compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+   $(SML_LIB)/mlyacc-lib/mlyacc-lib.mlb
+
+   ../common/ml-lpt-lib/ml-lpt-lib.mlb
+   ../common/sources.mlb
+   ../scanner/sources.mlb
+   ../parse-tree/sources.mlb
+
+   parser.sig
+
+   ann "warnUnused false" in
+      langf-antlr.grm.sml
+   end
+   antlr-parser.sml
+
+   ann "warnUnused false" in
+      langf-yacc.grm.sig
+      langf-yacc.grm.sml
+   end
+   yacc-parser.sml
+
+   wrapped-parser.sig
+   wrapped-parser.sml
+
+in
+
+  signature WRAPPED_PARSER
+  structure WrappedParser
+
+end

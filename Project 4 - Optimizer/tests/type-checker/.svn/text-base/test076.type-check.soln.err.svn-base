@@ -1,0 +1,5 @@
+test076.lgf:2.20-test076.lgf:2.22 Error: 
+Type parameter of 'datatype' defined multiple times.
+  type parameter: 'a
+  type constructor: T
+  in: datatype T ['a, 'b, 'a, ' ... T {'a -> ('b -> 'c)}

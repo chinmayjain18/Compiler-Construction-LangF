@@ -1,0 +1,3 @@
+test022.lgf:3.12-test022.lgf:3.43 Error: 
+Type constructor Fst given 3 type arguments but takes 2 type arguments.
+  in: Fst [Integer, Integer, Integer]

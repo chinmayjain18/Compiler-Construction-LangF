@@ -1,0 +1,4 @@
+(* syntactic restriction, distinct type parameters *)
+type T ['a, 'b, 'a, 'c] = 'a -> 'b -> 'c
+;
+0

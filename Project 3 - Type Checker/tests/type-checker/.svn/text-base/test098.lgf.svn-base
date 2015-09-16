@@ -1,0 +1,6 @@
+(* case expression, non-datatype expression *)
+fun id ['a] (x: 'a) : 'a =
+  case x of x => x end
+val id = case id of id => id end
+;
+id [Integer] 0

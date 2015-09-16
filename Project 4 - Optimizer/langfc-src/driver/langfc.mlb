@@ -1,0 +1,32 @@
+(* langfc-src/driver/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for the LangF compiler (langfc) driver.
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/basis/sml-nj.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+
+   ../common/sources.mlb
+   ../scanner/sources.mlb
+   ../parser/sources.mlb
+   ../type-checker/sources.mlb
+   ../core-ir/sources.mlb
+   ../anf-ir/sources.mlb
+
+   langfc.sml
+
+in
+
+   structure LangFComp
+
+end

@@ -1,0 +1,7 @@
+val
+(* VAR_NAME *) s
+=
+(* STRING *) "hello world!"
+;
+(* VAR_NAME *) print
+(* VAR_NAME *) s

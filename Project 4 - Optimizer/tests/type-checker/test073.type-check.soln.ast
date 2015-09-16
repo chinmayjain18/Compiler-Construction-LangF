@@ -1,0 +1,28 @@
+datatype T__0000 ['a__0000] = C__0000
+                            | C__0001 {'a__0000, T__0001 ['a__0000]}
+and T__0001 ['a__0001] = C__0002
+                       | C__0003 {T__0000 ['a__0001], T__0001 ['a__0001]}
+fun x__0000 (x__0001 : Integer) (x__0002 : Integer) : Integer =
+   (if ((x__0001 : Integer) > (x__0002 : Integer)) : Bool then x__0001 : Integer else x__0002 : Integer) : Integer
+fun x__0003 ['a__0002] (x__0004 : T__0000 ['a__0002]) : Integer =
+   (case x__0004 : T__0000 ['a__0002] of
+       C__0000 ['a__0002] => 0 : Integer
+     | C__0001 ['a__0002] {_ (* : 'a__0002 *), x__0005 (* : T__0001 ['a__0002] *)} =>
+          ((1 : Integer)
+           +
+           (((((x__0006 : ['a__0003] -> ((T__0001 ['a__0003]) -> Integer)) ['a__0002]) : (T__0001 ['a__0002]) -> Integer)
+             (x__0005 : T__0001 ['a__0002])) : Integer)) : Integer
+    end) : Integer
+and x__0006 ['a__0004] (x__0007 : T__0001 ['a__0004]) : Integer =
+   (case x__0007 : T__0001 ['a__0004] of
+       C__0002 ['a__0004] => 0 : Integer
+     | C__0003 ['a__0004] {x__0008 (* : T__0000 ['a__0004] *), x__0009 (* : T__0001 ['a__0004] *)} =>
+          ((((x__0000 : Integer -> (Integer -> Integer))
+             (((((x__0003 : ['a__0005] -> ((T__0000 ['a__0005]) -> Integer)) ['a__0004]) : (T__0000 ['a__0004]) -> Integer)
+               (x__0008 : T__0000 ['a__0004])) : Integer)) : Integer -> Integer)
+           (((((x__0006 : ['a__0006] -> ((T__0001 ['a__0006]) -> Integer)) ['a__0004]) : (T__0001 ['a__0004]) -> Integer)
+             (x__0009 : T__0001 ['a__0004])) : Integer)) : Integer
+    end) : Integer
+;
+((((x__0003 : ['a__0007] -> ((T__0000 ['a__0007]) -> Integer)) [Integer]) : (T__0000 [Integer]) -> Integer)
+ ((C__0000 [Integer]) : T__0000 [Integer])) : Integer

@@ -1,0 +1,4 @@
+test041.lgf:5.0-test041.lgf:5.6 Error: 
+Left operand of 'andalso' not of type Bool.
+  operand: String
+  in: "True" andalso f

@@ -1,0 +1,2 @@
+(* anonymous function *)
+fn ['a] (x: 'a) => x

@@ -1,0 +1,5 @@
+test020.lgf:5.20-test020.lgf:5.62 Error: 
+Function and argument of apply disagree.
+  function: String -> String
+  argument: Integer
+  in: ((twice [String]) (fn (s : String) => (s ^ s))) 0

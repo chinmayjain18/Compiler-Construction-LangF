@@ -1,0 +1,3 @@
+test104.lgf:2.21-test104.lgf:2.26 Error: syntax error: deleting  EQ VAR_NAME PLUS
+test104.lgf:2.27-test104.lgf:3.5 Error: syntax error: deleting  INTEGER SEMI VAR_NAME
+test104.lgf:3.6-test104.lgf:3.7 Error: syntax error found at INTEGER

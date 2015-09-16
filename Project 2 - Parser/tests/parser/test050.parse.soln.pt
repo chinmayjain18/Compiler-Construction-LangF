@@ -1,0 +1,4 @@
+;
+case Unit of
+   z => False
+end

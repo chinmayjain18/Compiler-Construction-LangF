@@ -1,0 +1,12 @@
+test094.lgf:7.5-test094.lgf:8.3 Error: 
+Result types of match rules in 'case' disagree.
+  previous result type: String
+  this result type:     Integer
+  in rule: B1 => 42
+  in: case x of A1 => "A1" | B1 => 42 | C1 => "C1" end
+test094.lgf:8.5-test094.lgf:9.2 Error: 
+Result types of match rules in 'case' disagree.
+  previous result type: Integer
+  this result type:     String
+  in rule: C1 => "C1"
+  in: case x of A1 => "A1" | B1 => 42 | C1 => "C1" end

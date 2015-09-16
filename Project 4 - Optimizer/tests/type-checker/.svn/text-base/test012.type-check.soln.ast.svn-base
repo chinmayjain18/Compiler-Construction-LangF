@@ -1,0 +1,4 @@
+val x__0000 (* : Integer *) = ((1 : Integer) + (1 : Integer)) : Integer
+val x__0001 (* : Integer *) = ((x__0000 : Integer) + (x__0000 : Integer)) : Integer
+;
+((x__0001 : Integer) < (x__0000 : Integer)) : Bool

@@ -1,0 +1,7 @@
+(* shadowing type error *)
+datatype T = A {Integer} | B
+val x : T = A {1}
+datatype T = C {Integer} | D
+val y : T = B
+;
+0

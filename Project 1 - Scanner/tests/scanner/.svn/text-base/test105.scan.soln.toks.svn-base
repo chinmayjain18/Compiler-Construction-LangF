@@ -1,0 +1,358 @@
+fun
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+:
+(* CON_NAME *) String
+=
+if
+(* VAR_NAME *) i
+<
+(* INTEGER *) 0
+then
+(* STRING *) "~"
+^
+(
+(* VAR_NAME *) intToString
+(
+~
+(* VAR_NAME *) i
+)
+)
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 0
+then
+(* STRING *) "0"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 1
+then
+(* STRING *) "1"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 2
+then
+(* STRING *) "2"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 3
+then
+(* STRING *) "3"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 4
+then
+(* STRING *) "4"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 5
+then
+(* STRING *) "5"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 6
+then
+(* STRING *) "6"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 7
+then
+(* STRING *) "7"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 8
+then
+(* STRING *) "8"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 9
+then
+(* STRING *) "9"
+else
+(
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+/
+(* INTEGER *) 10
+)
+)
+^
+(
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+%
+(* INTEGER *) 10
+)
+)
+datatype
+(* CON_NAME *) Option
+[
+(* TYVAR_NAME *) 'a
+]
+=
+(* CON_NAME *) None
+|
+(* CON_NAME *) Some
+{
+(* TYVAR_NAME *) 'a
+}
+fun
+(* VAR_NAME *) optionToString
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) aToString
+:
+(* TYVAR_NAME *) 'a
+->
+(* CON_NAME *) String
+)
+(
+(* VAR_NAME *) opt
+:
+(* CON_NAME *) Option
+[
+(* TYVAR_NAME *) 'a
+]
+)
+:
+(* CON_NAME *) String
+=
+case
+(* VAR_NAME *) opt
+of
+(* CON_NAME *) None
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* STRING *) "None"
+|
+(* CON_NAME *) Some
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) x
+}
+=>
+(* STRING *) "Some {"
+^
+(
+(* VAR_NAME *) aToString
+(* VAR_NAME *) x
+)
+^
+(* STRING *) "}"
+end
+val
+(* VAR_NAME *) ord0
+=
+(* VAR_NAME *) subscript
+(* STRING *) "0"
+(* INTEGER *) 0
+val
+(* VAR_NAME *) ord9
+=
+(* VAR_NAME *) subscript
+(* STRING *) "9"
+(* INTEGER *) 0
+fun
+(* VAR_NAME *) charToDigit
+(
+(* VAR_NAME *) c
+:
+(* CON_NAME *) Integer
+)
+:
+(* CON_NAME *) Option
+[
+(* CON_NAME *) Integer
+]
+=
+if
+(* VAR_NAME *) ord0
+<=
+(* VAR_NAME *) c
+andalso
+(* VAR_NAME *) c
+<=
+(* VAR_NAME *) ord9
+then
+(* CON_NAME *) Some
+[
+(* CON_NAME *) Integer
+]
+{
+(* VAR_NAME *) c
+-
+(* VAR_NAME *) ord0
+}
+else
+(* CON_NAME *) None
+[
+(* CON_NAME *) Integer
+]
+fun
+(* VAR_NAME *) stringToInt
+(
+(* VAR_NAME *) s
+:
+(* CON_NAME *) String
+)
+:
+(* CON_NAME *) Option
+[
+(* CON_NAME *) Integer
+]
+=
+let
+val
+(* VAR_NAME *) sz
+=
+(* VAR_NAME *) size
+(* VAR_NAME *) s
+fun
+(* VAR_NAME *) loop
+(
+(* VAR_NAME *) pos
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) acc
+:
+(* CON_NAME *) Integer
+)
+:
+(* CON_NAME *) Option
+[
+(* CON_NAME *) Integer
+]
+=
+if
+(* VAR_NAME *) pos
+<
+(* VAR_NAME *) sz
+then
+case
+(* VAR_NAME *) charToDigit
+(
+(* VAR_NAME *) subscript
+(* VAR_NAME *) s
+(* VAR_NAME *) pos
+)
+of
+(* CON_NAME *) None
+[
+(* CON_NAME *) Integer
+]
+=>
+(* CON_NAME *) None
+[
+(* CON_NAME *) Integer
+]
+|
+(* CON_NAME *) Some
+[
+(* CON_NAME *) Integer
+]
+{
+(* VAR_NAME *) i
+}
+=>
+(* VAR_NAME *) loop
+(
+(* VAR_NAME *) pos
++
+(* INTEGER *) 1
+)
+(
+(* VAR_NAME *) acc
+*
+(* INTEGER *) 10
++
+(* VAR_NAME *) i
+)
+end
+else
+(* CON_NAME *) Some
+[
+(* CON_NAME *) Integer
+]
+{
+(* VAR_NAME *) acc
+}
+in
+if
+(* VAR_NAME *) sz
+>
+(* INTEGER *) 0
+then
+(* VAR_NAME *) loop
+(* INTEGER *) 0
+(* INTEGER *) 0
+else
+(* CON_NAME *) None
+[
+(* CON_NAME *) Integer
+]
+end
+val
+(* VAR_NAME *) s
+=
+if
+(* VAR_NAME *) argc
+(* CON_NAME *) Unit
+>
+(* INTEGER *) 1
+then
+(* VAR_NAME *) arg
+(* INTEGER *) 1
+else
+(* STRING *) "12345"
+;
+(
+(* VAR_NAME *) print
+(
+(* VAR_NAME *) optionToString
+[
+(* CON_NAME *) Integer
+]
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) stringToInt
+(* VAR_NAME *) s
+)
+)
+;
+(* VAR_NAME *) print
+(* STRING *) "\n"
+)

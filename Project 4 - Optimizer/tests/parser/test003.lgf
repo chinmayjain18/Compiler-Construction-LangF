@@ -1,0 +1,3 @@
+(* type decl with (omitted) nullary type constructor type *)
+type T [] = Integer
+; 0

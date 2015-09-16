@@ -1,0 +1,5 @@
+test046.lgf:5.0-test046.lgf:6.0 Error: 
+Constraint and expression of 'val' disagree.
+  constraint: T
+  expression: ?T?
+  in: val y : T = B

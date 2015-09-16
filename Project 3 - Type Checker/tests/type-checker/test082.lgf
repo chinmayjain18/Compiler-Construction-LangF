@@ -1,0 +1,4 @@
+(* syntactic restriction, integer too small *)
+val z : Integer = ~4611686018427387905
+;
+z

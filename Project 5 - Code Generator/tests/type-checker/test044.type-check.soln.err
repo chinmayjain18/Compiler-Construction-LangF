@@ -1,0 +1,4 @@
+test044.lgf:5.0-test044.lgf:5.6 Error: 
+Left operand of 'orelse' not of type Bool.
+  operand: String
+  in: "True" orelse f

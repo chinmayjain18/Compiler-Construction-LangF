@@ -1,0 +1,10 @@
+fun x__0000 ['a__0000] (x__0001 : Array ['a__0000]) (x__0002 : Integer) : 'a__0000 =
+   (case x__0001 : Array ['a__0000] of
+       x__0003 (* : Array ['a__0000] *) => ((x__0003 : Array ['a__0000]) ! (* ['a__0000] *) (x__0002 : Integer)) : 'a__0000
+    end) : 'a__0000
+;
+((((((x__0000 : ['a__0001] -> ((Array ['a__0001]) -> (Integer -> 'a__0001))) [Bool]) : (Array [Bool]) -> (Integer -> Bool))
+   (((((((array : ['a__0002] -> (Integer -> ('a__0002 -> (Array ['a__0002])))) [Bool]) : Integer -> (Bool -> (Array [Bool])))
+       (1 : Integer)) : Bool -> (Array [Bool]))
+     (True : Bool)) : Array [Bool])) : Integer -> Bool)
+ (0 : Integer)) : Bool

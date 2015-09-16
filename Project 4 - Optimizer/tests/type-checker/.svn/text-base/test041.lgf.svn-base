@@ -1,0 +1,5 @@
+(* andalso expression, non-boolean left *)
+val t = 0 == 0
+val f = 0 <> 0
+;
+"True" andalso f

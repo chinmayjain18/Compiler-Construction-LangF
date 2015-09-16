@@ -1,0 +1,2 @@
+(* sequence expression *)
+(0 ; 1 ; 2)

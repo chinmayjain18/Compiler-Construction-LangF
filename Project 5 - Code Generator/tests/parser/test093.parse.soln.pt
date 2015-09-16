@@ -1,0 +1,4 @@
+val x = 1
+val y = ~ x
+;
+~ y

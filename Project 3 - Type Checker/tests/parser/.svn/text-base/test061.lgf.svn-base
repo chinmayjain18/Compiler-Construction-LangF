@@ -1,0 +1,3 @@
+(* simple application expression *)
+val s = "Hello world!\n"
+; print s

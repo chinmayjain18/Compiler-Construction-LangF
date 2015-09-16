@@ -1,0 +1,5 @@
+xtest000.lgf:5.5-xtest000.lgf:5.10 Error: 
+Redundant pattern in 'case'.
+  pattern: True
+  in rule: True => False
+  in: case b of True => False | ...  | False => True end

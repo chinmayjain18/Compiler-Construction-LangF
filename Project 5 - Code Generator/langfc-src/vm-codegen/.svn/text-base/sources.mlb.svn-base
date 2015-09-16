@@ -1,0 +1,41 @@
+(* langfc-src/vm-codegen/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for vm code generator in the LangF compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+
+   ../common/sources.mlb
+   ../reploc-ir/sources.mlb
+
+   label.sig
+   label.sml
+
+   instruction.sig
+   instruction.sml
+
+   code-stream.sig
+   code-stream.sml
+
+   codegen.sig
+   codegen.sml
+
+in
+
+   signature CODE_STREAM
+   structure CodeStream
+
+   signature VM_CODE_GEN
+   structure VMCodeGen
+
+end

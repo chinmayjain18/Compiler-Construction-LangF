@@ -1,0 +1,4 @@
+(* syntactic restriction, distinct datatype parameters *)
+datatype T ['a, 'b, 'a, 'c] = T {'a -> 'b -> 'c}
+;
+0

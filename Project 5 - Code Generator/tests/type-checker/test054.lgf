@@ -1,0 +1,6 @@
+(* array op, non-array left *)
+val f = fn ['a] (a: Array ['a]) (i: Integer) (x: 'a) =>
+  "Array" ! i := x
+;
+f
+

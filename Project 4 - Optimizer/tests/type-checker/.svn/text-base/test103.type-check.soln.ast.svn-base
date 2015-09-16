@@ -1,0 +1,89 @@
+fun x__0000 (x__0001 : Integer) : String =
+   (if ((x__0001 : Integer) < (0 : Integer)) : Bool
+       then (("~" : String) ^ (((x__0000 : Integer -> String) ((~ (x__0001 : Integer)) : Integer)) : String)) : String
+       else (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+                then "0" : String
+                else (if ((x__0001 : Integer) == (1 : Integer)) : Bool
+                         then "1" : String
+                         else (if ((x__0001 : Integer) == (2 : Integer)) : Bool
+                                  then "2" : String
+                                  else (if ((x__0001 : Integer) == (3 : Integer)) : Bool
+                                           then "3" : String
+                                           else (if ((x__0001 : Integer) == (4 : Integer)) : Bool
+                                                    then "4" : String
+                                                    else (if ((x__0001 : Integer) == (5 : Integer)) : Bool
+                                                             then "5" : String
+                                                             else (if ((x__0001 : Integer) == (6 : Integer)) : Bool
+                                                                      then "6" : String
+                                                                      else (if ((x__0001 : Integer) == (7 : Integer)) : Bool
+                                                                               then "7" : String
+                                                                               else (if ((x__0001 : Integer) == (8 : Integer)) : Bool
+                                                                                        then "8" : String
+                                                                                        else (if ((x__0001 : Integer)
+                                                                                                  ==
+                                                                                                  (9 : Integer)) : Bool
+                                                                                                 then "9" : String
+                                                                                                 else ((((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           /
+                                                                                                           (10 : Integer)) : Integer)) : String)
+                                                                                                       ^
+                                                                                                       (((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           %
+                                                                                                           (10 : Integer)) : Integer)) : String)) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String
+datatype T__0000 ['a__0000] = C__0000
+                            | C__0001 {'a__0000}
+fun x__0002 ['a__0001] (x__0003 : 'a__0001 -> String) (x__0004 : T__0000 ['a__0001]) : String =
+   (case x__0004 : T__0000 ['a__0001] of
+       C__0000 ['a__0001] => "None" : String
+     | C__0001 ['a__0001] {x__0005 (* : 'a__0001 *)} =>
+          (("Some {" : String) ^ (((((x__0003 : 'a__0001 -> String) (x__0005 : 'a__0001)) : String) ^ ("}" : String)) : String)) : String
+    end) : String
+val x__0006 (* : Integer *) =
+   ((((subscript : String -> (Integer -> Integer)) ("0" : String)) : Integer -> Integer) (0 : Integer)) : Integer
+val x__0007 (* : Integer *) =
+   ((((subscript : String -> (Integer -> Integer)) ("9" : String)) : Integer -> Integer) (0 : Integer)) : Integer
+fun x__0008 (x__0009 : Integer) : T__0000 [Integer] =
+   (if ((((x__0006 : Integer) <= (x__0009 : Integer)) : Bool) andalso (((x__0009 : Integer) <= (x__0007 : Integer)) : Bool)) : Bool
+       then (C__0001 [Integer] {((x__0009 : Integer) - (x__0006 : Integer)) : Integer}) : T__0000 [Integer]
+       else (C__0000 [Integer]) : T__0000 [Integer]) : T__0000 [Integer]
+fun x__000A (x__000B : String) : T__0000 [Integer] =
+   (let
+       val x__000C (* : Integer *) = ((size : String -> Integer) (x__000B : String)) : Integer
+       fun x__000D (x__000E : Integer) (x__000F : Integer) : T__0000 [Integer] =
+          (if ((x__000E : Integer) < (x__000C : Integer)) : Bool
+              then (case ((x__0008 : Integer -> (T__0000 [Integer]))
+                          (((((subscript : String -> (Integer -> Integer)) (x__000B : String)) : Integer -> Integer)
+                            (x__000E : Integer)) : Integer)) : T__0000 [Integer] of
+                       C__0000 [Integer] => (C__0000 [Integer]) : T__0000 [Integer]
+                     | C__0001 [Integer] {x__0010 (* : Integer *)} =>
+                          ((((x__000D : Integer -> (Integer -> (T__0000 [Integer])))
+                             (((x__000E : Integer) + (1 : Integer)) : Integer)) : Integer -> (T__0000 [Integer]))
+                           (((((x__000F : Integer) * (10 : Integer)) : Integer) + (x__0010 : Integer)) : Integer)) : T__0000 [Integer]
+                    end) : T__0000 [Integer]
+              else (C__0001 [Integer] {x__000F : Integer}) : T__0000 [Integer]) : T__0000 [Integer]
+    in
+       (if ((x__000C : Integer) > (0 : Integer)) : Bool
+           then ((((x__000D : Integer -> (Integer -> (T__0000 [Integer]))) (0 : Integer)) : Integer -> (T__0000 [Integer]))
+                 (0 : Integer)) : T__0000 [Integer]
+           else (C__0000 [Integer]) : T__0000 [Integer]) : T__0000 [Integer]
+    end) : T__0000 [Integer]
+val x__0011 (* : String *) =
+   (if ((((argc : Unit -> Integer) (Unit : Unit)) : Integer) > (1 : Integer)) : Bool
+       then ((arg : Integer -> String) (1 : Integer)) : String
+       else "12345" : String) : String
+;
+(((print : String -> Unit)
+  (((((((x__0002 : ['a__0002] -> (('a__0002 -> String) -> ((T__0000 ['a__0002]) -> String))) [Integer]) : (Integer -> String)
+                                                                                                          ->
+                                                                                                          ((T__0000 [Integer])
+                                                                                                           ->
+                                                                                                           String))
+      (x__0000 : Integer -> String)) : (T__0000 [Integer]) -> String)
+    (((x__000A : String -> (T__0000 [Integer])) (x__0011 : String)) : T__0000 [Integer])) : String)) : Unit;
+ ((print : String -> Unit) ("\n" : String)) : Unit) : Unit

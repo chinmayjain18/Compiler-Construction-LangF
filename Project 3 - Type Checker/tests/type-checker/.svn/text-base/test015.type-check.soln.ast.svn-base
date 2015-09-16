@@ -1,0 +1,24 @@
+val x__0000 (* : ['a__0000] -> (('a__0000 -> 'a__0000) -> ('a__0000 -> 'a__0000)) *) =
+   (fn ['a__0001] (x__0001 : 'a__0001 -> 'a__0001) (x__0002 : 'a__0001) =>
+       ((x__0001 : 'a__0001 -> 'a__0001) (((x__0001 : 'a__0001 -> 'a__0001) (x__0002 : 'a__0001)) : 'a__0001)) : 'a__0001) : ['a__0002] ->
+                                                                                                                             (('a__0002
+                                                                                                                               ->
+                                                                                                                               'a__0002)
+                                                                                                                              ->
+                                                                                                                              ('a__0002
+                                                                                                                               ->
+                                                                                                                               'a__0002))
+val x__0003 (* : Integer *) =
+   ((((((x__0000 : ['a__0003] -> (('a__0003 -> 'a__0003) -> ('a__0003 -> 'a__0003))) [Integer]) : (Integer -> Integer)
+                                                                                                  ->
+                                                                                                  (Integer -> Integer))
+      ((fn (x__0004 : Integer) => ((x__0004 : Integer) + (1 : Integer)) : Integer) : Integer -> Integer)) : Integer -> Integer)
+    (0 : Integer)) : Integer
+val x__0005 (* : String *) =
+   ((((((x__0000 : ['a__0004] -> (('a__0004 -> 'a__0004) -> ('a__0004 -> 'a__0004))) [String]) : (String -> String)
+                                                                                                 ->
+                                                                                                 (String -> String))
+      ((fn (x__0006 : String) => ((x__0006 : String) ^ (x__0006 : String)) : String) : String -> String)) : String -> String)
+    ("z" : String)) : String
+;
+x__0005 : String

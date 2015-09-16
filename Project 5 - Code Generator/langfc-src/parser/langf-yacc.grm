@@ -1,0 +1,447 @@
+(* langfc-src/scanner-parser/langf-yacc.grm
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * LangF parser specification for ml-yacc.
+ *)
+
+(* User declarations; available in semantic actions. *)
+structure PT = ParseTree
+
+%%
+
+%name LangFYacc
+%verbose
+%pure
+
+%pos Source.Pos.t
+%eop EOF
+%noshift EOF
+
+(* Tokens. *)
+%term
+    KW_and
+  | KW_andalso
+  | KW_case
+  | KW_datatype
+  | KW_else
+  | KW_end
+  | KW_fn
+  | KW_fun
+  | KW_if
+  | KW_in
+  | KW_let
+  | KW_of
+  | KW_orelse
+  | KW_then
+  | KW_type
+  | KW_val
+  | PLUS
+  | MINUS
+  | ASTERISK
+  | SLASH
+  | PERCENT
+  | TILDE
+  | EQEQ
+  | LTGT
+  | LTEQ
+  | LT
+  | GTEQ
+  | GT
+  | CARET
+  | HASH
+  | BANG
+  | COLON_EQ
+  | LPAREN
+  | RPAREN
+  | LSBRACK
+  | RSBRACK
+  | LCBRACK
+  | RCBRACK
+  | MINUS_ARROW
+  | EQ_ARROW
+  | EQ
+  | COLON
+  | COMMA
+  | SEMI
+  | VBAR
+  | UNDERSCORE
+  | TYVAR_NAME of Atom.atom
+  | CON_NAME of Atom.atom
+  | VAR_NAME of Atom.atom
+  | INTEGER of IntInf.int
+  | STRING of String.string
+  | EOF
+
+(* Keyword tokens, for error recovery. *)
+%keyword
+    KW_and
+    KW_andalso
+    KW_case
+    KW_datatype
+    KW_else
+    KW_end
+    KW_fn
+    KW_fun
+    KW_if
+    KW_in
+    KW_let
+    KW_of
+    KW_orelse
+    KW_then
+    KW_type
+    KW_val
+(* Value-carrying tokens, for error recovery. *)
+%value TYVAR_NAME (Atom.atom "'bogus")
+%value CON_NAME (Atom.atom "Bogus")
+%value VAR_NAME (Atom.atom "bogus")
+%value INTEGER (IntInf.fromInt 0)
+%value STRING ("")
+
+%right MINUS_ARROW
+
+%nonassoc EQ_ARROW
+%nonassoc KW_else
+%left COLON
+%left KW_orelse
+%left KW_andalso
+
+%left EQEQ LTGT LT LTEQ GT GTEQ
+%right CARET
+%left PLUS MINUS
+%left ASTERISK SLASH PERCENT
+
+(* Non-terminals, with type produced by semantic action. *)
+%nonterm
+    Program of PT.Prog.t
+  | Decl of PT.Decl.t
+  | DeclStar of PT.Decl.t list
+  | DeclPlus of PT.Decl.t list
+  | TypeParams of PT.TyVarName.t list
+  | TyVarNamePlus of PT.TyVarName.t list
+  | Type of PT.Type.t
+  | TypeArgs of PT.Type.t list
+  | TypePlus of PT.Type.t list
+  | DataDecl of (PT.TyConName.t *
+                 PT.TyVarName.t list *
+                 (PT.DaConName.t * PT.Type.t list) list)
+  | DataDeclPlus of (PT.TyConName.t *
+                     PT.TyVarName.t list *
+                     (PT.DaConName.t * PT.Type.t list) list) list
+  | DaConDecl of PT.DaConName.t * PT.Type.t list
+  | DaConDeclPlus of (PT.DaConName.t * PT.Type.t list) list
+  | DaConArgTys of PT.Type.t list
+  | SimplePat of PT.SimplePat.t
+  | FunDecl of PT.VarName.t * PT.Param.t list * PT.Type.t * PT.Exp.t
+  | FunDeclPlus of (PT.VarName.t * PT.Param.t list * PT.Type.t * PT.Exp.t) list
+  | Param of PT.Param.t
+  | ParamPlus of PT.Param.t list
+  | Exp of PT.Exp.t
+  | ComplexExp of PT.Exp.t
+  | UpdExp of PT.Exp.t
+  | IdxExp of PT.Exp.t
+  | ZComplexExp of PT.Exp.t
+  | SimpleExp of PT.Exp.t
+  | DaConExp of PT.Exp.t
+  | DaConArgs of PT.Exp.t list
+  | ExpPlusComma of PT.Exp.t list
+  | ApplyExp of PT.Exp.t
+  | ApplyArg of PT.ApplyArg.t
+  | AtomicExpOrNullaryDaConExp of PT.Exp.t
+  | NullaryDaConExp of PT.Exp.t
+  | AtomicExp of PT.Exp.t
+  | ExpPlusSemi of PT.Exp.t list
+  | MatchRule of PT.MatchRule.t
+  | MatchRulePlus of PT.MatchRule.t list
+  | Pat of PT.Pat.t
+  | DaConPats of PT.SimplePat.t list
+  | SimplePatPlus of PT.SimplePat.t list
+  | TyVarName of PT.TyVarName.t
+  | TyConName of PT.TyConName.t
+  | DaConName of PT.DaConName.t
+  | VarName of PT.VarName.t
+
+(* Start non-terminal. *)
+%start Program
+
+%%
+
+(* Rules. *)
+
+Program
+  : DeclStar SEMI Exp ( PT.Prog.make ((DeclStar,Exp), (DeclStarleft, Expright)) )
+  | Exp ( PT.Prog.make (([],Exp), (Expleft, Expright)) )
+
+Decl
+  : KW_type TyConName TypeParams EQ Type (
+      PT.Decl.make (PT.Decl.D_Type (TyConName, TypeParams, Type),
+                    (KW_typeleft, Typeright)) )
+  | KW_datatype DataDeclPlus (
+      PT.Decl.make (PT.Decl.D_Data DataDeclPlus, (KW_datatypeleft, DataDeclPlusright)) )
+  | KW_val SimplePat EQ Exp (
+      PT.Decl.make (PT.Decl.D_Val (SimplePat, NONE, Exp), (KW_valleft, Expright)) )
+  | KW_val SimplePat COLON Type EQ Exp (
+      PT.Decl.make (PT.Decl.D_Val (SimplePat, SOME Type, Exp), (KW_valleft, Expright)) )
+  | KW_fun FunDeclPlus (
+      PT.Decl.make (PT.Decl.D_Fun FunDeclPlus, (KW_funleft, FunDeclPlusright)) )
+
+DeclStar
+  :   ( [] )
+  | Decl DeclStar ( Decl::DeclStar )
+
+DeclPlus
+  : Decl DeclStar ( Decl::DeclStar )
+
+TypeParams
+  :   ( [] )
+  | LSBRACK RSBRACK  ( [] )
+  | LSBRACK TyVarNamePlus RSBRACK  ( TyVarNamePlus )
+
+TyVarNamePlus
+  : TyVarName ( [TyVarName] )
+  | TyVarName COMMA TyVarNamePlus ( TyVarName :: TyVarNamePlus )
+
+Type
+  : LSBRACK TyVarName RSBRACK MINUS_ARROW Type (
+      PT.Type.make (PT.Type.T_TyFn (TyVarName, Type), (LSBRACKleft, Typeright)) )
+  | Type MINUS_ARROW Type (
+      PT.Type.make (PT.Type.T_Fn (Type1, Type2), (Type1left, Type2right)) )
+  | TyConName TypeArgs (
+      PT.Type.make (PT.Type.T_TyCon (TyConName, TypeArgs),
+                    (TyConNameleft, TypeArgsright)) )
+  | TyVarName (
+      PT.Type.make (PT.Type.T_TyVar TyVarName, (TyVarNameleft, TyVarNameright)) )
+  | LPAREN Type RPAREN (
+      PT.Type.make (PT.Type.node Type, (LPARENleft, RPARENright)) )
+
+TypeArgs
+  :  ( [] )
+  | LSBRACK RSBRACK ( [] )
+  | LSBRACK TypePlus RSBRACK ( TypePlus )
+
+TypePlus
+  : Type ( [Type] )
+  | Type COMMA TypePlus ( Type :: TypePlus )
+
+DataDecl
+  : TyConName TypeParams EQ DaConDeclPlus (
+      (TyConName, TypeParams, DaConDeclPlus) )
+
+DataDeclPlus
+  : DataDecl ( [DataDecl] )
+  | DataDecl KW_and DataDeclPlus ( DataDecl::DataDeclPlus )
+
+DaConDecl
+  : DaConName DaConArgTys ( (DaConName, DaConArgTys) )
+
+DaConDeclPlus
+  : DaConDecl ( [DaConDecl] )
+  | DaConDecl VBAR DaConDeclPlus ( DaConDecl::DaConDeclPlus )
+
+DaConArgTys
+  :   ( [] )
+  | LCBRACK RCBRACK ( [] )
+  | LCBRACK TypePlus RCBRACK ( TypePlus )
+
+SimplePat
+  : VarName (
+      PT.SimplePat.make (PT.SimplePat.P_VarName VarName, (VarNameleft, VarNameright)) )
+  | UNDERSCORE (
+      PT.SimplePat.make (PT.SimplePat.P_Wild, (UNDERSCOREleft, UNDERSCOREright)) )
+
+FunDecl
+  : VarName ParamPlus COLON Type EQ Exp ( (VarName, ParamPlus, Type, Exp) )
+
+FunDeclPlus
+  : FunDecl ( [FunDecl] )
+  | FunDecl KW_and FunDeclPlus ( FunDecl::FunDeclPlus )
+
+Param
+  : LPAREN VarName COLON Type RPAREN (
+      PT.Param.make (PT.Param.P_VarName (VarName, Type), (LPARENleft, RPARENright)) )
+  | LSBRACK TyVarName RSBRACK (
+      PT.Param.make (PT.Param.P_TyVarName TyVarName, (LSBRACKleft, RSBRACKright)) )
+
+ParamPlus
+  : Param ( [Param] )
+  | Param ParamPlus ( Param::ParamPlus )
+
+Exp
+  : KW_fn ParamPlus EQ_ARROW Exp (
+      PT.Exp.make (PT.Exp.E_Fn (ParamPlus, Exp), (KW_fnleft, Expright)) )
+  | KW_if Exp KW_then Exp KW_else Exp (
+      PT.Exp.make (PT.Exp.E_If (Exp1, Exp2, Exp3), (KW_ifleft, Exp3right)) )
+  | Exp COLON Type (
+      PT.Exp.make (PT.Exp.E_Constraint (Exp, Type), (Expleft, Typeright)) )
+  | ComplexExp ( ComplexExp )
+
+ComplexExp
+  : ComplexExp KW_orelse ComplexExp (
+      PT.Exp.make (PT.Exp.E_Orelse (ComplexExp1, ComplexExp2),
+                   (ComplexExp1left, ComplexExp2right)) )
+  | ComplexExp KW_andalso ComplexExp (
+      PT.Exp.make (PT.Exp.E_Andalso (ComplexExp1, ComplexExp2),
+                   (ComplexExp1left, ComplexExp2right)) )
+  | UpdExp ( UpdExp )
+
+UpdExp
+  : IdxExp BANG ZComplexExp COLON_EQ UpdExp (
+      PT.Exp.make (PT.Exp.E_TernOp (PT.TernOp.Upd, IdxExp, ZComplexExp, UpdExp),
+                   (IdxExpleft, UpdExpright)) )
+  | IdxExp ( IdxExp )
+
+IdxExp
+  : IdxExp BANG ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Idx, IdxExp, ZComplexExp),
+                   (IdxExpleft, ZComplexExpright)) )
+  | ZComplexExp ( ZComplexExp )
+
+ZComplexExp
+  : ZComplexExp EQEQ ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Eq, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp LTGT ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.NEq, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp LT ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Lt, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp LTEQ ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Lte, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp GT ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Gt, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp GTEQ ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Gte, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp CARET ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Concat, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp PLUS ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Add, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp MINUS ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Sub, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp ASTERISK ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Mul, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp SLASH ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Div, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | ZComplexExp PERCENT ZComplexExp (
+      PT.Exp.make (PT.Exp.E_BinOp (PT.BinOp.Mod, ZComplexExp1, ZComplexExp2),
+                   (ZComplexExp1left, ZComplexExp2right)) )
+  | SimpleExp ( SimpleExp )
+
+SimpleExp
+  : TILDE AtomicExpOrNullaryDaConExp (
+      PT.Exp.make (PT.Exp.E_UnOp (PT.UnOp.Neg, AtomicExpOrNullaryDaConExp),
+                   (TILDEleft, AtomicExpOrNullaryDaConExpright)) )
+  | HASH AtomicExpOrNullaryDaConExp (
+      PT.Exp.make (PT.Exp.E_UnOp (PT.UnOp.Len, AtomicExpOrNullaryDaConExp),
+                   (HASHleft, AtomicExpOrNullaryDaConExpright)) )
+  | DaConName TypeArgs DaConArgs (
+      PT.Exp.make (PT.Exp.E_DaCon (DaConName, TypeArgs, DaConArgs),
+                   (DaConNameleft, DaConArgsright)) )
+  | ApplyExp ( ApplyExp )
+
+DaConArgs
+  :   ( [] )
+  | LCBRACK RCBRACK ( [] )
+  | LCBRACK ExpPlusComma RCBRACK ( ExpPlusComma )
+
+ExpPlusComma
+  : Exp ( [Exp] )
+  | Exp COMMA ExpPlusComma ( Exp::ExpPlusComma )
+
+ApplyExp
+  : ApplyExp ApplyArg (
+      PT.Exp.make (PT.Exp.E_Apply (ApplyExp, ApplyArg),
+                   (ApplyExpleft, ApplyArgright)) )
+  | AtomicExp ( AtomicExp )
+
+ApplyArg
+  : AtomicExpOrNullaryDaConExp (
+      PT.ApplyArg.make (PT.ApplyArg.A_Exp AtomicExpOrNullaryDaConExp,
+                        (AtomicExpOrNullaryDaConExpleft, AtomicExpOrNullaryDaConExpright)) )
+  | LSBRACK Type RSBRACK (
+      PT.ApplyArg.make (PT.ApplyArg.A_Type Type, (LSBRACKleft, LSBRACKright)) )
+
+AtomicExpOrNullaryDaConExp
+  : AtomicExp ( AtomicExp )
+  | NullaryDaConExp ( NullaryDaConExp )
+
+NullaryDaConExp
+  : DaConName (
+      PT.Exp.make (PT.Exp.E_DaCon (DaConName, [], []), (DaConNameleft, DaConNameright)) )
+
+AtomicExp
+  : VarName (
+      PT.Exp.make (PT.Exp.E_VarName VarName, (VarNameleft, VarNameright)) )
+  | INTEGER (
+      PT.Exp.make (PT.Exp.E_Integer INTEGER, (INTEGERleft, INTEGERright)) )
+  | STRING (
+      PT.Exp.make (PT.Exp.E_String STRING, (STRINGleft, STRINGright)) )
+  | LPAREN ExpPlusSemi RPAREN (
+      case ExpPlusSemi of
+         [Exp] => Exp
+       | _ => PT.Exp.make (PT.Exp.E_Seq ExpPlusSemi, (LPARENleft, RPARENright)) )
+  | KW_let DeclPlus KW_in ExpPlusSemi KW_end (
+      PT.Exp.make (PT.Exp.E_Let (DeclPlus, ExpPlusSemi), (KW_letleft, KW_endright)) )
+  | KW_case Exp KW_of MatchRulePlus KW_end (
+      PT.Exp.make (PT.Exp.E_Case (Exp, MatchRulePlus), (KW_caseleft, KW_endright)) )
+
+ExpPlusSemi
+  : Exp ( [Exp] )
+  | Exp SEMI ExpPlusSemi ( Exp::ExpPlusSemi )
+
+MatchRule
+  : Pat EQ_ARROW Exp (
+      PT.MatchRule.make ((Pat,Exp), (Patleft, Expright)) )
+
+MatchRulePlus
+  : MatchRule ( [MatchRule] )
+  | MatchRule VBAR MatchRulePlus ( MatchRule::MatchRulePlus )
+
+Pat
+  : DaConName TypeArgs DaConPats (
+      PT.Pat.make (PT.Pat.P_DaCon (DaConName, TypeArgs, DaConPats),
+             (DaConNameleft, DaConPatsright)) )
+  | SimplePat (
+      PT.Pat.make (PT.Pat.P_SimplePat SimplePat, (SimplePatleft, SimplePatright)) )
+
+DaConPats
+  :   ( [] )
+  | LCBRACK RCBRACK ( [] )
+  | LCBRACK SimplePatPlus RCBRACK ( SimplePatPlus )
+
+SimplePatPlus
+  : SimplePat ( [SimplePat] )
+  | SimplePat COMMA SimplePatPlus ( SimplePat::SimplePatPlus )
+
+
+TyVarName
+  : TYVAR_NAME ( PT.TyVarName.make (TYVAR_NAME, (TYVAR_NAMEleft, TYVAR_NAMEright)) )
+
+TyConName
+  : CON_NAME ( PT.TyConName.make (CON_NAME, (CON_NAMEleft, CON_NAMEright)) )
+
+DaConName
+  : CON_NAME ( PT.DaConName.make (CON_NAME, (CON_NAMEleft, CON_NAMEright)) )
+
+VarName
+  : VAR_NAME ( PT.VarName.make (VAR_NAME, (VAR_NAMEleft, VAR_NAMEright)) )

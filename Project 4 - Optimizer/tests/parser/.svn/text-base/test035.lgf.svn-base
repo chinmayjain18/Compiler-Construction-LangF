@@ -1,0 +1,3 @@
+(* one val decl *)
+val x = 0
+; 0

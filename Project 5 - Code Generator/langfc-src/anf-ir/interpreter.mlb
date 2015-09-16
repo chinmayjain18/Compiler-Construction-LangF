@@ -1,0 +1,32 @@
+(* langfc-src/anf-ir/interpreter.mlb
+ *
+ * COPYRIGHT (c) 2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * CSCI-742
+ * S20135,S20145
+ *
+ * MLB file for A-normal form intermediate representation interpreter
+ * in the LangF interpreter (langfi).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+
+   ../common/sources.mlb
+
+   sources.mlb
+
+   interpreter.sig
+   interpreter.sml
+
+in
+
+   signature ANF_IR_INTERPRETER
+   structure AnfIRInterpreter
+
+end

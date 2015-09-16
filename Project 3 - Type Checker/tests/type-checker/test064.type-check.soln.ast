@@ -1,0 +1,6 @@
+;
+(let
+    val x__0000 (* : Integer -> Integer *) = (fn (x__0001 : Integer) => x__0001 : Integer) : Integer -> Integer
+ in
+    x__0000 : Integer -> Integer
+ end) : Integer -> Integer

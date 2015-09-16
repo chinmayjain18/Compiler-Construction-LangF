@@ -1,0 +1,1754 @@
+Type Checker Tests
+==================
+
+
+test000 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test000.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test000.lgf
+
+-----type-check.ast-----
+$ diff test000.type-check.soln.ast test000.type-check.ast
+
+**PASS**
+
+====================
+
+test001 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test001.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test001.lgf
+
+-----type-check.ast-----
+$ diff test001.type-check.soln.ast test001.type-check.ast
+
+**PASS**
+
+====================
+
+test002 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test002.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test002.lgf
+
+-----type-check.ast-----
+$ diff test002.type-check.soln.ast test002.type-check.ast
+
+**PASS**
+
+====================
+
+test003 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test003.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test003.lgf
+
+-----type-check.ast-----
+$ diff test003.type-check.soln.ast test003.type-check.ast
+
+**PASS**
+
+====================
+
+test004 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test004.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test004.lgf
+
+-----type-check.ast-----
+$ diff test004.type-check.soln.ast test004.type-check.ast
+
+**PASS**
+
+====================
+
+test005 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test005.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test005.lgf
+
+-----type-check.ast-----
+$ diff test005.type-check.soln.ast test005.type-check.ast
+
+**PASS**
+
+====================
+
+test006 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test006.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test006.lgf
+
+-----type-check.ast-----
+$ diff test006.type-check.soln.ast test006.type-check.ast
+
+**PASS**
+
+====================
+
+test007 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test007.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test007.lgf
+
+-----type-check.ast-----
+$ diff test007.type-check.soln.ast test007.type-check.ast
+
+**PASS**
+
+====================
+
+test008 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test008.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test008.lgf
+
+-----type-check.ast-----
+$ diff test008.type-check.soln.ast test008.type-check.ast
+
+**PASS**
+
+====================
+
+test009 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test009.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test009.lgf
+test009.lgf:2.13-test009.lgf:2.15 Error: 
+Unbound type variable: 'a.
+
+-----type-check.err-----
+$ diff test009.type-check.soln.err test009.type-check.err
+3d2
+<   in: 'a
+
+**PASS**
+
+====================
+
+test010 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test010.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test010.lgf
+test010.lgf:2.12-test010.lgf:2.14 Error: 
+Unbound type constructor: Id.
+
+-----type-check.err-----
+$ diff test010.type-check.soln.err test010.type-check.err
+3d2
+<   in: Id [Integer]
+
+**PASS**
+
+====================
+
+test011 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test011.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test011.lgf
+
+-----type-check.ast-----
+$ diff test011.type-check.soln.ast test011.type-check.ast
+
+**PASS**
+
+====================
+
+test012 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test012.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test012.lgf
+
+-----type-check.ast-----
+$ diff test012.type-check.soln.ast test012.type-check.ast
+
+**PASS**
+
+====================
+
+test013 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test013.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test013.lgf
+
+-----type-check.ast-----
+$ diff test013.type-check.soln.ast test013.type-check.ast
+
+**PASS**
+
+====================
+
+test014 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test014.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test014.lgf
+
+-----type-check.ast-----
+$ diff test014.type-check.soln.ast test014.type-check.ast
+
+**PASS**
+
+====================
+
+test015 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test015.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test015.lgf
+
+-----type-check.ast-----
+$ diff test015.type-check.soln.ast test015.type-check.ast
+
+**PASS**
+
+====================
+
+test016 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test016.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test016.lgf
+
+-----type-check.ast-----
+$ diff test016.type-check.soln.ast test016.type-check.ast
+
+**PASS**
+
+====================
+
+test017 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test017.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test017.lgf
+test017.lgf:2.14-test017.lgf:2.19 Error: 
+Type mismatch in Arithmatic Expression(R). Integer expected 
+
+-----type-check.err-----
+$ diff test017.type-check.soln.err test017.type-check.err
+1,4c1,2
+< test017.lgf:2.10-test017.lgf:2.11 Error: 
+< Right operand of '+' not of type Integer.
+<   operand: String
+<   in: 1 + "foo"
+---
+> test017.lgf:2.14-test017.lgf:2.19 Error: 
+> Type mismatch in Arithmatic Expression(R). Integer expected 
+
+**PASS**
+
+====================
+
+test018 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test018.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test018.lgf
+test018.lgf:7.26-test018.lgf:7.28 Error: 
+Type mismatch in val declarations
+
+-----type-check.err-----
+$ diff test018.type-check.soln.err test018.type-check.err
+1,5c1,2
+< test018.lgf:7.0-test018.lgf:8.0 Error: 
+< Constraint and expression of 'val' disagree.
+<   constraint: Integer -> (Integer -> Integer)
+<   expression: Integer -> (Integer -> Bool)
+<   in: val _ : BinOp [Integer] = lt
+---
+> test018.lgf:7.26-test018.lgf:7.28 Error: 
+> Type mismatch in val declarations
+
+**PASS**
+
+====================
+
+test019 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test019.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test019.lgf
+test019.lgf:6.11-test019.lgf:6.22 Error: 
+Type mismatch. Function types do not match
+
+-----type-check.err-----
+$ diff test019.type-check.soln.err test019.type-check.err
+1,5c1,2
+< test019.lgf:6.11-test019.lgf:6.24 Error: 
+< Function and argument of apply disagree.
+<   function: String -> String
+<   argument: Integer
+<   in: (id [String]) 0
+---
+> test019.lgf:6.11-test019.lgf:6.22 Error: 
+> Type mismatch. Function types do not match
+
+**PASS**
+
+====================
+
+test020 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test020.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test020.lgf
+test020.lgf:5.20-test020.lgf:5.60 Error: 
+Type mismatch. Function types do not match
+
+-----type-check.err-----
+$ diff test020.type-check.soln.err test020.type-check.err
+1,5c1,2
+< test020.lgf:5.20-test020.lgf:5.62 Error: 
+< Function and argument of apply disagree.
+<   function: String -> String
+<   argument: Integer
+<   in: ((twice [String]) (fn (s : String) => (s ^ s))) 0
+---
+> test020.lgf:5.20-test020.lgf:5.60 Error: 
+> Type mismatch. Function types do not match
+
+**PASS**
+
+====================
+
+test021 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test021.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test021.lgf
+test021.lgf:4.10-test021.lgf:4.16 Error: 
+Function type not found in Apply Function Expression ['a__0000] -> ('a__0000 - ... 0001) -> 'a__0001)))
+
+-----type-check.err-----
+$ diff test021.type-check.soln.err test021.type-check.err
+1,12c1,2
+< test021.lgf:4.10-test021.lgf:4.18 Error: 
+< Argument of apply not a type.
+<   function: ['a] -> ('a -> (['b] -> (('a -> 'b) -> 'b)))
+<   in: revApp 1
+< test021.lgf:4.10-test021.lgf:4.28 Error: 
+< Argument of apply not an expression.
+<   function: Unit -> (['a] -> ((Unit -> 'a) -> 'a))
+<   in: (revApp 1) [Integer]
+< test021.lgf:4.10-test021.lgf:4.55 Error: 
+< Argument of apply not a type.
+<   function: ['a] -> ((Unit -> 'a) -> 'a)
+<   in: ((revApp 1) [Integer]) (f ... Integer) => (x * 2))
+---
+> test021.lgf:4.10-test021.lgf:4.16 Error: 
+> Function type not found in Apply Function Expression ['a__0000] -> ('a__0000 - ... 0001) -> 'a__0001)))
+
+**PASS**
+
+====================
+
+test022 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test022.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test022.lgf
+test022.lgf:3.12-test022.lgf:3.43 Error: 
+Type constructor Fst given 3 type arguments but takes 2 type arguments.
+  in: Fst [Integer, Integer, Integer]
+
+-----type-check.err-----
+$ diff test022.type-check.soln.err test022.type-check.err
+
+**PASS**
+
+====================
+
+test023 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test023.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test023.lgf
+test023.lgf:3.12-test023.lgf:3.25 Error: 
+Type constructor Fst given 1 type arguments but takes 2 type arguments.
+  in: Fst [Integer]
+
+-----type-check.err-----
+$ diff test023.type-check.soln.err test023.type-check.err
+
+**PASS**
+
+====================
+
+test024 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test024.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test024.lgf
+test024.lgf:3.12-test024.lgf:3.18 Error: 
+Type constructor Fst given 0 type arguments but takes 2 type arguments.
+  in: Fst
+
+-----type-check.err-----
+$ diff test024.type-check.soln.err test024.type-check.err
+
+**PASS**
+
+====================
+
+test025 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test025.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test025.lgf
+test025.lgf:4.14-test025.lgf:4.23 Error: 
+Type constructor Pair given 1 type arguments but takes 2 type arguments.
+  in: Pair ['a]
+
+-----type-check.err-----
+$ diff test025.type-check.soln.err test025.type-check.err
+
+**PASS**
+
+====================
+
+test026 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test026.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test026.lgf
+test026.lgf:4.14-test026.lgf:4.31 Error: 
+Type constructor Pair given 3 type arguments but takes 2 type arguments.
+  in: Pair ['a, 'a, 'a]
+
+-----type-check.err-----
+$ diff test026.type-check.soln.err test026.type-check.err
+
+**PASS**
+
+====================
+
+test027 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test027.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test027.lgf
+test027.lgf:4.32-test027.lgf:4.36 Error: 
+Type constructor Pair given 0 type arguments but takes 2 type arguments.
+  in: Pair
+
+-----type-check.err-----
+$ diff test027.type-check.soln.err test027.type-check.err
+
+**PASS**
+
+====================
+
+test028 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test028.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test028.lgf
+
+-----type-check.ast-----
+$ diff test028.type-check.soln.ast test028.type-check.ast
+
+**PASS**
+
+====================
+
+test029 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test029.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test029.lgf
+
+-----type-check.ast-----
+$ diff test029.type-check.soln.ast test029.type-check.ast
+
+**PASS**
+
+====================
+
+test030 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test030.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test030.lgf
+test030.lgf:5.2-test030.lgf:5.6 Error: 
+Number of arguments used do not match
+
+-----type-check.err-----
+$ diff test030.type-check.soln.err test030.type-check.err
+1,3c1,2
+< test030.lgf:5.2-test030.lgf:5.27 Error: 
+< Data constructor Book given 1 arguments but takes 2 arguments.
+<   in: Book {"Lawrence Paulson"}
+---
+> test030.lgf:5.2-test030.lgf:5.6 Error: 
+> Number of arguments used do not match
+
+**PASS**
+
+====================
+
+test031 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test031.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test031.lgf
+test031.lgf:12.5-test031.lgf:12.12 Error: 
+Number of arguments used do not match
+
+-----type-check.err-----
+$ diff test031.type-check.soln.err test031.type-check.err
+1,5c1,2
+< test031.lgf:12.5-test031.lgf:12.28 Error: 
+< Data constructor Article given 2 patterns but takes 3 arguments.
+<   in pattern: Article {author, title}
+<   in rule: Article {author, title} => author
+<   in: case p of Book {author, t ... title} => author end
+---
+> test031.lgf:12.5-test031.lgf:12.12 Error: 
+> Number of arguments used do not match
+
+**PASS**
+
+====================
+
+test032 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test032.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test032.lgf
+test032.lgf:7.2-test032.lgf:7.9 Error: 
+Types in expression list do not match
+
+-----type-check.err-----
+$ diff test032.type-check.soln.err test032.type-check.err
+1,6c1,2
+< test032.lgf:8.11-test032.lgf:8.14 Error: 
+< Argument type and expression of data constructor Article disagree.
+<   arg type:   String
+<   expression: Integer
+<   in arg: 256
+<   in: Article {"Andrew Appel",  ... f Standard ML", 256}
+---
+> test032.lgf:7.2-test032.lgf:7.9 Error: 
+> Types in expression list do not match
+
+**PASS**
+
+====================
+
+test033 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test033.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test033.lgf
+
+-----type-check.ast-----
+$ diff test033.type-check.soln.ast test033.type-check.ast
+
+**PASS**
+
+====================
+
+test034 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test034.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test034.lgf
+test034.lgf:3.16-test034.lgf:3.20 Error: 
+Types in expression list do not match
+
+-----type-check.err-----
+$ diff test034.type-check.soln.err test034.type-check.err
+1,6c1,2
+< test034.lgf:3.43-test034.lgf:3.44 Error: 
+< Argument type and expression of data constructor Pair disagree.
+<   arg type:   String
+<   expression: Integer
+<   in arg: 1
+<   in: Pair [Integer, String] {1, 1}
+---
+> test034.lgf:3.16-test034.lgf:3.20 Error: 
+> Types in expression list do not match
+
+**PASS**
+
+====================
+
+test035 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test035.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test035.lgf
+test035.lgf:5.12-test035.lgf:5.16 Error: 
+Data contructor types mismatch
+
+-----type-check.err-----
+$ diff test035.type-check.soln.err test035.type-check.err
+1,6c1,2
+< test035.lgf:5.12-test035.lgf:5.37 Error: 
+< Argument and pattern in 'case' disagree.
+<   argument: Pair ['a, 'b]
+<   pattern:  Pair [Integer, 'b]
+<   in rule: Pair [Integer, 'b] {x, y} => x
+<   in: case p of Pair [Integer, 'b] {x, y} => x end
+---
+> test035.lgf:5.12-test035.lgf:5.16 Error: 
+> Data contructor types mismatch
+
+**PASS**
+
+====================
+
+test036 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test036.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test036.lgf
+test036.lgf:7.12-test036.lgf:7.16 Error: 
+Data contructor types mismatch
+
+-----type-check.err-----
+$ diff test036.type-check.soln.err test036.type-check.err
+1,11c1,2
+< test036.lgf:7.12-test036.lgf:7.32 Error: 
+< Argument and pattern in 'case' disagree.
+<   argument: Pair ['a, 'b]
+<   pattern:  Pair ['b, 'a]
+<   in rule: Pair ['b, 'a] {x, y} => y
+<   in: case p of Pair ['b, 'a] {x, y} => y end
+< test036.lgf:9.0-test036.lgf:10.0 Error: 
+< Constraint and expression of 'val' disagree.
+<   constraint: String
+<   expression: Integer
+<   in: val hello : String = ((sn ...  [String]) one_hello
+---
+> test036.lgf:7.12-test036.lgf:7.16 Error: 
+> Data contructor types mismatch
+
+**PASS**
+
+====================
+
+test037 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test037.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test037.lgf
+
+-----type-check.ast-----
+$ diff test037.type-check.soln.ast test037.type-check.ast
+
+**PASS**
+
+====================
+
+test038 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test038.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test038.lgf
+test038.lgf:2.14-test038.lgf:2.20 Error: 
+Return type of the 'then' and 'else' expression do not match
+
+-----type-check.err-----
+$ diff test038.type-check.soln.err test038.type-check.err
+1,5c1,2
+< test038.lgf:2.0-test038.lgf:eof Error: 
+< Then and else branches of 'if' disagree.
+<   then: String
+<   else: Integer
+<   in: if 0 < 1 then "True" else 0
+---
+> test038.lgf:2.14-test038.lgf:2.20 Error: 
+> Return type of the 'then' and 'else' expression do not match
+
+**PASS**
+
+====================
+
+test039 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test039.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test039.lgf
+test039.lgf:2.3-test039.lgf:2.4 Error: 
+IF expression should return a boolean type
+
+-----type-check.err-----
+$ diff test039.type-check.soln.err test039.type-check.err
+2,4c2
+< Test of 'if' not of type Bool.
+<   test: Integer
+<   in: if 0 then "True" else "False"
+---
+> IF expression should return a boolean type
+
+**PASS**
+
+====================
+
+test040 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test040.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test040.lgf
+
+-----type-check.ast-----
+$ diff test040.type-check.soln.ast test040.type-check.ast
+
+**PASS**
+
+====================
+
+test041 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test041.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test041.lgf
+test041.lgf:5.0-test041.lgf:5.6 Error: 
+Return type of the left expression should be boolean
+
+-----type-check.err-----
+$ diff test041.type-check.soln.err test041.type-check.err
+2,4c2
+< Left operand of 'andalso' not of type Bool.
+<   operand: String
+<   in: "True" andalso f
+---
+> Return type of the left expression should be boolean
+
+**PASS**
+
+====================
+
+test042 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test042.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test042.lgf
+test042.lgf:5.11-test042.lgf:5.28 Error: 
+Return type of the right expression should be boolean
+
+-----type-check.err-----
+$ diff test042.type-check.soln.err test042.type-check.err
+2,4c2
+< Right operand of 'andalso' not of type Bool.
+<   operand: Bool -> Bool
+<   in: t andalso (fn (x : Bool) => x)
+---
+> Return type of the right expression should be boolean
+
+**PASS**
+
+====================
+
+test043 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test043.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test043.lgf
+
+-----type-check.ast-----
+$ diff test043.type-check.soln.ast test043.type-check.ast
+
+**PASS**
+
+====================
+
+test044 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test044.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test044.lgf
+test044.lgf:5.0-test044.lgf:5.6 Error: 
+Return type of the left expression should be boolean
+
+-----type-check.err-----
+$ diff test044.type-check.soln.err test044.type-check.err
+2,4c2
+< Left operand of 'orelse' not of type Bool.
+<   operand: String
+<   in: "True" orelse f
+---
+> Return type of the left expression should be boolean
+
+**PASS**
+
+====================
+
+test045 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test045.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test045.lgf
+test045.lgf:5.10-test045.lgf:5.27 Error: 
+Return type of the right expression should be boolean
+
+-----type-check.err-----
+$ diff test045.type-check.soln.err test045.type-check.err
+2,4c2
+< Right operand of 'orelse' not of type Bool.
+<   operand: Bool -> Bool
+<   in: t orelse (fn (x : Bool) => x)
+---
+> Return type of the right expression should be boolean
+
+**PASS**
+
+====================
+
+test046 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test046.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test046.lgf
+test046.lgf:5.12-test046.lgf:6.0 Error: 
+Type mismatch in val declarations
+
+-----type-check.err-----
+$ diff test046.type-check.soln.err test046.type-check.err
+1,5c1,2
+< test046.lgf:5.0-test046.lgf:6.0 Error: 
+< Constraint and expression of 'val' disagree.
+<   constraint: T
+<   expression: ?T?
+<   in: val y : T = B
+---
+> test046.lgf:5.12-test046.lgf:6.0 Error: 
+> Type mismatch in val declarations
+
+**PASS**
+
+====================
+
+test047 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test047.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test047.lgf
+
+-----type-check.ast-----
+$ diff test047.type-check.soln.ast test047.type-check.ast
+
+**PASS**
+
+====================
+
+test048 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test048.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test048.lgf
+test048.lgf:2.1-test048.lgf:2.13 Error: 
+Type mismatch in the constraint expression
+
+-----type-check.err-----
+$ diff test048.type-check.soln.err test048.type-check.err
+1,5c1,2
+< test048.lgf:2.1-test048.lgf:2.22 Error: 
+< Expression and constraint in ':' disagree.
+<   expression: Integer
+<   constraint: String
+<   in: (0 : Integer) : String
+---
+> test048.lgf:2.1-test048.lgf:2.13 Error: 
+> Type mismatch in the constraint expression
+
+**PASS**
+
+====================
+
+test049 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test049.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test049.lgf
+
+-----type-check.ast-----
+$ diff test049.type-check.soln.ast test049.type-check.ast
+
+**PASS**
+
+====================
+
+test050 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test050.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test050.lgf
+test050.lgf:2.0-test050.lgf:2.6 Error: 
+Type mismatch in Arithmatic Expression(L). Integer expected 
+
+-----type-check.err-----
+$ diff test050.type-check.soln.err test050.type-check.err
+2,4c2
+< Left operand of '+' not of type Integer.
+<   operand: String
+<   in: "True" + 1
+---
+> Type mismatch in Arithmatic Expression(L). Integer expected 
+
+**PASS**
+
+====================
+
+test051 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test051.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test051.lgf
+test051.lgf:2.4-test051.lgf:2.11 Error: 
+Type mismatch in Arithmatic Expression(R). Integer expected 
+
+-----type-check.err-----
+$ diff test051.type-check.soln.err test051.type-check.err
+1,4c1,2
+< test051.lgf:2.0-test051.lgf:2.1 Error: 
+< Right operand of '*' not of type Integer.
+<   operand: String
+<   in: 2 * "False"
+---
+> test051.lgf:2.4-test051.lgf:2.11 Error: 
+> Type mismatch in Arithmatic Expression(R). Integer expected 
+
+**PASS**
+
+====================
+
+test052 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test052.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test052.lgf
+
+-----type-check.ast-----
+$ diff test052.type-check.soln.ast test052.type-check.ast
+
+**PASS**
+
+====================
+
+test053 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test053.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test053.lgf
+
+-----type-check.ast-----
+$ diff test053.type-check.soln.ast test053.type-check.ast
+
+**PASS**
+
+====================
+
+test054 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test054.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test054.lgf
+test054.lgf:3.2-test054.lgf:3.9 Error: 
+Type mismatch. Array expected 
+
+-----type-check.err-----
+$ diff test054.type-check.soln.err test054.type-check.err
+2,8c2
+< Left operand of '! :=' not of type Array [?].
+<   operand: String
+<   in: "Array" ! i := x
+< test054.lgf:3.2-test054.lgf:3.9 Error: 
+< Right operand of '! :=' not of type ?.
+<   operand: 'a
+<   in: "Array" ! i := x
+---
+> Type mismatch. Array expected 
+
+**PASS**
+
+====================
+
+test055 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test055.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test055.lgf
+test055.lgf:3.6-test055.lgf:3.15 Error: 
+Type mismatch. Integer expected
+
+-----type-check.err-----
+$ diff test055.type-check.soln.err test055.type-check.err
+2,4c2
+< Mid operand of '! :=' not of type Integer.
+<   operand: String
+<   in: a ! "Integer" := x
+---
+> Type mismatch. Integer expected
+
+**PASS**
+
+====================
+
+test056 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test056.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test056.lgf
+test056.lgf:3.11-test056.lgf:3.15 Error: 
+Type mismatch
+
+-----type-check.err-----
+$ diff test056.type-check.soln.err test056.type-check.err
+1,4c1,2
+< test056.lgf:3.2-test056.lgf:3.3 Error: 
+< Right operand of '! :=' not of type 'a.
+<   operand: String
+<   in: a ! i := "'a"
+---
+> test056.lgf:3.11-test056.lgf:3.15 Error: 
+> Type mismatch
+
+**PASS**
+
+====================
+
+test057 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test057.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test057.lgf
+test057.lgf:3.2-test057.lgf:3.3 Error: 
+Type mismatch. Array expected 
+
+-----type-check.err-----
+$ diff test057.type-check.soln.err test057.type-check.err
+2,12c2
+< Left operand of '! :=' not of type Array [?].
+<   operand: 'a
+<   in: x ! a := i
+< test057.lgf:3.2-test057.lgf:3.3 Error: 
+< Right operand of '! :=' not of type ?.
+<   operand: Integer
+<   in: x ! a := i
+< test057.lgf:3.6-test057.lgf:3.7 Error: 
+< Mid operand of '! :=' not of type Integer.
+<   operand: Array ['a]
+<   in: x ! a := i
+---
+> Type mismatch. Array expected 
+
+**PASS**
+
+====================
+
+test058 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test058.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test058.lgf
+test058.lgf:3.31-test058.lgf:3.34 Error: 
+Unbound variable: add.
+
+-----type-check.err-----
+$ diff test058.type-check.soln.err test058.type-check.err
+1,5d0
+< test058.lgf:3.0-test058.lgf:4.0 Error: 
+< Constraint and expression of 'val' disagree.
+<   constraint: Integer -> Integer
+<   expression: Unit
+<   in: val inc : Integer -> Integer = add 1
+8,12d2
+<   in: add
+< test058.lgf:3.31-test058.lgf:3.36 Error: 
+< Function of apply not of function type.
+<   function: Unit
+<   in: add 1
+
+**PASS**
+
+====================
+
+test059 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test059.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test059.lgf
+test059.lgf:2.0-test059.lgf:2.1 Error: 
+Unbound variable: a.
+
+-----type-check.err-----
+$ diff test059.type-check.soln.err test059.type-check.err
+3,28d2
+<   in: a
+< test059.lgf:2.0-test059.lgf:2.1 Error: 
+< Left operand of '+' not of type Integer.
+<   operand: Unit
+<   in: a + b
+< test059.lgf:2.0-test059.lgf:2.1 Error: 
+< Right operand of '+' not of type Integer.
+<   operand: Unit
+<   in: a + b
+< test059.lgf:2.0-test059.lgf:2.5 Error: 
+< Right operand of '+' not of type Integer.
+<   operand: Unit
+<   in: (a + b) + c
+< test059.lgf:2.0-test059.lgf:2.9 Error: 
+< Right operand of '+' not of type Integer.
+<   operand: Unit
+<   in: ((a + b) + c) + d
+< test059.lgf:2.4-test059.lgf:2.5 Error: 
+< Unbound variable: b.
+<   in: b
+< test059.lgf:2.8-test059.lgf:2.9 Error: 
+< Unbound variable: c.
+<   in: c
+< test059.lgf:2.12-test059.lgf:2.13 Error: 
+< Unbound variable: d.
+<   in: d
+
+**PASS**
+
+====================
+
+test060 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test060.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test060.lgf
+
+-----type-check.ast-----
+$ diff test060.type-check.soln.ast test060.type-check.ast
+
+**PASS**
+
+====================
+
+test061 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test061.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test061.lgf
+
+-----type-check.ast-----
+$ diff test061.type-check.soln.ast test061.type-check.ast
+
+**PASS**
+
+====================
+
+test062 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test062.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test062.lgf
+test062.lgf:2.15-test062.lgf:2.71 Error: 
+Type mismatch in val declarations
+
+-----type-check.err-----
+$ diff test062.type-check.soln.err test062.type-check.err
+1,5c1,2
+< test062.lgf:2.0-test062.lgf:3.0 Error: 
+< Constraint and expression of 'val' disagree.
+<   constraint: Unit
+<   expression: Integer
+<   in: val _ : Unit = (print "He ... rld"; print "\n"; 0)
+---
+> test062.lgf:2.15-test062.lgf:2.71 Error: 
+> Type mismatch in val declarations
+
+**PASS**
+
+====================
+
+test063 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test063.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test063.lgf
+
+-----type-check.ast-----
+$ diff test063.type-check.soln.ast test063.type-check.ast
+
+**PASS**
+
+====================
+
+test064 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test064.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test064.lgf
+
+-----type-check.ast-----
+$ diff test064.type-check.soln.ast test064.type-check.ast
+
+**PASS**
+
+====================
+
+test065 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test065.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test065.lgf
+
+-----type-check.ast-----
+$ diff test065.type-check.soln.ast test065.type-check.ast
+
+**PASS**
+
+====================
+
+test066 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test066.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test066.lgf
+
+-----type-check.ast-----
+$ diff test066.type-check.soln.ast test066.type-check.ast
+
+**PASS**
+
+====================
+
+test067 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test067.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test067.lgf
+test067.lgf:5.2-test067.lgf:6.0 Error: 
+Type not defined in the environment
+
+-----type-check.err-----
+$ diff test067.type-check.soln.err test067.type-check.err
+1,4c1,2
+< test067.lgf:2.0-test067.lgf:6.3 Error: 
+< Type constructor escapes the scope of its definition.
+<   type constructor: T
+<   in: let datatype T = T {Integ ... eger) => (T {x}) end
+---
+> test067.lgf:5.2-test067.lgf:6.0 Error: 
+> Type not defined in the environment
+
+**PASS**
+
+====================
+
+test068 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test068.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test068.lgf
+test068.lgf:7.6-test068.lgf:7.9 Error: 
+Unbound variable: one.
+
+-----type-check.err-----
+$ diff test068.type-check.soln.err test068.type-check.err
+1,4d0
+< test068.lgf:2.0-test068.lgf:7.3 Error: 
+< Right operand of '+' not of type Integer.
+<   operand: Unit
+<   in: (let val one = 1 val two  ... one + two end) + one
+7d2
+<   in: one
+
+**PASS**
+
+====================
+
+test069 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test069.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test069.lgf
+
+-----type-check.ast-----
+$ diff test069.type-check.soln.ast test069.type-check.ast
+
+**PASS**
+
+====================
+
+test070 (7pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test070.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test070.lgf
+test070.lgf:2.46-test070.lgf:2.52 Error: 
+Return Type and Expression Type do not match
+
+-----type-check.err-----
+$ diff test070.type-check.soln.err test070.type-check.err
+1,5c1,2
+< test070.lgf:2.0-test070.lgf:3.0 Error: 
+< Result type and expression of 'fun' disagree.
+<   result type: Integer
+<   expression:  Bool
+<   in: fun add (a : Integer) (b  ... ) : Integer = a == b
+---
+> test070.lgf:2.46-test070.lgf:2.52 Error: 
+> Return Type and Expression Type do not match
+
+**PASS**
+
+====================
+
+test071 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test071.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test071.lgf
+
+-----type-check.ast-----
+$ diff test071.type-check.soln.ast test071.type-check.ast
+
+**PASS**
+
+====================
+
+test072 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test072.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test072.lgf
+
+-----type-check.ast-----
+$ diff test072.type-check.soln.ast test072.type-check.ast
+
+**PASS**
+
+====================
+
+test073 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test073.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test073.lgf
+
+-----type-check.ast-----
+$ diff test073.type-check.soln.ast test073.type-check.ast
+
+**PASS**
+
+====================
+
+test074 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test074.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test074.lgf
+
+-----type-check.ast-----
+$ diff test074.type-check.soln.ast test074.type-check.ast
+
+**PASS**
+
+====================
+
+test075 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test075.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test075.lgf
+test075.lgf:2.16-test075.lgf:2.18 Error: 
+Type parameter of 'type' defined multiple times.
+  type parameter: 'a
+  type constructor: T
+  in: type T ['a, 'b, 'a, 'c] = 'a -> ('b -> 'c)
+
+-----type-check.err-----
+$ diff test075.type-check.soln.err test075.type-check.err
+
+**PASS**
+
+====================
+
+test076 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test076.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test076.lgf
+test076.lgf:2.20-test076.lgf:2.22 Error: 
+Type parameter of 'datatype' defined multiple times.
+  type parameter: 'a
+  type constructor: T
+  in: datatype T ['a, 'b, 'a, ' ... T {'a -> ('b -> 'c)}
+
+-----type-check.err-----
+$ diff test076.type-check.soln.err test076.type-check.err
+
+**PASS**
+
+====================
+
+test077 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test077.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test077.lgf
+test077.lgf:3.9-test077.lgf:3.10 Error: 
+Type constructor of 'datatype' defined multiple times.
+  type constructor: T
+  in: datatype T = A | B and T = C | D
+
+-----type-check.err-----
+$ diff test077.type-check.soln.err test077.type-check.err
+
+**PASS**
+
+====================
+
+test078 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test078.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test078.lgf
+test078.lgf:2.21-test078.lgf:2.22 Error: 
+Data constructor of 'datatype' defined multiple times.
+  data constructor: A
+  type constructor: T
+  in: datatype T = A | B | A | C
+
+-----type-check.err-----
+$ diff test078.type-check.soln.err test078.type-check.err
+3a4
+>   type constructor: T
+
+**PASS**
+
+====================
+
+test079 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test079.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test079.lgf
+test079.lgf:3.17-test079.lgf:3.18 Error: 
+Data constructor of 'datatype' defined multiple times.
+  data constructor: A
+  type constructor: U
+  in: datatype T = A | B | C and U = D | A | E
+
+-----type-check.err-----
+$ diff test079.type-check.soln.err test079.type-check.err
+3a4
+>   type constructor: U
+
+**PASS**
+
+====================
+
+test080 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test080.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test080.lgf
+test080.lgf:2.31-test080.lgf:2.32 Error: 
+Function Names are not unique
+
+-----type-check.err-----
+$ diff test080.type-check.soln.err test080.type-check.err
+1,4c1,2
+< test080.lgf:3.4-test080.lgf:3.5 Error: 
+< Function variable of 'fun' defined multiple times.
+<   variable: f
+<   in: fun f (x : Integer) : Int ... x : Bool) : Bool = x
+---
+> test080.lgf:2.31-test080.lgf:2.32 Error: 
+> Function Names are not unique
+
+**PASS**
+
+====================
+
+test081 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test081.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test081.lgf
+test081.lgf:12.5-test081.lgf:12.12 Error: 
+Pattern Names are not unique
+
+-----type-check.err-----
+$ diff test081.type-check.soln.err test081.type-check.err
+1,6c1,2
+< test081.lgf:12.29-test081.lgf:12.34 Error: 
+< Variable of pattern defined multiple times.
+<   variable: title
+<   in pattern: Article {author, title, title}
+<   in rule: Article {author, title, title} => author
+<   in: case p of Book {author, t ... title} => author end
+---
+> test081.lgf:12.5-test081.lgf:12.12 Error: 
+> Pattern Names are not unique
+
+**PASS**
+
+====================
+
+test082 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test082.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test082.lgf
+test082.lgf:2.18-test082.lgf:2.38 Error: 
+Integer value out of bounds.
+
+-----type-check.err-----
+$ diff test082.type-check.soln.err test082.type-check.err
+2,3c2
+< Integer constant too small: ~4611686018427387905.
+<   in: ~4611686018427387905
+---
+> Integer value out of bounds.
+
+**PASS**
+
+====================
+
+test083 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test083.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test083.lgf
+test083.lgf:2.18-test083.lgf:2.37 Error: 
+Integer value out of bounds.
+
+-----type-check.err-----
+$ diff test083.type-check.soln.err test083.type-check.err
+2,3c2
+< Integer constant too big: 4611686018427387904.
+<   in: 4611686018427387904
+---
+> Integer value out of bounds.
+
+**PASS**
+
+====================
+
+test084 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test084.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test084.lgf
+
+-----type-check.ast-----
+$ diff test084.type-check.soln.ast test084.type-check.ast
+
+**PASS**
+
+====================
+
+test085 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test085.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test085.lgf
+test085.lgf:4.0 Error: syntax error; try inserting "end"
+
+-----type-check.err-----
+$ diff test085.type-check.soln.err test085.type-check.err
+
+**PASS**
+
+====================
+
+test086 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test086.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test086.lgf
+test086.lgf:5.11-test086.lgf:5.17 Error: 
+IF expression should return a boolean type
+
+-----type-check.err-----
+$ diff test086.type-check.soln.err test086.type-check.err
+2,4c2
+< Test of 'if' not of type ?Bool?.
+<   test: Bool
+<   in: if (lt 0) 1 then T else F
+---
+> IF expression should return a boolean type
+
+**PASS**
+
+====================
+
+test087 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test087.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test087.lgf
+test087.lgf:5.8-test087.lgf:5.11 Error: 
+Type mismatch. Function types do not match
+
+-----type-check.err-----
+$ diff test087.type-check.soln.err test087.type-check.err
+1,10c1,2
+< test087.lgf:5.8-test087.lgf:5.19 Error: 
+< Function and argument of apply disagree.
+<   function: Integer -> (Integer -> Integer)
+<   argument: ?Integer?
+<   in: add (1 + 2)
+< test087.lgf:5.8-test087.lgf:5.21 Error: 
+< Function and argument of apply disagree.
+<   function: Integer -> Integer
+<   argument: ?Integer?
+<   in: (add (1 + 2)) 3
+---
+> test087.lgf:5.8-test087.lgf:5.11 Error: 
+> Type mismatch. Function types do not match
+
+**PASS**
+
+====================
+
+test088 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test088.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test088.lgf
+
+-----type-check.ast-----
+$ diff test088.type-check.soln.ast test088.type-check.ast
+
+**PASS**
+
+====================
+
+test089 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test089.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test089.lgf
+
+-----type-check.ast-----
+$ diff test089.type-check.soln.ast test089.type-check.ast
+
+**PASS**
+
+====================
+
+test090 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test090.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test090.lgf
+
+-----type-check.ast-----
+$ diff test090.type-check.soln.ast test090.type-check.ast
+
+**PASS**
+
+====================
+
+test091 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test091.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test091.lgf
+
+-----type-check.ast-----
+$ diff test091.type-check.soln.ast test091.type-check.ast
+
+**PASS**
+
+====================
+
+test092 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test092.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test092.lgf
+
+-----type-check.ast-----
+$ diff test092.type-check.soln.ast test092.type-check.ast
+
+**PASS**
+
+====================
+
+test093 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test093.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test093.lgf
+test093.lgf:7.5-test093.lgf:7.7 Error: 
+Data contructor types mismatch
+
+-----type-check.err-----
+$ diff test093.type-check.soln.err test093.type-check.err
+1,15c1,2
+< test093.lgf:5.2-test093.lgf:9.5 Error: 
+< Non-exhaustive match rules in 'case'.
+<   missing: B1
+<   in: case x of A1 => "A1" | B2 ... B2" | C1 => "C1" end
+< test093.lgf:7.5-test093.lgf:7.8 Error: 
+< Argument and pattern in 'case' disagree.
+<   argument: T1
+<   pattern:  T2
+<   in rule: B2 => "B2"
+<   in: case x of A1 => "A1" | B2 ... B2" | C1 => "C1" end
+< test093.lgf:7.5-test093.lgf:7.8 Error: 
+< Redundant pattern in 'case'.
+<   pattern: B2
+<   in rule: B2 => "B2"
+<   in: case x of A1 => "A1" | B2 ... B2" | C1 => "C1" end
+---
+> test093.lgf:7.5-test093.lgf:7.7 Error: 
+> Data contructor types mismatch
+
+**PASS**
+
+====================
+
+test094 (9pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test094.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test094.lgf
+test094.lgf:6.5-test094.lgf:7.3 Error: 
+Match Rule Types mismatch
+
+-----type-check.err-----
+$ diff test094.type-check.soln.err test094.type-check.err
+1,12c1,2
+< test094.lgf:7.5-test094.lgf:8.3 Error: 
+< Result types of match rules in 'case' disagree.
+<   previous result type: String
+<   this result type:     Integer
+<   in rule: B1 => 42
+<   in: case x of A1 => "A1" | B1 => 42 | C1 => "C1" end
+< test094.lgf:8.5-test094.lgf:9.2 Error: 
+< Result types of match rules in 'case' disagree.
+<   previous result type: Integer
+<   this result type:     String
+<   in rule: C1 => "C1"
+<   in: case x of A1 => "A1" | B1 => 42 | C1 => "C1" end
+---
+> test094.lgf:6.5-test094.lgf:7.3 Error: 
+> Match Rule Types mismatch
+
+**PASS**
+
+====================
+
+test095 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test095.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test095.lgf
+
+-----type-check.ast-----
+$ diff test095.type-check.soln.ast test095.type-check.ast
+
+**PASS**
+
+====================
+
+test096 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test096.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test096.lgf
+
+-----type-check.ast-----
+$ diff test096.type-check.soln.ast test096.type-check.ast
+
+**PASS**
+
+====================
+
+test097 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test097.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test097.lgf
+
+-----type-check.ast-----
+$ diff test097.type-check.soln.ast test097.type-check.ast
+
+**PASS**
+
+====================
+
+test098 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test098.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test098.lgf
+
+-----type-check.ast-----
+$ diff test098.type-check.soln.ast test098.type-check.ast
+
+**PASS**
+
+====================
+
+test099 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test099.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test099.lgf
+
+-----type-check.ast-----
+$ diff test099.type-check.soln.ast test099.type-check.ast
+
+**PASS**
+
+====================
+
+test100 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test100.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test100.lgf
+
+-----type-check.ast-----
+$ diff test100.type-check.soln.ast test100.type-check.ast
+
+**PASS**
+
+====================
+
+test101 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test101.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test101.lgf
+
+-----type-check.ast-----
+$ diff test101.type-check.soln.ast test101.type-check.ast
+
+**PASS**
+
+====================
+
+test102 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test102.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test102.lgf
+
+-----type-check.ast-----
+$ diff test102.type-check.soln.ast test102.type-check.ast
+
+**PASS**
+
+====================
+
+test103 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test103.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test103.lgf
+
+-----type-check.ast-----
+$ diff test103.type-check.soln.ast test103.type-check.ast
+
+**PASS**
+
+====================
+
+test104 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test104.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test104.lgf
+
+-----type-check.ast-----
+$ diff test104.type-check.soln.ast test104.type-check.ast
+
+**PASS**
+
+====================
+
+test105 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test105.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test105.lgf
+
+-----type-check.ast-----
+$ diff test105.type-check.soln.ast test105.type-check.ast
+
+**PASS**
+
+====================
+
+test106 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test106.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test106.lgf
+
+-----type-check.ast-----
+$ diff test106.type-check.soln.ast test106.type-check.ast
+
+**PASS**
+
+====================
+
+test107 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test107.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test107.lgf
+
+-----type-check.ast-----
+$ diff test107.type-check.soln.ast test107.type-check.ast
+
+**PASS**
+
+====================
+
+test108 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test108.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test108.lgf
+
+-----type-check.ast-----
+$ diff test108.type-check.soln.ast test108.type-check.ast
+
+**PASS**
+
+====================
+
+test109 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test109.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test109.lgf
+
+-----type-check.ast-----
+$ diff test109.type-check.soln.ast test109.type-check.ast
+
+**PASS**
+
+====================
+
+test110 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test110.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test110.lgf
+
+-----type-check.ast-----
+$ diff test110.type-check.soln.ast test110.type-check.ast
+
+**PASS**
+
+====================
+
+test111 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test111.type-check.err -Ccanonical-ids=true -Ckeep-type-check=true -Cstop-type-check=true test111.lgf
+
+-----type-check.ast-----
+$ diff test111.type-check.soln.ast test111.type-check.ast
+
+**PASS**
+
+====================
+====================
+
+
+
+type checker (ast): 183 / 183  (100%)
+
+type checker (err): 964 / 964  (100%)
+
+
+type checker (tot): 1147 / 1147  (100%)

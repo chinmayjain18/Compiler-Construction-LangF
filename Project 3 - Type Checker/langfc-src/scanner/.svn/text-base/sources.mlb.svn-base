@@ -1,0 +1,47 @@
+(* langfc-src/scanner/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for front-end scanner in the LangF compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+
+   ../common/ml-lpt-lib/ml-lpt-lib.mlb
+   ../common/sources.mlb
+
+   tokens.sig
+   tokens.sml
+
+   scanner.sig
+
+   langf-hand-scanner.sig
+   langf-hand-scanner.sml
+   hand-scanner.sml
+
+   ann "warnUnused false" in
+      langf-ulex.lex.sml
+   end
+   ulex-scanner.sml
+
+   wrapped-scanner.sig
+   wrapped-scanner.sml
+
+in
+
+  signature TOKENS
+  structure Tokens
+
+  signature WRAPPED_SCANNER
+  structure WrappedScanner
+
+end

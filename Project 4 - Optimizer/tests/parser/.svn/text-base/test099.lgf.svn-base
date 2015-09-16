@@ -1,0 +1,3 @@
+(* function decl w/ two value params *)
+fun add (x: Integer) (y: Integer) : Integer = x + y
+; 0

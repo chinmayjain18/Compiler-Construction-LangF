@@ -1,0 +1,8 @@
+(* *EXTRA* syntactic restriction, redundant patterns *)
+fun not (f: Integer -> Integer) : Integer =
+  case f of
+     g => g 0
+   | h => h 0
+  end
+;
+not

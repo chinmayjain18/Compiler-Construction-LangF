@@ -1,0 +1,5 @@
+xtest003.lgf:8.5-xtest003.lgf:8.7 Error: 
+Redundant pattern in 'case'.
+  pattern: A
+  in rule: A => "A"
+  in: case x of A => "A" | B => ... > "A" | D => "D" end

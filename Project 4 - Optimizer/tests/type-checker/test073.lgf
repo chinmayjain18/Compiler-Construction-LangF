@@ -1,0 +1,18 @@
+(* polymorphic fun declaration, mutually recursive *)
+datatype Tree ['a] = EmptyT | Forest {'a, Forest ['a]}
+and Forest ['a] = EmptyF | Tree {Tree ['a], Forest ['a]}
+fun max (x: Integer) (y: Integer) : Integer =
+  if x > y then x else y
+fun heightTree ['a] (t: Tree ['a]) : Integer =
+  case t of
+     EmptyT ['a] => 0
+   | Forest ['a] {_, f} => 1 + (heightForest ['a] f)
+  end
+and heightForest ['a] (f: Forest ['a]) : Integer =
+  case f of
+     EmptyF ['a] => 0
+   | Tree ['a] {t, f} =>
+       max (heightTree ['a] t) (heightForest ['a] f)
+  end
+;
+heightTree [Integer] (EmptyT [Integer])

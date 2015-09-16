@@ -1,0 +1,7 @@
+val (* test086.lgf:1.0-test086.lgf:1.3 *)
+(* VAR_NAME *) s (* test086.lgf:1.4-test086.lgf:1.5 *)
+= (* test086.lgf:1.6-test086.lgf:1.7 *)
+(* STRING *) "\v" (* test086.lgf:1.8-test086.lgf:1.12 *)
+; (* test086.lgf:2.0-test086.lgf:2.1 *)
+(* VAR_NAME *) print (* test086.lgf:2.2-test086.lgf:2.7 *)
+(* VAR_NAME *) s (* test086.lgf:2.8-test086.lgf:2.9 *)

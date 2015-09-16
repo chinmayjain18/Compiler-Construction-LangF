@@ -1,0 +1,3 @@
+val conj = fn (b1 : Bool) (b2 : Bool) (b3 : Bool) => ((b1 andalso b2) andalso b3)
+;
+((conj True) False) True

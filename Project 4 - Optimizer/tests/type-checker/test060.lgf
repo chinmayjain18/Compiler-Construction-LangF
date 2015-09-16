@@ -1,0 +1,5 @@
+(* sequence expression *)
+val _ = (print "Hello"; print " "; print "World"; print "\n")
+;
+0
+

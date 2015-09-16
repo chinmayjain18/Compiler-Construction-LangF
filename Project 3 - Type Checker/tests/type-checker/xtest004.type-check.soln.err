@@ -1,0 +1,4 @@
+xtest004.lgf:3.2-xtest004.lgf:5.5 Error: 
+Non-exhaustive match rules in 'case'.
+  missing: False
+  in: case b of True => False end

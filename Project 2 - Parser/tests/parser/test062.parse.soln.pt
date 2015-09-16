@@ -1,0 +1,3 @@
+val id = fn (x : Integer) => x
+;
+0

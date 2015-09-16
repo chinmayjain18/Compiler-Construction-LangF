@@ -1,0 +1,8 @@
+fun x__0000 (x__0001 : Integer) : Integer =
+   (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+       then 1 : Integer
+       else ((x__0001 : Integer)
+             *
+             (((x__0000 : Integer -> Integer) (((x__0001 : Integer) - (1 : Integer)) : Integer)) : Integer)) : Integer) : Integer
+;
+((x__0000 : Integer -> Integer) (5 : Integer)) : Integer

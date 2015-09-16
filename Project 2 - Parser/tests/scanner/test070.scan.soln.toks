@@ -1,0 +1,7 @@
+val (* test070.lgf:1.0-test070.lgf:1.3 *)
+(* VAR_NAME *) x (* test070.lgf:1.4-test070.lgf:1.5 *)
+= (* test070.lgf:1.6-test070.lgf:1.7 *)
+(* VAR_NAME *) argc (* test070.lgf:1.8-test070.lgf:1.12 *)
+(* CON_NAME *) Unit (* test070.lgf:1.13-test070.lgf:1.17 *)
+; (* test070.lgf:1.18-test070.lgf:1.19 *)
+(* VAR_NAME *) x (* test070.lgf:1.20-test070.lgf:1.21 *)

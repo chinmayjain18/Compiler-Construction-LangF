@@ -1,0 +1,250 @@
+(* langfc-src/type-checker/environment.sml
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * Environments for front-end type-checker in the LangF compiler
+ * (langfc).
+ *)
+
+structure Environment :> ENVIRONMENT =
+struct
+   structure PT = ParseTree
+   structure AST = AbsSynTree
+
+   structure TyVarEnv =
+      struct
+         type dom = PT.TyVarName.t
+         type cod = {tyvar: AST.TyVar.t}
+         type t = cod PT.TyVarName.Map.map
+         val empty : t = PT.TyVarName.Map.empty
+         val singleton : dom * cod -> t = PT.TyVarName.Map.singleton
+         val lookup : t * dom -> cod option = PT.TyVarName.Map.find
+         val extend : t * t -> t = PT.TyVarName.Map.unionWith #2
+         val domain : t -> PT.TyVarName.Set.set =
+            PT.TyVarName.Set.fromList o PT.TyVarName.Map.listKeys
+      end
+   structure TyConEnv =
+      struct
+         type dom = PT.TyConName.t
+         structure Type =
+            struct
+               type cod = {tyvars: AST.TyVar.t list,
+                           ty: AST.Type.t}
+            end
+         structure Data =
+            struct
+               type cod = {arity: int,
+                           tycon: AST.TyCon.t}
+            end
+         datatype cod =
+            Type of Type.cod
+          | Data of Data.cod
+         type t = cod PT.TyConName.Map.map
+         val empty : t = PT.TyConName.Map.empty
+         val singleton : dom * cod -> t = PT.TyConName.Map.singleton
+         val lookup : t * dom -> cod option = PT.TyConName.Map.find
+         val extend : t * t -> t = PT.TyConName.Map.unionWith #2
+         val domain : t -> PT.TyConName.Set.set =
+            PT.TyConName.Set.fromList o PT.TyConName.Map.listKeys
+      end
+   structure DaConEnv =
+      struct
+         type dom = PT.DaConName.t
+         type cod =
+            {tyvars: AST.TyVar.t list,
+             arg_tys: AST.Type.t list,
+             tycon: AST.TyCon.t,
+             dacon: AST.DaCon.t}
+         type t = cod PT.DaConName.Map.map
+         val empty : t = PT.DaConName.Map.empty
+         val singleton : dom * cod -> t = PT.DaConName.Map.singleton
+         val lookup : t * dom -> cod option = PT.DaConName.Map.find
+         val extend : t * t -> t = PT.DaConName.Map.unionWith #2
+         val domain : t -> PT.DaConName.Set.set =
+            PT.DaConName.Set.fromList o PT.DaConName.Map.listKeys
+      end
+   structure VarEnv =
+      struct
+         type dom = PT.VarName.t
+         type cod = unit
+         (*
+          * For simple binding checking, we can take the co-domain
+          * to be 'unit', since we only need to know whether or not
+          * the variable is in the environment.
+          *)
+	 (*	
+          * type cod = unit
+	  *)
+         (*
+          * For type checking (without producing an abstract syntax
+          * tree), we can take the co-domain to be 
+          * '{var_ty: AbsSynTree.Type.t}', recording the semantic type
+          * of the variable in the environment.
+          *)
+         (*
+          * type cod = {var_ty: AST.Type.t}
+          *)
+         (*
+          * For type checking and producing an abstract syntax tree,
+          * we can take the co-domain to be 
+          * '{var_ty: AbsSynTree.Type.t, var: AbsSynTree.Var.t}',
+          * recording both the semantic type of the variable and the 
+          * abstract-syntax-tree variable to which the variable is
+          * translated.
+          *)
+         type cod = {var_ty: AST.Type.t,
+                      var: AST.Var.t}
+         type t = cod PT.VarName.Map.map
+         val empty : t = PT.VarName.Map.empty
+         val singleton : dom * cod -> t = PT.VarName.Map.singleton
+         val lookup : t * dom -> cod option = PT.VarName.Map.find
+         val extend : t * t -> t = PT.VarName.Map.unionWith #2
+         val domain : t -> PT.VarName.Set.set =
+            PT.VarName.Set.fromList o PT.VarName.Map.listKeys
+      end
+
+   datatype t =
+      Env of {tyvarEnv: TyVarEnv.t,
+              tyconEnv: TyConEnv.t,
+              daconEnv: DaConEnv.t,
+              varEnv: VarEnv.t}
+
+   val empty =
+      Env {tyvarEnv = TyVarEnv.empty,
+           tyconEnv = TyConEnv.empty,
+           daconEnv = DaConEnv.empty,
+           varEnv = VarEnv.empty}
+
+   fun fromTyVarEnv tyvarEnv =
+      Env {tyvarEnv = tyvarEnv,
+           tyconEnv = TyConEnv.empty,
+           daconEnv = DaConEnv.empty,
+           varEnv = VarEnv.empty}
+   val singletonTyVar = fromTyVarEnv o TyVarEnv.singleton
+   fun lookupTyVar (Env {tyvarEnv, ...}, tyvar) =
+      TyVarEnv.lookup (tyvarEnv, tyvar)
+   fun domainTyVar (Env {tyvarEnv, ...}) =
+      TyVarEnv.domain tyvarEnv
+
+   fun fromTyConEnv tyconEnv =
+      Env {tyvarEnv = TyVarEnv.empty,
+           tyconEnv = tyconEnv,
+           daconEnv = DaConEnv.empty,
+           varEnv = VarEnv.empty}
+   val singletonTyCon = fromTyConEnv o TyConEnv.singleton
+   val singletonTyConType = fn (tycon, arg) => singletonTyCon (tycon, TyConEnv.Type arg)
+   val singletonTyConData = fn (tycon, arg) => singletonTyCon (tycon, TyConEnv.Data arg)
+   fun lookupTyCon (Env {tyconEnv, ...}, tycon) =
+      TyConEnv.lookup (tyconEnv, tycon)
+   fun domainTyCon (Env {tyconEnv, ...}) =
+      TyConEnv.domain tyconEnv
+
+   fun fromDaConEnv daconEnv =
+      Env {tyvarEnv = TyVarEnv.empty,
+           tyconEnv = TyConEnv.empty,
+           daconEnv = daconEnv,
+           varEnv = VarEnv.empty}
+   val singletonDaCon = fromDaConEnv o DaConEnv.singleton
+   fun lookupDaCon (Env {daconEnv, ...}, dacon) =
+      DaConEnv.lookup (daconEnv, dacon)
+   fun domainDaCon (Env {daconEnv, ...}) =
+      DaConEnv.domain daconEnv
+
+   fun fromVarEnv varEnv =
+      Env {tyvarEnv = TyVarEnv.empty,
+           tyconEnv = TyConEnv.empty,
+           daconEnv = DaConEnv.empty,
+           varEnv = varEnv}
+   val singletonVar = fromVarEnv o VarEnv.singleton
+   fun lookupVar (Env {varEnv, ...}, var) =
+      VarEnv.lookup (varEnv, var)
+   fun domainVar (Env {varEnv, ...}) =
+      VarEnv.domain varEnv
+
+   fun extend (Env {tyvarEnv = tyvarEnv1,
+                    tyconEnv = tyconEnv1,
+                    daconEnv = daconEnv1,
+                    varEnv = varEnv1},
+               Env {tyvarEnv = tyvarEnv2,
+                    tyconEnv = tyconEnv2,
+                    daconEnv = daconEnv2,
+                    varEnv = varEnv2}) =
+      Env {tyvarEnv = TyVarEnv.extend (tyvarEnv1, tyvarEnv2),
+           tyconEnv = TyConEnv.extend (tyconEnv1, tyconEnv2),
+           daconEnv = DaConEnv.extend (daconEnv1, daconEnv2),
+           varEnv = VarEnv.extend (varEnv1, varEnv2)}
+
+   (* Implements \Theta(E). *)
+   fun tycons (Env {tyconEnv, ...}) =
+      PT.TyConName.Map.foldl
+      (fn (item, tycon_set) =>
+       case item of
+          TyConEnv.Type _ => tycon_set
+        | TyConEnv.Data {tycon, ...} =>
+             AST.TyCon.Set.add (tycon_set, tycon))
+      AST.TyCon.Set.empty
+      tyconEnv
+
+   (* The initial environment E_0. *)
+   val initial = empty
+   (* Pre-defined type constructors. *)
+   val initial =
+      List.foldl 
+      (fn ((tycon, item), env) => extend (env, singletonTyConData (tycon, item)))
+      initial
+      [(PT.TyConName.array, {arity = 1, tycon = AST.TyCon.array}),
+       (PT.TyConName.bool, {arity = 0, tycon = AST.TyCon.bool}),
+       (PT.TyConName.integer, {arity = 0, tycon = AST.TyCon.integer}),
+       (PT.TyConName.string, {arity = 0, tycon = AST.TyCon.string}),
+       (PT.TyConName.unit, {arity = 0, tycon = AST.TyCon.unit})]
+   (* Pre-defined data constructors. *)
+   val initial =
+      List.foldl 
+      (fn ((dacon, item), env) => extend (env, singletonDaCon (dacon, item)))
+      initial
+      [(PT.DaConName.falsee, {dacon = AST.DaCon.falsee,
+                              tyvars = [], arg_tys = [],
+                              tycon = AST.TyCon.bool}),
+       (PT.DaConName.truee, {dacon = AST.DaCon.truee,
+                             tyvars = [], arg_tys = [],
+                             tycon = AST.TyCon.bool}),
+       (PT.DaConName.unit, {dacon = AST.DaCon.unit,
+                            tyvars = [], arg_tys = [],
+                            tycon = AST.TyCon.unit})]
+   (* Pre-defined variables. *)
+   val initial =
+      List.foldl
+      (fn ((var, item), env) => extend (env, singletonVar (var, item)))
+      initial
+      [(PT.VarName.arg, {var_ty = AST.Type.T_Fn(AST.Type.integer, AST.Type.string), var = AST.Var.arg}),
+       (PT.VarName.argc, {var_ty = AST.Type.T_Fn(AST.Type.unit, AST.Type.integer), var = AST.Var.argc}),
+       (PT.VarName.fail, {var_ty = ( let
+					val tyVarAST = AST.TyVar.new ("tyvarAST")
+				      in
+					AST.Type.T_TyFn(tyVarAST, AST.Type.T_Fn(AST.Type.string, AST.Type.T_TyVar(tyVarAST)))
+				      end
+				    ), var = AST.Var.fail}),
+       (PT.VarName.array, {var_ty = ( let
+					val tyVarAST = AST.TyVar.new ("tyvarAST")
+					val arrayAST = AST.Type.array(AST.Type.T_TyVar(tyVarAST))
+					val tempFn = AST.Type.T_Fn(AST.Type.integer, AST.Type.T_Fn(AST.Type.T_TyVar(tyVarAST), arrayAST))
+				      in
+					AST.Type.T_TyFn(tyVarAST, tempFn)
+				      end
+				     ), var = AST.Var.array}), 
+       (PT.VarName.print, {var_ty = AST.Type.T_Fn(AST.Type.string, AST.Type.unit), var = AST.Var.print}), 
+       (PT.VarName.size, {var_ty = AST.Type.T_Fn(AST.Type.string, AST.Type.integer), var = AST.Var.size}), 
+       (PT.VarName.subscript, {var_ty = AST.Type.T_Fn(AST.Type.string, AST.Type.T_Fn(AST.Type.integer, AST.Type.integer)), var = AST.Var.subscript})]
+end

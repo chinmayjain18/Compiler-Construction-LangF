@@ -1,0 +1,4 @@
+test077.lgf:3.9-test077.lgf:3.10 Error: 
+Type constructor of 'datatype' defined multiple times.
+  type constructor: T
+  in: datatype T = A | B and T = C | D

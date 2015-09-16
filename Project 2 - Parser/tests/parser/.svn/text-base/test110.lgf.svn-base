@@ -1,0 +1,58 @@
+(* list.lgf *)
+
+fun intToString (i:Integer) : String =
+   if i < 0 then "~" ^ (intToString (~i))
+   else if i == 0 then "0"
+   else if i == 1 then "1"
+   else if i == 2 then "2"
+   else if i == 3 then "3"
+   else if i == 4 then "4"
+   else if i == 5 then "5"
+   else if i == 6 then "6"
+   else if i == 7 then "7"
+   else if i == 8 then "8"
+   else if i == 9 then "9"
+   else (intToString (i / 10)) ^ (intToString (i % 10))
+
+
+datatype List ['a] = Nil | Cons {'a, List ['a]}
+
+fun foldl ['a] ['b] (f: 'a -> 'b -> 'b) (b: 'b) (l: List ['a]) : 'b =
+  case l of
+     Nil ['a] => b
+   | Cons ['a] {hd, tl} => foldl ['a] ['b] f (f hd b) tl
+  end
+
+val rev = fn ['a] =>
+   foldl ['a] [List ['a]]
+         (fn (hd: 'a) (tl: List ['a]) => Cons ['a] {hd, tl})
+         (Nil ['a])
+
+fun tabulate ['a] (n: Integer) (f: Integer -> 'a) : List ['a] =
+  let
+     fun loop (i: Integer) (acc: List ['a]) : List ['a] =
+       if i <= n
+          then loop (i + 1) (Cons ['a] {f i, acc})
+       else rev ['a] acc
+  in
+     if n < 0
+        then fail [List ['a]] "tabulate: n < 0"
+     else loop 0 (Nil ['a])
+  end
+
+val n = 4999
+val sum_n =
+   foldl [Integer] [Integer]
+         (fn (x: Integer) (y: Integer) => x + y)
+         0
+         (tabulate [Integer] n (fn (i: Integer) => i))
+
+;
+
+(print "foldl [Integer] [Integer]\n";
+ print "      (fn (x: Integer) (y: Integer) => x + y)\n";
+ print "      0 (tabulate [Integer] ";
+ print (intToString n);
+ print " (fn (i: Integer) => i)) = ";
+ print (intToString sum_n);
+ print "\n")

@@ -1,0 +1,7 @@
+(* case expression, initial environment datatype *)
+fun unit (u: Unit) : Unit =
+  case u of
+      Unit => Unit
+  end
+;
+unit Unit

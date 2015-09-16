@@ -1,0 +1,60 @@
+(* string-to-int.lgf *)
+
+fun intToString (i:Integer) : String =
+   if i < 0 then "~" ^ (intToString (~i))
+   else if i == 0 then "0"
+   else if i == 1 then "1"
+   else if i == 2 then "2"
+   else if i == 3 then "3"
+   else if i == 4 then "4"
+   else if i == 5 then "5"
+   else if i == 6 then "6"
+   else if i == 7 then "7"
+   else if i == 8 then "8"
+   else if i == 9 then "9"
+   else (intToString (i / 10)) ^ (intToString (i % 10))
+
+datatype Option ['a] = None | Some {'a}
+
+fun optionToString ['a] (aToString: 'a -> String) (opt: Option ['a]) : String =
+  case opt of
+     None ['a] => "None"
+   | Some ['a] {x} => "Some {" ^ (aToString x) ^ "}"
+  end
+
+val ord0 = subscript "0" 0
+val ord9 = subscript "9" 0
+
+fun charToDigit (c: Integer) : Option [Integer] =
+  if ord0 <= c andalso c <= ord9
+    then Some [Integer] {c - ord0}
+    else None [Integer]
+
+fun stringToInt (s : String) : Option [Integer] =
+  let
+    val sz = size s
+    fun loop (pos: Integer) (acc: Integer) : Option [Integer] =
+      if pos < sz
+        then case charToDigit (subscript s pos) of
+                None [Integer] => None [Integer]
+              | Some [Integer] {i} => loop (pos + 1) (acc * 10 + i)
+             end
+      else Some [Integer] {acc}
+  in
+    if sz > 0
+      then loop 0 0
+    else None [Integer]
+  end
+
+val s =
+  if argc Unit > 1
+     then arg 1
+  else "12345"
+
+;
+
+(print (optionToString [Integer] intToString (stringToInt s));
+ print "\n")
+
+
+

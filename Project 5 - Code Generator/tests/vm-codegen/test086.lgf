@@ -1,0 +1,8 @@
+datatype T = A | B | C
+
+;
+
+case B of
+   B => 0
+ | _ => 1
+end

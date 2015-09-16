@@ -1,0 +1,35 @@
+(* fact-y.lgf *)
+
+fun intToString (i:Integer) : String =
+   if i < 0 then "~" ^ (intToString (~i))
+   else if i == 0 then "0"
+   else if i == 1 then "1"
+   else if i == 2 then "2"
+   else if i == 3 then "3"
+   else if i == 4 then "4"
+   else if i == 5 then "5"
+   else if i == 6 then "6"
+   else if i == 7 then "7"
+   else if i == 8 then "8"
+   else if i == 9 then "9"
+   else (intToString (i / 10)) ^ (intToString (i % 10))
+
+(* the Y combinator *)
+fun y ['a] (f: ('a -> 'a) -> ('a -> 'a)) (x: 'a) : 'a =
+   f (fn (x : 'a) => y ['a] f x) x
+
+val factY = fn (fact: Integer -> Integer) (n: Integer) =>
+   if n == 0 then 1 else n * fact (n - 1)
+
+val fact : Integer -> Integer = y [Integer] factY
+
+val n = 5
+val fact_n = fact n
+
+;
+
+(print "fact ";
+ print (intToString n);
+ print " = ";
+ print (intToString fact_n);
+ print "\n")

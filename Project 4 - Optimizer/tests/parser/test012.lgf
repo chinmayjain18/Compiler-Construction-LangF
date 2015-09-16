@@ -1,0 +1,3 @@
+(* right associativity of -> *)
+type T [] = Integer -> Integer -> Integer
+; 0

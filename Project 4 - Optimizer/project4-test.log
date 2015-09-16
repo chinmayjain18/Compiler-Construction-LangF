@@ -1,0 +1,2309 @@
+caj4430cc
+
+
+$ diff -r tests/optimizer ../../project/project4/tests/optimizer
+
+
+$ make
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C langfc-src
+ml-ulex scanner/langf-ulex.lex
+[ml-ulex: parsing]
+[ml-ulex: DFA gen]
+ 112 states in full DFA
+[ml-ulex: SML gen]
+ml-antlr parser/langf-antlr.grm
+[ml-antlr: parsing parser/langf-antlr.grm]
+[ml-antlr: checking grammar]
+ 76 nonterminals
+ 117 productions
+ml-yacc parser/langf-yacc.grm
+mlton -const 'Exn.keepHistory true' -output ../bin/.mlton-exec/langfc.mlton langfc.mlb
+mlton -const 'Exn.keepHistory true' -output ../bin/.mlton-exec/langfi.mlton langfi.mlb
+
+
+Optimizer Tests
+===============
+
+
+test000 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test000.lgf
+$ ../../bin/langfi -Cverbose=false test000.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test000.interpret-anf.soln.stdouterr test000.interpret-anf.stdouterr
+
+**PASS**
+
+size: 33; soln size (none): 33; soln size (basic): 33; soln size (extd): 11
+shrink: 0; soln shrink (basic): 0; soln shrink (extd): 22
+1.00 pts
+
+
+====================
+
+test001 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test001.lgf
+$ ../../bin/langfi -Cverbose=false test001.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test001.interpret-anf.soln.stdouterr test001.interpret-anf.stdouterr
+
+**PASS**
+
+size: 80; soln size (none): 92; soln size (basic): 80; soln size (extd): 11
+shrink: 12; soln shrink (basic): 12; soln shrink (extd): 81
+1.00 pts
+
+
+====================
+
+test002 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test002.lgf
+$ ../../bin/langfi -Cverbose=false test002.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test002.interpret-anf.soln.stdouterr test002.interpret-anf.stdouterr
+
+**PASS**
+
+size: 78; soln size (none): 90; soln size (basic): 78; soln size (extd): 11
+shrink: 12; soln shrink (basic): 12; soln shrink (extd): 79
+1.00 pts
+
+
+====================
+
+test003 (15pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test003.lgf
+$ ../../bin/langfi -Cverbose=false test003.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test003.interpret-anf.soln.stdouterr test003.interpret-anf.stdouterr
+
+**PASS**
+
+size: 318; soln size (none): 388; soln size (basic): 318; soln size (extd): 196
+shrink: 70; soln shrink (basic): 70; soln shrink (extd): 192
+15.00 pts
+
+
+====================
+
+test004 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test004.lgf
+$ ../../bin/langfi -Cverbose=false test004.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test004.interpret-anf.soln.stdouterr test004.interpret-anf.stdouterr
+
+**PASS**
+
+size: 293; soln size (none): 365; soln size (basic): 293; soln size (extd): 215
+shrink: 72; soln shrink (basic): 72; soln shrink (extd): 150
+1.00 pts
+
+
+====================
+
+test005 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test005.lgf
+$ ../../bin/langfi -Cverbose=false test005.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test005.interpret-anf.soln.stdouterr test005.interpret-anf.stdouterr
+
+**PASS**
+
+size: 292; soln size (none): 362; soln size (basic): 292; soln size (extd): 214
+shrink: 70; soln shrink (basic): 70; soln shrink (extd): 148
+1.00 pts
+
+
+====================
+
+test006 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test006.lgf
+$ ../../bin/langfi -Cverbose=false test006.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test006.interpret-anf.soln.stdouterr test006.interpret-anf.stdouterr
+
+**PASS**
+
+size: 480; soln size (none): 577; soln size (basic): 480; soln size (extd): 385
+shrink: 97; soln shrink (basic): 97; soln shrink (extd): 192
+1.00 pts
+
+
+====================
+
+test007 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test007.lgf
+$ ../../bin/langfi -Cverbose=false test007.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test007.interpret-anf.soln.stdouterr test007.interpret-anf.stdouterr
+
+**PASS**
+
+size: 480; soln size (none): 575; soln size (basic): 480; soln size (extd): 385
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 190
+1.00 pts
+
+
+====================
+
+test008 (15pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test008.lgf
+$ ../../bin/langfi -Cverbose=false test008.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test008.interpret-anf.soln.stdouterr test008.interpret-anf.stdouterr
+
+**PASS**
+
+size: 540; soln size (none): 659; soln size (basic): 540; soln size (extd): 426
+shrink: 119; soln shrink (basic): 119; soln shrink (extd): 233
+15.00 pts
+
+
+====================
+
+test009 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test009.lgf
+$ ../../bin/langfi -Cverbose=false test009.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test009.interpret-anf.soln.stdouterr test009.interpret-anf.stdouterr
+
+**PASS**
+
+size: 438; soln size (none): 487; soln size (basic): 438; soln size (extd): 375
+shrink: 49; soln shrink (basic): 49; soln shrink (extd): 112
+1.00 pts
+
+
+====================
+
+test010 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test010.lgf
+$ ../../bin/langfi -Cverbose=false test010.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test010.interpret-anf.soln.stdouterr test010.interpret-anf.stdouterr
+
+**PASS**
+
+size: 436; soln size (none): 485; soln size (basic): 436; soln size (extd): 373
+shrink: 49; soln shrink (basic): 49; soln shrink (extd): 112
+1.00 pts
+
+
+====================
+
+test011 (15pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test011.lgf
+$ ../../bin/langfi -Cverbose=false test011.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test011.interpret-anf.soln.stdouterr test011.interpret-anf.stdouterr
+
+**PASS**
+
+size: 676; soln size (none): 783; soln size (basic): 676; soln size (extd): 555
+shrink: 107; soln shrink (basic): 107; soln shrink (extd): 228
+15.00 pts
+
+
+====================
+
+test012 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test012.lgf
+$ ../../bin/langfi -Cverbose=false test012.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test012.interpret-anf.soln.stdouterr test012.interpret-anf.stdouterr
+
+**PASS**
+
+size: 909; soln size (none): 970; soln size (basic): 909; soln size (extd): 802
+shrink: 61; soln shrink (basic): 61; soln shrink (extd): 168
+2.00 pts
+
+
+====================
+
+test013 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test013.lgf
+$ ../../bin/langfi -Cverbose=false test013.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test013.interpret-anf.soln.stdouterr test013.interpret-anf.stdouterr
+
+**PASS**
+
+size: 1131; soln size (none): 1226; soln size (basic): 1131; soln size (extd): 895
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 331
+2.00 pts
+
+
+====================
+
+test014 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test014.lgf
+$ ../../bin/langfi -Cverbose=false test014.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test014.interpret-anf.soln.stdouterr test014.interpret-anf.stdouterr
+
+**PASS**
+
+size: 604; soln size (none): 745; soln size (basic): 604; soln size (extd): 509
+shrink: 141; soln shrink (basic): 141; soln shrink (extd): 236
+3.00 pts
+
+
+====================
+
+test015 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test015.lgf
+$ ../../bin/langfi -Cverbose=false test015.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test015.interpret-anf.soln.stdouterr test015.interpret-anf.stdouterr
+
+**PASS**
+
+size: 604; soln size (none): 745; soln size (basic): 604; soln size (extd): 509
+shrink: 141; soln shrink (basic): 141; soln shrink (extd): 236
+3.00 pts
+
+
+====================
+
+test016 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test016.lgf
+$ ../../bin/langfi -Cverbose=false test016.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test016.interpret-anf.soln.stdouterr test016.interpret-anf.stdouterr
+
+**PASS**
+
+size: 604; soln size (none): 745; soln size (basic): 604; soln size (extd): 509
+shrink: 141; soln shrink (basic): 141; soln shrink (extd): 236
+3.00 pts
+
+
+====================
+
+test017 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test017.lgf
+$ ../../bin/langfi -Cverbose=false test017.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test017.interpret-anf.soln.stdouterr test017.interpret-anf.stdouterr
+
+**PASS**
+
+size: 621; soln size (none): 1049; soln size (basic): 621; soln size (extd): 526
+shrink: 428; soln shrink (basic): 428; soln shrink (extd): 523
+3.00 pts
+
+
+====================
+
+test018 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test018.lgf
+$ ../../bin/langfi -Cverbose=false test018.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test018.interpret-anf.soln.stdouterr test018.interpret-anf.stdouterr
+
+**PASS**
+
+size: 621; soln size (none): 1049; soln size (basic): 621; soln size (extd): 526
+shrink: 428; soln shrink (basic): 428; soln shrink (extd): 523
+3.00 pts
+
+
+====================
+
+test019 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test019.lgf
+$ ../../bin/langfi -Cverbose=false test019.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test019.interpret-anf.soln.stdouterr test019.interpret-anf.stdouterr
+
+**PASS**
+
+size: 594; soln size (none): 698; soln size (basic): 594; soln size (extd): 501
+shrink: 104; soln shrink (basic): 104; soln shrink (extd): 197
+3.00 pts
+
+
+====================
+
+test020 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test020.lgf
+$ ../../bin/langfi -Cverbose=false test020.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test020.interpret-anf.soln.stdouterr test020.interpret-anf.stdouterr
+
+**PASS**
+
+size: 415; soln size (none): 531; soln size (basic): 415; soln size (extd): 337
+shrink: 116; soln shrink (basic): 116; soln shrink (extd): 194
+3.00 pts
+
+
+====================
+
+test021 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test021.lgf
+$ ../../bin/langfi -Cverbose=false test021.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test021.interpret-anf.soln.stdouterr test021.interpret-anf.stdouterr
+
+**PASS**
+
+size: 415; soln size (none): 531; soln size (basic): 415; soln size (extd): 337
+shrink: 116; soln shrink (basic): 116; soln shrink (extd): 194
+3.00 pts
+
+
+====================
+
+test022 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test022.lgf
+$ ../../bin/langfi -Cverbose=false test022.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test022.interpret-anf.soln.stdouterr test022.interpret-anf.stdouterr
+
+**PASS**
+
+size: 415; soln size (none): 531; soln size (basic): 415; soln size (extd): 337
+shrink: 116; soln shrink (basic): 116; soln shrink (extd): 194
+3.00 pts
+
+
+====================
+
+test023 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test023.lgf
+$ ../../bin/langfi -Cverbose=false test023.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test023.interpret-anf.soln.stdouterr test023.interpret-anf.stdouterr
+
+**PASS**
+
+size: 415; soln size (none): 531; soln size (basic): 415; soln size (extd): 337
+shrink: 116; soln shrink (basic): 116; soln shrink (extd): 194
+3.00 pts
+
+
+====================
+
+test024 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test024.lgf
+$ ../../bin/langfi -Cverbose=false test024.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test024.interpret-anf.soln.stdouterr test024.interpret-anf.stdouterr
+
+**PASS**
+
+size: 415; soln size (none): 531; soln size (basic): 415; soln size (extd): 337
+shrink: 116; soln shrink (basic): 116; soln shrink (extd): 194
+3.00 pts
+
+
+====================
+
+test025 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test025.lgf
+$ ../../bin/langfi -Cverbose=false test025.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test025.interpret-anf.soln.stdouterr test025.interpret-anf.stdouterr
+
+**PASS**
+
+size: 415; soln size (none): 531; soln size (basic): 415; soln size (extd): 337
+shrink: 116; soln shrink (basic): 116; soln shrink (extd): 194
+3.00 pts
+
+
+====================
+
+test026 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test026.lgf
+$ ../../bin/langfi -Cverbose=false test026.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test026.interpret-anf.soln.stdouterr test026.interpret-anf.stdouterr
+
+**PASS**
+
+size: 685; soln size (none): 766; soln size (basic): 685; soln size (extd): 528
+shrink: 81; soln shrink (basic): 81; soln shrink (extd): 238
+3.00 pts
+
+
+====================
+
+test027 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test027.lgf
+$ ../../bin/langfi -Cverbose=false test027.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test027.interpret-anf.soln.stdouterr test027.interpret-anf.stdouterr
+
+**PASS**
+
+size: 642; soln size (none): 701; soln size (basic): 642; soln size (extd): 504
+shrink: 59; soln shrink (basic): 59; soln shrink (extd): 197
+3.00 pts
+
+
+====================
+
+test028 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test028.lgf
+$ ../../bin/langfi -Cverbose=false test028.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test028.interpret-anf.soln.stdouterr test028.interpret-anf.stdouterr
+
+**PASS**
+
+size: 684; soln size (none): 747; soln size (basic): 684; soln size (extd): 512
+shrink: 63; soln shrink (basic): 63; soln shrink (extd): 235
+3.00 pts
+
+
+====================
+
+test029 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test029.lgf
+$ ../../bin/langfi -Cverbose=false test029.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test029.interpret-anf.soln.stdouterr test029.interpret-anf.stdouterr
+
+**PASS**
+
+size: 460; soln size (none): 485; soln size (basic): 460; soln size (extd): 346
+shrink: 25; soln shrink (basic): 25; soln shrink (extd): 139
+3.00 pts
+
+
+====================
+
+test030 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test030.lgf
+$ ../../bin/langfi -Cverbose=false test030.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test030.interpret-anf.soln.stdouterr test030.interpret-anf.stdouterr
+
+**PASS**
+
+size: 449; soln size (none): 485; soln size (basic): 449; soln size (extd): 326
+shrink: 36; soln shrink (basic): 36; soln shrink (extd): 159
+3.00 pts
+
+
+====================
+
+test031 (10pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test031.lgf
+$ ../../bin/langfi -Cverbose=false test031.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test031.interpret-anf.soln.stdouterr test031.interpret-anf.stdouterr
+
+**PASS**
+
+size: 657; soln size (none): 716; soln size (basic): 657; soln size (extd): 562
+shrink: 59; soln shrink (basic): 59; soln shrink (extd): 154
+10.00 pts
+
+
+====================
+
+test032 (10pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test032.lgf
+$ ../../bin/langfi -Cverbose=false test032.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test032.interpret-anf.soln.stdouterr test032.interpret-anf.stdouterr
+
+**PASS**
+
+size: 1397; soln size (none): 1939; soln size (basic): 1397; soln size (extd): 837
+shrink: 542; soln shrink (basic): 542; soln shrink (extd): 1102
+10.00 pts
+
+
+====================
+
+test033 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test033.lgf
+$ ../../bin/langfi -Cverbose=false test033.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test033.interpret-anf.soln.stdouterr test033.interpret-anf.stdouterr
+
+**PASS**
+
+size: 759; soln size (none): 824; soln size (basic): 759; soln size (extd): 587
+shrink: 65; soln shrink (basic): 65; soln shrink (extd): 237
+5.00 pts
+
+
+====================
+
+test034 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test034.lgf
+$ ../../bin/langfi -Cverbose=false test034.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test034.interpret-anf.soln.stdouterr test034.interpret-anf.stdouterr
+
+**PASS**
+
+size: 779; soln size (none): 934; soln size (basic): 779; soln size (extd): 662
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 272
+3.00 pts
+
+
+====================
+
+test035 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test035.lgf
+$ ../../bin/langfi -Cverbose=false test035.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test035.interpret-anf.soln.stdouterr test035.interpret-anf.stdouterr
+
+**PASS**
+
+size: 779; soln size (none): 934; soln size (basic): 779; soln size (extd): 662
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 272
+3.00 pts
+
+
+====================
+
+test036 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test036.lgf
+$ ../../bin/langfi -Cverbose=false test036.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test036.interpret-anf.soln.stdouterr test036.interpret-anf.stdouterr
+
+**PASS**
+
+size: 779; soln size (none): 934; soln size (basic): 779; soln size (extd): 662
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 272
+3.00 pts
+
+
+====================
+
+test037 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test037.lgf
+$ ../../bin/langfi -Cverbose=false test037.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test037.interpret-anf.soln.stdouterr test037.interpret-anf.stdouterr
+
+**PASS**
+
+size: 796; soln size (none): 1238; soln size (basic): 796; soln size (extd): 679
+shrink: 442; soln shrink (basic): 442; soln shrink (extd): 559
+3.00 pts
+
+
+====================
+
+test038 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test038.lgf
+$ ../../bin/langfi -Cverbose=false test038.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test038.interpret-anf.soln.stdouterr test038.interpret-anf.stdouterr
+
+**PASS**
+
+size: 796; soln size (none): 1238; soln size (basic): 796; soln size (extd): 679
+shrink: 442; soln shrink (basic): 442; soln shrink (extd): 559
+3.00 pts
+
+
+====================
+
+test039 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test039.lgf
+$ ../../bin/langfi -Cverbose=false test039.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test039.interpret-anf.soln.stdouterr test039.interpret-anf.stdouterr
+
+**PASS**
+
+size: 769; soln size (none): 887; soln size (basic): 769; soln size (extd): 654
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 233
+3.00 pts
+
+
+====================
+
+test040 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test040.lgf
+$ ../../bin/langfi -Cverbose=false test040.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test040.interpret-anf.soln.stdouterr test040.interpret-anf.stdouterr
+
+**PASS**
+
+size: 590; soln size (none): 720; soln size (basic): 590; soln size (extd): 490
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 230
+3.00 pts
+
+
+====================
+
+test041 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test041.lgf
+$ ../../bin/langfi -Cverbose=false test041.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test041.interpret-anf.soln.stdouterr test041.interpret-anf.stdouterr
+
+**PASS**
+
+size: 590; soln size (none): 720; soln size (basic): 590; soln size (extd): 490
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 230
+3.00 pts
+
+
+====================
+
+test042 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test042.lgf
+$ ../../bin/langfi -Cverbose=false test042.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test042.interpret-anf.soln.stdouterr test042.interpret-anf.stdouterr
+
+**PASS**
+
+size: 590; soln size (none): 720; soln size (basic): 590; soln size (extd): 490
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 230
+3.00 pts
+
+
+====================
+
+test043 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test043.lgf
+$ ../../bin/langfi -Cverbose=false test043.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test043.interpret-anf.soln.stdouterr test043.interpret-anf.stdouterr
+
+**PASS**
+
+size: 590; soln size (none): 720; soln size (basic): 590; soln size (extd): 490
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 230
+3.00 pts
+
+
+====================
+
+test044 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test044.lgf
+$ ../../bin/langfi -Cverbose=false test044.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test044.interpret-anf.soln.stdouterr test044.interpret-anf.stdouterr
+
+**PASS**
+
+size: 590; soln size (none): 720; soln size (basic): 590; soln size (extd): 490
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 230
+3.00 pts
+
+
+====================
+
+test045 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test045.lgf
+$ ../../bin/langfi -Cverbose=false test045.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test045.interpret-anf.soln.stdouterr test045.interpret-anf.stdouterr
+
+**PASS**
+
+size: 590; soln size (none): 720; soln size (basic): 590; soln size (extd): 490
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 230
+3.00 pts
+
+
+====================
+
+test046 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test046.lgf
+$ ../../bin/langfi -Cverbose=false test046.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test046.interpret-anf.soln.stdouterr test046.interpret-anf.stdouterr
+
+**PASS**
+
+size: 860; soln size (none): 955; soln size (basic): 860; soln size (extd): 681
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 274
+3.00 pts
+
+
+====================
+
+test047 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test047.lgf
+$ ../../bin/langfi -Cverbose=false test047.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test047.interpret-anf.soln.stdouterr test047.interpret-anf.stdouterr
+
+**PASS**
+
+size: 817; soln size (none): 890; soln size (basic): 817; soln size (extd): 657
+shrink: 73; soln shrink (basic): 73; soln shrink (extd): 233
+3.00 pts
+
+
+====================
+
+test048 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test048.lgf
+$ ../../bin/langfi -Cverbose=false test048.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test048.interpret-anf.soln.stdouterr test048.interpret-anf.stdouterr
+
+**PASS**
+
+size: 859; soln size (none): 936; soln size (basic): 859; soln size (extd): 665
+shrink: 77; soln shrink (basic): 77; soln shrink (extd): 271
+3.00 pts
+
+
+====================
+
+test049 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test049.lgf
+$ ../../bin/langfi -Cverbose=false test049.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test049.interpret-anf.soln.stdouterr test049.interpret-anf.stdouterr
+
+**PASS**
+
+size: 605; soln size (none): 644; soln size (basic): 605; soln size (extd): 505
+shrink: 39; soln shrink (basic): 39; soln shrink (extd): 139
+3.00 pts
+
+
+====================
+
+test050 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test050.lgf
+$ ../../bin/langfi -Cverbose=false test050.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test050.interpret-anf.soln.stdouterr test050.interpret-anf.stdouterr
+
+**PASS**
+
+size: 624; soln size (none): 674; soln size (basic): 624; soln size (extd): 479
+shrink: 50; soln shrink (basic): 50; soln shrink (extd): 195
+3.00 pts
+
+
+====================
+
+test051 (10pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test051.lgf
+$ ../../bin/langfi -Cverbose=false test051.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test051.interpret-anf.soln.stdouterr test051.interpret-anf.stdouterr
+
+**PASS**
+
+size: 832; soln size (none): 905; soln size (basic): 832; soln size (extd): 715
+shrink: 73; soln shrink (basic): 73; soln shrink (extd): 190
+10.00 pts
+
+
+====================
+
+test052 (10pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test052.lgf
+$ ../../bin/langfi -Cverbose=false test052.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test052.interpret-anf.soln.stdouterr test052.interpret-anf.stdouterr
+
+**PASS**
+
+size: 1570; soln size (none): 2126; soln size (basic): 1570; soln size (extd): 990
+shrink: 556; soln shrink (basic): 556; soln shrink (extd): 1136
+10.00 pts
+
+
+====================
+
+test053 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test053.lgf
+$ ../../bin/langfi -Cverbose=false test053.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test053.interpret-anf.soln.stdouterr test053.interpret-anf.stdouterr
+
+**PASS**
+
+size: 934; soln size (none): 1013; soln size (basic): 934; soln size (extd): 742
+shrink: 79; soln shrink (basic): 79; soln shrink (extd): 271
+5.00 pts
+
+
+====================
+
+test054 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test054.lgf
+$ ../../bin/langfi -Cverbose=false test054.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test054.interpret-anf.soln.stdouterr test054.interpret-anf.stdouterr
+
+**PASS**
+
+size: 797; soln size (none): 952; soln size (basic): 797; soln size (extd): 682
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test055 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test055.lgf
+$ ../../bin/langfi -Cverbose=false test055.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test055.interpret-anf.soln.stdouterr test055.interpret-anf.stdouterr
+
+**PASS**
+
+size: 797; soln size (none): 952; soln size (basic): 797; soln size (extd): 682
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test056 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test056.lgf
+$ ../../bin/langfi -Cverbose=false test056.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test056.interpret-anf.soln.stdouterr test056.interpret-anf.stdouterr
+
+**PASS**
+
+size: 797; soln size (none): 952; soln size (basic): 797; soln size (extd): 682
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test057 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test057.lgf
+$ ../../bin/langfi -Cverbose=false test057.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test057.interpret-anf.soln.stdouterr test057.interpret-anf.stdouterr
+
+**PASS**
+
+size: 814; soln size (none): 1256; soln size (basic): 814; soln size (extd): 699
+shrink: 442; soln shrink (basic): 442; soln shrink (extd): 557
+3.00 pts
+
+
+====================
+
+test058 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test058.lgf
+$ ../../bin/langfi -Cverbose=false test058.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test058.interpret-anf.soln.stdouterr test058.interpret-anf.stdouterr
+
+**PASS**
+
+size: 814; soln size (none): 1256; soln size (basic): 814; soln size (extd): 699
+shrink: 442; soln shrink (basic): 442; soln shrink (extd): 557
+3.00 pts
+
+
+====================
+
+test059 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test059.lgf
+$ ../../bin/langfi -Cverbose=false test059.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test059.interpret-anf.soln.stdouterr test059.interpret-anf.stdouterr
+
+**PASS**
+
+size: 778; soln size (none): 896; soln size (basic): 778; soln size (extd): 665
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 231
+3.00 pts
+
+
+====================
+
+test060 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test060.lgf
+$ ../../bin/langfi -Cverbose=false test060.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test060.interpret-anf.soln.stdouterr test060.interpret-anf.stdouterr
+
+**PASS**
+
+size: 608; soln size (none): 738; soln size (basic): 608; soln size (extd): 510
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test061 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test061.lgf
+$ ../../bin/langfi -Cverbose=false test061.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test061.interpret-anf.soln.stdouterr test061.interpret-anf.stdouterr
+
+**PASS**
+
+size: 608; soln size (none): 738; soln size (basic): 608; soln size (extd): 510
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test062 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test062.lgf
+$ ../../bin/langfi -Cverbose=false test062.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test062.interpret-anf.soln.stdouterr test062.interpret-anf.stdouterr
+
+**PASS**
+
+size: 608; soln size (none): 738; soln size (basic): 608; soln size (extd): 510
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test063 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test063.lgf
+$ ../../bin/langfi -Cverbose=false test063.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test063.interpret-anf.soln.stdouterr test063.interpret-anf.stdouterr
+
+**PASS**
+
+size: 608; soln size (none): 738; soln size (basic): 608; soln size (extd): 510
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test064 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test064.lgf
+$ ../../bin/langfi -Cverbose=false test064.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test064.interpret-anf.soln.stdouterr test064.interpret-anf.stdouterr
+
+**PASS**
+
+size: 608; soln size (none): 738; soln size (basic): 608; soln size (extd): 510
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test065 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test065.lgf
+$ ../../bin/langfi -Cverbose=false test065.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test065.interpret-anf.soln.stdouterr test065.interpret-anf.stdouterr
+
+**PASS**
+
+size: 608; soln size (none): 738; soln size (basic): 608; soln size (extd): 510
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test066 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test066.lgf
+$ ../../bin/langfi -Cverbose=false test066.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test066.interpret-anf.soln.stdouterr test066.interpret-anf.stdouterr
+
+**PASS**
+
+size: 878; soln size (none): 973; soln size (basic): 878; soln size (extd): 701
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 272
+3.00 pts
+
+
+====================
+
+test067 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test067.lgf
+$ ../../bin/langfi -Cverbose=false test067.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test067.interpret-anf.soln.stdouterr test067.interpret-anf.stdouterr
+
+**PASS**
+
+size: 826; soln size (none): 899; soln size (basic): 826; soln size (extd): 668
+shrink: 73; soln shrink (basic): 73; soln shrink (extd): 231
+3.00 pts
+
+
+====================
+
+test068 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test068.lgf
+$ ../../bin/langfi -Cverbose=false test068.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test068.interpret-anf.soln.stdouterr test068.interpret-anf.stdouterr
+
+**PASS**
+
+size: 877; soln size (none): 954; soln size (basic): 877; soln size (extd): 685
+shrink: 77; soln shrink (basic): 77; soln shrink (extd): 269
+3.00 pts
+
+
+====================
+
+test069 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test069.lgf
+$ ../../bin/langfi -Cverbose=false test069.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test069.interpret-anf.soln.stdouterr test069.interpret-anf.stdouterr
+
+**PASS**
+
+size: 614; soln size (none): 653; soln size (basic): 614; soln size (extd): 516
+shrink: 39; soln shrink (basic): 39; soln shrink (extd): 137
+3.00 pts
+
+
+====================
+
+test070 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test070.lgf
+$ ../../bin/langfi -Cverbose=false test070.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test070.interpret-anf.soln.stdouterr test070.interpret-anf.stdouterr
+
+**PASS**
+
+size: 633; soln size (none): 683; soln size (basic): 633; soln size (extd): 490
+shrink: 50; soln shrink (basic): 50; soln shrink (extd): 193
+3.00 pts
+
+
+====================
+
+test071 (10pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test071.lgf
+$ ../../bin/langfi -Cverbose=false test071.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test071.interpret-anf.soln.stdouterr test071.interpret-anf.stdouterr
+
+**PASS**
+
+size: 841; soln size (none): 914; soln size (basic): 841; soln size (extd): 728
+shrink: 73; soln shrink (basic): 73; soln shrink (extd): 186
+10.00 pts
+
+
+====================
+
+test072 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test072.lgf
+$ ../../bin/langfi -Cverbose=false test072.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test072.interpret-anf.soln.stdouterr test072.interpret-anf.stdouterr
+
+**PASS**
+
+size: 874; soln size (none): 951; soln size (basic): 874; soln size (extd): 697
+shrink: 77; soln shrink (basic): 77; soln shrink (extd): 254
+3.00 pts
+
+
+====================
+
+test073 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test073.lgf
+$ ../../bin/langfi -Cverbose=false test073.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test073.interpret-anf.soln.stdouterr test073.interpret-anf.stdouterr
+
+**PASS**
+
+size: 952; soln size (none): 1031; soln size (basic): 952; soln size (extd): 760
+shrink: 79; soln shrink (basic): 79; soln shrink (extd): 271
+5.00 pts
+
+
+====================
+
+test074 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test074.lgf
+$ ../../bin/langfi -Cverbose=false test074.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test074.interpret-anf.soln.stdouterr test074.interpret-anf.stdouterr
+
+**PASS**
+
+size: 802; soln size (none): 957; soln size (basic): 802; soln size (extd): 687
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test075 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test075.lgf
+$ ../../bin/langfi -Cverbose=false test075.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test075.interpret-anf.soln.stdouterr test075.interpret-anf.stdouterr
+
+**PASS**
+
+size: 802; soln size (none): 957; soln size (basic): 802; soln size (extd): 687
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test076 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test076.lgf
+$ ../../bin/langfi -Cverbose=false test076.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test076.interpret-anf.soln.stdouterr test076.interpret-anf.stdouterr
+
+**PASS**
+
+size: 802; soln size (none): 957; soln size (basic): 802; soln size (extd): 687
+shrink: 155; soln shrink (basic): 155; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test077 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test077.lgf
+$ ../../bin/langfi -Cverbose=false test077.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test077.interpret-anf.soln.stdouterr test077.interpret-anf.stdouterr
+
+**PASS**
+
+size: 819; soln size (none): 1261; soln size (basic): 819; soln size (extd): 704
+shrink: 442; soln shrink (basic): 442; soln shrink (extd): 557
+3.00 pts
+
+
+====================
+
+test078 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test078.lgf
+$ ../../bin/langfi -Cverbose=false test078.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test078.interpret-anf.soln.stdouterr test078.interpret-anf.stdouterr
+
+**PASS**
+
+size: 819; soln size (none): 1261; soln size (basic): 819; soln size (extd): 704
+shrink: 442; soln shrink (basic): 442; soln shrink (extd): 557
+3.00 pts
+
+
+====================
+
+test079 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test079.lgf
+$ ../../bin/langfi -Cverbose=false test079.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test079.interpret-anf.soln.stdouterr test079.interpret-anf.stdouterr
+
+**PASS**
+
+size: 801; soln size (none): 941; soln size (basic): 801; soln size (extd): 686
+shrink: 140; soln shrink (basic): 140; soln shrink (extd): 255
+3.00 pts
+
+
+====================
+
+test080 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test080.lgf
+$ ../../bin/langfi -Cverbose=false test080.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test080.interpret-anf.soln.stdouterr test080.interpret-anf.stdouterr
+
+**PASS**
+
+size: 613; soln size (none): 743; soln size (basic): 613; soln size (extd): 515
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test081 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test081.lgf
+$ ../../bin/langfi -Cverbose=false test081.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test081.interpret-anf.soln.stdouterr test081.interpret-anf.stdouterr
+
+**PASS**
+
+size: 613; soln size (none): 743; soln size (basic): 613; soln size (extd): 515
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test082 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test082.lgf
+$ ../../bin/langfi -Cverbose=false test082.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test082.interpret-anf.soln.stdouterr test082.interpret-anf.stdouterr
+
+**PASS**
+
+size: 613; soln size (none): 743; soln size (basic): 613; soln size (extd): 515
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test083 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test083.lgf
+$ ../../bin/langfi -Cverbose=false test083.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test083.interpret-anf.soln.stdouterr test083.interpret-anf.stdouterr
+
+**PASS**
+
+size: 613; soln size (none): 743; soln size (basic): 613; soln size (extd): 515
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test084 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test084.lgf
+$ ../../bin/langfi -Cverbose=false test084.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test084.interpret-anf.soln.stdouterr test084.interpret-anf.stdouterr
+
+**PASS**
+
+size: 613; soln size (none): 743; soln size (basic): 613; soln size (extd): 515
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test085 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test085.lgf
+$ ../../bin/langfi -Cverbose=false test085.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test085.interpret-anf.soln.stdouterr test085.interpret-anf.stdouterr
+
+**PASS**
+
+size: 613; soln size (none): 743; soln size (basic): 613; soln size (extd): 515
+shrink: 130; soln shrink (basic): 130; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test086 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test086.lgf
+$ ../../bin/langfi -Cverbose=false test086.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test086.interpret-anf.soln.stdouterr test086.interpret-anf.stdouterr
+
+**PASS**
+
+size: 883; soln size (none): 978; soln size (basic): 883; soln size (extd): 706
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 272
+3.00 pts
+
+
+====================
+
+test087 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test087.lgf
+$ ../../bin/langfi -Cverbose=false test087.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test087.interpret-anf.soln.stdouterr test087.interpret-anf.stdouterr
+
+**PASS**
+
+size: 852; soln size (none): 947; soln size (basic): 852; soln size (extd): 692
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 255
+3.00 pts
+
+
+====================
+
+test088 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test088.lgf
+$ ../../bin/langfi -Cverbose=false test088.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test088.interpret-anf.soln.stdouterr test088.interpret-anf.stdouterr
+
+**PASS**
+
+size: 882; soln size (none): 959; soln size (basic): 882; soln size (extd): 690
+shrink: 77; soln shrink (basic): 77; soln shrink (extd): 269
+3.00 pts
+
+
+====================
+
+test089 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test089.lgf
+$ ../../bin/langfi -Cverbose=false test089.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test089.interpret-anf.soln.stdouterr test089.interpret-anf.stdouterr
+
+**PASS**
+
+size: 841; soln size (none): 914; soln size (basic): 841; soln size (extd): 684
+shrink: 73; soln shrink (basic): 73; soln shrink (extd): 230
+3.00 pts
+
+
+====================
+
+test090 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test090.lgf
+$ ../../bin/langfi -Cverbose=false test090.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test090.interpret-anf.soln.stdouterr test090.interpret-anf.stdouterr
+
+**PASS**
+
+size: 676; soln size (none): 728; soln size (basic): 676; soln size (extd): 514
+shrink: 52; soln shrink (basic): 52; soln shrink (extd): 214
+3.00 pts
+
+
+====================
+
+test091 (10pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test091.lgf
+$ ../../bin/langfi -Cverbose=false test091.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test091.interpret-anf.soln.stdouterr test091.interpret-anf.stdouterr
+
+**PASS**
+
+size: 864; soln size (none): 959; soln size (basic): 864; soln size (extd): 749
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 210
+10.00 pts
+
+
+====================
+
+test092 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test092.lgf
+$ ../../bin/langfi -Cverbose=false test092.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test092.interpret-anf.soln.stdouterr test092.interpret-anf.stdouterr
+
+**PASS**
+
+size: 899; soln size (none): 998; soln size (basic): 899; soln size (extd): 720
+shrink: 99; soln shrink (basic): 99; soln shrink (extd): 278
+3.00 pts
+
+
+====================
+
+test093 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test093.lgf
+$ ../../bin/langfi -Cverbose=false test093.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test093.interpret-anf.soln.stdouterr test093.interpret-anf.stdouterr
+
+**PASS**
+
+size: 957; soln size (none): 1036; soln size (basic): 957; soln size (extd): 761
+shrink: 79; soln shrink (basic): 79; soln shrink (extd): 275
+5.00 pts
+
+
+====================
+
+test094 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test094.lgf
+$ ../../bin/langfi -Cverbose=false test094.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test094.interpret-anf.soln.stdouterr test094.interpret-anf.stdouterr
+
+**PASS**
+
+size: 783; soln size (none): 934; soln size (basic): 783; soln size (extd): 664
+shrink: 151; soln shrink (basic): 151; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test095 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test095.lgf
+$ ../../bin/langfi -Cverbose=false test095.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test095.interpret-anf.soln.stdouterr test095.interpret-anf.stdouterr
+
+**PASS**
+
+size: 783; soln size (none): 934; soln size (basic): 783; soln size (extd): 668
+shrink: 151; soln shrink (basic): 151; soln shrink (extd): 266
+3.00 pts
+
+
+====================
+
+test096 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test096.lgf
+$ ../../bin/langfi -Cverbose=false test096.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test096.interpret-anf.soln.stdouterr test096.interpret-anf.stdouterr
+
+**PASS**
+
+size: 783; soln size (none): 934; soln size (basic): 783; soln size (extd): 664
+shrink: 151; soln shrink (basic): 151; soln shrink (extd): 270
+3.00 pts
+
+
+====================
+
+test097 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test097.lgf
+$ ../../bin/langfi -Cverbose=false test097.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test097.interpret-anf.soln.stdouterr test097.interpret-anf.stdouterr
+
+**PASS**
+
+size: 817; soln size (none): 1238; soln size (basic): 817; soln size (extd): 702
+shrink: 421; soln shrink (basic): 421; soln shrink (extd): 536
+3.00 pts
+
+
+====================
+
+test098 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test098.lgf
+$ ../../bin/langfi -Cverbose=false test098.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test098.interpret-anf.soln.stdouterr test098.interpret-anf.stdouterr
+
+**PASS**
+
+size: 817; soln size (none): 1238; soln size (basic): 817; soln size (extd): 702
+shrink: 421; soln shrink (basic): 421; soln shrink (extd): 536
+3.00 pts
+
+
+====================
+
+test099 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test099.lgf
+$ ../../bin/langfi -Cverbose=false test099.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test099.interpret-anf.soln.stdouterr test099.interpret-anf.stdouterr
+
+**PASS**
+
+size: 594; soln size (none): 720; soln size (basic): 594; soln size (extd): 492
+shrink: 126; soln shrink (basic): 126; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test100 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test100.lgf
+$ ../../bin/langfi -Cverbose=false test100.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test100.interpret-anf.soln.stdouterr test100.interpret-anf.stdouterr
+
+**PASS**
+
+size: 594; soln size (none): 720; soln size (basic): 594; soln size (extd): 492
+shrink: 126; soln shrink (basic): 126; soln shrink (extd): 228
+3.00 pts
+
+
+====================
+
+test101 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test101.lgf
+$ ../../bin/langfi -Cverbose=false test101.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test101.interpret-anf.soln.stdouterr test101.interpret-anf.stdouterr
+
+**PASS**
+
+size: 594; soln size (none): 720; soln size (basic): 594; soln size (extd): 496
+shrink: 126; soln shrink (basic): 126; soln shrink (extd): 224
+3.00 pts
+
+
+====================
+
+test102 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test102.lgf
+$ ../../bin/langfi -Cverbose=false test102.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test102.interpret-anf.soln.stdouterr test102.interpret-anf.stdouterr
+
+**PASS**
+
+size: 594; soln size (none): 720; soln size (basic): 594; soln size (extd): 496
+shrink: 126; soln shrink (basic): 126; soln shrink (extd): 224
+3.00 pts
+
+
+====================
+
+test103 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test103.lgf
+$ ../../bin/langfi -Cverbose=false test103.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test103.interpret-anf.soln.stdouterr test103.interpret-anf.stdouterr
+
+**PASS**
+
+size: 594; soln size (none): 720; soln size (basic): 594; soln size (extd): 496
+shrink: 126; soln shrink (basic): 126; soln shrink (extd): 224
+3.00 pts
+
+
+====================
+
+test104 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test104.lgf
+$ ../../bin/langfi -Cverbose=false test104.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test104.interpret-anf.soln.stdouterr test104.interpret-anf.stdouterr
+
+**PASS**
+
+size: 594; soln size (none): 720; soln size (basic): 594; soln size (extd): 496
+shrink: 126; soln shrink (basic): 126; soln shrink (extd): 224
+3.00 pts
+
+
+====================
+
+test105 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test105.lgf
+$ ../../bin/langfi -Cverbose=false test105.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test105.interpret-anf.soln.stdouterr test105.interpret-anf.stdouterr
+
+**PASS**
+
+size: 860; soln size (none): 955; soln size (basic): 860; soln size (extd): 687
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 268
+3.00 pts
+
+
+====================
+
+test106 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test106.lgf
+$ ../../bin/langfi -Cverbose=false test106.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test106.interpret-anf.soln.stdouterr test106.interpret-anf.stdouterr
+
+**PASS**
+
+size: 823; soln size (none): 974; soln size (basic): 823; soln size (extd): 680
+shrink: 151; soln shrink (basic): 151; soln shrink (extd): 294
+4.00 pts
+
+
+====================
+
+test107 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test107.lgf
+$ ../../bin/langfi -Cverbose=false test107.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test107.interpret-anf.soln.stdouterr test107.interpret-anf.stdouterr
+
+**PASS**
+
+size: 867; soln size (none): 1038; soln size (basic): 867; soln size (extd): 734
+shrink: 171; soln shrink (basic): 171; soln shrink (extd): 304
+4.00 pts
+
+
+====================
+
+test108 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test108.lgf
+$ ../../bin/langfi -Cverbose=false test108.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test108.interpret-anf.soln.stdouterr test108.interpret-anf.stdouterr
+
+**PASS**
+
+size: 929; soln size (none): 1382; soln size (basic): 929; soln size (extd): 770
+shrink: 453; soln shrink (basic): 453; soln shrink (extd): 612
+4.00 pts
+
+
+====================
+
+test109 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test109.lgf
+$ ../../bin/langfi -Cverbose=false test109.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test109.interpret-anf.soln.stdouterr test109.interpret-anf.stdouterr
+
+**PASS**
+
+size: 917; soln size (none): 1478; soln size (basic): 917; soln size (extd): 748
+shrink: 561; soln shrink (basic): 561; soln shrink (extd): 730
+4.00 pts
+
+
+====================
+
+test110 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test110.lgf
+$ ../../bin/langfi -Cverbose=false test110.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test110.interpret-anf.soln.stdouterr test110.interpret-anf.stdouterr
+
+**PASS**
+
+size: 917; soln size (none): 1478; soln size (basic): 917; soln size (extd): 742
+shrink: 561; soln shrink (basic): 561; soln shrink (extd): 736
+4.00 pts
+
+
+====================
+
+test111 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test111.lgf
+$ ../../bin/langfi -Cverbose=false test111.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test111.interpret-anf.soln.stdouterr test111.interpret-anf.stdouterr
+
+**PASS**
+
+size: 740; soln size (none): 831; soln size (basic): 740; soln size (extd): 624
+shrink: 91; soln shrink (basic): 91; soln shrink (extd): 207
+4.00 pts
+
+
+====================
+
+test112 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test112.lgf
+$ ../../bin/langfi -Cverbose=false test112.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test112.interpret-anf.soln.stdouterr test112.interpret-anf.stdouterr
+
+**PASS**
+
+size: 602; soln size (none): 720; soln size (basic): 602; soln size (extd): 500
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 220
+4.00 pts
+
+
+====================
+
+test113 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test113.lgf
+$ ../../bin/langfi -Cverbose=false test113.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test113.interpret-anf.soln.stdouterr test113.interpret-anf.stdouterr
+
+**PASS**
+
+size: 602; soln size (none): 720; soln size (basic): 602; soln size (extd): 500
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 220
+4.00 pts
+
+
+====================
+
+test114 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test114.lgf
+$ ../../bin/langfi -Cverbose=false test114.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test114.interpret-anf.soln.stdouterr test114.interpret-anf.stdouterr
+
+**PASS**
+
+size: 602; soln size (none): 720; soln size (basic): 602; soln size (extd): 500
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 220
+4.00 pts
+
+
+====================
+
+test115 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test115.lgf
+$ ../../bin/langfi -Cverbose=false test115.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test115.interpret-anf.soln.stdouterr test115.interpret-anf.stdouterr
+
+**PASS**
+
+size: 602; soln size (none): 720; soln size (basic): 602; soln size (extd): 500
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 220
+4.00 pts
+
+
+====================
+
+test116 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test116.lgf
+$ ../../bin/langfi -Cverbose=false test116.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test116.interpret-anf.soln.stdouterr test116.interpret-anf.stdouterr
+
+**PASS**
+
+size: 602; soln size (none): 720; soln size (basic): 602; soln size (extd): 500
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 220
+4.00 pts
+
+
+====================
+
+test117 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test117.lgf
+$ ../../bin/langfi -Cverbose=false test117.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test117.interpret-anf.soln.stdouterr test117.interpret-anf.stdouterr
+
+**PASS**
+
+size: 602; soln size (none): 720; soln size (basic): 602; soln size (extd): 500
+shrink: 118; soln shrink (basic): 118; soln shrink (extd): 220
+4.00 pts
+
+
+====================
+
+test118 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test118.lgf
+$ ../../bin/langfi -Cverbose=false test118.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test118.interpret-anf.soln.stdouterr test118.interpret-anf.stdouterr
+
+**PASS**
+
+size: 832; soln size (none): 927; soln size (basic): 832; soln size (extd): 671
+shrink: 95; soln shrink (basic): 95; soln shrink (extd): 256
+4.00 pts
+
+
+====================
+
+test119 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test119.lgf
+$ ../../bin/langfi -Cverbose=false test119.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test119.interpret-anf.soln.stdouterr test119.interpret-anf.stdouterr
+
+**PASS**
+
+size: 1059; soln size (none): 1134; soln size (basic): 1059; soln size (extd): 872
+shrink: 75; soln shrink (basic): 75; soln shrink (extd): 262
+5.00 pts
+
+
+====================
+
+test120 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test120.lgf
+$ ../../bin/langfi -Cverbose=false test120.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test120.interpret-anf.soln.stdouterr test120.interpret-anf.stdouterr
+
+**PASS**
+
+size: 281; soln size (none): 312; soln size (basic): 281; soln size (extd): 246
+shrink: 31; soln shrink (basic): 31; soln shrink (extd): 66
+5.00 pts
+
+
+====================
+
+test121 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test121.lgf
+$ ../../bin/langfi -Cverbose=false test121.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test121.interpret-anf.soln.stdouterr test121.interpret-anf.stdouterr
+
+**PASS**
+
+size: 290; soln size (none): 321; soln size (basic): 290; soln size (extd): 253
+shrink: 31; soln shrink (basic): 31; soln shrink (extd): 68
+5.00 pts
+
+
+====================
+
+test122 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test122.lgf
+$ ../../bin/langfi -Cverbose=false test122.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test122.interpret-anf.soln.stdouterr test122.interpret-anf.stdouterr
+
+**PASS**
+
+size: 312; soln size (none): 341; soln size (basic): 312; soln size (extd): 275
+shrink: 29; soln shrink (basic): 29; soln shrink (extd): 66
+5.00 pts
+
+
+====================
+
+test123 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test123.lgf
+$ ../../bin/langfi -Cverbose=false test123.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test123.interpret-anf.soln.stdouterr test123.interpret-anf.stdouterr
+
+**PASS**
+
+size: 340; soln size (none): 373; soln size (basic): 340; soln size (extd): 303
+shrink: 33; soln shrink (basic): 33; soln shrink (extd): 70
+5.00 pts
+
+
+====================
+
+test124 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test124.lgf
+$ ../../bin/langfi -Cverbose=false test124.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test124.interpret-anf.soln.stdouterr test124.interpret-anf.stdouterr
+
+**PASS**
+
+size: 466; soln size (none): 495; soln size (basic): 466; soln size (extd): 429
+shrink: 29; soln shrink (basic): 29; soln shrink (extd): 66
+5.00 pts
+
+
+====================
+
+test125 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test125.lgf
+$ ../../bin/langfi -Cverbose=false test125.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test125.interpret-anf.soln.stdouterr test125.interpret-anf.stdouterr
+
+**PASS**
+
+size: 319; soln size (none): 350; soln size (basic): 319; soln size (extd): 284
+shrink: 31; soln shrink (basic): 31; soln shrink (extd): 66
+5.00 pts
+
+
+====================
+
+test126 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test126.lgf
+$ ../../bin/langfi -Cverbose=false test126.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test126.interpret-anf.soln.stdouterr test126.interpret-anf.stdouterr
+
+**PASS**
+
+size: 331; soln size (none): 362; soln size (basic): 331; soln size (extd): 294
+shrink: 31; soln shrink (basic): 31; soln shrink (extd): 68
+5.00 pts
+
+
+====================
+
+test127 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test127.lgf
+$ ../../bin/langfi -Cverbose=false test127.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test127.interpret-anf.soln.stdouterr test127.interpret-anf.stdouterr
+
+**PASS**
+
+size: 370; soln size (none): 431; soln size (basic): 370; soln size (extd): 294
+shrink: 61; soln shrink (basic): 61; soln shrink (extd): 137
+5.00 pts
+
+
+====================
+
+test128 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test128.lgf
+$ ../../bin/langfi -Cverbose=false test128.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test128.interpret-anf.soln.stdouterr test128.interpret-anf.stdouterr
+
+**PASS**
+
+size: 403; soln size (none): 485; soln size (basic): 403; soln size (extd): 307
+shrink: 82; soln shrink (basic): 82; soln shrink (extd): 178
+5.00 pts
+
+
+====================
+
+test129 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test129.lgf
+$ ../../bin/langfi -Cverbose=false test129.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test129.interpret-anf.soln.stdouterr test129.interpret-anf.stdouterr
+
+**PASS**
+
+size: 837; soln size (none): 884; soln size (basic): 837; soln size (extd): 794
+shrink: 47; soln shrink (basic): 47; soln shrink (extd): 90
+5.00 pts
+
+
+====================
+
+test130 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test130.lgf
+$ ../../bin/langfi -Cverbose=false test130.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test130.interpret-anf.soln.stdouterr test130.interpret-anf.stdouterr
+
+**PASS**
+
+size: 1220; soln size (none): 1304; soln size (basic): 1220; soln size (extd): 1107
+shrink: 84; soln shrink (basic): 84; soln shrink (extd): 197
+5.00 pts
+
+
+====================
+
+test131 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test131.lgf
+$ ../../bin/langfi -Cverbose=false test131.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test131.interpret-anf.soln.stdouterr test131.interpret-anf.stdouterr
+
+**PASS**
+
+size: 978; soln size (none): 1259; soln size (basic): 978; soln size (extd): 733
+shrink: 281; soln shrink (basic): 281; soln shrink (extd): 526
+5.00 pts
+
+
+====================
+
+test132 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test132.lgf
+$ ../../bin/langfi -Cverbose=false test132.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test132.interpret-anf.soln.stdouterr test132.interpret-anf.stdouterr
+
+**PASS**
+
+size: 929; soln size (none): 996; soln size (basic): 929; soln size (extd): 837
+shrink: 67; soln shrink (basic): 67; soln shrink (extd): 159
+5.00 pts
+
+
+====================
+
+test133 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Ckeep-optimize-anf=true test133.lgf
+$ ../../bin/langfi -Cverbose=false test133.lgf 2 5 3 7 1
+
+-----interpret-anf.stdouterr-----
+$ diff test133.interpret-anf.soln.stdouterr test133.interpret-anf.stdouterr
+
+**PASS**
+
+size: 642; soln size (none): 708; soln size (basic): 642; soln size (extd): 500
+shrink: 66; soln shrink (basic): 66; soln shrink (extd): 208
+5.00 pts
+
+
+====================
+====================
+
+
+
+optimizer : 511.00 / 511.00 (100.00)%

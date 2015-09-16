@@ -1,0 +1,19 @@
+(* test094.lgf *)
+
+val x = 3
+
+(* Four score and seven years ago,
+(* our fathers brought forth, (* upon this continent *),
+(* a new nation, conceived in Liberty, ***
+
+*)
+
+*)
+
+*)
+
+fun add (x: Integer) (y: Integer) = x + y
+
+;
+
+add 1 2

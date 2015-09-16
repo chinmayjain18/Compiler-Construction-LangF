@@ -1,0 +1,97 @@
+fun x__0000 (x__0001 : Integer) : String =
+   (if ((x__0001 : Integer) < (0 : Integer)) : Bool
+       then (("~" : String) ^ (((x__0000 : Integer -> String) ((~ (x__0001 : Integer)) : Integer)) : String)) : String
+       else (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+                then "0" : String
+                else (if ((x__0001 : Integer) == (1 : Integer)) : Bool
+                         then "1" : String
+                         else (if ((x__0001 : Integer) == (2 : Integer)) : Bool
+                                  then "2" : String
+                                  else (if ((x__0001 : Integer) == (3 : Integer)) : Bool
+                                           then "3" : String
+                                           else (if ((x__0001 : Integer) == (4 : Integer)) : Bool
+                                                    then "4" : String
+                                                    else (if ((x__0001 : Integer) == (5 : Integer)) : Bool
+                                                             then "5" : String
+                                                             else (if ((x__0001 : Integer) == (6 : Integer)) : Bool
+                                                                      then "6" : String
+                                                                      else (if ((x__0001 : Integer) == (7 : Integer)) : Bool
+                                                                               then "7" : String
+                                                                               else (if ((x__0001 : Integer) == (8 : Integer)) : Bool
+                                                                                        then "8" : String
+                                                                                        else (if ((x__0001 : Integer)
+                                                                                                  ==
+                                                                                                  (9 : Integer)) : Bool
+                                                                                                 then "9" : String
+                                                                                                 else ((((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           /
+                                                                                                           (10 : Integer)) : Integer)) : String)
+                                                                                                       ^
+                                                                                                       (((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           %
+                                                                                                           (10 : Integer)) : Integer)) : String)) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String
+fun x__0002 ['a__0000] (x__0003 : (Unit -> 'a__0000) -> (Unit -> 'a__0000)) : Unit -> 'a__0000 =
+   ((x__0003 : (Unit -> 'a__0000) -> (Unit -> 'a__0000))
+    ((fn (x__0004 : Unit) =>
+         ((((((x__0002 : ['a__0001] -> (((Unit -> 'a__0001) -> (Unit -> 'a__0001)) -> (Unit -> 'a__0001))) ['a__0000]) : ((Unit
+                                                                                                                           ->
+                                                                                                                           'a__0000)
+                                                                                                                          ->
+                                                                                                                          (Unit
+                                                                                                                           ->
+                                                                                                                           'a__0000))
+                                                                                                                         ->
+                                                                                                                         (Unit
+                                                                                                                          ->
+                                                                                                                          'a__0000))
+            (x__0003 : (Unit -> 'a__0000) -> (Unit -> 'a__0000))) : Unit -> 'a__0000)
+          (x__0004 : Unit)) : 'a__0000) : Unit -> 'a__0000)) : Unit -> 'a__0000
+val x__0005 (* : (Unit -> (Integer -> Integer)) -> (Unit -> (Integer -> Integer)) *) =
+   (fn (x__0006 : Unit -> (Integer -> Integer)) (x__0007 : Unit) (x__0008 : Integer) =>
+       (if ((x__0008 : Integer) <= (1 : Integer)) : Bool
+           then 1 : Integer
+           else ((((((x__0006 : Unit -> (Integer -> Integer)) (x__0007 : Unit)) : Integer -> Integer)
+                   (((x__0008 : Integer) - (1 : Integer)) : Integer)) : Integer)
+                 +
+                 (((((x__0006 : Unit -> (Integer -> Integer)) (x__0007 : Unit)) : Integer -> Integer)
+                   (((x__0008 : Integer) - (2 : Integer)) : Integer)) : Integer)) : Integer) : Integer) : (Unit
+                                                                                                           ->
+                                                                                                           (Integer -> Integer))
+                                                                                                          ->
+                                                                                                          (Unit
+                                                                                                           ->
+                                                                                                           (Integer -> Integer))
+val x__0009 (* : Integer -> Integer *) =
+   ((((((x__0002 : ['a__0002] -> (((Unit -> 'a__0002) -> (Unit -> 'a__0002)) -> (Unit -> 'a__0002))) [Integer -> Integer]) : ((Unit
+                                                                                                                               ->
+                                                                                                                               (Integer
+                                                                                                                                ->
+                                                                                                                                Integer))
+                                                                                                                              ->
+                                                                                                                              (Unit
+                                                                                                                               ->
+                                                                                                                               (Integer
+                                                                                                                                ->
+                                                                                                                                Integer)))
+                                                                                                                             ->
+                                                                                                                             (Unit
+                                                                                                                              ->
+                                                                                                                              (Integer
+                                                                                                                               ->
+                                                                                                                               Integer)))
+      (x__0005 : (Unit -> (Integer -> Integer)) -> (Unit -> (Integer -> Integer)))) : Unit -> (Integer -> Integer))
+    (Unit : Unit)) : Integer -> Integer
+val x__000A (* : Integer *) = 20 : Integer
+val x__000B (* : Integer *) = ((x__0009 : Integer -> Integer) (x__000A : Integer)) : Integer
+;
+(((print : String -> Unit) ("fib " : String)) : Unit;
+ ((print : String -> Unit) (((x__0000 : Integer -> String) (x__000A : Integer)) : String)) : Unit;
+ ((print : String -> Unit) (" = " : String)) : Unit;
+ ((print : String -> Unit) (((x__0000 : Integer -> String) (x__000B : Integer)) : String)) : Unit;
+ ((print : String -> Unit) ("\n" : String)) : Unit) : Unit

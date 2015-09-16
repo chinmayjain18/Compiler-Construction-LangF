@@ -1,0 +1,3 @@
+(* type decl with unary type constructor *)
+type Id ['a] = 'a
+; 0

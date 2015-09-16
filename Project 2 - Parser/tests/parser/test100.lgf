@@ -1,0 +1,3 @@
+(* function decl w/ one type param and one value param *)
+fun id ['a] (x: 'a) : 'a = x
+; 0

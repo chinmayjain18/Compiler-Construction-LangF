@@ -1,0 +1,2 @@
+(* case expression with wild pattern *)
+; case Unit of _ => False end

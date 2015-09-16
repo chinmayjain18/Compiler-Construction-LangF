@@ -1,0 +1,8 @@
+(* polymorphic val decls *)
+val twice : ['a] -> ('a -> 'a) -> 'a -> 'a =
+  fn ['b] (f: 'b -> 'b) (x: 'b) => f (f x)
+val two : Integer = twice [Integer] (fn (x: Integer) => x + 1) 0
+val zzzz : String = twice [String] (fn (s: String) => s ^ s) "z"
+;
+zzzz
+

@@ -1,0 +1,50 @@
+(* langfc-src/core-ir/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for core intermediate representation in the LangF compiler
+ * (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+
+   ../common/sources.mlb
+   ../abs-syn-tree/sources.mlb
+
+   core-ir.sig
+   core-ir.sml
+
+   type-checker.sig
+   type-checker.sml
+
+   converter.sig
+   converter.sml
+
+   optimization.sig
+   dead-code.sml
+   optimizer.sml
+
+in
+
+   signature CORE_IR
+   structure CoreIR
+
+   signature CORE_IR_TYPE_CHECKER
+   structure CoreIRTypeChecker
+
+   signature CORE_IR_CONVERTER
+   structure CoreIRConverter
+
+   signature CORE_IR_OPTIMIZATION
+   structure CoreIROptimizer
+
+end

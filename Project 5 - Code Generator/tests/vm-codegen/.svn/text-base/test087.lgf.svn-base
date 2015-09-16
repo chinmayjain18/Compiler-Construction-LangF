@@ -1,0 +1,9 @@
+datatype T = A | B | C
+
+fun loop (x: Integer): Integer = loop (x + 1)
+;
+
+case B of
+   B => 0
+ | _ => loop 0
+end

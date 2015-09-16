@@ -1,0 +1,125 @@
+Parser tests
+------------
+
+For each testNNN.lgf file, there is either a testNNN.parse.soln.pt
+file containing the abstract parse tree to be returned by the parser
+or, if the test has syntax errors, testNNN.parse.soln.antlr.err and
+testNNN.parse.soln.yacc.err files containing sample error messages to
+be reported by the parser.
+
+
+test000.lgf: simplest integer program
+test001.lgf: simplest integer program with no decls
+test002.lgf: type decl with nullary type constructor type
+test003.lgf: type decl with (omitted) nullary type constructor type
+test004.lgf: type decl with unary type constructor
+test005.lgf: type decl with unary type constructor type
+test006.lgf: type decl with binary type constructor
+test007.lgf: type decl with binary type constructor type
+test008.lgf: type decl with fn type
+test009.lgf: type decl with tyfn type
+test010.lgf: type parens
+test011.lgf: type parens
+test012.lgf: right associativity of ->
+test013.lgf: right associativity of ->
+test014.lgf: right associativity of ->
+test015.lgf: right associativity of ->
+test016.lgf: type decl with omitted nullary type constructor
+test017.lgf: type decl with unary type constructor
+test018.lgf: type decl with binary type constructor
+test019.lgf: type decl with missing type variable
+test020.lgf: type decl with missing type variable
+test021.lgf: type constructor with missing type
+test022.lgf: type constructor with missing type
+test023.lgf: datatype decl with nullary type constructor and nullary data constructors
+test024.lgf: Unit datatype
+test025.lgf: Bool datatype
+test026.lgf: Option datatype
+test027.lgf: List datatype
+test028.lgf: Pair datatype
+test029.lgf: mutually recursive datatype decls
+test030.lgf: datatype decl with missing type variable
+test031.lgf: data constructor decl with missing type
+test032.lgf: datatype decl with missing type variable
+test033.lgf: data constructor decl with missing type
+test034.lgf: datatype decls require > 0 data constructors
+test035.lgf: one val decl
+test036.lgf: two val decls
+test037.lgf: val decl with constraint
+test038.lgf: simple arithmetic expression
+test039.lgf: simple arithmetic expression
+test040.lgf: variable expression
+test041.lgf: variable expression
+test042.lgf: variable expression
+test043.lgf: data constructor expression
+test044.lgf: data constructor expression
+test045.lgf: data constructor expression
+test046.lgf: data constructor expression with missing argument
+test047.lgf: if expression
+test048.lgf: case expression
+test049.lgf: case expression with wild pattern
+test050.lgf: case expression with variable pattern
+test051.lgf: case expression with data constructor pattern
+test052.lgf: case expression with nullary data constructor pattern (types and args omitted)
+test053.lgf: case expression with data constructor pattern with wild sub-pattern
+test054.lgf: case expression with data constructor pattern with wild sub-pattern
+test055.lgf: case expression with data constructor pattern with missing sub-pattern
+test056.lgf: case expression with data constructor pattern with missing sub-pattern
+test057.lgf: case expressions require > 0 match rules
+test058.lgf: let expression
+test059.lgf: let expression
+test060.lgf: let expressions require > 0 decls
+test061.lgf: simple application expression
+test062.lgf: fn expression w/ one value param
+test063.lgf: fn expression w/ two value params
+test064.lgf: fn expression w/ one type param and one value param
+test065.lgf: fn expression value params require type
+test066.lgf: fn expression type params require brackets
+test067.lgf: value apply arg
+test068.lgf: type apply arg
+test069.lgf: associativity of apply
+test070.lgf: associativity of apply
+test071.lgf: associativity of apply
+test072.lgf: expression precedence; if vs +
+test073.lgf: expression precedence; if vs if
+test074.lgf: expression precedence; if vs fn
+test075.lgf: expression precedence & associativity ; fn vs constraint
+test076.lgf: expression precedence & associativity ; andalso vs == vs orelse
+test077.lgf: expression precedence & associativity ; + vs *
+test078.lgf: expression precedence & associativity ; ^
+test079.lgf: expression precedence & associativity ; ! vs +,*
+test080.lgf: expression precedence & associativity ; ! w/ :=
+test081.lgf: expression precedence & associativity ; ! w/ := vs +,*,#
+test082.lgf: expression precedence & associativity
+test083.lgf: expression precedence & associativity
+test084.lgf: let as atomic expression
+test085.lgf: let as atomic expression
+test086.lgf: let as atomic expression (as value apply argument)
+test087.lgf: sequence expression
+test088.lgf: sequence expression
+test089.lgf: sequence expression
+test090.lgf: paren expression
+test091.lgf: paren expression
+test092.lgf: paren expressions
+test093.lgf: unary expression
+test094.lgf: unary expression
+test095.lgf: nullary data constructors as atomic expressions
+test096.lgf: nullary data constructors as atomic expressions
+test097.lgf: nullary data constructors as atomic expressions
+test098.lgf: function decl w/ one value param
+test099.lgf: function decl w/ two value params
+test100.lgf: function decl w/ one type param and one value param
+test101.lgf: function decl w/ type params and value params
+test102.lgf: function decl
+test103.lgf: mutually recursive function decls
+test104.lgf: function decl requires return type
+test105.lgf: int-to-string program
+test106.lgf: string-to-int program
+test107.lgf: fib program
+test108.lgf: even-odd program
+test109.lgf: fib-y (fib with Y combinator) program
+test110.lgf: list (list functions) program
+test111.lgf: rlist (random access list functions) program
+test112.lgf: fib-memo-rlist (fib with memoization) program
+test113.lgf: fib-memo-array (fib with memoization) program
+test114.lgf: isort (insertion sort) program

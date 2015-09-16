@@ -1,0 +1,4 @@
+(* fun declaration, with type error *)
+fun add (a: Integer) (b: Integer) : Integer = a == b
+;
+add

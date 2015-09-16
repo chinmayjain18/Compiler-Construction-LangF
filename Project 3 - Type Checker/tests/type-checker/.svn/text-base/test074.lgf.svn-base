@@ -1,0 +1,17 @@
+(* initial environment *)
+val _ = let type T = Unit in 0 end
+val _ = let val _ : Unit = Unit in 0 end
+val _ = let type T = Bool in 0 end
+val _ = let val _ : Bool = True in 0 end
+val _ = let val _ : Bool = False in 0 end
+val _ = let type T = Integer in 0 end
+val _ = let type T = String in 0 end
+val _ = let val _ : Unit -> Integer = argc in 0 end
+val _ = let val _ : Integer -> String = arg in 0 end
+val _ = let val _ : ['a] -> Integer -> 'a -> Array ['a] = array in 0 end
+val _ = let val _ : ['a] -> String -> 'a = fail in 0 end
+val _ = let val _ : String -> Unit = print in 0 end
+val _ = let val _ : String -> Integer = size in 0 end
+val _ = let val _ : String -> Integer -> Integer = subscript in 0 end
+;
+0

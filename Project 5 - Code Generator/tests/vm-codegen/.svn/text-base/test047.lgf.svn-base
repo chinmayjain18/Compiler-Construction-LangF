@@ -1,0 +1,3 @@
+(* function application *)
+(fn (i: Integer) (j: Integer) => i + j) 719 37
+

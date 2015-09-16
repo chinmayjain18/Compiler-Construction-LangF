@@ -1,0 +1,165 @@
+(* langfc-src/vm-codegen/codegen.sml
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * VM code generator in the LangF compiler (langfc).
+ *)
+
+structure VMCodeGen :> VM_CODE_GEN =
+struct
+   structure RL = RepLocIR
+   structure I = Instruction
+
+   fun codeGen (prog : RL.Prog.t) : CodeStream.t =
+      let
+         (* create (mutable) codeStrm to collect instructions/labels *)
+         val codeStrm = CodeStream.new ()
+         (* convenience functions, since all instructions/labels will be collected in codeStrm *)
+         val emitInstr = fn instr => CodeStream.emit codeStrm instr
+         val defineLabel = fn label => CodeStream.defineLabel codeStrm label
+
+
+         (* choose a unique vmcode label for each func (function name) *)
+         val funcToLabel =
+            let
+               val funcTbl : Label.t RL.Func.Tbl.hash_table =
+                  RL.Func.Tbl.mkTable (32, Fail "funcTbl")
+            in
+               fn func =>
+               case RL.Func.Tbl.find funcTbl func of
+                  NONE =>
+                     let
+                        val label = Label.new (RL.Func.name func)
+                        val () = RL.Func.Tbl.insert funcTbl (func, label)
+                     in
+                        label
+                     end
+                | SOME label => label
+            end
+
+
+         (* emit code for a varloc::
+          *   stack on entry:  ...
+          *   stack at exit:   ... v
+          * where v is the value loaded/allocated for the varloc.
+          * (Note: with the exception of the varloc value v, the stack
+          * at exit is the same as the stack on entry; however, the
+          * stack may have grown and shrunk between entry and exit.
+          *)
+         fun genVarLoc (loc: RL.VarLoc.t) : unit =
+            raise Fail "VMCodeGen.codeGen.genVarLoc: unimplemented"
+
+
+         (* emit code for an expression::
+          *   stack on entry:  ...
+          *   stack at exit:   ... res
+          * where res is the value to which the expression evaluates.
+          * (Note: with the exception of the expression value res, the
+          * stack at exit is the same as the stack on entry above the
+          * function's local variables; however, the stack may have
+          * grown and shrunk between entry and exit.  Furthermore,
+          * evaluation of an expression may change one or more of the
+          * function's local variables on the stack (due to nested
+          * case- and let-expressions).  
+          *)
+         fun genExp (exp: RL.Exp.t) : unit =
+            raise Fail "VMCodeGen.codeGen.genExp: unimplemented"
+
+         (* emit code for a declaration::
+          *   stack on entry:  ...
+          *   stack at exit:   ...
+          * Note: the stack at exit is the same as the stack on entry
+          * above the function's local variables; however, the stack
+          * may have grown and shrunk between entry and exit.
+          * Furthermore, a declaration will change one or more of the
+          * function's local variables on the stack (and may further
+          * change the function's local variables on the stack (due to
+          * nested case- and let-expressions)).
+          *)
+         and genDecl (decl: RL.Decl.t) : unit =
+            raise Fail "VMCodeGen.codeGen.genDecl: unimplemented"
+
+         (* emit code for a RepLocIR function
+          *   stack on entry:   ... arg raddr_caller
+          *   stack at return:  ... res
+          * Note: the stack at exit is the same as the stack on entry;
+          * however, the stack may have grown and shrunk between entry
+          * and exit.
+          *)
+         fun genFunction (function: RL.Function.t) : unit =
+            case function of
+               RL.Function.Function {func, nLocals, body} =>
+                  let
+                     val lab = funcToLabel func
+
+                     val () = defineLabel lab
+                     (* stk: ... arg raddr_caller *)
+                     val () = emitInstr (I.entry nLocals)
+                     (* stk: ... arg raddr_caller fp_caller w_0 ... w_{n-1} *)
+                     val () = genExp body
+                     (* stk: ... arg raddr_caller fp_caller v'_0 ... v'_{n-1} res *)
+                     val () = emitInstr I.ret
+                     (* stk: ... res *)
+                  in
+                     ()
+                  end
+
+         (* emit code for startup
+          *   stack on entry:  
+          *   stack at halt:   res
+          *)
+         fun genStart main =
+            let
+               (* stack: *)
+               val () = emitInstr (I.int 0)
+               (* stack: 0 *)
+               val () = emitInstr (I.label (funcToLabel main))
+               (* stack: 0 mainLab *)
+               val () = emitInstr (I.alloc 0)
+               (* stack: 0 mainLab <> *)
+               val () = emitInstr I.popep
+               (* stack: 0 mainLab *)
+               val () = emitInstr I.call
+               (* stack: res *)
+               val () = emitInstr I.halt
+            in
+               ()
+            end
+
+         val RL.Prog.Prog {main, functions} = prog
+         (* emit code for startup *)
+         val () = genStart main
+         (* emit code for all RepLocIR functions *)
+         val () = List.app genFunction functions
+      in
+         codeStrm
+      end
+
+   val codeGen =
+      Control.mkKeepCtlPass
+      {keepPre = NONE,
+       keepPost = SOME {output = CodeStream.output,
+                        ext = "vmcode"},
+       passName = "vm-codegen",
+       pass = codeGen}
+
+   val codeGen =
+      Control.mkTracePass
+      {msgPre = NONE,
+       msgPost = NONE,
+       passName = "vm-codegen",
+       pass = codeGen}
+
+end

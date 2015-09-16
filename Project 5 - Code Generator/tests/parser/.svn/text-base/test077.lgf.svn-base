@@ -1,0 +1,4 @@
+(* expression precedence & associativity ; + vs * *)
+val f = fn (a: Integer) (b: Integer) (c: Integer) (d: Integer) =>
+  a + b * c + d
+; 0

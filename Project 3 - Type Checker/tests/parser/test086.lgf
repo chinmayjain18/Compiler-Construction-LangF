@@ -1,0 +1,3 @@
+(* let as atomic expression (as value apply argument) *)
+val f = fn (x: Integer) (y: Integer) => x + y
+; f let val x = 1 in x end let val y = 2 in y end

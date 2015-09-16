@@ -1,0 +1,2 @@
+(* if expression, branch mis-match *)
+if 0 < 1 then "True" else 0

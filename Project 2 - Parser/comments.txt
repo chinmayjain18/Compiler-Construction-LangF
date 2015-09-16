@@ -1,0 +1,17 @@
+Excellent work!!
+
+Position information for some parse-tree nodes will not be correct.
+For example, in
+
+ApplyExpSecondary
+  : ApplyArg ApplyExpSecondary => ( fn arg => ApplyExpSecondary (PT.Exp.make(PT.Exp.E_Apply(arg, ApplyArg), FULL_SPAN)))
+  |  => (fn arg => arg)
+  ;
+
+the FULL_SPAN corresponds to the left-position of ApplyArg to the
+right-position of ApplyExpSecondary, but the left-position of the
+E_Apply should be the left position of arg and the right-position of
+the E_Apply should be the right position of ApplyArg.
+
+
+Score: 99/100

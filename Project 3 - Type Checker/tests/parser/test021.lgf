@@ -1,0 +1,4 @@
+(* type constructor with missing type *)
+type T ['a, 'b] = ('a -> 'b) -> 'a -> 'b
+type U = T [, Integer]
+; 0

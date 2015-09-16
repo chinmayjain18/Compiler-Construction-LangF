@@ -1,0 +1,6 @@
+val x__0000 (* : String -> (String -> String) *) =
+   (fn (x__0001 : String) (x__0002 : String) => ((x__0001 : String) ^ (x__0002 : String)) : String) : String
+                                                                                                      ->
+                                                                                                      (String -> String)
+;
+x__0000 : String -> (String -> String)

@@ -1,0 +1,7 @@
+(* arithmetic expression with shadowed Integer *)
+datatype Integer = Z | S {Integer}
+fun add (x: Integer) (y: Integer) : Integer =
+  case x of Z => y | S {y} => S {add x y} end
+val z = add (1 + 2) 3
+;
+z

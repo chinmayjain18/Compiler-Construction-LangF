@@ -1,0 +1,3 @@
+(* Option datatype *)
+datatype Option ['a] = NONE | SOME {'a}
+; 0

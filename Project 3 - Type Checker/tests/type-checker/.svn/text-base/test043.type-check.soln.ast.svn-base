@@ -1,0 +1,4 @@
+val x__0000 (* : Bool *) = ((0 : Integer) == (0 : Integer)) : Bool
+val x__0001 (* : Bool *) = ((0 : Integer) <> (0 : Integer)) : Bool
+;
+((((x__0000 : Bool) orelse (x__0001 : Bool)) : Bool) orelse (x__0001 : Bool)) : Bool

@@ -1,0 +1,145 @@
+VM CodeGen tests
+----------------
+
+For each testNNN.lgf file, there is a testNNN.vm.soln.stdout file
+containing the (printed) output produced by the reference solution
+compiler and a testNNN.vm.soln.res file containing the program result
+displayed by the reference solution.  NOTE: A heap program result is
+the memory address of a heap-allocated object and depends upon both
+the address of the virtual machine heap (obtained by malloc) and the
+number and sizes of heap allocations performed by the program.  Hence,
+such results are likely to change between runs of the same program and
+are likely to differ between programs compiled by different vm code
+generators.  (Similarly, a stk program result is a stack pointer and a
+code program result is a code pointer; such results are also likely to
+change between runs of the same program and are likely to differ
+between programs compiled by different vm code generators.  Note,
+however, that a properly compiled LangF program should terminate with
+either a int program result or a heap program result.)
+
+
+test000.lgf: simplest integer program
+test001.lgf: basic arithmetic
+test002.lgf: basic arithmetic
+test003.lgf: basic arithmetic
+test004.lgf: basic arithmetic
+test005.lgf: basic arithmetic
+test006.lgf: basic arithmetic
+test007.lgf: basic arithmetic
+test008.lgf: basic arithmetic
+test009.lgf: basic arithmetic
+test010.lgf: basic arithmetic
+test011.lgf: basic arithmetic
+test012.lgf: complex arithmetic
+test013.lgf: complex arithmetic
+test014.lgf: 63-bit signed arithmetic
+test015.lgf: 63-bit signed arithmetic
+test016.lgf: 63-bit signed arithmetic
+test017.lgf: 63-bit signed arithmetic
+test018.lgf: 63-bit signed arithmetic
+test019.lgf: 63-bit signed arithmetic
+test020.lgf: 63-bit signed arithmetic
+test021.lgf: 63-bit signed arithmetic
+test022.lgf: 63-bit signed arithmetic
+test023.lgf: nullary data constructor
+test024.lgf: nullary data constructor
+test025.lgf: basic comparision
+test026.lgf: basic comparision
+test027.lgf: basic comparision
+test028.lgf: basic comparision
+test029.lgf: basic comparision
+test030.lgf: basic comparision
+test031.lgf: basic comparision
+test032.lgf: basic comparision
+test033.lgf: basic comparision
+test034.lgf: basic comparision
+test035.lgf: basic comparision
+test036.lgf: basic comparision
+test037.lgf: basic comparision
+test038.lgf: basic comparision
+test039.lgf: basic comparision
+test040.lgf: basic comparision
+test041.lgf: anonymous function
+test042.lgf: anonymous function
+test043.lgf: anonymous function
+test044.lgf: anonymous function
+test045.lgf: function application
+test046.lgf: function application
+test047.lgf: function application
+test048.lgf: function application
+test049.lgf: nullary data constructor and case expression
+test050.lgf: binary data constructor
+test051.lgf: binary data constructor and case expression
+test052.lgf: binary data constructor and case expression
+test053.lgf: val declaration
+test054.lgf: val declaration
+test055.lgf: string constant
+test056.lgf: string concatenation
+test057.lgf: string size
+test058.lgf: string sub
+test059.lgf: string sub
+test060.lgf: string sub
+test061.lgf: string sub
+test062.lgf: print
+test063.lgf: complex logic
+test064.lgf: recursive function
+test065.lgf: tail recursive function
+test066.lgf: recursive function
+test067.lgf: recursive function with free variables
+test068.lgf: mutually recursive functions
+test069.lgf: mutually recursive functions
+test070.lgf: array operations
+test071.lgf: array operations
+test072.lgf: array operations
+test073.lgf: array operations
+test074.lgf: array operations
+test075.lgf: array operations
+test076.lgf: argc operation
+test077.lgf: arg operation
+test078.lgf: arg operation
+test079.lgf: arg operation
+test080.lgf: arg operation
+test081.lgf: fail operation
+test082.lgf: fail operation
+test083.lgf: miscellaneous
+test084.lgf: evaluation order
+test085.lgf: evaluation order w/ heap
+test086.lgf: case expression w/ wildcard matchrule
+test087.lgf: case expression w/ loop in wildcard matchrule
+test088.lgf: evaluation order w/ Gt
+test089.lgf: evaluation order w/ NEq
+test090.lgf: non-tail case expressions
+test091.lgf: non-tail case expressions
+test092.lgf: non-tail case expressions
+test093.lgf: non-tail case expressions
+test094.lgf: non-tail case expressions; executed match rules
+test095.lgf: non-tail case expressions; executed match rules
+test096.lgf: non-tail case expressions; executed match rules
+test097.lgf: non-tail case expressions; executed match rules
+test098.lgf: non-tail case expressions; executed match rules
+test099.lgf: non-tail case expressions; executed match rules
+test100.lgf: non-tail case expressions; executed match rules
+test101.lgf: non-tail case expressions; executed match rules
+test102.lgf: non-tail case expressions; executed match rules
+test103.lgf: non-tail case expressions; executed match rules
+test104.lgf: non-tail case expressions; executed match rules
+test105.lgf: non-tail case expressions; executed match rules
+test106.lgf; case expression w/ side-effect in argument
+
+test200.lgf: list merge sort
+test201.lgf: array insertion sort
+test202.lgf: integer square root
+test203.lgf: fact program
+test204.lgf: fib program
+test205.lgf: gcd program
+test206.lgf: even-odd program
+test207.lgf: list (list functions) program
+test208.lgf: fact-y (fact with Y combinator) program
+test209.lgf: fib-y (fib with Y combinator) program
+test210.lgf: fact-backpatch (fact with backpatching) program
+test211.lgf: fact-backpatch (fib with backpatching) program
+test212.lgf: infinite streams
+test213.lgf: fib-memo-rlist (fib with memoization) program
+test214.lgf: fib-memo-array (fib with memoization) program
+test215.lgf: 1D cellular automaton (random-access list)
+test216.lgf: 1D cellular automaton (array)

@@ -1,0 +1,129 @@
+(* langfc-src/anf-ir/value-num.sml
+ *
+ * COPYRIGHT (c) 2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * CSCI-742
+ * S20135,S20145
+ *
+ * Superlocal value numbering optimization for A-normal form
+ * intermediate representation.
+ *)
+
+structure ValueNum : ANF_IR_OPTIMIZATION =
+struct
+   structure A = AnfIR
+
+   structure SymbolicRHS =
+      struct
+         datatype t =
+            S_Prim of {prim: A.Prim.t, tyargs: A.Type.t list, args: int list}
+          | S_Integer of IntInf.int
+
+         fun layout srhs =
+            case srhs of
+               S_Prim {prim, tyargs, args} =>
+                  let
+                     fun arg i = List.nth (args, i)
+                     fun unary sym =
+                        Layout.mayAlign
+                        [Layout.str sym,
+                         Layout.str ("$" ^ (Int.toString (arg 0)))]
+                     fun binary sym =
+                        Layout.mayAlign
+                        [Layout.str ("$" ^ (Int.toString (arg 0))),
+                         Layout.str sym,
+                         Layout.str ("$" ^ (Int.toString (arg 1)))]
+                     fun ternary (syml,symr) =
+                        Layout.mayAlign
+                        [Layout.str ("$" ^ (Int.toString (arg 0))),
+                         Layout.str syml,
+                         Layout.str ("$" ^ (Int.toString (arg 1))),
+                         Layout.str symr,
+                         Layout.str ("$" ^ (Int.toString (arg 2)))]
+                     fun func name =
+                        Layout.mayAlign
+                        (List.concat
+                         [[Layout.str name],
+                          List.map (fn arg => Layout.seq [Layout.str "[", A.Type.layout arg, Layout.str "]"]) tyargs,
+                          List.map (fn n => Layout.str ("$" ^ (Int.toString n))) args])
+                  in
+                     case prim of
+                        A.Prim.Add => binary "+"
+                      | A.Prim.Arg => func "arg"
+                      | A.Prim.Argc => func "argc"
+                      | A.Prim.Array => func "array"
+                      | A.Prim.Concat => binary "^"
+                      | A.Prim.Div => binary "/"
+                      | A.Prim.Eq => binary "=="
+                      | A.Prim.Fail => func "fail"
+                      | A.Prim.Gt => binary ">"
+                      | A.Prim.Gte => binary ">="
+                      | A.Prim.Lt => binary "<"
+                      | A.Prim.Lte => binary "<="
+                      | A.Prim.Mod => binary "%"
+                      | A.Prim.Mul => binary "*"
+                      | A.Prim.NEq => binary "<>"
+                      | A.Prim.Neg => unary "~"
+                      | A.Prim.Print => func "print"
+                      | A.Prim.Size => func "size"
+                      | A.Prim.Sub => binary "-"
+                      | A.Prim.Subscript => func "subscript"
+                      | A.Prim.Upd => ternary ("!", ":=")
+                      | A.Prim.Idx => binary "!"
+                      | A.Prim.Len => unary "#"
+                  end
+             | S_Integer i => Layout.str (IntInf.toString i)
+
+         fun compare (srhs1: t, srhs2: t) : order =
+            case (srhs1, srhs2) of
+               (S_Prim {prim = prim1, tyargs = tyargs1, args = args1},
+                S_Prim {prim = prim2, tyargs = tyargs2, args = args2}) =>
+                  (case A.Prim.compare (prim1, prim2) of
+                      LESS => LESS
+                    | EQUAL => (case List.collate A.Type.compare (tyargs1, tyargs2) of
+                                   LESS => LESS
+                                 | EQUAL => List.collate Int.compare (args1, args2)
+                                 | GREATER => GREATER)
+                    | GREATER => GREATER)
+             | (S_Prim _, _) => LESS
+             | (_, S_Prim _) => GREATER
+             | (S_Integer i1, S_Integer i2) => IntInf.compare (i1, i2)
+         fun equals (srhs1: t, srhs2: t) : bool =
+            compare (srhs1, srhs2) = EQUAL
+         fun hash (srhs: t) : word =
+            case srhs of
+               S_Prim {prim, tyargs, args} =>
+                  List.foldl (fn (arg, w) => Word.xorb (Word.fromInt arg, w))
+                             (List.foldl (fn (tyarg, w) => Word.xorb (A.Type.hash tyarg, w))
+                                         (A.Prim.hash prim)
+                                         tyargs)
+                             args
+             | S_Integer i => Word.fromLargeInt (IntInf.toLarge i)
+
+         structure OrdKey =
+            struct
+               type ord_key = t
+               val compare = compare
+            end
+         structure Set : ORD_SET where type Key.ord_key = t = RedBlackSetFn (OrdKey)
+         structure Map : ORD_MAP where type Key.ord_key = t = RedBlackMapFn (OrdKey)
+
+         structure HashKey =
+            struct
+               type hash_key = t
+               val hashVal = hash
+               val sameKey = equals
+            end
+         structure Tbl : MONO_HASH_TABLE where type Key.hash_key = t = HashTableFn (HashKey)
+      end
+   structure SRHS = SymbolicRHS
+
+   fun xform (prog: A.Prog.t) : A.Prog.t =
+      let
+         val A.Prog.Prog {decls, var, ty} = prog
+      in
+         A.Prog.Prog {decls = decls, var = var, ty = ty}
+      end
+end

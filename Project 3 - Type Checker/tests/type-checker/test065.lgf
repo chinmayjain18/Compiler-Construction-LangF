@@ -1,0 +1,7 @@
+(* let expression, with datatype declaration *)
+let
+  datatype T = T {Integer}
+  val f = fn (x: Integer) => case T {x} of T {x} => x end
+in
+  f : Integer -> Integer
+end

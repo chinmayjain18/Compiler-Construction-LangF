@@ -1,0 +1,30 @@
+(* langfc-src/anf-ir/interpreter.cm
+ *
+ * COPYRIGHT (c) 2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * CSCI-742
+ * S20135,S20145
+ *
+ * CM file for A-normal form intermediate representation interpreter
+ * in the LangF interpreter (langfi).
+ *)
+
+Library
+
+  signature ANF_IR_INTERPRETER
+  structure AnfIRInterpreter
+
+is
+
+  $/basis.cm
+  $/smlnj-lib.cm
+  $/controls-lib.cm
+
+  ../common/sources.cm
+
+  sources.cm
+
+  interpreter.sig
+  interpreter.sml

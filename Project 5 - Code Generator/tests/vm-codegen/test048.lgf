@@ -1,0 +1,2 @@
+(* function application *)
+(fn ['a] (x: 'a) ['b] (f: 'a -> 'b) => f x) [Integer] 719 [Integer] (fn (i: Integer) => i + 37)

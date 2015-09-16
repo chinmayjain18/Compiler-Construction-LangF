@@ -1,0 +1,9 @@
+xtest006.lgf:4.2-xtest006.lgf:8.5 Error: 
+Non-exhaustive match rules in 'case'.
+  missing: C, D
+  in: case x of A => "A" | B => "B" | A => "A" end
+xtest006.lgf:7.5-xtest006.lgf:7.7 Error: 
+Redundant pattern in 'case'.
+  pattern: A
+  in rule: A => "A"
+  in: case x of A => "A" | B => "B" | A => "A" end

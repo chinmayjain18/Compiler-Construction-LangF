@@ -1,0 +1,11 @@
+test036.lgf:7.12-test036.lgf:7.32 Error: 
+Argument and pattern in 'case' disagree.
+  argument: Pair ['a, 'b]
+  pattern:  Pair ['b, 'a]
+  in rule: Pair ['b, 'a] {x, y} => y
+  in: case p of Pair ['b, 'a] {x, y} => y end
+test036.lgf:9.0-test036.lgf:10.0 Error: 
+Constraint and expression of 'val' disagree.
+  constraint: String
+  expression: Integer
+  in: val hello : String = ((sn ...  [String]) one_hello

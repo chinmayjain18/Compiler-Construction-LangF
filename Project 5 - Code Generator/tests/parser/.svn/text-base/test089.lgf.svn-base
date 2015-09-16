@@ -1,0 +1,2 @@
+(* sequence expression *)
+(fn (x: Integer) => x ; fn ['a] (x: 'a) => x)

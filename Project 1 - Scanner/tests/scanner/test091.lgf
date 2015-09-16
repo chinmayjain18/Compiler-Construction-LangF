@@ -1,0 +1,14 @@
+(* test091.lgf *)
+
+(* x *)
+val x = 3
+
+(* y *)
+val y = 4
+
+;
+
+(* and the answer is ... *)
+
+x + y = 7
+

@@ -1,0 +1,5 @@
+(* nullary data constructor and case expression *)
+case 719 == 37 of
+   True => 1
+ | False => 0
+end

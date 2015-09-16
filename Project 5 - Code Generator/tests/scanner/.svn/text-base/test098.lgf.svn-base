@@ -1,0 +1,2 @@
+val s = "hello\32world!\10" ;
+print s

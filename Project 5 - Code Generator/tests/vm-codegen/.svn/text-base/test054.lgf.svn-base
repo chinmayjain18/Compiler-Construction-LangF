@@ -1,0 +1,5 @@
+(* val declaration *)
+val id = fn ['a] (x: 'a) => x
+;
+(id [['a] -> 'a -> 'a] id) [Integer] 0
+

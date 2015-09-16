@@ -1,0 +1,16 @@
+datatype T__0000 = C__0000
+                 | C__0001
+                 | C__0002
+                 | C__0003
+fun x__0000 (x__0001 : Unit) : T__0000 =
+   ((((fail : ['a__0000] -> (String -> 'a__0000)) [T__0000]) : String -> T__0000) ("f" : String)) : T__0000
+datatype T__0001 = C__0004
+                 | C__0005
+                 | C__0006
+;
+(case ((x__0000 : Unit -> T__0000) (Unit : Unit)) : T__0000 of
+    C__0000 => "A" : String
+  | C__0001 => "B" : String
+  | C__0002 => "C" : String
+  | C__0003 => "D" : String
+ end) : String

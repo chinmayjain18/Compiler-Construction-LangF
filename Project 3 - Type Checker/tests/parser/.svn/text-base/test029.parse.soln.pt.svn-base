@@ -1,0 +1,10 @@
+datatype List ['a] = Nil
+                   | Cons {'a, List ['a]}
+datatype Exp ['var] = E_Var {'var}
+                    | E_Lam {'var, Exp ['var]}
+                    | E_App {Exp ['var], Exp ['var]}
+                    | E_Let {List [Decl ['var]], Exp ['var]}
+and Decl ['var] = E_Val {'var, Exp ['var]}
+                | E_Fun {'var, 'var, Exp ['var]}
+;
+0

@@ -1,0 +1,459 @@
+val println = fn (s: String) => (print s; print "\n")
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+fun unitToString (u:Unit) : String =
+  case u of Unit => "Unit" end
+val printUnit = fn (u:Unit) =>
+  println (unitToString u)
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+val notb = fn (b: Bool) =>
+  case b of True => False | False => True end
+val andb = fn (b1: Bool) (b2: Bool) =>
+  case b1 of True => b2 | False => False end
+val orb = fn (b1: Bool) (b2: Bool) =>
+  case b1 of True => True | False => b2 end
+
+val boolToString = fn (b: Bool) =>
+  if b then "True" else "False"
+val printBool = fn (b: Bool) => println (boolToString b)
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+fun arrayToString ['a] (aToString: 'a -> String) (a: Array ['a]) : String =
+  if # a == 0
+    then "[]"
+  else
+    let
+      fun loop (i: Integer) (acc: String) : String =
+        if i < # a
+          then loop (i + 1) (acc ^ ", " ^ (aToString (a ! i)))
+        else acc
+    in
+       (loop 1 ("@[" ^ (aToString (a ! 0)))) ^ "]"
+    end
+val printArray = fn ['a] (aToString: 'a -> String) (a: Array ['a]) =>
+  println (arrayToString ['a] aToString a)
+
+fun arrayAppi ['a] (f: Integer -> 'a -> Unit) (a: Array ['a]) : Unit =
+  let
+    fun loop (i: Integer) : Unit =
+      if i < # a
+        then (f i (a ! i) ; loop (i + 1))
+      else Unit
+  in
+    loop 0
+  end
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+datatype Option ['a] = None | Some {'a}
+fun optionToString ['a] (aToString: 'a -> String) (opt: Option ['a]) : String =
+  case opt of
+     None ['a] => "None"
+   | Some ['a] {x} => "Some {" ^ (aToString x) ^ "}"
+  end
+val printOption = fn ['a] (aToString: 'a -> String) (opt: Option ['a]) =>
+  println (optionToString ['a] aToString opt)
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+datatype Pair ['a, 'b] = Pair {'a, 'b}
+val pair = fn ['a] ['b] (x: 'a) (y: 'b) => Pair ['a, 'b] {x, y}
+val fst = fn ['a] ['b] (p: Pair ['a, 'b]) =>
+  case p of Pair ['a, 'b] {x, y} => x end
+val snd = fn ['a] ['b] (p: Pair ['a, 'b]) =>
+  case p of Pair ['a, 'b] {x, y} => y end
+fun pairToString ['a] ['b] (aToString: 'a -> String) (bToString: 'b -> String) (p: Pair ['a, 'b]) : String =
+  case p of
+     Pair ['a, 'b] {x, y} => "Pair {" ^ (aToString x) ^ ", " ^ (bToString y) ^ "}"
+  end
+val printPair = fn ['a] ['b] (aToString: 'a -> String) (bToString: 'b -> String) (p: Pair ['a, 'b]) =>
+  println (pairToString ['a] ['b] aToString bToString p)
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+datatype List ['a] = Nil | Cons {'a, List ['a]}
+fun listToString ['a] (aToString: 'a -> String) (l: List ['a]) : String =
+  let
+    fun loop (l: List ['a]) : String =
+      case l of
+         Nil ['a] => "]"
+       | Cons ['a] {hd, tl} => ", " ^ (aToString hd) ^ (loop tl)
+      end
+  in
+    case l of
+       Nil ['a] => "[]"
+     | Cons ['a] {hd, tl} => "[" ^ (aToString hd) ^ (loop tl)
+    end
+  end
+val printList = fn ['a] (aToString: 'a -> String) (l: List ['a]) =>
+  println (listToString ['a] aToString l)
+fun listFoldl ['a] ['b] (f: 'a -> 'b -> 'b) (b: 'b) (l: List ['a]) : 'b =
+  let
+    fun loop (b: 'b) (l: List ['a]) : 'b =
+      case l of
+         Nil ['a] => b
+       | Cons ['a] {hd, tl} => loop (f hd b) tl
+      end
+  in
+    loop b l
+  end
+val listRev = fn ['a] =>
+  listFoldl ['a] [List ['a]]
+            (fn (hd: 'a) (tl: List ['a]) => Cons ['a] {hd, tl})
+            (Nil ['a])
+val listLength = fn ['a] =>
+  listFoldl ['a] [Integer]
+            (fn (hd: 'a) (l: Integer) => l + 1)
+            0
+fun listTabulate ['a] (n: Integer) (f: Integer -> 'a) : List ['a] =
+  let
+     fun loop (i: Integer) (acc: List ['a]) : List ['a] =
+       if i <= n
+          then loop (i + 1) (Cons ['a] {f i, acc})
+       else listRev ['a] acc
+  in
+     if n < 0
+        then fail [List ['a]] "listTabulate: n < 0"
+     else loop 0 (Nil ['a])
+  end
+val listToArray = fn ['a] (init: 'a) (l: List ['a]) =>
+  let
+    val a = array ['a] (listLength ['a] l) init
+    val _ = listFoldl ['a] [Integer]
+                      (fn (hd: 'a) (i: Integer) => (a ! i := hd ; i + 1))
+                      0 l
+  in
+    a
+  end
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+(* RList *)
+datatype RList ['a] = RNil
+                    | RZero {RList [Pair ['a, 'a]]}
+                    | ROne {'a, RList [Pair ['a, 'a]]}
+val rlistEmpty = fn ['a] => RNil ['a]
+val rlistIsEmpty = fn ['a] (l: RList ['a]) =>
+   case l of RNil ['a] => True | _ => False end
+fun rlistCons ['a] (x: 'a) (l: RList ['a]) : RList ['a] =
+   case l of
+      RNil ['a] => ROne ['a] {x, RNil [Pair ['a, 'a]]}
+    | RZero ['a] {ps} => ROne ['a] {x, ps}
+    | ROne ['a] {y, ps} => RZero ['a] {rlistCons [Pair ['a,'a]] (pair ['a] ['a] x y) ps}
+   end
+fun rlistUncons ['a] (l: RList ['a]) : Pair ['a, RList ['a]] =
+   case l of
+      RNil ['a] => fail [Pair ['a, RList ['a]]] "rlistUncons: RNil"
+    | ROne ['a] {x, ps} =>
+         case ps of
+            RNil [Pair ['a, 'a]] => Pair ['a, RList ['a]] {x, RNil ['a]}
+          | _ => Pair ['a, RList ['a]] {x, RZero ['a] {ps}}
+         end
+    | RZero ['a] {ps} =>
+         let
+            val xy_ps' = rlistUncons [Pair ['a, 'a]] ps
+            val xy = fst [Pair ['a, 'a]] [RList [Pair ['a, 'a]]] xy_ps'
+            val x = fst ['a] ['a] xy
+            val y = snd ['a] ['a] xy
+            val ps' = snd [Pair ['a, 'a]] [RList [Pair ['a, 'a]]] xy_ps'
+         in
+            pair ['a] [RList ['a]] x (ROne ['a] {y, ps'})
+         end
+   end
+fun rlistDest ['a] (l: RList ['a]) : Option [Pair ['a, RList ['a]]] =
+   if rlistIsEmpty ['a] l
+      then None [Pair ['a, RList ['a]]]
+   else Some [Pair ['a, RList ['a]]] {rlistUncons ['a] (l)}
+val rlistHd = fn ['a] (l: RList ['a]) =>
+   fst ['a] [RList ['a]] (rlistUncons ['a] l)
+val rlistTl = fn ['a] (l: RList ['a]) =>
+   snd ['a] [RList ['a]] (rlistUncons ['a] l)
+fun rlistSize ['a] (l: RList ['a]) : Integer =
+   case l of
+      RNil ['a] => 0
+    | ROne ['a] {x, ps} =>
+         1 + (2 * rlistSize [Pair ['a, 'a]] ps)
+    | RZero ['a] {ps} =>
+         2 * rlistSize [Pair ['a, 'a]] ps
+   end
+fun rlistLookup ['a] (i: Integer) (l: RList ['a]) : 'a =
+   case l of
+      RNil ['a] => fail ['a] "rlistLookup: RNil"
+    | ROne ['a] {x, ps} =>
+         if i == 0 then x
+         else rlistLookup ['a] (i - 1) (RZero ['a] {ps})
+    | RZero ['a] {ps} =>
+         let val xy = rlistLookup [Pair ['a, 'a]] (i / 2) ps
+         in if i % 2 == 0 then fst ['a] ['a] xy else snd ['a] ['a] xy
+         end
+   end
+fun rlistUpdateF ['a] (i: Integer) (f: 'a -> 'a) (l: RList ['a]) : RList ['a] =
+   case l of
+      RNil ['a] => fail [RList ['a]] "rlistUpdateF: RNil"
+    | ROne ['a] {x, ps} =>
+         if i == 0 then ROne ['a] {f x, ps}
+         else rlistCons ['a] x (rlistUpdateF ['a] (i - 1) f (RZero ['a] {ps}))
+    | RZero ['a] {ps} =>
+         let
+            val f' = fn (xy: Pair ['a, 'a]) =>
+               let
+                  val x = fst ['a] ['a] xy
+                  val y = snd ['a] ['a] xy
+               in
+                  if i % 2 == 0
+                     then pair ['a] ['a] (f x) y
+                     else pair ['a] ['a] x (f y)
+               end
+         in
+            RZero ['a] {rlistUpdateF [Pair ['a, 'a]] (i / 2) f' ps}
+         end
+   end
+val rlistUpdate = fn ['a] (i: Integer) (y: 'a) (l: RList ['a]) =>
+   rlistUpdateF ['a] i (fn (x:'a) => y) l
+fun rlistFoldl ['a] ['b] (f: 'a -> 'b -> 'b) (b: 'b) (l: RList ['a]) : 'b =
+  case rlistDest ['a] l of
+     None [Pair ['a, RList ['a]]] => b
+   | Some [Pair ['a, RList ['a]]] {p} =>
+       case p of
+         Pair ['a, RList ['a]] {hd, tl} =>
+           rlistFoldl ['a] ['b] f (f hd b) tl
+       end
+  end
+val rlistRev = fn ['a] =>
+   rlistFoldl ['a] [RList ['a]]
+              (fn (hd: 'a) (tl: RList ['a]) => rlistCons ['a] hd tl)
+              (rlistEmpty ['a])
+fun rlistFoldr ['a] ['b] (f: 'a -> 'b -> 'b) (b: 'b) (l: RList ['a]) : 'b =
+  rlistFoldl ['a] ['b] f b (rlistRev ['a] l)
+fun rlistTabulate ['a] (n: Integer) (f: Integer -> 'a) : RList ['a] =
+  let
+     fun loop (i: Integer) (acc: RList ['a]) : RList ['a] =
+       if i < n
+          then loop (i + 1) (rlistCons ['a] (f i) acc)
+       else rlistRev ['a] acc
+  in
+     if n < 0
+        then fail [RList ['a]] "rlistTabulate: n < 0"
+     else loop 0 (rlistEmpty ['a])
+  end
+fun rlistAllocate ['a] (n: Integer) (v: 'a) : RList ['a] =
+  let
+    fun loop (i: Integer) (acc: RList ['a]) : RList ['a] =
+      if i < n
+        then loop (i + 1) (rlistCons ['a] v acc)
+      else acc
+  in
+     if n < 0
+        then fail [RList ['a]] "rlistAllocate: n < 0"
+     else loop 0 (rlistEmpty ['a])
+  end
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+fun intToString (i:Integer) : String =
+   if i < 0 then "~" ^ (intToString (~i))
+   else if i == 0 then "0"
+   else if i == 1 then "1"
+   else if i == 2 then "2"
+   else if i == 3 then "3"
+   else if i == 4 then "4"
+   else if i == 5 then "5"
+   else if i == 6 then "6"
+   else if i == 7 then "7"
+   else if i == 8 then "8"
+   else if i == 9 then "9"
+   else (intToString (i / 10)) ^ (intToString (i % 10))
+val printInt = fn (i: Integer) => println (intToString i)
+
+fun stringToInt (s : String) : Option [Integer] =
+  let
+    val ord0 = subscript "0" 0
+    val ord9 = subscript "9" 0
+    fun charToDigit (c: Integer) : Option [Integer] =
+      if ord0 <= c andalso c <= ord9
+        then Some [Integer] {c - ord0}
+        else None [Integer]
+    val sz = size s
+    fun loop (pos: Integer) (acc: Integer) : Option [Integer] =
+      if pos < sz
+        then case charToDigit (subscript s pos) of
+                None [Integer] => None [Integer]
+              | Some [Integer] {i} => loop (pos + 1) (acc * 10 + i)
+             end
+      else Some [Integer] {acc}
+  in
+    if sz > 0
+      then loop 0 0
+    else None [Integer]
+  end
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+fun argToInt (i: Integer) : Option [Integer] =
+  stringToInt (arg i)
+
+fun argToInt' (i: Integer) : Integer =
+  case stringToInt (arg i) of
+     None [Integer] => i * i + i
+   | Some [Integer] {i} => i
+  end
+
+fun argsToListInteger (u: Unit) : List [Integer] =
+  let
+    val n = argc Unit
+    fun loop (i: Integer) : List [Integer] =
+      if i < n
+        then case argToInt i of
+                None [Integer] => loop (i + 1)
+              | Some [Integer] {x} => Cons [Integer] {x, loop (i + 1)}
+             end
+        else Nil [Integer]
+  in
+    loop 1
+  end
+fun argsToArrayInteger (u: Unit) : Array [Integer] =
+  listToArray [Integer] 0 (argsToListInteger u)
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+(* From page 284 of Numerical Recipes in C. *)
+val initSeed = 13
+val initSeed =
+  let
+    val arg0 = arg 0
+    val x0 = subscript arg0 0
+    val x1 = subscript arg0 1
+    val x2 = subscript arg0 2
+    val x3 = subscript arg0 3
+    val x4 = subscript arg0 4
+    val x5 = subscript arg0 5
+    val x6 = subscript arg0 6
+    val x7 = subscript arg0 7
+    val x8 = subscript arg0 8
+  in
+    13 + x0 + x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8
+  end
+val randSeed = array [Integer] 1 initSeed
+val srand = fn (i: Integer) => randSeed ! 0 := i
+val rand = fn (u: Unit) =>
+  let
+    val res = 1664525 * (randSeed ! 0) + 1013904223
+in
+    randSeed ! 0 := res
+  end
+val rand1024 = fn (u: Unit) =>
+  rand u % 1024
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+fun listMSort ['a] (lt: 'a -> 'a -> Bool) (l: List ['a]) : List ['a] =
+  let
+    type ListA = List ['a]
+    fun split (l: ListA) : Pair [ListA, ListA] =
+      case l of
+         Nil ['a] => Pair [ListA, ListA] {Nil ['a], Nil ['a]}
+       | Cons ['a] {hd, tl} =>
+           case split tl of
+             Pair [ListA, ListA] {xs, ys} =>
+               Pair [ListA, ListA] {Cons ['a] {hd, ys}, xs}
+           end
+      end
+    fun merge (l1: ListA) (l2: ListA) : ListA =
+      case l1 of
+         Nil ['a] => l2
+       | Cons ['a] {hd1,tl1} =>
+           case l2 of
+              Nil ['a] => l1
+            | Cons ['a] {hd2, tl2} =>
+                if lt hd1 hd2
+                  then Cons ['a] {hd1, merge tl1 l2}
+                  else Cons ['a] {hd2, merge l1 tl2}
+           end
+      end
+    fun msort (l: ListA) : ListA =
+      case l of
+         Nil ['a] => Nil ['a]
+       | Cons ['a] {x1,xs1} =>
+           case xs1 of
+              Nil ['a] => Cons ['a] {x1, Nil ['a]}
+            | Cons ['a] {x1,xs2} =>
+                let
+                  val ys1__ys2 = split l
+                  val ys1 = fst [ListA] [ListA] ys1__ys2
+                  val ys2 = snd [ListA] [ListA] ys1__ys2
+                  val zs1 = msort ys1
+                  val zs2 = msort ys2
+                in
+                  merge zs1 zs2
+                end
+           end
+      end
+  in
+    msort l
+  end
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+fun arrayISort ['a] (lt: 'a -> 'a -> Bool) (a: Array ['a]) : Unit =
+  let
+    val n = # a
+    fun loopA (i: Integer) : Unit =
+      if i < n
+        then let
+               val tmp = a ! i
+               fun loopB (j: Integer) : Integer =
+                 if j >= 0 andalso lt tmp (a ! j)
+                   then (a ! j+1 := a ! j; loopB (j - 1))
+                 else j
+               val j = loopB (i - 1)
+             in
+               a ! j+1 := tmp ; loopA (i + 1)
+             end
+        else Unit
+  in
+    loopA 1
+  end
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+(* the Y combinator *)
+type Y ['a] = Unit -> 'a
+fun y ['a] (f: Y ['a] -> Y ['a]) : Y ['a] =
+   f (fn (z : Unit) => y ['a] f z)
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+(* ======================================== *)
+
+type T = Integer
+val printListT = printList [T] intToString
+
+val x = rand1024 Unit
+val y = rand1024 Unit
+
+val l = Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y,
+        Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y,
+        Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y, 
+        Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y, Cons [T] {x + y,
+        Nil [T]}}}}}}}}}}}}}}}}
+
+;
+printListT l

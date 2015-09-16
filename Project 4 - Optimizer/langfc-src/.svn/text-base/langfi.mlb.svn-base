@@ -1,0 +1,18 @@
+(* langfc-src/langfi.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * Top-level MLB file for LangF interpreter (langfi).
+ *)
+
+local
+   $(SML_LIB)/basis/basis.mlb
+   driver/langfi.mlb
+in
+   driver/call-main-langfi.sml
+end

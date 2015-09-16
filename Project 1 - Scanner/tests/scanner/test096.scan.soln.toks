@@ -1,0 +1,20 @@
+fun
+(* VAR_NAME *) id
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) x
+:
+(* VAR_NAME *) a
+)
+:
+(* TYVAR_NAME *) 'a
+=
+(* VAR_NAME *) x
+;
+(* VAR_NAME *) id
+[
+(* CON_NAME *) Integer
+]
+(* INTEGER *) 3

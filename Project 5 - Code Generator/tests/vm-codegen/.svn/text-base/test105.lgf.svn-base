@@ -1,0 +1,58 @@
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+datatype Option ['a] = None | Some {'a}
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+(* From page 284 of Numerical Recipes in C. *)
+val initSeed = 13
+(*
+val initSeed =
+  let
+    val arg0 = arg 0
+    val x0 = subscript arg0 0
+    val x1 = subscript arg0 1
+    val x2 = subscript arg0 2
+    val x3 = subscript arg0 3
+    val x4 = subscript arg0 4
+    val x5 = subscript arg0 5
+    val x6 = subscript arg0 6
+  in
+    13 + x0 + x1 + x2 + x3 + x4 + x5 + x6
+  end
+*)
+val randSeed = array [Integer] 1 initSeed
+val srand = fn (i: Integer) => randSeed ! 0 := i
+val rand = fn (u: Unit) =>
+  let
+    val res = 1664525 * (randSeed ! 0) + 1013904223
+in
+    randSeed ! 0 := res
+  end
+val rand1024 = fn (u: Unit) =>
+  rand u % 1024
+
+(* ---------------------------------------- *)
+(* ---------------------------------------- *)
+
+(* ======================================== *)
+
+val a =
+  if rand1024 Unit % 2 == 0
+    then None [Integer]
+    else Some [Integer] {rand1024 Unit}
+
+val b =
+  if rand1024 Unit % 5 == 0
+    then None [Integer]
+    else Some [Integer] {rand1024 Unit}
+
+val c =
+  (case a of Some [Integer] {x} => (print "a = Some\n"; x * 2) | _ => (print "a = None\n"; rand1024 Unit) end) +
+  (case b of Some [Integer] {x} => (print "b = Some\n"; x * 2) | _ => (print "b = None\n"; rand1024 Unit) end)
+
+;
+
+c

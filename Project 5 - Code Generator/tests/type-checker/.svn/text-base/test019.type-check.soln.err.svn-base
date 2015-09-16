@@ -1,0 +1,5 @@
+test019.lgf:6.11-test019.lgf:6.24 Error: 
+Function and argument of apply disagree.
+  function: String -> String
+  argument: Integer
+  in: (id [String]) 0

@@ -1,0 +1,21 @@
+(* arith ops *)
+type BinOp ['a, 'b] = 'a -> 'a -> 'b
+type IntBinArithOp = BinOp [Integer, Integer]
+type UnOp ['a, 'b] = 'a -> 'b
+type IntUnArithOp = UnOp [Integer, Integer]
+type CmpOp ['a] = BinOp ['a, Bool]
+type IntCmpOp = CmpOp [Integer]
+val f : IntCmpOp = fn (x: Integer) (y: Integer) => x == y
+val f : IntCmpOp = fn (x: Integer) (y: Integer) => x <> y
+val f : IntCmpOp = fn (x: Integer) (y: Integer) => x < y
+val f : IntCmpOp = fn (x: Integer) (y: Integer) => x <= y
+val f : IntCmpOp = fn (x: Integer) (y: Integer) => x > y
+val f : IntCmpOp = fn (x: Integer) (y: Integer) => x >= y
+val f : IntBinArithOp = fn (x: Integer) (y: Integer) => x + y
+val f : IntBinArithOp = fn (x: Integer) (y: Integer) => x - y
+val f : IntBinArithOp = fn (x: Integer) (y: Integer) => x * y
+val f : IntBinArithOp = fn (x: Integer) (y: Integer) => x / y
+val f : IntBinArithOp = fn (x: Integer) (y: Integer) => x % y
+val f : IntUnArithOp = fn (x: Integer) => ~ x
+;
+f

@@ -1,0 +1,3 @@
+(* data constructor decl with missing type *)
+datatype Pair ['a, 'b] = Pair {'a, }
+; 0

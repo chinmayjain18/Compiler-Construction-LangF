@@ -1,0 +1,70 @@
+(* langfc-src/common/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for common utility modules in the LangF compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+
+   ml-lpt-lib/ml-lpt-lib.mlb
+
+   control.sig
+   control.sml
+
+   list-extra.sig
+   list-extra.sml
+   list-pair-extra.sig
+   list-pair-extra.sml
+
+   layout.sig
+   layout.sml
+
+   source.sig
+   source.sml
+
+   error-stream.sig
+   error-stream.sml
+
+   stamp.sig
+   stamp.fun
+
+   id.sig
+   id.fun
+
+in
+
+   signature CONTROL
+   structure Control
+
+   signature LIST_EXTRA
+   structure ListExtra
+   signature LIST_PAIR_EXTRA
+   structure ListPairExtra
+
+   signature LAYOUT
+   structure Layout
+
+   signature SOURCE
+   structure Source
+
+   signature ERROR_STREAM
+   structure ErrorStream
+
+   signature STAMP
+   functor Stamp
+
+   signature ID
+   structure IdControls
+   functor Id
+
+end

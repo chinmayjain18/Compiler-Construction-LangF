@@ -1,0 +1,7 @@
+(* binary data constructor and case expression *)
+datatype List ['a] = Nil | Cons {'a, List ['a]}
+;
+case Cons [Integer] {2, Cons [Integer] {1, Cons [Integer] {0, Nil [Integer]}}} of
+  Nil [Integer] => 0
+| Cons [Integer] {hd, tl} => hd
+end

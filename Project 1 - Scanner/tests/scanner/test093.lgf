@@ -1,0 +1,11 @@
+(* test093.lgf *)
+
+val x = 3
+
+(* one (* comment may be nested *) inside another *)
+
+fun add (x: Integer) (y: Integer) = x + y
+
+;
+
+add 1 2

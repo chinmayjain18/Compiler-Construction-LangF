@@ -1,0 +1,4 @@
+test050.lgf:2.0-test050.lgf:2.6 Error: 
+Left operand of '+' not of type Integer.
+  operand: String
+  in: "True" + 1

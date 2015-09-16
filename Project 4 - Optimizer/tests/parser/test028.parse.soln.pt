@@ -1,0 +1,3 @@
+datatype Pair ['a, 'b] = Pair {'a, 'b}
+;
+0

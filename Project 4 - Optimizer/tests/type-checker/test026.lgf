@@ -1,0 +1,5 @@
+(* datatype decl, with arity error *)
+datatype Pair ['a, 'b] = Pair {'a, 'b}
+datatype Option ['a] = None | Some {'a}
+type T ['a] = Pair ['a, 'a, 'a]
+; 0

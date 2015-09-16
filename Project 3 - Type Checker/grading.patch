@@ -1,0 +1,28 @@
+Index: langfc-src/type-checker/environment.sig
+===================================================================
+--- langfc-src/type-checker/environment.sig	(revision 20)
++++ langfc-src/type-checker/environment.sig	(working copy)
+@@ -63,7 +63,9 @@
+           * to be 'unit', since we only need to know whether or not
+           * the variable is in the environment.
+           *)
+-         type cod = unit
++         (* 
++          * type cod = unit
++          *)
+          (* For type checking (without producing an abstract syntax
+           * tree), we can take the co-domain to be 
+           * '{var_ty: AbsSynTree.Type.t}', recording the semantic type
+@@ -79,10 +81,8 @@
+           * abstract-syntax-tree variable to which the variable is
+           * translated.
+           *)
+-         (*
+-          * type cod = {var_ty: AbsSynTree.Type.t,
+-          *             var: AbsSynTree.Var.t}
+-          *)
++         type cod = {var_ty: AbsSynTree.Type.t,
++                     var: AbsSynTree.Var.t}
+       end
+ 
+    type t

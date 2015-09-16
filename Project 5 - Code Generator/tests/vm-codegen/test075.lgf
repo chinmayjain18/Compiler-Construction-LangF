@@ -1,0 +1,46 @@
+(* array operations *)
+fun intToString (i:Integer) : String =
+   if i == ~1073741824 then "~1073741824"
+   else if i < 0 then "~" ^ (intToString (~i))
+   else if i == 0 then "0"
+   else if i == 1 then "1"
+   else if i == 2 then "2"
+   else if i == 3 then "3"
+   else if i == 4 then "4"
+   else if i == 5 then "5"
+   else if i == 6 then "6"
+   else if i == 7 then "7"
+   else if i == 8 then "8"
+   else if i == 9 then "9"
+   else (intToString (i / 10)) ^ (intToString (i % 10))
+
+fun arrayToString ['a] (aToString: 'a -> String) (a: Array ['a]) : String =
+  if # a == 0
+    then "[]"
+  else
+    let
+      fun loop (i: Integer) (acc: String) : String =
+        if i < # a
+          then loop (i + 1) (acc ^ ", " ^ (aToString (a ! i)))
+        else acc
+    in
+       (loop 1 ("[" ^ (aToString (a ! 0)))) ^ "]"
+    end
+
+fun arrayTabulate ['a] (i: Integer) (f: Integer -> 'a) : Array ['a] =
+  let
+    val a = array ['a] i (f 0)
+    fun loop (j: Integer) : Unit =
+      if j < i then
+        (a ! j := (f j) ; loop (j + 1))
+      else
+        Unit
+    val _ = loop 1
+  in
+    a
+  end
+
+val a = arrayTabulate [Integer] 10 (fn (i: Integer) => i * i + i)
+
+;
+print ("a = " ^ (arrayToString [Integer] intToString a) ^ "\n")

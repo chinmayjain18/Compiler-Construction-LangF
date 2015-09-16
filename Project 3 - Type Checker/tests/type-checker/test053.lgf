@@ -1,0 +1,9 @@
+(* array ops *)
+val f : ['a] -> Array ['a] -> Integer -> 'a -> 'a =
+  fn ['a] (a: Array ['a]) (i: Integer) (x: 'a) => a ! i := x
+val f : ['a] -> Array ['a] -> Integer -> 'a =
+  fn ['a] (a: Array ['a]) (i: Integer) => a ! i
+val f : ['a] -> Array ['a] -> Integer =
+  fn ['a] (a: Array ['a]) => # a
+;
+f

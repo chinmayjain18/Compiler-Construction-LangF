@@ -1,0 +1,2 @@
+(* let as atomic expression *)
+let val x = 1 in x end * let val z = 2 in z end

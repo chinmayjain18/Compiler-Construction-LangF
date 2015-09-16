@@ -1,0 +1,3 @@
+(* fn expression type params require brackets *)
+val id = fn 'a (x: 'a) => x
+; id [Integer] 0

@@ -1,0 +1,41 @@
+#!/bin/sh
+
+#
+# bin/langfi
+#
+# COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+# All rights reserved.
+#
+# Rochester Institute of Technology
+# 4005-711,CSCI-742
+# Q20112,Q20122,S20135,S20145
+#
+# COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+# All rights reserved.
+#
+# University of Chicago
+# CMSC 22610
+# Winter 2009
+#
+# Shell script for invoking the LangF interpreter (langfi) as either a
+# MLton generated executable or an SML/NJ heap image.
+#
+
+binDir=$(dirname "$0")
+SMLNJ_HEAP_SUFFIX=$(echo 'TextIO.output (TextIO.stdErr, SMLofNJ.SysInfo.getHeapSuffix ());' | sml 2>&1 1> /dev/null)
+LANGFI_SMLNJ_HEAP=$binDir/.smlnj-heap/langfi.$SMLNJ_HEAP_SUFFIX
+
+LANGFI_MLTON_EXEC=$binDir/.mlton-exec/langfi.mlton
+
+if $(env test $LANGFI_SMLNJ_HEAP -nt $LANGFI_MLTON_EXEC); then
+    exec sml @SMLcmdname=langfi @SMLload=$LANGFI_SMLNJ_HEAP $@
+elif $(env test $LANGFI_MLTON_EXEC -nt $LANGFI_SMLNJ_HEAP); then
+    exec $LANGFI_MLTON_EXEC $@
+elif $(env test -e $LANGFI_SMLNJ_HEAP); then
+    exec sml @SMLcmdname=langfi @SMLload=$LANGFI_SMLNJ_HEAP $@
+elif $(env test -e $LANGFI_MLTON_EXEC); then
+    exec $LANGFI_MLTON_EXEC $@
+else
+    echo 'Unable to run langfi (no SML/NJ heap or MLton exec).'
+    exit 1
+fi

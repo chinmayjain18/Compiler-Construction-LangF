@@ -1,0 +1,5 @@
+xtest007.lgf:5.5-xtest007.lgf:5.6 Error: 
+Redundant pattern in 'case'.
+  pattern: h
+  in rule: h => h 0
+  in: case f of g => g 0 | h => h 0 end

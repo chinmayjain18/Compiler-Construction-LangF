@@ -1,0 +1,2 @@
+(* string concatenation *)
+"snap" ^ "crackle" ^ "pop"

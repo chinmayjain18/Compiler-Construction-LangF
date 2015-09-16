@@ -1,0 +1,30 @@
+(* langfc-src/abs-syn-tree/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for abstract syntax tree representation in the LangF
+ * compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+
+   ../common/sources.mlb
+
+   abs-syn-tree.sig
+   abs-syn-tree.sml
+
+in
+
+  signature ABS_SYN_TREE
+  structure AbsSynTree
+
+end

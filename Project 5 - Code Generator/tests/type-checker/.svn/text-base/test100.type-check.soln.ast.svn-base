@@ -1,0 +1,3 @@
+fun x__0000 (x__0001 : Bool) : Bool = (case x__0001 : Bool of True => False : Bool | False => True : Bool end) : Bool
+;
+((x__0000 : Bool -> Bool) (True : Bool)) : Bool

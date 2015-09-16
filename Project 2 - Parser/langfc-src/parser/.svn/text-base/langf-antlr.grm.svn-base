@@ -1,0 +1,434 @@
+(* langfc-src/scanner-parser/langf-antlr.grm
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * LangF parser specification for ml-antlr.
+ *)
+
+%defs (
+
+(* User declarations; available in semantic actions. *)
+structure PT = ParseTree
+
+);
+
+%name LangFAntlr;
+
+(* Tokens. *)
+%tokens
+  : KW_and        ("and")
+  | KW_andalso    ("andalso")
+  | KW_case       ("case")
+  | KW_datatype   ("datatype")
+  | KW_else       ("else")
+  | KW_end        ("end")
+  | KW_fn         ("fn")
+  | KW_fun        ("fun")
+  | KW_if         ("if")
+  | KW_in         ("in")
+  | KW_let        ("let")
+  | KW_of         ("of")
+  | KW_orelse     ("orelse")
+  | KW_then       ("then")
+  | KW_type       ("type")
+  | KW_val        ("val")
+  | PLUS          ("+")
+  | MINUS         ("-")
+  | ASTERISK      ("*")
+  | SLASH         ("/")
+  | PERCENT       ("%")
+  | TILDE         ("~")
+  | EQEQ          ("==")
+  | LTGT          ("<>")
+  | LTEQ          ("<=")
+  | LT            ("<")
+  | GTEQ          (">=")
+  | GT            (">")
+  | CARET         ("^")
+  | HASH          ("#")
+  | BANG          ("!")
+  | COLON_EQ      (":=")
+  | LPAREN        ("(")
+  | RPAREN        (")")
+  | LSBRACK       ("[")
+  | RSBRACK       ("]")
+  | LCBRACK       ("{")
+  | RCBRACK       ("}")
+  | MINUS_ARROW   ("->")
+  | EQ_ARROW      ("=>")
+  | EQ            ("=")
+  | COLON         (":")
+  | COMMA         (",")
+  | SEMI          (";")
+  | VBAR          ("|")
+  | UNDERSCORE    ("_")
+  | TYVAR_NAME of Atom.atom
+  | CON_NAME of Atom.atom
+  | VAR_NAME of Atom.atom
+  | INTEGER of IntInf.int
+  | STRING of String.string
+  ;
+
+(* Keyword tokens, for error recovery. *)
+%keywords
+    KW_and
+  , KW_andalso
+  , KW_case
+  , KW_datatype
+  , KW_else
+  , KW_end
+  , KW_fn
+  , KW_fun
+  , KW_if
+  , KW_in
+  , KW_let
+  , KW_of
+  , KW_orelse
+  , KW_then
+  , KW_type
+  , KW_val
+  ;
+
+(* Start non-terminal. *)
+%start Program;
+
+(* Rules; to be extended and/or changed. *)
+
+Program
+  : Decls=( Decl* ) ";" Exp => (
+      PT.Prog.make ((Decls, Exp), FULL_SPAN) )
+  | Exp => (
+      PT.Prog.make (([], Exp), FULL_SPAN) )
+  ;
+
+Decl
+  : "type" TyConName ParamList=(TypeParams) "=" Type => (
+      PT.Decl.make (PT.Decl.D_Type (TyConName, ParamList, Type), FULL_SPAN) )
+  | "datatype" DataDeclList => (
+      PT.Decl.make (PT.Decl.D_Data (DataDeclList), FULL_SPAN) )
+  | "val" SimplePat TypePresent=((":" Type)?) "=" Exp => (
+      PT.Decl.make (PT.Decl.D_Val (SimplePat, TypePresent, Exp), FULL_SPAN ) )
+  | "fun" FunDecl rest=(("and" FunDecl)*) => (
+      PT.Decl.make (PT.Decl.D_Fun (FunDecl::rest), FULL_SPAN ) )
+  ;
+
+FunDecl
+  : VarName ParamList=((Param)+) ":" Type "=" Exp => ( 
+      (VarName, ParamList, Type, Exp) )
+  ;
+
+Param
+  : "[" TyVarName "]" => ( PT.Param.make (PT.Param.P_TyVarName(TyVarName), FULL_SPAN) )
+  | "(" VarName ":" Type ")" => ( PT.Param.make (PT.Param.P_VarName (VarName, Type), FULL_SPAN) )
+  ;
+
+DataDeclList
+  : first=(DataDecl) restofList=(("and"DataDecl)*) => (first::restofList)
+  ;
+
+DataDecl
+  : TyConName TypeParams "=" DaConDeclList => (TyConName, TypeParams , DaConDeclList)
+  ;
+
+DaConDeclList
+  : first=(DaConDecl) restOfList=(("|" DaConDecl)*) => (first::restOfList)
+  ;
+
+DaConDecl
+  : DaConName DaConArgTys => (DaConName, DaConArgTys)
+  ;
+
+DaConArgTys
+  : "{" DaConArgTysList => ( DaConArgTysList )
+  | () => ( [] )
+  ;
+
+DaConArgTysList
+  : "}" => ( [] )
+  | firstType=(Type) args=(("," Type)*) "}" => (firstType::args)
+  ;
+
+TypeParams
+  : "[" TypeParamsList "]" => ( TypeParamsList )
+  | => ([])
+  ;
+
+TypeParamsList
+  : => ([])
+  | args=(TyVarName) arglist=((","TyVarName)*) => (args::arglist)
+  ;
+
+Type
+  : "[" TyVarName "]" "->" Type => (
+      PT.Type.make (PT.Type.T_TyFn (TyVarName, Type), FULL_SPAN) )
+  | TypeSecondary TypeVal=(("->" Type)?) => ( case TypeVal of
+						SOME Type => (PT.Type.make (PT.Type.T_Fn (TypeSecondary, Type), FULL_SPAN))
+						| NONE => ( TypeSecondary )
+       					    )
+  ;
+
+TypeSecondary
+  : TyVarName => (
+      PT.Type.make (PT.Type.T_TyVar (TyVarName), FULL_SPAN) )
+  | TyConName ArgList=TypeArgs => (
+      PT.Type.make (PT.Type.T_TyCon (TyConName, ArgList), FULL_SPAN) )
+  | "(" Type ")" => ( Type )
+  ; 
+
+TypeArgs
+  : => ([])
+  | "[" TypeArgList => ( TypeArgList )
+  ;
+
+TypeArgList
+  : "]" => ([])
+  | firstType=Type rest=((","Type)*) "]" => (firstType::rest)
+  ;
+
+SimplePat
+  : VarName => ( PT.SimplePat.make (PT.SimplePat.P_VarName VarName, FULL_SPAN) )
+  | "_" => ( PT.SimplePat.make (PT.SimplePat.P_Wild, FULL_SPAN) )
+  ;
+
+Exp
+  : "fn" ParamList=((Param)+) "=>" Exp => (
+      PT.Exp.make (PT.Exp.E_Fn (ParamList, Exp), FULL_SPAN) )
+  | "if" exp1=Exp "then" exp2=Exp "else" exp3=Exp => (
+      PT.Exp.make (PT.Exp.E_If (exp1, exp2, exp3), FULL_SPAN) )
+  | ComplexExp ExpSecondary => (ExpSecondary ComplexExp)
+  ;
+
+ExpSecondary
+  : () => (fn arg => arg)
+  | ":" Type ExpSecondary => ( fn arg => ExpSecondary (PT.Exp.make(PT.Exp.E_Constraint(arg, Type), FULL_SPAN) ) )
+  ;
+
+ComplexExp
+  : exp=(CE1) CE1List => ( CE1List exp )
+  ;
+
+CE1List
+  : => (fn arg => arg)
+  | "orelse" CE1 CE1List => (fn arg => CE1List (PT.Exp.make(PT.Exp.E_Orelse(arg,CE1), FULL_SPAN)))
+  ;
+
+CE1
+  : exp=(CE2) CE2List => ( CE2List exp )
+  ;
+
+CE2List
+  : => (fn arg => arg)
+  | "andalso" CE2 CE2List => (fn arg => CE2List (PT.Exp.make(PT.Exp.E_Andalso(arg,CE2), FULL_SPAN)))
+  ;
+
+CE2
+  : exp=(CE3) bangExpList=(("!" CE3)*) assign=((":=" CE2)?) => ( case assign of
+								  NONE => (let 
+									      fun helper exp banglist =
+										case banglist of
+										  hd::tl => helper (PT.Exp.make(PT.Exp.E_BinOp(PT.BinOp.Idx, exp, hd), FULL_SPAN)) tl
+										  | nil => ( exp )
+									   in
+									     helper exp bangExpList
+									   end)
+								  | SOME arg => (let
+										   val lastexp = List.last(bangExpList)
+										   val exp1 = (let
+												fun helper exp banglist =
+										     		  case banglist of
+										 	            hd::tl => helper (PT.Exp.make(PT.Exp.E_BinOp(PT.BinOp.Idx, exp, hd), FULL_SPAN)) tl
+											           | nil => ( exp )
+			  							              in
+										     		helper exp (List.take(bangExpList,List.length(bangExpList)-1))
+											      end)
+										 in
+										   (PT.Exp.make(PT.Exp.E_TernOp(PT.TernOp.Upd, exp1, lastexp, arg), FULL_SPAN))
+										 end
+										)
+							      )
+  ;
+
+CE3
+  : exp=(CE4) CE4List => ( CE4List exp )
+  ;
+
+CE4List
+  : LogicalOp CE4 CE4List => (fn arg => CE4List (PT.Exp.make(PT.Exp.E_BinOp(LogicalOp, arg, CE4), FULL_SPAN)))
+  | => (fn arg => arg)
+  ;
+
+CE4
+  : exp=(CE5) expList=(("^" CE5)*) => ( case expList of
+											hd::tl => ( let
+															val lastExp = List.last(expList)
+															fun helper explist last =
+															  case explist of
+																hd::tl => (	let
+																				val restOfListLast = List.last(explist)
+																			in
+																				helper (List.take(explist,List.length(explist)-1)) (PT.Exp.make(PT.Exp.E_BinOp(PT.BinOp.Concat, restOfListLast, last), FULL_SPAN))
+																			end )
+																| nil => ( last )
+														in
+															helper (exp::(List.take(expList,List.length(expList)-1))) lastExp
+														end )
+											| nil => ( exp ) )
+  ;
+
+CE5
+  : exp=(CE6) CE6List => ( CE6List exp )
+  ;
+
+CE6List
+  : AddOp CE6 CE6List => ( fn arg => CE6List (PT.Exp.make(PT.Exp.E_BinOp(AddOp, arg, CE6), FULL_SPAN)))
+  | => (fn arg => arg)
+  ;
+
+CE6
+  : exp=(SimpleExp) CE7List => (CE7List exp)
+  ;
+
+CE7List
+  : MulOp SimpleExp CE7List => (fn arg => CE7List (PT.Exp.make(PT.Exp.E_BinOp(MulOp, arg, SimpleExp), FULL_SPAN)))
+  | => (fn arg => arg)
+  ;
+
+LogicalOp
+  : "==" => (PT.BinOp.Eq)
+  | "<>" => (PT.BinOp.NEq)
+  | "<" => (PT.BinOp.Lt)
+  | "<=" => (PT.BinOp.Lte)
+  | ">" => (PT.BinOp.Gt)
+  | ">=" => (PT.BinOp.Gte)
+  ;
+
+AddOp
+  : "+" => (PT.BinOp.Add)
+  | "-" => (PT.BinOp.Sub)
+  ;
+
+MulOp
+  : "*" => (PT.BinOp.Mul)
+  | "/" => (PT.BinOp.Div)
+  | "%" => (PT.BinOp.Mod)
+  ;
+
+SimpleExp
+  : ApplyExp => ( ApplyExp )
+  | "~" ExpOrCon => (
+     PT.Exp.make (PT.Exp.E_UnOp (PT.UnOp.Neg, ExpOrCon), FULL_SPAN) )
+  | "#" ExpOrCon => (
+     PT.Exp.make (PT.Exp.E_UnOp (PT.UnOp.Len, ExpOrCon), FULL_SPAN) )
+  | DaConName TypeArgs DaConArgs => (
+     PT.Exp.make (PT.Exp.E_DaCon(DaConName, TypeArgs, DaConArgs), FULL_SPAN) )
+  ;
+
+ExpOrCon
+  : AtomicExp => ( 
+     AtomicExp )
+  | DaConName => (
+     PT.Exp.make (PT.Exp.E_DaCon(DaConName, [], []), FULL_SPAN) )
+  ;
+
+DaConArgs
+  : "{" ExpList => ( ExpList )
+  | => ([])
+  ;
+
+ExpList
+  : "}" => ([])
+  | firstExp=(Exp) rest=((","Exp)*) "}" => (firstExp::rest)
+  ;
+
+ApplyExp
+  : AtomicExp ApplyExpSecondary => ( ApplyExpSecondary AtomicExp )
+  ;
+
+ApplyExpSecondary
+  : ApplyArg ApplyExpSecondary => ( fn arg => ApplyExpSecondary (PT.Exp.make(PT.Exp.E_Apply(arg, ApplyArg), FULL_SPAN)))
+  |  => (fn arg => arg)
+  ;
+
+ApplyArg
+  : "[" Type "]" => ( 
+     PT.ApplyArg.make(PT.ApplyArg.A_Type (Type), FULL_SPAN) )
+  | AtomicExp => ( 
+     PT.ApplyArg.make (PT.ApplyArg.A_Exp (AtomicExp), FULL_SPAN) )
+  | DaConName => (
+     PT.ApplyArg.make (PT.ApplyArg.A_Exp (PT.Exp.make (PT.Exp.E_DaCon(DaConName, [], []), FULL_SPAN) ), FULL_SPAN) )
+  ;
+
+AtomicExp
+  : INTEGER => (
+      PT.Exp.make (PT.Exp.E_Integer INTEGER, FULL_SPAN) )
+  | VarName => (
+      PT.Exp.make (PT.Exp.E_VarName VarName, FULL_SPAN) )
+  | STRING => (
+      PT.Exp.make (PT.Exp.E_String STRING, FULL_SPAN) )
+  | "let" DeclList=((Decl)+) "in" first=(Exp) expList=((";"Exp)*) "end" => (
+      PT.Exp.make (PT.Exp.E_Let (DeclList, (first::expList)), FULL_SPAN) )
+  | "case" Exp "of" MatchRuleList "end"=> (
+      PT.Exp.make (PT.Exp.E_Case (Exp, (MatchRuleList)), FULL_SPAN) )
+  | "(" Exp ExpListHelper => ( ExpListHelper Exp )
+  ;
+
+MatchRuleList
+  : firstRule=(MatchRule) rest=(("|"MatchRule)*) => (case rest of
+							hd::tl => ([firstRule]@rest)
+							| nil => ([firstRule]) )
+  ;
+
+ExpListHelper
+  : ")" => ( fn arg => arg )
+  | expList=((";"Exp)+) ")"=> ( fn arg => PT.Exp.make(PT.Exp.E_Seq(arg::expList), FULL_SPAN) )
+  ;
+
+TyVarName
+  : TYVAR_NAME => ( PT.TyVarName.make (TYVAR_NAME, FULL_SPAN) )
+  ;
+
+TyConName
+  : CON_NAME => ( PT.TyConName.make (CON_NAME, FULL_SPAN) )
+  ;
+
+DaConName
+  : CON_NAME => ( PT.DaConName.make (CON_NAME, FULL_SPAN) )
+  ;
+
+VarName
+  : VAR_NAME => ( PT.VarName.make (VAR_NAME, FULL_SPAN) )
+  ;
+
+MatchRule
+  : Pat "=>" Exp => (
+      PT.MatchRule.make ((Pat,Exp), FULL_SPAN) )
+  ;
+
+Pat
+  : DaConName TypeArgs DaConPats => (
+      PT.Pat.make (PT.Pat.P_DaCon (DaConName, TypeArgs, DaConPats), FULL_SPAN) )
+  | SimplePat => (
+      PT.Pat.make (PT.Pat.P_SimplePat (SimplePat), FULL_SPAN) )
+  ;
+
+DaConPats
+  : "{" DaConPatsList => ( DaConPatsList )
+  | (* empty *) => ([])
+  ;
+
+DaConPatsList
+  : "}" => ([])
+  | first=SimplePat rest=((","SimplePat)*) "}" => (first::rest)
+  ;

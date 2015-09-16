@@ -1,0 +1,2 @@
+(* expression precedence; if vs + *)
+if 0 <= 0 then 0 else 0 + 1

@@ -1,0 +1,10 @@
+
+(* test092.lgf *)
+
+val open_comment = "(*"
+val close_comment = "*)"
+
+;
+
+open_comment ^ close_comment
+

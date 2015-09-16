@@ -1,0 +1,89 @@
+(* rlist.lgf *)
+
+(* Pair *)
+datatype Pair ['a1,'a2] = Pair {'a1,'a2}
+val pair = fn ['a1] ['a2] (x: 'a1) (y: 'a2) =>
+   Pair ['a1, 'a2] {x, y}
+val fst = fn ['a1] ['a2] (p: Pair ['a1,'a2]) =>
+   case p of
+      Pair ['a1, 'a2] {x1,x2} => x1
+   end
+val snd = fn ['a1] ['a2] (p: Pair ['a1,'a2]) =>
+   case p of
+      Pair ['a1, 'a2] {x1,x2} => x2
+   end
+
+(* RList *)
+datatype RList ['a] = RNil
+                    | RZero {RList [Pair ['a, 'a]]}
+                    | ROne {'a, RList [Pair ['a, 'a]]}
+val rlistEmpty = fn ['a] => RNil ['a]
+val rlistIsEmpty = fn ['a] (l: RList ['a]) =>
+   case l of RNil ['a] => True | _ => False end
+fun rlistCons ['a] (x: 'a) (l: RList ['a]) : RList ['a] =
+   case l of
+      RNil ['a] => ROne ['a] {x, RNil [Pair ['a, 'a]]}
+    | RZero ['a] {ps} => ROne ['a] {x, ps}
+    | ROne ['a] {y, ps} => RZero ['a] {rlistCons [Pair ['a,'a]] (pair ['a] ['a] x y) ps}
+   end
+fun rlistUncons ['a] (l: RList ['a]) : Pair ['a, RList ['a]] =
+   case l of
+      RNil ['a] => fail [Pair ['a, RList ['a]]] "rlistUncons: RNil"
+    | ROne ['a] {x, ps} =>
+         case ps of
+            RNil [Pair ['a, 'a]] => Pair ['a, RList ['a]] {x, RNil ['a]}
+          | _ => Pair ['a, RList ['a]] {x, RZero ['a] {ps}}
+         end
+    | RZero ['a] {ps} =>
+         let
+            val xy_ps' = rlistUncons [Pair ['a, 'a]] ps
+            val xy = fst [Pair ['a, 'a]] [RList [Pair ['a, 'a]]] xy_ps'
+            val x = fst ['a] ['a] xy
+            val y = snd ['a] ['a] xy
+            val ps' = snd [Pair ['a, 'a]] [RList [Pair ['a, 'a]]] xy_ps'
+         in
+            pair ['a] [RList ['a]] x (ROne ['a] {y, ps'})
+         end
+   end
+val rlistHd = fn ['a] (l: RList ['a]) =>
+   fst ['a] [RList ['a]] (rlistUncons ['a] l)
+val rlistTl = fn ['a] (l: RList ['a]) =>
+   snd ['a] [RList ['a]] (rlistUncons ['a] l)
+fun rlistLookup ['a] (i: Integer) (l: RList ['a]) : 'a =
+   case l of
+      RNil ['a] => fail ['a] "rlistLookup: RNil"
+    | ROne ['a] {x, ps} =>
+         if i == 0 then x
+         else rlistLookup ['a] (i - 1) (RZero ['a] {ps})
+    | RZero ['a] {ps} =>
+         let val xy = rlistLookup [Pair ['a, 'a]] (i / 2) ps
+         in if i % 2 == 0 then fst ['a] ['a] xy else snd ['a] ['a] xy
+         end
+   end
+fun rlistUpdateF ['a] (i: Integer) (f: 'a -> 'a) (l: RList ['a]) : RList ['a] =
+   case l of
+      RNil ['a] => fail [RList ['a]] "rlistUpdateF: RNil"
+    | ROne ['a] {x, ps} =>
+         if i == 0 then ROne ['a] {f x, ps}
+         else rlistCons ['a] x (rlistUpdateF ['a] (i - 1) f (RZero ['a] {ps}))
+    | RZero ['a] {ps} =>
+         let
+            val f' = fn (xy: Pair ['a, 'a]) =>
+               let
+                  val x = fst ['a] ['a] xy
+                  val y = snd ['a] ['a] xy
+               in
+                  if i % 2 == 0
+                     then pair ['a] ['a] (f x) y
+                     else pair ['a] ['a] x (f y)
+               end
+         in
+            RZero ['a] {rlistUpdateF [Pair ['a, 'a]] (i / 2) f' ps}
+         end
+   end
+val rlistUpdate = fn ['a] (i: Integer) (y: 'a) (l: RList ['a]) =>
+   rlistUpdateF ['a] i (fn (x:'a) => y) l
+
+;
+
+RNil [Integer]

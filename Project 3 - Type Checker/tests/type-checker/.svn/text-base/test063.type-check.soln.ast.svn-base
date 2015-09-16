@@ -1,0 +1,7 @@
+;
+(let
+    val x__0000 (* : Integer *) = 1 : Integer
+    val x__0001 (* : Integer *) = 2 : Integer
+ in
+    ((x__0000 : Integer) + (x__0001 : Integer)) : Integer
+ end) : Integer

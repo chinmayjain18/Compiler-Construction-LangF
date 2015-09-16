@@ -1,0 +1,4 @@
+test039.lgf:2.3-test039.lgf:2.4 Error: 
+Test of 'if' not of type Bool.
+  test: Integer
+  in: if 0 then "True" else "False"

@@ -1,0 +1,4 @@
+test055.lgf:3.6-test055.lgf:3.15 Error: 
+Mid operand of '! :=' not of type Integer.
+  operand: String
+  in: a ! "Integer" := x

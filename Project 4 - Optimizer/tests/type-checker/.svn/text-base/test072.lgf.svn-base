@@ -1,0 +1,7 @@
+(* fun declaration, mutually recursive *)
+fun isEven (n: Integer) : Bool =
+  if n == 0 then True else isOdd (n - 1)
+and isOdd (n: Integer) : Bool =
+  if n == 0 then False else isEven (n - 1)
+;
+isEven 100

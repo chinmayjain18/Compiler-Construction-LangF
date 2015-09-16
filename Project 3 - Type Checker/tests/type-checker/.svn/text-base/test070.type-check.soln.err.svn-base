@@ -1,0 +1,5 @@
+test070.lgf:2.0-test070.lgf:3.0 Error: 
+Result type and expression of 'fun' disagree.
+  result type: Integer
+  expression:  Bool
+  in: fun add (a : Integer) (b  ... ) : Integer = a == b

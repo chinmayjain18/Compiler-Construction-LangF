@@ -1,0 +1,3 @@
+(* function decl requires return type *)
+fun inc (x: Integer) = x + 1
+; inc 0

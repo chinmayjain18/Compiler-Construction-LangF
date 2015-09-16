@@ -1,0 +1,2 @@
+(* if expression, non-boolean arg *)
+if 0 then "True" else "False"

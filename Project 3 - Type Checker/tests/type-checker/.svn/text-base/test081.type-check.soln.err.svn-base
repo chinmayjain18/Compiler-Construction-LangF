@@ -1,0 +1,6 @@
+test081.lgf:12.29-test081.lgf:12.34 Error: 
+Variable of pattern defined multiple times.
+  variable: title
+  in pattern: Article {author, title, title}
+  in rule: Article {author, title, title} => author
+  in: case p of Book {author, t ... title} => author end

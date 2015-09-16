@@ -1,0 +1,4 @@
+type Fst ['a, 'b] = 'a
+type T = Fst [Integer, Integer]
+;
+0

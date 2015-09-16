@@ -1,0 +1,3 @@
+(* type decl with unbound type constructor *)
+type T [] = Id [Integer]
+; 0

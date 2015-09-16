@@ -1,0 +1,133 @@
+fun x__0000 (x__0001 : Integer) : String =
+   (if ((x__0001 : Integer) < (0 : Integer)) : Bool
+       then (("~" : String) ^ (((x__0000 : Integer -> String) ((~ (x__0001 : Integer)) : Integer)) : String)) : String
+       else (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+                then "0" : String
+                else (if ((x__0001 : Integer) == (1 : Integer)) : Bool
+                         then "1" : String
+                         else (if ((x__0001 : Integer) == (2 : Integer)) : Bool
+                                  then "2" : String
+                                  else (if ((x__0001 : Integer) == (3 : Integer)) : Bool
+                                           then "3" : String
+                                           else (if ((x__0001 : Integer) == (4 : Integer)) : Bool
+                                                    then "4" : String
+                                                    else (if ((x__0001 : Integer) == (5 : Integer)) : Bool
+                                                             then "5" : String
+                                                             else (if ((x__0001 : Integer) == (6 : Integer)) : Bool
+                                                                      then "6" : String
+                                                                      else (if ((x__0001 : Integer) == (7 : Integer)) : Bool
+                                                                               then "7" : String
+                                                                               else (if ((x__0001 : Integer) == (8 : Integer)) : Bool
+                                                                                        then "8" : String
+                                                                                        else (if ((x__0001 : Integer)
+                                                                                                  ==
+                                                                                                  (9 : Integer)) : Bool
+                                                                                                 then "9" : String
+                                                                                                 else ((((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           /
+                                                                                                           (10 : Integer)) : Integer)) : String)
+                                                                                                       ^
+                                                                                                       (((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           %
+                                                                                                           (10 : Integer)) : Integer)) : String)) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String
+datatype T__0000 ['a__0000] = C__0000
+                            | C__0001 {'a__0000, T__0000 ['a__0000]}
+fun x__0002 ['a__0001] ['a__0002] (x__0003 : 'a__0001 -> ('a__0002 -> 'a__0002)) (x__0004 : 'a__0002) (x__0005 : T__0000 ['a__0001]) : 'a__0002 =
+   (case x__0005 : T__0000 ['a__0001] of
+       C__0000 ['a__0001] => x__0004 : 'a__0002
+     | C__0001 ['a__0001] {x__0006 (* : 'a__0001 *), x__0007 (* : T__0000 ['a__0001] *)} =>
+          ((((((((((x__0002 : ['a__0003] ->
+                              (['a__0004] ->
+                               (('a__0003 -> ('a__0004 -> 'a__0004)) -> ('a__0004 -> ((T__0000 ['a__0003]) -> 'a__0004)))))
+                   ['a__0001]) : ['a__0005] ->
+                                 (('a__0001 -> ('a__0005 -> 'a__0005)) -> ('a__0005 -> ((T__0000 ['a__0001]) -> 'a__0005))))
+                 ['a__0002]) : ('a__0001 -> ('a__0002 -> 'a__0002)) -> ('a__0002 -> ((T__0000 ['a__0001]) -> 'a__0002)))
+               (x__0003 : 'a__0001 -> ('a__0002 -> 'a__0002))) : 'a__0002 -> ((T__0000 ['a__0001]) -> 'a__0002))
+             (((((x__0003 : 'a__0001 -> ('a__0002 -> 'a__0002)) (x__0006 : 'a__0001)) : 'a__0002 -> 'a__0002)
+               (x__0004 : 'a__0002)) : 'a__0002)) : (T__0000 ['a__0001]) -> 'a__0002)
+           (x__0007 : T__0000 ['a__0001])) : 'a__0002
+    end) : 'a__0002
+val x__0008 (* : ['a__0006] -> ((T__0000 ['a__0006]) -> (T__0000 ['a__0006])) *) =
+   (fn ['a__0007] =>
+       ((((((((x__0002 : ['a__0008] ->
+                         (['a__0009] ->
+                          (('a__0008 -> ('a__0009 -> 'a__0009)) -> ('a__0009 -> ((T__0000 ['a__0008]) -> 'a__0009)))))
+              ['a__0007]) : ['a__000A] ->
+                            (('a__0007 -> ('a__000A -> 'a__000A)) -> ('a__000A -> ((T__0000 ['a__0007]) -> 'a__000A))))
+            [T__0000 ['a__0007]]) : ('a__0007 -> ((T__0000 ['a__0007]) -> (T__0000 ['a__0007])))
+                                    ->
+                                    ((T__0000 ['a__0007]) -> ((T__0000 ['a__0007]) -> (T__0000 ['a__0007]))))
+          ((fn (x__0009 : 'a__0007) (x__000A : T__0000 ['a__0007]) =>
+               (C__0001 ['a__0007] {x__0009 : 'a__0007, x__000A : T__0000 ['a__0007]}) : T__0000 ['a__0007]) : 'a__0007
+                                                                                                               ->
+                                                                                                               ((T__0000 ['a__0007])
+                                                                                                                ->
+                                                                                                                (T__0000 ['a__0007])))) : (T__0000 ['a__0007])
+                                                                                                                                          ->
+                                                                                                                                          ((T__0000 ['a__0007])
+                                                                                                                                           ->
+                                                                                                                                           (T__0000 ['a__0007])))
+        ((C__0000 ['a__0007]) : T__0000 ['a__0007])) : (T__0000 ['a__0007]) -> (T__0000 ['a__0007])) : ['a__000B] ->
+                                                                                                       ((T__0000 ['a__000B])
+                                                                                                        ->
+                                                                                                        (T__0000 ['a__000B]))
+fun x__000B ['a__000C] (x__000C : Integer) (x__000D : Integer -> 'a__000C) : T__0000 ['a__000C] =
+   (let
+       fun x__000E (x__000F : Integer) (x__0010 : T__0000 ['a__000C]) : T__0000 ['a__000C] =
+          (if ((x__000F : Integer) <= (x__000C : Integer)) : Bool
+              then ((((x__000E : Integer -> ((T__0000 ['a__000C]) -> (T__0000 ['a__000C])))
+                      (((x__000F : Integer) + (1 : Integer)) : Integer)) : (T__0000 ['a__000C]) -> (T__0000 ['a__000C]))
+                    ((C__0001 ['a__000C] {((x__000D : Integer -> 'a__000C) (x__000F : Integer)) : 'a__000C,
+                                          x__0010 : T__0000 ['a__000C]}) : T__0000 ['a__000C])) : T__0000 ['a__000C]
+              else ((((x__0008 : ['a__000D] -> ((T__0000 ['a__000D]) -> (T__0000 ['a__000D]))) ['a__000C]) : (T__0000 ['a__000C])
+                                                                                                             ->
+                                                                                                             (T__0000 ['a__000C]))
+                    (x__0010 : T__0000 ['a__000C])) : T__0000 ['a__000C]) : T__0000 ['a__000C]
+    in
+       (if ((x__000C : Integer) < (0 : Integer)) : Bool
+           then ((((fail : ['a__000E] -> (String -> 'a__000E)) [T__0000 ['a__000C]]) : String -> (T__0000 ['a__000C]))
+                 ("tabulate: n < 0" : String)) : T__0000 ['a__000C]
+           else ((((x__000E : Integer -> ((T__0000 ['a__000C]) -> (T__0000 ['a__000C]))) (0 : Integer)) : (T__0000 ['a__000C])
+                                                                                                          ->
+                                                                                                          (T__0000 ['a__000C]))
+                 ((C__0000 ['a__000C]) : T__0000 ['a__000C])) : T__0000 ['a__000C]) : T__0000 ['a__000C]
+    end) : T__0000 ['a__000C]
+val x__0011 (* : Integer *) = 4999 : Integer
+val x__0012 (* : Integer *) =
+   ((((((((((x__0002 : ['a__000F] ->
+                       (['a__0010] -> (('a__000F -> ('a__0010 -> 'a__0010)) -> ('a__0010 -> ((T__0000 ['a__000F]) -> 'a__0010)))))
+            [Integer]) : ['a__0011] -> ((Integer -> ('a__0011 -> 'a__0011)) -> ('a__0011 -> ((T__0000 [Integer]) -> 'a__0011))))
+          [Integer]) : (Integer -> (Integer -> Integer)) -> (Integer -> ((T__0000 [Integer]) -> Integer)))
+        ((fn (x__0013 : Integer) (x__0014 : Integer) => ((x__0013 : Integer) + (x__0014 : Integer)) : Integer) : Integer
+                                                                                                                 ->
+                                                                                                                 (Integer
+                                                                                                                  ->
+                                                                                                                  Integer))) : Integer
+                                                                                                                               ->
+                                                                                                                               ((T__0000 [Integer])
+                                                                                                                                ->
+                                                                                                                                Integer))
+      (0 : Integer)) : (T__0000 [Integer]) -> Integer)
+    (((((((x__000B : ['a__0012] -> (Integer -> ((Integer -> 'a__0012) -> (T__0000 ['a__0012])))) [Integer]) : Integer
+                                                                                                              ->
+                                                                                                              ((Integer
+                                                                                                                ->
+                                                                                                                Integer)
+                                                                                                               ->
+                                                                                                               (T__0000 [Integer])))
+        (x__0011 : Integer)) : (Integer -> Integer) -> (T__0000 [Integer]))
+      ((fn (x__0015 : Integer) => x__0015 : Integer) : Integer -> Integer)) : T__0000 [Integer])) : Integer
+;
+(((print : String -> Unit) ("foldl [Integer] [Integer]\n" : String)) : Unit;
+ ((print : String -> Unit) ("      (fn (x: Integer) (y: Integer) => x + y)\n" : String)) : Unit;
+ ((print : String -> Unit) ("      0 (tabulate [Integer] " : String)) : Unit;
+ ((print : String -> Unit) (((x__0000 : Integer -> String) (x__0011 : Integer)) : String)) : Unit;
+ ((print : String -> Unit) (" (fn (i: Integer) => i)) = " : String)) : Unit;
+ ((print : String -> Unit) (((x__0000 : Integer -> String) (x__0012 : Integer)) : String)) : Unit;
+ ((print : String -> Unit) ("\n" : String)) : Unit) : Unit

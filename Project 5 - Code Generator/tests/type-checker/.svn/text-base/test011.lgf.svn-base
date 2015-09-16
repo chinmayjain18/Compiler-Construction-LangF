@@ -1,0 +1,14 @@
+(* standard datatype decls, with recursion and mutual recursion *)
+datatype Pair ['a, 'b] = Pair {'a, 'b}
+datatype Option ['a] = None | Some {'a}
+datatype List ['a] = Nil | Cons {'a, List ['a]}
+datatype RList ['a] = RNil | RZero {RList [Pair ['a, 'a]]} | ROne {'a, RList [Pair ['a, 'a]]}
+datatype Tree ['a] = EmptyT | Forest {'a, Forest ['a]}
+     and Forest ['a] = EmptyF | Tree {Tree ['a], Forest ['a]}
+datatype Exp ['var] = E_Var {'var}
+                    | E_Lam {'var, Exp ['var]}
+                    | E_App {Exp ['var], Exp ['var]}
+                    | E_Let {List [Decl ['var]], Exp ['var]}
+     and Decl ['var] = E_Val {'var, Exp ['var]}
+                     | E_Fun {'var, 'var, Exp ['var]}
+; 0

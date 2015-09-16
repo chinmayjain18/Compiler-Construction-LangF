@@ -1,0 +1,29 @@
+fun intToString (i:Integer) : String =
+   if i < 0 then "~" ^ (intToString (~i))
+   else if i == 0 then "0"
+   else if i == 1 then "1"
+   else if i == 2 then "2"
+   else if i == 3 then "3"
+   else if i == 4 then "4"
+   else if i == 5 then "5"
+   else if i == 6 then "6"
+   else if i == 7 then "7"
+   else if i == 8 then "8"
+   else if i == 9 then "9"
+   else (intToString (i / 10)) ^ (intToString (i % 10))
+
+fun printArg (i: Integer): Unit =
+  (print "arg "; print (intToString i); print " = "; print (arg i); print "\n")
+
+val _ = print ("argc Unit = " ^ (intToString (argc Unit)) ^ "\n")
+
+fun loop (i: Integer): Unit =
+  if i < argc Unit
+    then (printArg i; loop (i + 1))
+    else Unit
+;
+loop 0
+
+
+
+

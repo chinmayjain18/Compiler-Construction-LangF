@@ -1,0 +1,5 @@
+(* case expression, non-datatype expression *)
+fun add (x: Integer) (y: Integer) : Integer =
+  (case x of x => x end) + (case y of y => y end)
+;
+add 1 2

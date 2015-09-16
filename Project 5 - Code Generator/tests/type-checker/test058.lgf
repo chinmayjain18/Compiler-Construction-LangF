@@ -1,0 +1,5 @@
+(* unbound variable *)
+val lt = fn (a: Integer) (b: Integer) => a < b
+val inc : Integer -> Integer = add 1
+;
+lt (inc 1) 3

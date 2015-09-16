@@ -1,0 +1,7 @@
+test068.lgf:2.0-test068.lgf:7.3 Error: 
+Right operand of '+' not of type Integer.
+  operand: Unit
+  in: (let val one = 1 val two  ... one + two end) + one
+test068.lgf:7.6-test068.lgf:7.9 Error: 
+Unbound variable: one.
+  in: one

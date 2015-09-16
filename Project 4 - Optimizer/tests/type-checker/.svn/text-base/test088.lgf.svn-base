@@ -1,0 +1,11 @@
+(* case expression with shadowed datatype *)
+datatype T = A | B | C | D
+fun f (u: Unit) : T = fail [T] "f"
+datatype T = X | Y | Z
+;
+case f Unit of
+   A => "A"
+ | B => "B"
+ | C => "C"
+ | D => "D"
+end

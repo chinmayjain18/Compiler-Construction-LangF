@@ -1,0 +1,6 @@
+test035.lgf:5.12-test035.lgf:5.37 Error: 
+Argument and pattern in 'case' disagree.
+  argument: Pair ['a, 'b]
+  pattern:  Pair [Integer, 'b]
+  in rule: Pair [Integer, 'b] {x, y} => x
+  in: case p of Pair [Integer, 'b] {x, y} => x end

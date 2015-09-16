@@ -1,0 +1,11 @@
+(* case expression, match rule mis-match *)
+datatype T1 = A1 | B1 | C1
+datatype T2 = A2 | B2 | C2
+val f = fn (x: T1) =>
+  case x of
+     A1 => "A1"
+   | B1 => 42
+   | C1 => "C1"
+  end
+;
+f

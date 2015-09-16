@@ -1,0 +1,5 @@
+test018.lgf:7.0-test018.lgf:8.0 Error: 
+Constraint and expression of 'val' disagree.
+  constraint: Integer -> (Integer -> Integer)
+  expression: Integer -> (Integer -> Bool)
+  in: val _ : BinOp [Integer] = lt

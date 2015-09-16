@@ -1,0 +1,6 @@
+(* let expression, with datatype declaration *)
+let
+  datatype T = T {Integer}
+in
+  fn (x: Integer) => case T {x} of T {x} => x end
+end

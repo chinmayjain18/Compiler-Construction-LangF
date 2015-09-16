@@ -1,0 +1,9 @@
+;
+(let
+    datatype T__0000 = C__0000 {Integer}
+ in
+    (fn (x__0000 : Integer) =>
+        (case (C__0000 {x__0000 : Integer}) : T__0000 of
+            C__0000 {x__0001 (* : Integer *)} => x__0001 : Integer
+         end) : Integer) : Integer -> Integer
+ end) : Integer -> Integer

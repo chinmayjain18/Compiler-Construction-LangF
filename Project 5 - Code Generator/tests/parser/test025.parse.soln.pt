@@ -1,0 +1,4 @@
+datatype Bool = True
+              | False
+;
+0

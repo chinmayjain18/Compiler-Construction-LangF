@@ -1,0 +1,2 @@
+(* constraint expression, with type error *)
+(0 : Integer : String : Integer)

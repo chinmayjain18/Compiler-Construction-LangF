@@ -1,0 +1,3 @@
+(* case expressions require > 0 match rules *)
+datatype List ['a] = Nil | Cons {'a, List ['a]}
+; case Nil [Integer] of end

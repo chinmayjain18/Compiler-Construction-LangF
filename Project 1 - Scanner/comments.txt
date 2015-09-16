@@ -1,0 +1,28 @@
+Excellent work!  Nice factoring of the scanner into discrete
+sub-scanning functions.
+
+Your "stringStringBuilder" should check that the characters in the
+string are valid (in the character code range 32 to 126), rather than
+having a few special cases for characters that are not allowed in a
+string.  That is, rather than cases like:
+  SOME (#"\a", strm1) => (badEscapeChar #"\a" ; stringStringBuilder strList strm1)
+you should have a final case like:
+  SOME (c, strm1) =>
+    if 32 <= Char.ord c andalso Char.ord c <= 126
+      then stringStringBuilder (c::strList) strm1
+      else (badChar c; stringStringBuilder strList strm1)
+(and, should really use a badStringChar function that notes that the
+bad character is in a (supposed) string literal).
+
+Your scanning of keywords vs variables is a heroic (but error prone)
+approach.  A more maintainable approach is to scan any sequence of
+lower-alpha, upper-alpha, numeric, "_", and "'" characters and then
+compare the resulting string to a list of known keywords; if a match
+is found, then return the appropriate keyword token; if no match is
+found, then return a var-name token.
+
+In general, should strive to eliminate any "Case is not exhaustive."
+warnings from SML code.
+
+
+Score: 9.9/10

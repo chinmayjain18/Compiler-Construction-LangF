@@ -1,0 +1,12 @@
+test058.lgf:3.0-test058.lgf:4.0 Error: 
+Constraint and expression of 'val' disagree.
+  constraint: Integer -> Integer
+  expression: Unit
+  in: val inc : Integer -> Integer = add 1
+test058.lgf:3.31-test058.lgf:3.34 Error: 
+Unbound variable: add.
+  in: add
+test058.lgf:3.31-test058.lgf:3.36 Error: 
+Function of apply not of function type.
+  function: Unit
+  in: add 1

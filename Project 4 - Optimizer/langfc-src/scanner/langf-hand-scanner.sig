@@ -1,0 +1,27 @@
+(* langfc-src/scanner-parser/langf-hand-scanner.sig
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * Hand-written LangF scanner as a StringCvt.reader.
+ *)
+
+signature LANGF_HAND_SCANNER =
+sig
+   val scan : {getPos: 'strm -> 'pos,
+               forwardPos: 'pos * int -> 'pos,
+               reportErrorAt: 'pos * string -> unit} ->
+              (char, 'strm) StringCvt.reader ->
+              (Tokens.token * ('pos * 'pos), 'strm) StringCvt.reader
+end

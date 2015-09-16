@@ -1,0 +1,4 @@
+(* type decl with binary type constructor type, with arity error *)
+type Fst ['a, 'b] = 'a
+type T [] = Fst []
+; 0

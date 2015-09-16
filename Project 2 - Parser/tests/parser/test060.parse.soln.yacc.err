@@ -1,0 +1,2 @@
+test060.lgf:eof Error: syntax error found at EOF
+test060.lgf:2.4-test060.lgf:2.12 Error: syntax error: deleting  KW_in INTEGER KW_end

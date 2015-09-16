@@ -1,0 +1,51 @@
+(* langfc-src/common/sources.cm
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * CM file for common utility modules in the LangF compiler (langfc).
+ *)
+
+Library
+
+  signature CONTROL
+  structure Control
+
+  signature LAYOUT
+  structure Layout
+
+  signature SOURCE
+  structure Source
+
+  signature ERROR_STREAM
+  structure ErrorStream
+
+is
+
+  $/basis.cm
+  $/smlnj-lib.cm
+  $/controls-lib.cm
+  $/ml-lpt-lib.cm
+
+  control.sig
+  control.sml
+
+  layout.sig
+  layout.sml
+
+  source.sig
+  source.sml
+
+  error-stream.sig
+  error-stream.sml

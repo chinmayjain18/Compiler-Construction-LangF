@@ -1,0 +1,9 @@
+(* *EXTRA* syntactic restriction, redundant patterns *)
+fun not (b: Bool) : Bool =
+  case b of
+     _ => False
+   | True => False
+   | False => True
+  end
+;
+not

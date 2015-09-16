@@ -1,0 +1,12 @@
+val
+(* VAR_NAME *) open_comment
+=
+(* STRING *) "(*"
+val
+(* VAR_NAME *) close_comment
+=
+(* STRING *) "*)"
+;
+(* VAR_NAME *) open_comment
+^
+(* VAR_NAME *) close_comment

@@ -1,0 +1,8 @@
+val x__0000 (* : Integer -> (Integer -> Integer) *) =
+   (fn (x__0001 : Integer) (x__0002 : Integer) => ((x__0001 : Integer) + (x__0002 : Integer)) : Integer) : Integer
+                                                                                                           ->
+                                                                                                           (Integer -> Integer)
+val x__0003 (* : Integer -> Integer *) = ((x__0000 : Integer -> (Integer -> Integer)) (1 : Integer)) : Integer -> Integer
+val x__0004 (* : Integer *) = ((x__0003 : Integer -> Integer) (2 : Integer)) : Integer
+;
+x__0004 : Integer

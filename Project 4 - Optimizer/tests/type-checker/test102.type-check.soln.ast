@@ -1,0 +1,40 @@
+fun x__0000 (x__0001 : Integer) : String =
+   (if ((x__0001 : Integer) < (0 : Integer)) : Bool
+       then (("~" : String) ^ (((x__0000 : Integer -> String) ((~ (x__0001 : Integer)) : Integer)) : String)) : String
+       else (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+                then "0" : String
+                else (if ((x__0001 : Integer) == (1 : Integer)) : Bool
+                         then "1" : String
+                         else (if ((x__0001 : Integer) == (2 : Integer)) : Bool
+                                  then "2" : String
+                                  else (if ((x__0001 : Integer) == (3 : Integer)) : Bool
+                                           then "3" : String
+                                           else (if ((x__0001 : Integer) == (4 : Integer)) : Bool
+                                                    then "4" : String
+                                                    else (if ((x__0001 : Integer) == (5 : Integer)) : Bool
+                                                             then "5" : String
+                                                             else (if ((x__0001 : Integer) == (6 : Integer)) : Bool
+                                                                      then "6" : String
+                                                                      else (if ((x__0001 : Integer) == (7 : Integer)) : Bool
+                                                                               then "7" : String
+                                                                               else (if ((x__0001 : Integer) == (8 : Integer)) : Bool
+                                                                                        then "8" : String
+                                                                                        else (if ((x__0001 : Integer)
+                                                                                                  ==
+                                                                                                  (9 : Integer)) : Bool
+                                                                                                 then "9" : String
+                                                                                                 else ((((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           /
+                                                                                                           (10 : Integer)) : Integer)) : String)
+                                                                                                       ^
+                                                                                                       (((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           %
+                                                                                                           (10 : Integer)) : Integer)) : String)) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String
+;
+((print : String -> Unit) (((((x__0000 : Integer -> String) (42 : Integer)) : String) ^ ("\n" : String)) : String)) : Unit

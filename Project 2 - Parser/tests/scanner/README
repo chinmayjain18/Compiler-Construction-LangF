@@ -1,0 +1,124 @@
+
+Scanner tests
+-------------
+
+For each testNNN.lgf file, there is a testNNN.scan.soln.toks file
+containing the sequence of tokens to be returned by the scanner and,
+if the test has lexical errors, a testNNN.scan.soln.err file
+containing sample error messages to be reported by the scanner.
+
+
+test000.lgf: and keyword
+test001.lgf: andalso keyword
+test002.lgf: case keyword
+test003.lgf: datatype keyword
+test004.lgf: else keyword
+test005.lgf: end keyword
+test006.lgf: fn keyword
+test007.lgf: fun keyword
+test008.lgf: if keyword
+test009.lgf: in keyword
+test010.lgf: let keyword
+test011.lgf: of keyword
+test012.lgf: orelse keyword
+test013.lgf: then keyword
+test014.lgf: type keyword
+test015.lgf: val keyword
+test016.lgf: + symbol
+test017.lgf: - symbol
+test018.lgf: * symbol
+test019.lgf: / symbol
+test020.lgf: % symbol
+test021.lgf: ~ symbol
+test022.lgf: == symbol
+test023.lgf: <> symbol
+test024.lgf: <= symbol
+test025.lgf: < symbol
+test026.lgf: >= symbol
+test027.lgf: > symbol
+test028.lgf: ^ symbol
+test029.lgf: ! symbol
+test030.lgf: := symbol
+test031.lgf: # symbol
+test032.lgf: ( symbol
+test033.lgf: ) symbol
+test034.lgf: [ symbol
+test035.lgf: ] symbol
+test036.lgf: { symbol
+test037.lgf: } symbol
+test038.lgf: -> symbol
+test039.lgf: => symbol
+test040.lgf: = symbol
+test041.lgf: : symbol
+test042.lgf: , symbol
+test043.lgf: ; symbol
+test044.lgf: | symbol
+test045.lgf: _ symbol
+test046.lgf: variable identifier
+test047.lgf: variable identifier
+test048.lgf: variable identifier
+test049.lgf: variable identifier
+test050.lgf: variable identifier
+test051.lgf: variable identifier
+test052.lgf: variable identifier
+test053.lgf: constructor identifier
+test054.lgf: constructor identifier
+test055.lgf: constructor identifier
+test056.lgf: constructor identifier
+test057.lgf: constructor identifier
+test058.lgf: constructor identifier
+test059.lgf: constructor identifier
+test060.lgf: type variable identifier
+test061.lgf: type variable identifier
+test062.lgf: type variable identifier
+test063.lgf: type variable identifier
+test064.lgf: type variable identifier
+test065.lgf: variable identifier that begins with keyword
+test066.lgf: variable identifier that begins with keyword
+test067.lgf: variable identifier that begins with keyword
+test068.lgf: variable identifier that begins with keyword
+test069.lgf: variable identifier that begins with keyword
+test070.lgf: simple program
+test071.lgf: program with whitespace
+test072.lgf: minimal whitespace
+test073.lgf: where do the symbols end?
+test074.lgf: integer literal
+test075.lgf: negative integer literal
+test076.lgf: large integer literal
+test077.lgf: very large integer literal
+test078.lgf: string literal
+test079.lgf: string literal
+test080.lgf: string literal with \a escape sequence
+test081.lgf: string literal with \b escape sequence
+test082.lgf: string literal with \f escape sequence
+test083.lgf: string literal with \n escape sequence
+test084.lgf: string literal with \r escape sequence
+test085.lgf: string literal with \t escape sequence
+test086.lgf: string literal with \v escape sequence
+test087.lgf: string literal with \\ escape sequence
+test088.lgf: string literal with \" escape sequence
+test089.lgf: string literal with numeric escape sequences
+test090.lgf: string literal with mixed escape sequences
+test091.lgf: comments
+test092.lgf: not a comment
+test093.lgf: nested comments
+test094.lgf: nested comments
+test095.lgf: bad character
+test096.lgf: not-quite a type variable
+test097.lgf: bad escape sequence
+test098.lgf: bad numeric escape sequence
+test099.lgf: numeric escape too large
+test100.lgf: bad character in string
+test101.lgf: bad character in string
+test102.lgf: unterminated comment
+test103.lgf: unterminated string
+test104.lgf: int-to-string program
+test105.lgf: string-to-int program
+test106.lgf: fib program
+test107.lgf: even-odd program
+test108.lgf: fib-y (fib with Y combinator) program
+test109.lgf: list (list functions) program
+test110.lgf: rlist (random access list functions) program
+test111.lgf: fib-memo-rlist (fib with memoization) program
+test112.lgf: fib-memo-array (fib with memoization) program
+test113.lgf: isort (insertion sort) program

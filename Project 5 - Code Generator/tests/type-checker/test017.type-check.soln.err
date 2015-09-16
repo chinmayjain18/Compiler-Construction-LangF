@@ -1,0 +1,4 @@
+test017.lgf:2.10-test017.lgf:2.11 Error: 
+Right operand of '+' not of type Integer.
+  operand: String
+  in: 1 + "foo"

@@ -1,0 +1,28 @@
+(* langfc-src/parse-tree/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for parse tree representation in the LangF compiler
+ * (langfc).
+ *)
+
+local
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+
+   ../common/sources.mlb
+
+   parse-tree.sig
+   parse-tree.sml
+
+in
+
+  signature PARSE_TREE
+  structure ParseTree
+
+end

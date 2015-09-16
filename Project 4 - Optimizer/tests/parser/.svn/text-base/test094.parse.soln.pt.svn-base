@@ -1,0 +1,4 @@
+val x = ((array [Array [Integer]]) 10) (((array [Integer]) 10) 0)
+val y = # x
+;
+# y

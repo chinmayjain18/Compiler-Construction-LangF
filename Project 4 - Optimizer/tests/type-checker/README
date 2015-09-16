@@ -1,0 +1,157 @@
+Type-checker tests
+------------------
+
+For each testNNN.lgf file, if the test has type errors, there is a
+testNNN.type-check.soln.err file containing sample error messages to
+be reported by the type checker.  If the test has no type errors, then
+there is a testNNN.type-check.soln.ast file containing the abstract
+syntax tree returned by the reference solution type checker.  By
+default, AST identifiers (type variables, type constructors, data
+constructors, and variables) are printed with a base name and a
+uniqueifying suffix that depends upon the order in which they were
+generated.  However, the grading script uses the
+'-Ccanonical-ids=true' control to force AST identifiers to be printed
+in a canonical form (independent of base name and order of
+generation), which should allow your type checker to produce exactly
+the same (printed) identifiers as the reference solution.
+Furthermore, the abstract parse tree returned by the type checker
+should convert to the core intermediate representation and type check
+in the core intermediate representation without errors.
+
+
+As in past projects, you are not required to match the error messages
+exactly.  In particular, you need not have such 'prettyfied' error
+messages, with types written using the identifiers in the parse tree
+representation.  You will probably find it much easier to print types
+using the identifiers in abstract syntax tree representation (using
+the functions Layout.toString and AST.Type.layout), which will have a
+uniqueifying suffix.  For example, in test046.lgf, you could produce
+an error message like:
+>  test046.lgf:5.0-test46.lgf:6.0 Error:
+>  Constraint and expression of 'val' disagree.
+>    constraint: T__0019
+>    expression: T__0015
+
+
+test000.lgf: simplest integer program
+test001.lgf: simplest integer program with no decls
+test002.lgf: type decl with nullary type constructor type
+test003.lgf: type decl with unary type constructor
+test004.lgf: type decl with unary type constructor type
+test005.lgf: type decl with binary type constructor
+test006.lgf: type decl with binary type constructor type
+test007.lgf: type decl with fn type
+test008.lgf: type decl with tyfn type
+test009.lgf: type decl with unbound type variable
+test010.lgf: type decl with unbound type constructor
+test011.lgf: standard datatype decls, with recursion and mutual recursion
+test012.lgf: integer val decls
+test013.lgf: integer val decls
+test014.lgf: polymorphic val decls
+test015.lgf: polymorphic val decls
+test016.lgf: polymorphic val decls
+test017.lgf: integer val decls, with error
+test018.lgf: integer val decls, with error
+test019.lgf: polymorphic val decls, with error
+test020.lgf: polymorphic val decls, with error
+test021.lgf: polymorphic val decls, with error
+test022.lgf: type decl with binary type constructor type, with arity error
+test023.lgf: type decl with binary type constructor type, with arity error
+test024.lgf: type decl with binary type constructor type, with arity error
+test025.lgf: datatype decl, with arity error
+test026.lgf: datatype decl, with arity error
+test027.lgf: datatype decl, with arity error
+test028.lgf: datatype decl, dacon expression, and case expression
+test029.lgf: datatype decl, dacon expression, and case expression
+test030.lgf: datatype decl, dacon expression, and case expression, with arity error
+test031.lgf: datatype decl, dacon expression, and case expression, with arity error
+test032.lgf: datatype decl, dacon expression, and case expression, with type error
+test033.lgf: polymorphic datatype decl, dacon expression, and case expression
+test034.lgf: polymorphic datatype decl, dacon expression, and case expression, with type error
+test035.lgf: polymorphic datatype decl, dacon expression, and case expression, with type error
+test036.lgf: polymorphic datatype decl, dacon expression, and case expression, with type error
+test037.lgf: if expression
+test038.lgf: if expression, branch mis-match
+test039.lgf: if expression, non-boolean arg
+test040.lgf: andalso expression
+test041.lgf: andalso expression, non-boolean left
+test042.lgf: andalso expression, non-boolean right
+test043.lgf: orelse expression
+test044.lgf: orelse expression, non-boolean left
+test045.lgf: orelse expression, non-boolean right
+test046.lgf: shadowing, type error
+test047.lgf: constraint expression
+test048.lgf: constraint expression, with type error
+test049.lgf: arith ops
+test050.lgf: arith op, non-integer left
+test051.lgf: arith op, non-integer right
+test052.lgf: string ops
+test053.lgf: array ops
+test054.lgf: array op, non-array left
+test055.lgf: array op, non-integer mid
+test056.lgf: array op, non-'a right
+test057.lgf: array op, multiple errors
+test058.lgf: unbound variable
+test059.lgf: unbound variables
+test060.lgf: sequence expression
+test061.lgf: sequence expression
+test062.lgf: sequence expression, with type error
+test063.lgf: let expression
+test064.lgf: let expression, with type declaration
+test065.lgf: let expression, with datatype declaration
+test066.lgf: let expression, with datatype declaration
+test067.lgf: let expression, with escaping datatype declaration
+test068.lgf: let expression, with unbound variable
+test069.lgf: fun declaration
+test070.lgf: fun declaration, with type error
+test071.lgf: fun declaration, recursive
+test072.lgf: fun declaration, mutually recursive
+test073.lgf: polymorphic fun declaration, mutually recursive
+test074.lgf: initial environment
+test075.lgf: syntactic restriction, distinct type params
+test076.lgf: syntactic restriction, distinct datatype params
+test077.lgf: syntactic restriction, distinct datatype tycons
+test078.lgf: syntactic restriction, distinct datatype dacons
+test079.lgf: syntactic restriction, distinct datatype dacons
+test080.lgf: syntactic restriction, distinct function variables
+test081.lgf: syntactic restriction, distinct pattern variables
+test082.lgf: syntactic restriction, integer too small
+test083.lgf: syntactic restriction, integer too big
+test084.lgf: syntactic restriction, integer just right
+test085.lgf: function parameter shadows variable
+test086.lgf: if expression with shadowed Bool
+test087.lgf: arithmetic expression with shadowed Integer
+test088.lgf: case expression with shadowed datatype
+test089.lgf: anonymous function with shadowing parameters
+test090.lgf: function application expressions
+test091.lgf: function application expressions
+test092.lgf: function application expressions
+test093.lgf: case expression, match rule mis-match
+test094.lgf: case expression, match rule mis-match
+test095.lgf: case expression, non-datatype expression
+test096.lgf: case expression, non-datatype expression
+test097.lgf: case expression, non-datatype expression
+test098.lgf: case expression, non-datatype expression
+test099.lgf: case expression, non-datatype expression
+test100.lgf: case expression, initial environment datatype
+test101.lgf: case expression, initial environment datatype
+test102.lgf: int-to-string program
+test103.lgf: string-to-int program
+test104.lgf: fib program
+test105.lgf: even-odd program
+test106.lgf: fib-y (fib with Y combinator) program
+test107.lgf: list (list functions) program
+test108.lgf: rlist (random access list functions) program
+test109.lgf: fib-memo-rlist (fib with memoization) program
+test110.lgf: fib-memo-array (fib with memoization) program
+test111.lgf: isort (insertion sort) program
+
+xtest000.lgf: *EXTRA* syntactic restriction, redundant patterns
+xtest001.lgf: *EXTRA* syntactic restriction, redundant patterns
+xtest002.lgf: *EXTRA* syntactic restriction, redundant patterns
+xtest003.lgf: *EXTRA* syntactic restriction, redundant patterns
+xtest004.lgf: *EXTRA* syntactic restriction, non-exhaustive patterns
+xtest005.lgf: *EXTRA* syntactic restriction, non-exhaustive patterns
+xtest006.lgf: *EXTRA* syntactic restriction, non-exhaustive patterns
+xtest007.lgf: *EXTRA* syntactic restriction, redundant patterns
+xtest008.lgf: *EXTRA* syntactic restriction, redundant patterns

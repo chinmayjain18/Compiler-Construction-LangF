@@ -1,0 +1,4 @@
+val (* test103.lgf:1.0-test103.lgf:1.3 *)
+(* VAR_NAME *) s (* test103.lgf:1.4-test103.lgf:1.5 *)
+= (* test103.lgf:1.6-test103.lgf:1.7 *)
+(* STRING *) "hello world!\n;print s" (* test103.lgf:1.8-test103.lgf:4.0 *)

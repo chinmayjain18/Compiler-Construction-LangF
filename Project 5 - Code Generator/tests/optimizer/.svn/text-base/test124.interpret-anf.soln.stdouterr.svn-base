@@ -1,0 +1,4 @@
+listFoldl [Integer] [Integer]
+          (fn (x: Integer) (y: Integer) => x + y)
+          0
+          (listTabulate [Integer] 4999 (fn (i: Integer) => i)) = 12497500

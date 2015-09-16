@@ -1,0 +1,4 @@
+(* two val decls *)
+val x = 0
+val y = 0
+; 0

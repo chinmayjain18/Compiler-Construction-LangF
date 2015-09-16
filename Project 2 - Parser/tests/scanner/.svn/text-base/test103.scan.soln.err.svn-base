@@ -1,0 +1,4 @@
+test103.lgf:1.8 Error: unterminated string literal at eof
+test103.lgf:1.23 Error: bad character '\n' in string literal
+test103.lgf:2.1 Error: bad character '\n' in string literal
+test103.lgf:3.7 Error: bad character '\n' in string literal

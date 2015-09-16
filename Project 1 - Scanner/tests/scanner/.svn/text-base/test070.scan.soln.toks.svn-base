@@ -1,0 +1,7 @@
+val
+(* VAR_NAME *) x
+=
+(* VAR_NAME *) argc
+(* CON_NAME *) Unit
+;
+(* VAR_NAME *) x

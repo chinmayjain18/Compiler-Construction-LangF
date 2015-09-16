@@ -1,0 +1,5 @@
+xtest002.lgf:5.5-xtest002.lgf:5.6 Error: 
+Redundant pattern in 'case'.
+  pattern: y
+  in rule: y => y + b
+  in: case a of x => x + b | y => y + b end

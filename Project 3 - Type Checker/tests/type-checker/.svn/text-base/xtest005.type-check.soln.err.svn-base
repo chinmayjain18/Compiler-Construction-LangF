@@ -1,0 +1,4 @@
+xtest005.lgf:4.2-xtest005.lgf:7.5 Error: 
+Non-exhaustive match rules in 'case'.
+  missing: C, D
+  in: case x of A => "A" | B => "B" end

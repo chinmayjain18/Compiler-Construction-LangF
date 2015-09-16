@@ -1,0 +1,6 @@
+test032.lgf:8.11-test032.lgf:8.14 Error: 
+Argument type and expression of data constructor Article disagree.
+  arg type:   String
+  expression: Integer
+  in arg: 256
+  in: Article {"Andrew Appel",  ... f Standard ML", 256}

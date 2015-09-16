@@ -1,0 +1,56 @@
+caj4430cc
+
+
+$ diff -r tests/type-checker ../../project/project3/tests/type-checker
+
+
+$ make
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C langfc-src
+ml-ulex scanner/langf-ulex.lex
+[ml-ulex: parsing]
+[ml-ulex: DFA gen]
+ 112 states in full DFA
+[ml-ulex: SML gen]
+ml-antlr parser/langf-antlr.grm
+[ml-antlr: parsing parser/langf-antlr.grm]
+[ml-antlr: checking grammar]
+ 76 nonterminals
+ 117 productions
+ml-yacc parser/langf-yacc.grm
+mlton -const 'Exn.keepHistory true' -output ../bin/.mlton-exec/langfc.mlton langfc.mlb
+Error: type-checker/environment.sml 21.26.
+  Type VarEnv.cod admits equality in signature but not in structure.
+    not equality: {var: [AST.Var.t], var_ty: [AST.Type.t]}
+Error: type-checker/environment.sml 21.26.
+  Variable type in structure disagrees with signature.
+    variable: lookupVar
+    structure: _ -> [{var: AST.Var.t, var_ty: AST.Type.t}] option
+    signature: _ -> [unit] option
+Error: type-checker/environment.sml 21.26.
+  Variable type in structure disagrees with signature.
+    variable: singletonVar
+    structure: _ * [{var: AST.Var.t, var_ty: AST.Type.t}] -> _
+    signature: _ * [unit] -> _
+Error: type-checker/type-checker.sml 212.25.
+  Function applied to incorrect argument.
+    expects: _ * [unit]
+    but got: _ * [{var: AST.Var.t, var_ty: AST.Type.t}]
+    in: Env.singletonVar (var, {var_ty = var_tyAST, var = varAST})
+Error: type-checker/type-checker.sml 281.25.
+  Function applied to incorrect argument.
+    expects: _ * [unit]
+    but got: _ * [{var: AST.Var.t, var_ty: AST.Type.t}]
+    in: Env.singletonVar (var, {var_ty = astType, var = varAST})
+Error: type-checker/type-checker.sml 654.19.
+  Case object and rules disagree.
+    object type:  [unit] option
+    rules expect: [{var: AST.Var.t, var_ty: AST.Type.t}] option
+    in: case Env.lookupVar (env, var) of   ...  r var_ty, varTyAST))
+Error: type-checker/type-checker.sml 982.42.
+  Function applied to incorrect argument.
+    expects: _ * [unit]
+    but got: _ * [{var: AST.Var.t, var_ty: AST.Type.t}]
+    in: Env.singletonVar (var, {var_ty =   ...  yAST, var = varAST})
+compilation aborted: parseAndElaborate reported errors
+make[1]: *** [../bin/.mlton-exec/langfc.mlton] Error 1
+make: *** [all] Error 2

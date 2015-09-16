@@ -1,0 +1,4 @@
+test086.lgf:5.11-test086.lgf:5.17 Error: 
+Test of 'if' not of type ?Bool?.
+  test: Bool
+  in: if (lt 0) 1 then T else F

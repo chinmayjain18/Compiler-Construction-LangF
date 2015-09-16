@@ -1,0 +1,5 @@
+test038.lgf:2.0-test038.lgf:eof Error: 
+Then and else branches of 'if' disagree.
+  then: String
+  else: Integer
+  in: if 0 < 1 then "True" else 0

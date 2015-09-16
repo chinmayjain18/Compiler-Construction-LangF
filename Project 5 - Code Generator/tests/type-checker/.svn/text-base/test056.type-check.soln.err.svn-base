@@ -1,0 +1,4 @@
+test056.lgf:3.2-test056.lgf:3.3 Error: 
+Right operand of '! :=' not of type 'a.
+  operand: String
+  in: a ! i := "'a"

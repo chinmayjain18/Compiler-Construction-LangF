@@ -1,0 +1,12 @@
+test057.lgf:3.2-test057.lgf:3.3 Error: 
+Left operand of '! :=' not of type Array [?].
+  operand: 'a
+  in: x ! a := i
+test057.lgf:3.2-test057.lgf:3.3 Error: 
+Right operand of '! :=' not of type ?.
+  operand: Integer
+  in: x ! a := i
+test057.lgf:3.6-test057.lgf:3.7 Error: 
+Mid operand of '! :=' not of type Integer.
+  operand: Array ['a]
+  in: x ! a := i

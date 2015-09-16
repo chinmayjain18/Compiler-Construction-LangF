@@ -1,0 +1,3 @@
+(* variable expression *)
+val x = 0
+; x

@@ -1,0 +1,10 @@
+fun x__0000 ['a__0000] (x__0001 : 'a__0000) : 'a__0000 =
+   (case x__0001 : 'a__0000 of
+       x__0002 (* : 'a__0000 *) => x__0002 : 'a__0000
+    end) : 'a__0000
+val x__0003 (* : Integer -> Integer *) =
+   (case ((x__0000 : ['a__0001] -> ('a__0001 -> 'a__0001)) [Integer]) : Integer -> Integer of
+       x__0004 (* : Integer -> Integer *) => x__0004 : Integer -> Integer
+    end) : Integer -> Integer
+;
+((x__0003 : Integer -> Integer) (0 : Integer)) : Integer

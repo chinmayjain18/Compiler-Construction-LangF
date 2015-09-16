@@ -1,0 +1,2 @@
+(* let expression *)
+let val x = 0 in x end

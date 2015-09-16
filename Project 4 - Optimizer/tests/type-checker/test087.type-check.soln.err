@@ -1,0 +1,10 @@
+test087.lgf:5.8-test087.lgf:5.19 Error: 
+Function and argument of apply disagree.
+  function: Integer -> (Integer -> Integer)
+  argument: ?Integer?
+  in: add (1 + 2)
+test087.lgf:5.8-test087.lgf:5.21 Error: 
+Function and argument of apply disagree.
+  function: Integer -> Integer
+  argument: ?Integer?
+  in: (add (1 + 2)) 3

@@ -1,0 +1,7 @@
+val
+(* VAR_NAME *) s
+=
+(* STRING *) "one\ttwo\tthree\nfour\tfive\tsix\n"
+;
+(* VAR_NAME *) print
+(* VAR_NAME *) s

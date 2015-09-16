@@ -1,0 +1,8 @@
+(* *EXTRA* syntactic restriction, redundant patterns *)
+fun not (a: Array [Integer]) : Integer =
+  case a of
+     g => g ! 0
+   | h => h ! 0
+  end
+;
+not

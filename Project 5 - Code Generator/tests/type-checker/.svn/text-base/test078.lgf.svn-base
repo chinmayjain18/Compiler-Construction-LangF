@@ -1,0 +1,4 @@
+(* syntactic restriction, distinct datatype dacons *)
+datatype T = A | B | A | C
+;
+0

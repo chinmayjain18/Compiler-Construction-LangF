@@ -1,0 +1,12 @@
+test021.lgf:4.10-test021.lgf:4.18 Error: 
+Argument of apply not a type.
+  function: ['a] -> ('a -> (['b] -> (('a -> 'b) -> 'b)))
+  in: revApp 1
+test021.lgf:4.10-test021.lgf:4.28 Error: 
+Argument of apply not an expression.
+  function: Unit -> (['a] -> ((Unit -> 'a) -> 'a))
+  in: (revApp 1) [Integer]
+test021.lgf:4.10-test021.lgf:4.55 Error: 
+Argument of apply not a type.
+  function: ['a] -> ((Unit -> 'a) -> 'a)
+  in: ((revApp 1) [Integer]) (f ... Integer) => (x * 2))

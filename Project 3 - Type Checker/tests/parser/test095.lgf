@@ -1,0 +1,3 @@
+(* nullary data constructors as atomic expressions *)
+val id = fn ['a] (x: 'a) => x
+; id [Bool] True

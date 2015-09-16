@@ -1,0 +1,3 @@
+(* fn expression value params require type *)
+val inc = fn (x) => x + 1
+; inc 0

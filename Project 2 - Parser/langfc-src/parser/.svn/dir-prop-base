@@ -1,0 +1,9 @@
+K 10
+svn:ignore
+V 78
+langf-antlr.grm.sml
+langf-yacc.grm.desc
+langf-yacc.grm.sig
+langf-yacc.grm.sml
+
+END

@@ -1,0 +1,5 @@
+(* array op, multiple errors *)
+val f = fn ['a] (a: Array ['a]) (i: Integer) (x: 'a) =>
+  x ! a := i
+;
+f

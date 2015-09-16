@@ -1,0 +1,7 @@
+datatype Option ['a] = NONE
+                     | SOME {'a}
+;
+case NONE [Integer] of
+   NONE [Integer] => False
+ | SOME [Integer] {_} => True
+end

@@ -1,0 +1,3 @@
+(* type decl with tyfn type *)
+type T [] = ['a] -> Integer
+; 0

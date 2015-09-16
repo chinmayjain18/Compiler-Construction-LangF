@@ -1,0 +1,7 @@
+(* function application expressions *)
+val id : ['a] -> 'a -> 'a = fn ['a] (x: 'a) => x
+val _ : (['b] -> 'b -> 'b) -> (['c] -> 'c -> 'c) = id [['d] -> 'd -> 'd]
+val id : ['e] -> 'e -> 'e = id [['f] -> 'f -> 'f] id
+val one : Integer = id [Integer] 1
+;
+one

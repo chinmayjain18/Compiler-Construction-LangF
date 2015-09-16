@@ -1,0 +1,61 @@
+fun x__0000 (x__0001 : Integer) : String =
+   (if ((x__0001 : Integer) < (0 : Integer)) : Bool
+       then (("~" : String) ^ (((x__0000 : Integer -> String) ((~ (x__0001 : Integer)) : Integer)) : String)) : String
+       else (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+                then "0" : String
+                else (if ((x__0001 : Integer) == (1 : Integer)) : Bool
+                         then "1" : String
+                         else (if ((x__0001 : Integer) == (2 : Integer)) : Bool
+                                  then "2" : String
+                                  else (if ((x__0001 : Integer) == (3 : Integer)) : Bool
+                                           then "3" : String
+                                           else (if ((x__0001 : Integer) == (4 : Integer)) : Bool
+                                                    then "4" : String
+                                                    else (if ((x__0001 : Integer) == (5 : Integer)) : Bool
+                                                             then "5" : String
+                                                             else (if ((x__0001 : Integer) == (6 : Integer)) : Bool
+                                                                      then "6" : String
+                                                                      else (if ((x__0001 : Integer) == (7 : Integer)) : Bool
+                                                                               then "7" : String
+                                                                               else (if ((x__0001 : Integer) == (8 : Integer)) : Bool
+                                                                                        then "8" : String
+                                                                                        else (if ((x__0001 : Integer)
+                                                                                                  ==
+                                                                                                  (9 : Integer)) : Bool
+                                                                                                 then "9" : String
+                                                                                                 else ((((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           /
+                                                                                                           (10 : Integer)) : Integer)) : String)
+                                                                                                       ^
+                                                                                                       (((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           %
+                                                                                                           (10 : Integer)) : Integer)) : String)) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String
+fun x__0002 (x__0003 : Bool) : String = (if x__0003 : Bool then "True" : String else "False" : String) : String
+val x__0004 (* : Integer *) = 0 : Integer
+val x__0005 (* : Integer *) = 1 : Integer
+fun x__0006 (x__0007 : Integer) : Bool =
+   (if ((x__0007 : Integer) < (x__0004 : Integer)) : Bool
+       then ((x__0006 : Integer -> Bool) ((~ (x__0007 : Integer)) : Integer)) : Bool
+       else (if ((x__0007 : Integer) == (0 : Integer)) : Bool
+                then True : Bool
+                else ((x__0008 : Integer -> Bool) (((x__0007 : Integer) - (x__0005 : Integer)) : Integer)) : Bool) : Bool) : Bool
+and x__0008 (x__0009 : Integer) : Bool =
+   (if ((x__0009 : Integer) < (x__0004 : Integer)) : Bool
+       then ((x__0008 : Integer -> Bool) ((~ (x__0009 : Integer)) : Integer)) : Bool
+       else (if ((x__0009 : Integer) == (0 : Integer)) : Bool
+                then False : Bool
+                else ((x__0006 : Integer -> Bool) (((x__0009 : Integer) - (x__0005 : Integer)) : Integer)) : Bool) : Bool) : Bool
+val x__000A (* : Integer *) = 101 : Integer
+val x__000B (* : Bool *) = ((x__0006 : Integer -> Bool) (x__000A : Integer)) : Bool
+;
+(((print : String -> Unit) ("even " : String)) : Unit;
+ ((print : String -> Unit) (((x__0000 : Integer -> String) (x__000A : Integer)) : String)) : Unit;
+ ((print : String -> Unit) (" = " : String)) : Unit;
+ ((print : String -> Unit) (((x__0002 : Bool -> String) (x__000B : Bool)) : String)) : Unit;
+ ((print : String -> Unit) ("\n" : String)) : Unit) : Unit

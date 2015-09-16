@@ -1,0 +1,5 @@
+(* integer val decls *)
+val two = 1 + 1
+val four : Integer = two + two
+;
+four < two

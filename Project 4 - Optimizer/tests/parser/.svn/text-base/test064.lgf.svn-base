@@ -1,0 +1,3 @@
+(* fn expression w/ one type param and one value param *)
+val id = fn ['a] (x: 'a) => x
+; 0

@@ -1,0 +1,12 @@
+(* polymorphic datatype decl, dacon expression, and case expression *)
+datatype Pair ['a, 'b] = Pair {'a, 'b}
+val one_hello = Pair [Integer, String] {1, "hello"}
+val fst = fn ['a] ['b] (p: Pair ['a, 'b]) =>
+  case p of Pair ['a, 'b] {x, y} => x end
+val snd = fn ['a] ['b] (p: Pair ['a, 'b]) =>
+  case p of Pair ['a, 'b] {x, y} => y end
+val one : Integer = fst [Integer] [String] one_hello
+val hello : String = snd [Integer] [String] one_hello
+;
+one
+

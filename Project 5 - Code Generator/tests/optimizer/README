@@ -1,0 +1,160 @@
+Optimizer tests
+---------------
+
+For each testNNN.lgf file, there is a
+testNNN.interpret-anf.soln.stdouterr containing the (printed) output
+produced by the reference solution interpreter, a
+testNNN.optimize-anf.soln.value-num-none.anf-size file containing the
+size of the optimized AnfIR program when no value numbering
+optimization is performed (as optimized by the reference solution with
+-Canf-value-num=none), a
+testNNN.optimize-anf.soln.value-num-basic.anf-size containing the size
+of the optimized AnfIR program when basic value numbering optimization
+is performed (as optimized by the reference solution with
+-Canf-value-num=basic), and a
+testNNN.optimize-anf.soln.value-num-extd.anf-size containing the size
+of the optimized AnfIR program when extended value numbering
+optimization is performed (as optimized by the reference solution with
+-Canf-value-num=extd).  Note that the size of the optimized AnfIR
+program corresponds to the AnfIR program at the end of the
+optimize-anf pass; comparing the sizes of the optimized AnfIR program
+under different value numbering optimizations measures both the
+immediate improvements of the value numbering optimization and the
+cumulative improvements of those optimizations enabled by the value
+numbering optimization.
+
+
+test000.lgf: print Unit
+test001.lgf: writeup example 1, const, printBool
+test002.lgf: writeup example 2, const, printBool
+test003.lgf: writeup example 1, const, across if-then-else, printBool
+test004.lgf: writeup example 1, rand, printBool
+test005.lgf: writeup example 2, rand, printBool
+test006.lgf: writeup example 1, rand, printInt
+test007.lgf: writeup example 2, rand, printInt
+test008.lgf: writeup example 1, rand, across if-then-else, printInt
+test009.lgf: writeup example 1, arg, printInt
+test010.lgf: writeup example 2, arg, printInt
+test011.lgf: writeup example 1, arg, across if-then-else, printInt
+test012.lgf: list merge sort
+test013.lgf: array insertion sort
+test014.lgf: +, top-scope
+test015.lgf: -, top-scope
+test016.lgf: *, top-scope
+test017.lgf: /, top-scope
+test018.lgf: %, top-scope
+test019.lgf: ~, top-scope
+test020.lgf: ==, top-scope
+test021.lgf: <>, top-scope
+test022.lgf: <, top-scope
+test023.lgf: <=, top-scope
+test024.lgf: >, top-scope
+test025.lgf: >=, top-scope
+test026.lgf: ^, top-scope
+test027.lgf: size, top-scope
+test028.lgf: sub, top-scope
+test029.lgf: argc, top-scope
+test030.lgf: arg, top-scope
+test031.lgf: print, top-scope
+test032.lgf: array !/:= !, top-scope
+test033.lgf: DaCon, top-scope
+test034.lgf: +, nested-scope
+test035.lgf: -, nested-scope
+test036.lgf: *, nested-scope
+test037.lgf: /, nested-scope
+test038.lgf: %, nested-scope
+test039.lgf: ~, nested-scope
+test040.lgf: ==, nested-scope
+test041.lgf: <>, nested-scope
+test042.lgf: <, nested-scope
+test043.lgf: <=, nested-scope
+test044.lgf: >, nested-scope
+test045.lgf: >=, nested-scope
+test046.lgf: ^, nested-scope
+test047.lgf: size, nested-scope
+test048.lgf: sub, nested-scope
+test049.lgf: argc, nested-scope
+test050.lgf: arg, nested-scope
+test051.lgf: print, nested-scope
+test052.lgf: array !/:= !, nested-scope
+test053.lgf: DaCon, nested-scope
+test054.lgf: +, lambda-bound variables
+test055.lgf: -, lambda-bound variables
+test056.lgf: *, lambda-bound variables
+test057.lgf: /, lambda-bound variables
+test058.lgf: %, lambda-bound variables
+test059.lgf: ~, lambda-bound variables
+test060.lgf: ==, lambda-bound variables
+test061.lgf: <>, lambda-bound variables
+test062.lgf: <, lambda-bound variables
+test063.lgf: <=, lambda-bound variables
+test064.lgf: >, lambda-bound variables
+test065.lgf: >=, lambda-bound variables
+test066.lgf: ^, lambda-bound variables
+test067.lgf: size, lambda-bound variables
+test068.lgf: sub, lambda-bound variables
+test069.lgf: argc, lambda-bound variables
+test070.lgf: arg, lambda-bound variables
+test071.lgf: print, lambda-bound variables
+test072.lgf: #, lambda-bound variables
+test073.lgf: DaCon, lambda-bound variables
+test074.lgf: +, pattern-bound variables
+test075.lgf: -, pattern-bound variables
+test076.lgf: *, pattern-bound variables
+test077.lgf: /, pattern-bound variables
+test078.lgf: %, pattern-bound variables
+test079.lgf: ~, pattern-bound variables
+test080.lgf: ==, pattern-bound variables
+test081.lgf: <>, pattern-bound variables
+test082.lgf: <, pattern-bound variables
+test083.lgf: <=, pattern-bound variables
+test084.lgf: >, pattern-bound variables
+test085.lgf: >=, pattern-bound variables
+test086.lgf: ^, pattern-bound variables
+test087.lgf: size, pattern-bound variables
+test088.lgf: sub, pattern-bound variables
+test089.lgf: argc, pattern-bound variables
+test090.lgf: arg, pattern-bound variables
+test091.lgf: print, pattern-bound variables
+test092.lgf: #, pattern-bound variables
+test093.lgf: DaCon, pattern-bound variables
+test094.lgf: +, commut
+test095.lgf: -, commut
+test096.lgf: *, commut
+test097.lgf: /, commut
+test098.lgf: %, commut
+test099.lgf: ==, commut
+test100.lgf: <>, commut
+test101.lgf: <, commut
+test102.lgf: <=, commut
+test103.lgf: >, commut
+test104.lgf: >=, commut
+test105.lgf: ^, commut
+test106.lgf: +, const-fold and alg-id
+test107.lgf: -, const-fold and alg-id
+test108.lgf: *, const-fold and alg-id
+test109.lgf: /, const-fold and alg-id
+test110.lgf: %, const-fold and alg-id
+test111.lgf: ~, const-fold and alg-id
+test112.lgf: ==, const-fold and alg-id
+test113.lgf: <>, const-fold and alg-id
+test114.lgf: <, const-fold and alg-id
+test115.lgf: <=, const-fold and alg-id
+test116.lgf: >, const-fold and alg-id
+test117.lgf: >=, const-fold and alg-id
+test118.lgf: ^, const-fold and alg-id
+test119.lgf: DaCon, case
+test120.lgf: fact program
+test121.lgf: fib program
+test122.lgf: gcd program
+test123.lgf: even-odd program
+test124.lgf: list (list functions) program
+test125.lgf: fact-y (fact with Y combinator) program
+test126.lgf: fib-y (fib with Y combinator) program
+test127.lgf: fact-backpatch (fact with backpatching) program
+test128.lgf: fact-backpatch (fib with backpatching) program
+test129.lgf: infinite streams
+test130.lgf: fib-memo-rlist (fib with memoization) program
+test131.lgf: fib-memo-array (fib with memoization) program
+test132.lgf: 1D cellular automaton (random-access list)
+test133.lgf: 1D cellular automaton (array)

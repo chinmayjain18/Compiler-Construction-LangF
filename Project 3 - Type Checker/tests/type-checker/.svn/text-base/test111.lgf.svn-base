@@ -1,0 +1,66 @@
+(* isort.lgf *)
+
+fun intToString (i:Integer) : String =
+   if i < 0 then "~" ^ (intToString (~i))
+   else if i == 0 then "0"
+   else if i == 1 then "1"
+   else if i == 2 then "2"
+   else if i == 3 then "3"
+   else if i == 4 then "4"
+   else if i == 5 then "5"
+   else if i == 6 then "6"
+   else if i == 7 then "7"
+   else if i == 8 then "8"
+   else if i == 9 then "9"
+   else (intToString (i / 10)) ^ (intToString (i % 10))
+
+fun arrayToString ['a] (aToString: 'a -> String) (a: Array ['a]) : String =
+  if # a == 0
+    then "[]"
+  else
+    let
+      fun loop (i: Integer) (acc: String) : String =
+        if i < # a
+          then loop (i + 1) (acc ^ ", " ^ (aToString (a ! i)))
+        else acc
+    in
+       (loop 1 ("[" ^ (aToString (a ! 0)))) ^ "]"
+    end
+
+fun isort (a: Array[Integer]) : Unit =
+  let
+    val n = # a
+    fun loopA (i: Integer) : Unit =
+      if i < n
+        then let
+               val tmp = a ! i
+               fun loopB (j: Integer) : Integer =
+                 if j >= 0 andalso tmp < (a ! j)
+                   then (a ! j+1 := a ! j; loopB (j - 1))
+                 else j
+               val j = loopB (i - 1)
+             in
+               a ! j+1 := tmp ; loopA (i + 1)
+             end
+        else Unit
+  in
+    loopA 1
+  end
+
+val a = array [Integer] 8 0
+val _ = a ! 0 := 12
+val _ = a ! 1 := 72
+val _ = a ! 2 := 34
+val _ = a ! 3 := 45
+val _ = a ! 4 := 64
+val _ = a ! 5 := 32
+val _ = a ! 6 := 56
+val _ = a ! 7 := 29
+
+val _ = print ((arrayToString [Integer] intToString a) ^ "\n")
+val _ = isort a
+val _ = print ((arrayToString [Integer] intToString a) ^ "\n")
+
+;
+
+Unit

@@ -1,0 +1,41 @@
+(* langfc-src/reploc-ir/sources.cm
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * CM file for representation-location intermediate representation in
+ * the LangF compiler (langfc).
+ *)
+
+Library
+
+  signature REPLOC_IR
+  structure RepLocIR
+
+  signature REPLOC_IR_CONVERTER
+  structure RepLocIRConverter
+
+is
+
+  $/basis.cm
+  $/smlnj-lib.cm
+
+  ../common/sources.cm
+  ../core-ir/sources.cm
+
+  reploc-ir.sig
+  reploc-ir.sml
+
+  converter.sig
+  converter.sml

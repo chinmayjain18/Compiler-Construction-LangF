@@ -1,0 +1,5 @@
+test031.lgf:12.5-test031.lgf:12.28 Error: 
+Data constructor Article given 2 patterns but takes 3 arguments.
+  in pattern: Article {author, title}
+  in rule: Article {author, title} => author
+  in: case p of Book {author, t ... title} => author end

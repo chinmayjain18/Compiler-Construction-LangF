@@ -1,0 +1,8 @@
+(* case expression, initial environment datatype *)
+fun not (b: Bool) : Bool =
+  case b of
+      True => False
+    | False => True
+  end
+;
+not True

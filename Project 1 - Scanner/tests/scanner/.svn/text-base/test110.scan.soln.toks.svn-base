@@ -1,0 +1,978 @@
+datatype
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a1
+,
+(* TYVAR_NAME *) 'a2
+]
+=
+(* CON_NAME *) Pair
+{
+(* TYVAR_NAME *) 'a1
+,
+(* TYVAR_NAME *) 'a2
+}
+val
+(* VAR_NAME *) pair
+=
+fn
+[
+(* TYVAR_NAME *) 'a1
+]
+[
+(* TYVAR_NAME *) 'a2
+]
+(
+(* VAR_NAME *) x
+:
+(* TYVAR_NAME *) 'a1
+)
+(
+(* VAR_NAME *) y
+:
+(* TYVAR_NAME *) 'a2
+)
+=>
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a1
+,
+(* TYVAR_NAME *) 'a2
+]
+{
+(* VAR_NAME *) x
+,
+(* VAR_NAME *) y
+}
+val
+(* VAR_NAME *) fst
+=
+fn
+[
+(* TYVAR_NAME *) 'a1
+]
+[
+(* TYVAR_NAME *) 'a2
+]
+(
+(* VAR_NAME *) p
+:
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a1
+,
+(* TYVAR_NAME *) 'a2
+]
+)
+=>
+case
+(* VAR_NAME *) p
+of
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a1
+,
+(* TYVAR_NAME *) 'a2
+]
+{
+(* VAR_NAME *) x1
+,
+(* VAR_NAME *) x2
+}
+=>
+(* VAR_NAME *) x1
+end
+val
+(* VAR_NAME *) snd
+=
+fn
+[
+(* TYVAR_NAME *) 'a1
+]
+[
+(* TYVAR_NAME *) 'a2
+]
+(
+(* VAR_NAME *) p
+:
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a1
+,
+(* TYVAR_NAME *) 'a2
+]
+)
+=>
+case
+(* VAR_NAME *) p
+of
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a1
+,
+(* TYVAR_NAME *) 'a2
+]
+{
+(* VAR_NAME *) x1
+,
+(* VAR_NAME *) x2
+}
+=>
+(* VAR_NAME *) x2
+end
+datatype
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+=
+(* CON_NAME *) RNil
+|
+(* CON_NAME *) RZero
+{
+(* CON_NAME *) RList
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+}
+|
+(* CON_NAME *) ROne
+{
+(* TYVAR_NAME *) 'a
+,
+(* CON_NAME *) RList
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+}
+val
+(* VAR_NAME *) rlistEmpty
+=
+fn
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* CON_NAME *) RNil
+[
+(* TYVAR_NAME *) 'a
+]
+val
+(* VAR_NAME *) rlistIsEmpty
+=
+fn
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+=>
+case
+(* VAR_NAME *) l
+of
+(* CON_NAME *) RNil
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* CON_NAME *) True
+|
+_
+=>
+(* CON_NAME *) False
+end
+fun
+(* VAR_NAME *) rlistCons
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) x
+:
+(* TYVAR_NAME *) 'a
+)
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+=
+case
+(* VAR_NAME *) l
+of
+(* CON_NAME *) RNil
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) x
+,
+(* CON_NAME *) RNil
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+}
+|
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) ps
+}
+=>
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) x
+,
+(* VAR_NAME *) ps
+}
+|
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) y
+,
+(* VAR_NAME *) ps
+}
+=>
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) rlistCons
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+(
+(* VAR_NAME *) pair
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) x
+(* VAR_NAME *) y
+)
+(* VAR_NAME *) ps
+}
+end
+fun
+(* VAR_NAME *) rlistUncons
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+:
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+=
+case
+(* VAR_NAME *) l
+of
+(* CON_NAME *) RNil
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* VAR_NAME *) fail
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+]
+(* STRING *) "rlistUncons: RNil"
+|
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) x
+,
+(* VAR_NAME *) ps
+}
+=>
+case
+(* VAR_NAME *) ps
+of
+(* CON_NAME *) RNil
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+=>
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+{
+(* VAR_NAME *) x
+,
+(* CON_NAME *) RNil
+[
+(* TYVAR_NAME *) 'a
+]
+}
+|
+_
+=>
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+{
+(* VAR_NAME *) x
+,
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) ps
+}
+}
+end
+|
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) ps
+}
+=>
+let
+val
+(* VAR_NAME *) xy_ps'
+=
+(* VAR_NAME *) rlistUncons
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+(* VAR_NAME *) ps
+val
+(* VAR_NAME *) xy
+=
+(* VAR_NAME *) fst
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+[
+(* CON_NAME *) RList
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+]
+(* VAR_NAME *) xy_ps'
+val
+(* VAR_NAME *) x
+=
+(* VAR_NAME *) fst
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) xy
+val
+(* VAR_NAME *) y
+=
+(* VAR_NAME *) snd
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) xy
+val
+(* VAR_NAME *) ps'
+=
+(* VAR_NAME *) snd
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+[
+(* CON_NAME *) RList
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+]
+(* VAR_NAME *) xy_ps'
+in
+(* VAR_NAME *) pair
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+(* VAR_NAME *) x
+(
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) y
+,
+(* VAR_NAME *) ps'
+}
+)
+end
+end
+val
+(* VAR_NAME *) rlistHd
+=
+fn
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+=>
+(* VAR_NAME *) fst
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+(
+(* VAR_NAME *) rlistUncons
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) l
+)
+val
+(* VAR_NAME *) rlistTl
+=
+fn
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+=>
+(* VAR_NAME *) snd
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+(
+(* VAR_NAME *) rlistUncons
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) l
+)
+fun
+(* VAR_NAME *) rlistLookup
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+:
+(* TYVAR_NAME *) 'a
+=
+case
+(* VAR_NAME *) l
+of
+(* CON_NAME *) RNil
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* VAR_NAME *) fail
+[
+(* TYVAR_NAME *) 'a
+]
+(* STRING *) "rlistLookup: RNil"
+|
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) x
+,
+(* VAR_NAME *) ps
+}
+=>
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 0
+then
+(* VAR_NAME *) x
+else
+(* VAR_NAME *) rlistLookup
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) i
+-
+(* INTEGER *) 1
+)
+(
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) ps
+}
+)
+|
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) ps
+}
+=>
+let
+val
+(* VAR_NAME *) xy
+=
+(* VAR_NAME *) rlistLookup
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+(
+(* VAR_NAME *) i
+/
+(* INTEGER *) 2
+)
+(* VAR_NAME *) ps
+in
+if
+(* VAR_NAME *) i
+%
+(* INTEGER *) 2
+==
+(* INTEGER *) 0
+then
+(* VAR_NAME *) fst
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) xy
+else
+(* VAR_NAME *) snd
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) xy
+end
+end
+fun
+(* VAR_NAME *) rlistUpdateF
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) f
+:
+(* TYVAR_NAME *) 'a
+->
+(* TYVAR_NAME *) 'a
+)
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+=
+case
+(* VAR_NAME *) l
+of
+(* CON_NAME *) RNil
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* VAR_NAME *) fail
+[
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+]
+(* STRING *) "rlistUpdateF: RNil"
+|
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) x
+,
+(* VAR_NAME *) ps
+}
+=>
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 0
+then
+(* CON_NAME *) ROne
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) f
+(* VAR_NAME *) x
+,
+(* VAR_NAME *) ps
+}
+else
+(* VAR_NAME *) rlistCons
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) x
+(
+(* VAR_NAME *) rlistUpdateF
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) i
+-
+(* INTEGER *) 1
+)
+(* VAR_NAME *) f
+(
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) ps
+}
+)
+)
+|
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) ps
+}
+=>
+let
+val
+(* VAR_NAME *) f'
+=
+fn
+(
+(* VAR_NAME *) xy
+:
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+)
+=>
+let
+val
+(* VAR_NAME *) x
+=
+(* VAR_NAME *) fst
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) xy
+val
+(* VAR_NAME *) y
+=
+(* VAR_NAME *) snd
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) xy
+in
+if
+(* VAR_NAME *) i
+%
+(* INTEGER *) 2
+==
+(* INTEGER *) 0
+then
+(* VAR_NAME *) pair
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) f
+(* VAR_NAME *) x
+)
+(* VAR_NAME *) y
+else
+(* VAR_NAME *) pair
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) x
+(
+(* VAR_NAME *) f
+(* VAR_NAME *) y
+)
+end
+in
+(* CON_NAME *) RZero
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) rlistUpdateF
+[
+(* CON_NAME *) Pair
+[
+(* TYVAR_NAME *) 'a
+,
+(* TYVAR_NAME *) 'a
+]
+]
+(
+(* VAR_NAME *) i
+/
+(* INTEGER *) 2
+)
+(* VAR_NAME *) f'
+(* VAR_NAME *) ps
+}
+end
+end
+val
+(* VAR_NAME *) rlistUpdate
+=
+fn
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) y
+:
+(* TYVAR_NAME *) 'a
+)
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) RList
+[
+(* TYVAR_NAME *) 'a
+]
+)
+=>
+(* VAR_NAME *) rlistUpdateF
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) i
+(
+fn
+(
+(* VAR_NAME *) x
+:
+(* TYVAR_NAME *) 'a
+)
+=>
+(* VAR_NAME *) y
+)
+(* VAR_NAME *) l
+;
+(* CON_NAME *) RNil
+[
+(* CON_NAME *) Integer
+]

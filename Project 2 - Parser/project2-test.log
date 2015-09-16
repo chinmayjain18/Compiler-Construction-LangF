@@ -1,0 +1,1318 @@
+caj4430cc
+
+
+$ diff -r tests/parser ../../project/project2/tests/parser
+
+
+$ make
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C langfc-src
+ml-ulex scanner/langf-ulex.lex
+[ml-ulex: parsing]
+[ml-ulex: DFA gen]
+ 112 states in full DFA
+[ml-ulex: SML gen]
+ml-antlr parser/langf-antlr.grm
+[ml-antlr: parsing parser/langf-antlr.grm]
+[ml-antlr: checking grammar]
+ 109 nonterminals
+ 158 productions
+ml-yacc parser/langf-yacc.grm
+mlton -const 'Exn.keepHistory true' -output ../bin/.mlton-exec/langfc.mlton langfc.mlb
+
+
+Parser Tests
+============
+
+
+test000 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test000.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test000.lgf
+
+-----parse.pt-----
+$ diff test000.parse.soln.pt test000.parse.pt
+
+**PASS**
+
+====================
+
+test001 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test001.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test001.lgf
+
+-----parse.pt-----
+$ diff test001.parse.soln.pt test001.parse.pt
+
+**PASS**
+
+====================
+
+test002 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test002.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test002.lgf
+
+-----parse.pt-----
+$ diff test002.parse.soln.pt test002.parse.pt
+
+**PASS**
+
+====================
+
+test003 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test003.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test003.lgf
+
+-----parse.pt-----
+$ diff test003.parse.soln.pt test003.parse.pt
+
+**PASS**
+
+====================
+
+test004 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test004.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test004.lgf
+
+-----parse.pt-----
+$ diff test004.parse.soln.pt test004.parse.pt
+
+**PASS**
+
+====================
+
+test005 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test005.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test005.lgf
+
+-----parse.pt-----
+$ diff test005.parse.soln.pt test005.parse.pt
+
+**PASS**
+
+====================
+
+test006 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test006.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test006.lgf
+
+-----parse.pt-----
+$ diff test006.parse.soln.pt test006.parse.pt
+
+**PASS**
+
+====================
+
+test007 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test007.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test007.lgf
+
+-----parse.pt-----
+$ diff test007.parse.soln.pt test007.parse.pt
+
+**PASS**
+
+====================
+
+test008 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test008.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test008.lgf
+
+-----parse.pt-----
+$ diff test008.parse.soln.pt test008.parse.pt
+
+**PASS**
+
+====================
+
+test009 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test009.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test009.lgf
+
+-----parse.pt-----
+$ diff test009.parse.soln.pt test009.parse.pt
+
+**PASS**
+
+====================
+
+test010 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test010.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test010.lgf
+
+-----parse.pt-----
+$ diff test010.parse.soln.pt test010.parse.pt
+
+**PASS**
+
+====================
+
+test011 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test011.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test011.lgf
+
+-----parse.pt-----
+$ diff test011.parse.soln.pt test011.parse.pt
+
+**PASS**
+
+====================
+
+test012 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test012.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test012.lgf
+
+-----parse.pt-----
+$ diff test012.parse.soln.pt test012.parse.pt
+
+**PASS**
+
+====================
+
+test013 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test013.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test013.lgf
+
+-----parse.pt-----
+$ diff test013.parse.soln.pt test013.parse.pt
+
+**PASS**
+
+====================
+
+test014 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test014.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test014.lgf
+
+-----parse.pt-----
+$ diff test014.parse.soln.pt test014.parse.pt
+
+**PASS**
+
+====================
+
+test015 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test015.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test015.lgf
+
+-----parse.pt-----
+$ diff test015.parse.soln.pt test015.parse.pt
+
+**PASS**
+
+====================
+
+test016 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test016.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test016.lgf
+
+-----parse.pt-----
+$ diff test016.parse.soln.pt test016.parse.pt
+
+**PASS**
+
+====================
+
+test017 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test017.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test017.lgf
+
+-----parse.pt-----
+$ diff test017.parse.soln.pt test017.parse.pt
+
+**PASS**
+
+====================
+
+test018 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test018.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test018.lgf
+
+-----parse.pt-----
+$ diff test018.parse.soln.pt test018.parse.pt
+
+**PASS**
+
+====================
+
+test019 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test019.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test019.lgf
+test019.lgf:2.14 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test019.parse.soln.antlr.err test019.parse.err
+
+**PASS**
+
+====================
+
+test020 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test020.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test020.lgf
+test020.lgf:2.8 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test020.parse.soln.antlr.err test020.parse.err
+
+**PASS**
+
+====================
+
+test021 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test021.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test021.lgf
+test021.lgf:3.12 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test021.parse.soln.antlr.err test021.parse.err
+
+**PASS**
+
+====================
+
+test022 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test022.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test022.lgf
+test022.lgf:3.12 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test022.parse.soln.antlr.err test022.parse.err
+
+**PASS**
+
+====================
+
+test023 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test023.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test023.lgf
+
+-----parse.pt-----
+$ diff test023.parse.soln.pt test023.parse.pt
+
+**PASS**
+
+====================
+
+test024 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test024.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test024.lgf
+
+-----parse.pt-----
+$ diff test024.parse.soln.pt test024.parse.pt
+
+**PASS**
+
+====================
+
+test025 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test025.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test025.lgf
+
+-----parse.pt-----
+$ diff test025.parse.soln.pt test025.parse.pt
+
+**PASS**
+
+====================
+
+test026 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test026.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test026.lgf
+
+-----parse.pt-----
+$ diff test026.parse.soln.pt test026.parse.pt
+
+**PASS**
+
+====================
+
+test027 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test027.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test027.lgf
+
+-----parse.pt-----
+$ diff test027.parse.soln.pt test027.parse.pt
+
+**PASS**
+
+====================
+
+test028 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test028.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test028.lgf
+
+-----parse.pt-----
+$ diff test028.parse.soln.pt test028.parse.pt
+
+**PASS**
+
+====================
+
+test029 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test029.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test029.lgf
+
+-----parse.pt-----
+$ diff test029.parse.soln.pt test029.parse.pt
+
+**PASS**
+
+====================
+
+test030 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test030.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test030.lgf
+test030.lgf:2.17 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test030.parse.soln.antlr.err test030.parse.err
+
+**PASS**
+
+====================
+
+test031 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test031.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test031.lgf
+test031.lgf:2.33 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test031.parse.soln.antlr.err test031.parse.err
+
+**PASS**
+
+====================
+
+test032 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test032.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test032.lgf
+test032.lgf:2.15 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test032.parse.soln.antlr.err test032.parse.err
+
+**PASS**
+
+====================
+
+test033 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test033.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test033.lgf
+test033.lgf:2.31 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test033.parse.soln.antlr.err test033.parse.err
+
+**PASS**
+
+====================
+
+test034 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test034.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test034.lgf
+test034.lgf:2.0 Error: syntax error; try deleting "datatype CON_NAME (Void) = ;"
+
+-----parse.err-----
+$ diff test034.parse.soln.antlr.err test034.parse.err
+
+**PASS**
+
+====================
+
+test035 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test035.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test035.lgf
+
+-----parse.pt-----
+$ diff test035.parse.soln.pt test035.parse.pt
+
+**PASS**
+
+====================
+
+test036 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test036.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test036.lgf
+
+-----parse.pt-----
+$ diff test036.parse.soln.pt test036.parse.pt
+
+**PASS**
+
+====================
+
+test037 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test037.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test037.lgf
+
+-----parse.pt-----
+$ diff test037.parse.soln.pt test037.parse.pt
+
+**PASS**
+
+====================
+
+test038 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test038.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test038.lgf
+
+-----parse.pt-----
+$ diff test038.parse.soln.pt test038.parse.pt
+
+**PASS**
+
+====================
+
+test039 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test039.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test039.lgf
+
+-----parse.pt-----
+$ diff test039.parse.soln.pt test039.parse.pt
+
+**PASS**
+
+====================
+
+test040 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test040.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test040.lgf
+
+-----parse.pt-----
+$ diff test040.parse.soln.pt test040.parse.pt
+
+**PASS**
+
+====================
+
+test041 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test041.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test041.lgf
+
+-----parse.pt-----
+$ diff test041.parse.soln.pt test041.parse.pt
+
+**PASS**
+
+====================
+
+test042 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test042.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test042.lgf
+
+-----parse.pt-----
+$ diff test042.parse.soln.pt test042.parse.pt
+
+**PASS**
+
+====================
+
+test043 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test043.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test043.lgf
+
+-----parse.pt-----
+$ diff test043.parse.soln.pt test043.parse.pt
+
+**PASS**
+
+====================
+
+test044 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test044.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test044.lgf
+
+-----parse.pt-----
+$ diff test044.parse.soln.pt test044.parse.pt
+
+**PASS**
+
+====================
+
+test045 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test045.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test045.lgf
+
+-----parse.pt-----
+$ diff test045.parse.soln.pt test045.parse.pt
+
+**PASS**
+
+====================
+
+test046 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test046.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test046.lgf
+test046.lgf:3.19 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test046.parse.soln.antlr.err test046.parse.err
+
+**PASS**
+
+====================
+
+test047 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test047.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test047.lgf
+
+-----parse.pt-----
+$ diff test047.parse.soln.pt test047.parse.pt
+
+**PASS**
+
+====================
+
+test048 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test048.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test048.lgf
+
+-----parse.pt-----
+$ diff test048.parse.soln.pt test048.parse.pt
+
+**PASS**
+
+====================
+
+test049 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test049.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test049.lgf
+
+-----parse.pt-----
+$ diff test049.parse.soln.pt test049.parse.pt
+
+**PASS**
+
+====================
+
+test050 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test050.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test050.lgf
+
+-----parse.pt-----
+$ diff test050.parse.soln.pt test050.parse.pt
+
+**PASS**
+
+====================
+
+test051 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test051.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test051.lgf
+
+-----parse.pt-----
+$ diff test051.parse.soln.pt test051.parse.pt
+
+**PASS**
+
+====================
+
+test052 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test052.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test052.lgf
+
+-----parse.pt-----
+$ diff test052.parse.soln.pt test052.parse.pt
+
+**PASS**
+
+====================
+
+test053 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test053.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test053.lgf
+
+-----parse.pt-----
+$ diff test053.parse.soln.pt test053.parse.pt
+
+**PASS**
+
+====================
+
+test054 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test054.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test054.lgf
+
+-----parse.pt-----
+$ diff test054.parse.soln.pt test054.parse.pt
+
+**PASS**
+
+====================
+
+test055 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test055.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test055.lgf
+test055.lgf:3.70 Error: syntax error; try inserting "_"
+
+-----parse.err-----
+$ diff test055.parse.soln.antlr.err test055.parse.err
+
+**PASS**
+
+====================
+
+test056 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test056.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test056.lgf
+test056.lgf:3.67 Error: syntax error; try deleting ","
+
+-----parse.err-----
+$ diff test056.parse.soln.antlr.err test056.parse.err
+
+**PASS**
+
+====================
+
+test057 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test057.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test057.lgf
+test057.lgf:3.24 Error: syntax error at "end"
+
+-----parse.err-----
+$ diff test057.parse.soln.antlr.err test057.parse.err
+
+**PASS**
+
+====================
+
+test058 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test058.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test058.lgf
+
+-----parse.pt-----
+$ diff test058.parse.soln.pt test058.parse.pt
+
+**PASS**
+
+====================
+
+test059 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test059.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test059.lgf
+
+-----parse.pt-----
+$ diff test059.parse.soln.pt test059.parse.pt
+
+**PASS**
+
+====================
+
+test060 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test060.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test060.lgf
+test060.lgf:2.4 Error: syntax error at "in"
+
+-----parse.err-----
+$ diff test060.parse.soln.antlr.err test060.parse.err
+
+**PASS**
+
+====================
+
+test061 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test061.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test061.lgf
+
+-----parse.pt-----
+$ diff test061.parse.soln.pt test061.parse.pt
+
+**PASS**
+
+====================
+
+test062 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test062.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test062.lgf
+
+-----parse.pt-----
+$ diff test062.parse.soln.pt test062.parse.pt
+
+**PASS**
+
+====================
+
+test063 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test063.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test063.lgf
+
+-----parse.pt-----
+$ diff test063.parse.soln.pt test063.parse.pt
+
+**PASS**
+
+====================
+
+test064 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test064.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test064.lgf
+
+-----parse.pt-----
+$ diff test064.parse.soln.pt test064.parse.pt
+
+**PASS**
+
+====================
+
+test065 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test065.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test065.lgf
+test065.lgf:2.10 Error: syntax error; try deleting "fn ( VAR_NAME (x) ) =>"
+
+-----parse.err-----
+$ diff test065.parse.soln.antlr.err test065.parse.err
+
+**PASS**
+
+====================
+
+test066 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test066.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test066.lgf
+test066.lgf:2.12 Error: syntax error; try deleting "TYVAR_NAME ('a)"
+
+-----parse.err-----
+$ diff test066.parse.soln.antlr.err test066.parse.err
+
+**PASS**
+
+====================
+
+test067 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test067.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test067.lgf
+
+-----parse.pt-----
+$ diff test067.parse.soln.pt test067.parse.pt
+
+**PASS**
+
+====================
+
+test068 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test068.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test068.lgf
+
+-----parse.pt-----
+$ diff test068.parse.soln.pt test068.parse.pt
+
+**PASS**
+
+====================
+
+test069 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test069.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test069.lgf
+
+-----parse.pt-----
+$ diff test069.parse.soln.pt test069.parse.pt
+
+**PASS**
+
+====================
+
+test070 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test070.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test070.lgf
+
+-----parse.pt-----
+$ diff test070.parse.soln.pt test070.parse.pt
+
+**PASS**
+
+====================
+
+test071 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test071.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test071.lgf
+
+-----parse.pt-----
+$ diff test071.parse.soln.pt test071.parse.pt
+
+**PASS**
+
+====================
+
+test072 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test072.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test072.lgf
+
+-----parse.pt-----
+$ diff test072.parse.soln.pt test072.parse.pt
+
+**PASS**
+
+====================
+
+test073 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test073.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test073.lgf
+
+-----parse.pt-----
+$ diff test073.parse.soln.pt test073.parse.pt
+
+**PASS**
+
+====================
+
+test074 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test074.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test074.lgf
+
+-----parse.pt-----
+$ diff test074.parse.soln.pt test074.parse.pt
+
+**PASS**
+
+====================
+
+test075 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test075.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test075.lgf
+
+-----parse.pt-----
+$ diff test075.parse.soln.pt test075.parse.pt
+
+**PASS**
+
+====================
+
+test076 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test076.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test076.lgf
+
+-----parse.pt-----
+$ diff test076.parse.soln.pt test076.parse.pt
+
+**PASS**
+
+====================
+
+test077 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test077.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test077.lgf
+
+-----parse.pt-----
+$ diff test077.parse.soln.pt test077.parse.pt
+
+**PASS**
+
+====================
+
+test078 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test078.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test078.lgf
+
+-----parse.pt-----
+$ diff test078.parse.soln.pt test078.parse.pt
+
+**PASS**
+
+====================
+
+test079 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test079.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test079.lgf
+
+-----parse.pt-----
+$ diff test079.parse.soln.pt test079.parse.pt
+
+**PASS**
+
+====================
+
+test080 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test080.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test080.lgf
+
+-----parse.pt-----
+$ diff test080.parse.soln.pt test080.parse.pt
+
+**PASS**
+
+====================
+
+test081 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test081.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test081.lgf
+
+-----parse.pt-----
+$ diff test081.parse.soln.pt test081.parse.pt
+
+**PASS**
+
+====================
+
+test082 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test082.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test082.lgf
+
+-----parse.pt-----
+$ diff test082.parse.soln.pt test082.parse.pt
+
+**PASS**
+
+====================
+
+test083 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test083.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test083.lgf
+
+-----parse.pt-----
+$ diff test083.parse.soln.pt test083.parse.pt
+
+**PASS**
+
+====================
+
+test084 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test084.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test084.lgf
+
+-----parse.pt-----
+$ diff test084.parse.soln.pt test084.parse.pt
+
+**PASS**
+
+====================
+
+test085 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test085.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test085.lgf
+
+-----parse.pt-----
+$ diff test085.parse.soln.pt test085.parse.pt
+
+**PASS**
+
+====================
+
+test086 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test086.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test086.lgf
+
+-----parse.pt-----
+$ diff test086.parse.soln.pt test086.parse.pt
+
+**PASS**
+
+====================
+
+test087 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test087.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test087.lgf
+
+-----parse.pt-----
+$ diff test087.parse.soln.pt test087.parse.pt
+
+**PASS**
+
+====================
+
+test088 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test088.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test088.lgf
+
+-----parse.pt-----
+$ diff test088.parse.soln.pt test088.parse.pt
+
+**PASS**
+
+====================
+
+test089 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test089.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test089.lgf
+
+-----parse.pt-----
+$ diff test089.parse.soln.pt test089.parse.pt
+
+**PASS**
+
+====================
+
+test090 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test090.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test090.lgf
+
+-----parse.pt-----
+$ diff test090.parse.soln.pt test090.parse.pt
+
+**PASS**
+
+====================
+
+test091 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test091.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test091.lgf
+
+-----parse.pt-----
+$ diff test091.parse.soln.pt test091.parse.pt
+
+**PASS**
+
+====================
+
+test092 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test092.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test092.lgf
+
+-----parse.pt-----
+$ diff test092.parse.soln.pt test092.parse.pt
+
+**PASS**
+
+====================
+
+test093 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test093.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test093.lgf
+
+-----parse.pt-----
+$ diff test093.parse.soln.pt test093.parse.pt
+
+**PASS**
+
+====================
+
+test094 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test094.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test094.lgf
+
+-----parse.pt-----
+$ diff test094.parse.soln.pt test094.parse.pt
+
+**PASS**
+
+====================
+
+test095 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test095.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test095.lgf
+
+-----parse.pt-----
+$ diff test095.parse.soln.pt test095.parse.pt
+
+**PASS**
+
+====================
+
+test096 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test096.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test096.lgf
+
+-----parse.pt-----
+$ diff test096.parse.soln.pt test096.parse.pt
+
+**PASS**
+
+====================
+
+test097 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test097.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test097.lgf
+
+-----parse.pt-----
+$ diff test097.parse.soln.pt test097.parse.pt
+
+**PASS**
+
+====================
+
+test098 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test098.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test098.lgf
+
+-----parse.pt-----
+$ diff test098.parse.soln.pt test098.parse.pt
+
+**PASS**
+
+====================
+
+test099 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test099.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test099.lgf
+
+-----parse.pt-----
+$ diff test099.parse.soln.pt test099.parse.pt
+
+**PASS**
+
+====================
+
+test100 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test100.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test100.lgf
+
+-----parse.pt-----
+$ diff test100.parse.soln.pt test100.parse.pt
+
+**PASS**
+
+====================
+
+test101 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test101.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test101.lgf
+
+-----parse.pt-----
+$ diff test101.parse.soln.pt test101.parse.pt
+
+**PASS**
+
+====================
+
+test102 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test102.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test102.lgf
+
+-----parse.pt-----
+$ diff test102.parse.soln.pt test102.parse.pt
+
+**PASS**
+
+====================
+
+test103 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test103.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test103.lgf
+
+-----parse.pt-----
+$ diff test103.parse.soln.pt test103.parse.pt
+
+**PASS**
+
+====================
+
+test104 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test104.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test104.lgf
+test104.lgf:2.21 Error: syntax error; try substituting "(" for "="
+test104.lgf:2.25 Error: syntax error at "+"
+
+-----parse.err-----
+$ diff test104.parse.soln.antlr.err test104.parse.err
+
+**PASS**
+
+====================
+
+test105 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test105.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test105.lgf
+
+-----parse.pt-----
+$ diff test105.parse.soln.pt test105.parse.pt
+
+**PASS**
+
+====================
+
+test106 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test106.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test106.lgf
+
+-----parse.pt-----
+$ diff test106.parse.soln.pt test106.parse.pt
+
+**PASS**
+
+====================
+
+test107 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test107.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test107.lgf
+
+-----parse.pt-----
+$ diff test107.parse.soln.pt test107.parse.pt
+
+**PASS**
+
+====================
+
+test108 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test108.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test108.lgf
+
+-----parse.pt-----
+$ diff test108.parse.soln.pt test108.parse.pt
+
+**PASS**
+
+====================
+
+test109 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test109.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test109.lgf
+
+-----parse.pt-----
+$ diff test109.parse.soln.pt test109.parse.pt
+
+**PASS**
+
+====================
+
+test110 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test110.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test110.lgf
+
+-----parse.pt-----
+$ diff test110.parse.soln.pt test110.parse.pt
+
+**PASS**
+
+====================
+
+test111 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test111.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test111.lgf
+
+-----parse.pt-----
+$ diff test111.parse.soln.pt test111.parse.pt
+
+**PASS**
+
+====================
+
+test112 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test112.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test112.lgf
+
+-----parse.pt-----
+$ diff test112.parse.soln.pt test112.parse.pt
+
+**PASS**
+
+====================
+
+test113 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test113.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test113.lgf
+
+-----parse.pt-----
+$ diff test113.parse.soln.pt test113.parse.pt
+
+**PASS**
+
+====================
+
+test114 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test114.parse.err -Cparser=antlr -Ckeep-parse=true -Cstop-parse=true test114.lgf
+
+-----parse.pt-----
+$ diff test114.parse.soln.pt test114.parse.pt
+
+**PASS**
+
+====================
+====================
+
+
+
+parser (pt): 157 / 157  (100%)
+
+parser (err): 208 / 208  (100%)
+
+
+parser (tot): 365 / 365  (100%)

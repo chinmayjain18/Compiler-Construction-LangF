@@ -1,0 +1,5 @@
+(* syntactic restriction, distinct function variables *)
+fun f (x: Integer) : Integer = x
+and f (x: Bool) : Bool = x
+;
+0

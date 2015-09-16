@@ -1,0 +1,2 @@
+(* case expression with nullary data constructor pattern (types and args omitted) *)
+; case Unit of Unit => False end

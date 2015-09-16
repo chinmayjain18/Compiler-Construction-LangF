@@ -1,0 +1,5 @@
+(* andalso expression, non-boolean right *)
+val t = 0 == 0
+val f = 0 <> 0
+;
+t andalso (fn (x: Bool) => x)

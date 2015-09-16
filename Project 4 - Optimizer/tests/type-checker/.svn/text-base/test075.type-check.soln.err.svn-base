@@ -1,0 +1,5 @@
+test075.lgf:2.16-test075.lgf:2.18 Error: 
+Type parameter of 'type' defined multiple times.
+  type parameter: 'a
+  type constructor: T
+  in: type T ['a, 'b, 'a, 'c] = 'a -> ('b -> 'c)

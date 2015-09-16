@@ -1,0 +1,4 @@
+test042.lgf:5.11-test042.lgf:5.28 Error: 
+Right operand of 'andalso' not of type Bool.
+  operand: Bool -> Bool
+  in: t andalso (fn (x : Bool) => x)

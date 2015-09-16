@@ -1,0 +1,4 @@
+test045.lgf:5.10-test045.lgf:5.27 Error: 
+Right operand of 'orelse' not of type Bool.
+  operand: Bool -> Bool
+  in: t orelse (fn (x : Bool) => x)

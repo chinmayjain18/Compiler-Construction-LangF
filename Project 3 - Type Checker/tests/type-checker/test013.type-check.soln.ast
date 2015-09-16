@@ -1,0 +1,19 @@
+val x__0000 (* : Integer -> (Integer -> Integer) *) =
+   (fn (x__0001 : Integer) (x__0002 : Integer) => ((x__0001 : Integer) + (x__0002 : Integer)) : Integer) : Integer
+                                                                                                           ->
+                                                                                                           (Integer -> Integer)
+val x__0003 (* : Integer -> (Integer -> Bool) *) =
+   (fn (x__0004 : Integer) (x__0005 : Integer) => ((x__0004 : Integer) < (x__0005 : Integer)) : Bool) : Integer
+                                                                                                        ->
+                                                                                                        (Integer -> Bool)
+val _ (* : Integer -> (Integer -> Integer) *) = x__0000 : Integer -> (Integer -> Integer)
+val _ (* : Integer -> (Integer -> Integer) *) = x__0000 : Integer -> (Integer -> Integer)
+val _ (* : Integer -> (Integer -> Bool) *) = x__0003 : Integer -> (Integer -> Bool)
+val x__0006 (* : Integer -> Integer *) = ((x__0000 : Integer -> (Integer -> Integer)) (1 : Integer)) : Integer -> Integer
+;
+((((x__0003 : Integer -> (Integer -> Bool))
+   (((x__0006 : Integer -> Integer)
+     (((((x__0000 : Integer -> (Integer -> Integer)) (1 : Integer)) : Integer -> Integer) (2 : Integer)) : Integer)) : Integer)) : Integer
+                                                                                                                                   ->
+                                                                                                                                   Bool)
+ (3 : Integer)) : Bool

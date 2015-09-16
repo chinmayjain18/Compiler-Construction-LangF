@@ -1,0 +1,4 @@
+test080.lgf:3.4-test080.lgf:3.5 Error: 
+Function variable of 'fun' defined multiple times.
+  variable: f
+  in: fun f (x : Integer) : Int ... x : Bool) : Bool = x

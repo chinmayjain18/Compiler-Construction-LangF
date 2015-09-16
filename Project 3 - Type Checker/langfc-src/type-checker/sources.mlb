@@ -1,0 +1,36 @@
+(* langfc-src/type-checker/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for front-end type checker in the LangF compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+
+   ../common/sources.mlb
+   ../parse-tree/sources.mlb
+   ../abs-syn-tree/sources.mlb
+
+   environment.sig
+   environment.sml
+
+   type-checker.sig
+   type-checker.sml
+
+   wrapped-type-checker.sig
+   wrapped-type-checker.sml
+
+in
+
+  signature WRAPPED_TYPE_CHECKER
+  structure WrappedTypeChecker
+
+end

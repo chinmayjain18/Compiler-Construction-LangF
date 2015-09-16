@@ -1,0 +1,3 @@
+(* associativity of apply *)
+val id = fn ['a] (x: 'a) => x
+; id [String] "foobar"

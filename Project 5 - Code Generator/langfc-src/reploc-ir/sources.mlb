@@ -1,0 +1,36 @@
+(* langfc-src/reploc-ir/sources.mlb
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * MLB file for representation-location intermediate representation in
+ * the LangF compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+
+   ../common/sources.mlb
+   ../core-ir/sources.mlb
+
+   reploc-ir.sig
+   reploc-ir.sml
+
+   converter.sig
+   converter.sml
+
+in
+
+   signature REPLOC_IR
+   structure RepLocIR
+
+   signature REPLOC_IR_CONVERTER
+   structure RepLocIRConverter
+
+end

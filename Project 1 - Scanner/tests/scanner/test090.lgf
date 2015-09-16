@@ -1,0 +1,2 @@
+val s = "one\ttwo\tthree\nfour\009five\009six\010"
+; print s

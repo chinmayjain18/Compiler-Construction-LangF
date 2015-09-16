@@ -1,0 +1,120 @@
+fun
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+:
+(* CON_NAME *) String
+=
+if
+(* VAR_NAME *) i
+<
+(* INTEGER *) 0
+then
+(* STRING *) "~"
+^
+(
+(* VAR_NAME *) intToString
+(
+~
+(* VAR_NAME *) i
+)
+)
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 0
+then
+(* STRING *) "0"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 1
+then
+(* STRING *) "1"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 2
+then
+(* STRING *) "2"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 3
+then
+(* STRING *) "3"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 4
+then
+(* STRING *) "4"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 5
+then
+(* STRING *) "5"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 6
+then
+(* STRING *) "6"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 7
+then
+(* STRING *) "7"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 8
+then
+(* STRING *) "8"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 9
+then
+(* STRING *) "9"
+else
+(
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+/
+(* INTEGER *) 10
+)
+)
+^
+(
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+%
+(* INTEGER *) 10
+)
+)
+;
+(* VAR_NAME *) print
+(
+(* VAR_NAME *) intToString
+(* INTEGER *) 42
+^
+(* STRING *) "\n"
+)

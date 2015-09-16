@@ -1,0 +1,8 @@
+(* *EXTRA* syntactic restriction, redundant patterns *)
+fun add (a: Integer) (b: Integer) : Integer =
+  case a of
+     x => x + b
+   | y => y + b
+  end
+;
+add

@@ -1,0 +1,6 @@
+(* function parameter shadows variable *)
+val x = 42
+fun not (x : Bool) : Bool = case x of True => False | False => True
+val y = x + x
+val b = not True
+; 0

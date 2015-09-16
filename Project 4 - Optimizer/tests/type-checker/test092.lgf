@@ -1,0 +1,11 @@
+(* function application expressions *)
+datatype Pair ['a, 'b] = Pair {'a, 'b}
+val f0 = fn ['a] ['b] (a: 'a) (b: 'b) => Pair ['a, 'b] {a, b}
+val _ : ['z] -> ['y] -> 'z -> 'y -> Pair ['z, 'y] = f0
+val _ : ['z] -> ['y] -> 'z -> 'y -> Pair ['z, 'y] = fn ['z] => f0 ['z]
+val f1 : ['y] -> Integer -> 'y -> Pair [Integer, 'y] = f0 [Integer]
+val f2 : ['y] -> 'y -> Pair [Integer, 'y] = fn ['a] => f1 ['a] 0
+val f3 : Bool -> Pair [Integer, Bool] = f2 [Bool]
+val p : Pair [Integer, Bool] = f3 True
+;
+p

@@ -1,0 +1,3 @@
+val f = fn (b1 : Bool) (i : Integer) (j : Integer) (b2 : Bool) => ((b1 andalso (i == j)) orelse b3)
+;
+0

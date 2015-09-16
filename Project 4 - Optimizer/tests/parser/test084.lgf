@@ -1,0 +1,2 @@
+(* let as atomic expression *)
+let val x = 0 in x end + 1

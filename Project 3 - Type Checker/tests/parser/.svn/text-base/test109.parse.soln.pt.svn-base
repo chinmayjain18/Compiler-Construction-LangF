@@ -1,0 +1,35 @@
+fun intToString (i : Integer) : String =
+   if i < 0
+      then "~" ^ (intToString (~ i))
+      else (if i == 0
+               then "0"
+               else (if i == 1
+                        then "1"
+                        else (if i == 2
+                                 then "2"
+                                 else (if i == 3
+                                          then "3"
+                                          else (if i == 4
+                                                   then "4"
+                                                   else (if i == 5
+                                                            then "5"
+                                                            else (if i == 6
+                                                                     then "6"
+                                                                     else (if i == 7
+                                                                              then "7"
+                                                                              else (if i == 8
+                                                                                       then "8"
+                                                                                       else (if i == 9
+                                                                                                then "9"
+                                                                                                else ((intToString (i / 10))
+                                                                                                      ^
+                                                                                                      (intToString (i % 10)))))))))))))
+type Y ['a] = Unit -> 'a
+fun y ['a] (f : (Y ['a]) -> (Y ['a])) : Y ['a] = f (fn (z : Unit) => (((y ['a]) f) z))
+val fibY =
+   fn (fib : Y [Integer -> Integer]) (z : Unit) (n : Integer) => (if n <= 1 then 1 else (((fib z) (n - 1)) + ((fib z) (n - 2))))
+val fib : Integer -> Integer = ((y [Integer -> Integer]) fibY) Unit
+val n = 20
+val fib_n = fib n
+;
+(print "fib "; print (intToString n); print " = "; print (intToString fib_n); print "\n")

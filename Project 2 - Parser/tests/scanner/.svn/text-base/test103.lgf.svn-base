@@ -1,0 +1,3 @@
+val s = "hello world!\n
+;
+print s

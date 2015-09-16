@@ -1,0 +1,7 @@
+K 10
+svn:ignore
+V 37
+langf-lex.lex.sml
+langf-ulex.lex.sml
+
+END

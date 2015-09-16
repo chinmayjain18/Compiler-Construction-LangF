@@ -1,0 +1,54 @@
+(* langfc-src/anf-ir/sources.cm
+ *
+ * COPYRIGHT (c) 2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * CSCI-742
+ * S20135,S20145
+ *
+ * CM file for A-normal form intermediate representation in the LangF
+ * compiler (langfc).
+ *)
+
+Library
+
+  signature ANF_IR
+  structure AnfIR
+
+  signature ANF_IR_TYPE_CHECKER
+  structure AnfIRTypeChecker
+
+  signature ANF_IR_CONVERTER
+  structure AnfIRConverter
+
+  signature ANF_IR_OPTIMIZATION
+  structure AnfIROptimizer
+
+is
+
+  $/basis.cm
+  $/smlnj-lib.cm
+  $/controls-lib.cm
+
+  ../common/sources.cm
+  ../core-ir/sources.cm
+
+  anf-ir.sig
+  anf-ir.sml
+
+  type-checker.sig
+  type-checker.sml
+
+  converter.sig
+  converter.sml
+
+  optimization.sig
+  copy-prop.sml
+  flatten-fail.sml
+  inline.sml
+  simplify-case.sml
+  unused.sml
+  value-num.sml
+
+  optimizer.sml

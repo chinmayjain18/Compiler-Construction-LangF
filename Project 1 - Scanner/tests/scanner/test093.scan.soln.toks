@@ -1,0 +1,24 @@
+val
+(* VAR_NAME *) x
+=
+(* INTEGER *) 3
+fun
+(* VAR_NAME *) add
+(
+(* VAR_NAME *) x
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) y
+:
+(* CON_NAME *) Integer
+)
+=
+(* VAR_NAME *) x
++
+(* VAR_NAME *) y
+;
+(* VAR_NAME *) add
+(* INTEGER *) 1
+(* INTEGER *) 2

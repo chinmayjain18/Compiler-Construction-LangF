@@ -1,0 +1,5 @@
+val f =
+   fn (a : Array [Array [Array [Integer]]]) (i1 : Integer) (i2 : Integer) (i3 : Integer) =>
+      (((a ! i1) ! i2) ! i3 := (((a ! i1) ! i2) ! i3))
+;
+0

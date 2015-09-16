@@ -1,0 +1,17 @@
+(* datatype decl, dacon expression, and case expression, with arity error *)
+datatype Publication = Book {String, String}
+                     | Article {String, String, String}
+val pub1 : Publication =
+  Book {"Lawrence Paulson", "ML for the Working Programmer"}
+val pub2: Publication =
+  Article {"Andrew Appel", "A Critique of Standard ML",
+           "Journal of Functional Programming"}
+val author = fn (p: Publication) =>
+  case p of
+     Book {author, title} => author
+   | Article {author, title} => author
+  end
+val lawrence = author pub1
+val andrew = author pub2
+;
+0

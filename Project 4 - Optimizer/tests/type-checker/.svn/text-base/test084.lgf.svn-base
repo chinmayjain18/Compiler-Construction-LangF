@@ -1,0 +1,9 @@
+(* syntactic restriction, integer just right *)
+val z : Integer = ~4611686018427387904
+val z : Integer = ~4611686018427387903
+val z : Integer = ~4611686018427387902
+val z : Integer = 4611686018427387903
+val z : Integer = 4611686018427387902
+val z : Integer = 4611686018427387901
+;
+z

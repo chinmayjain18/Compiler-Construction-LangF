@@ -1,0 +1,11 @@
+Excellent work!!
+
+Compile errors with committed code; looks like updates to
+environment.sig were not committed.
+
+Type-checker code looks very good.
+
+Good factoring of E_BinOp.
+
+
+Score: 99/100

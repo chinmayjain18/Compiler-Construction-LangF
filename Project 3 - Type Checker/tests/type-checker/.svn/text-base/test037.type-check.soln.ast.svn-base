@@ -1,0 +1,2 @@
+;
+(if ((0 : Integer) < (1 : Integer)) : Bool then "True" : String else "False" : String) : String

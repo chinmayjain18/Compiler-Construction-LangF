@@ -1,0 +1,10 @@
+fun x__0000 (x__0001 : Integer) : Bool =
+   (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+       then True : Bool
+       else ((x__0002 : Integer -> Bool) (((x__0001 : Integer) - (1 : Integer)) : Integer)) : Bool) : Bool
+and x__0002 (x__0003 : Integer) : Bool =
+   (if ((x__0003 : Integer) == (0 : Integer)) : Bool
+       then False : Bool
+       else ((x__0000 : Integer -> Bool) (((x__0003 : Integer) - (1 : Integer)) : Integer)) : Bool) : Bool
+;
+((x__0000 : Integer -> Bool) (100 : Integer)) : Bool

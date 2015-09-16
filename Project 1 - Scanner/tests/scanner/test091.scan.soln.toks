@@ -1,0 +1,14 @@
+val
+(* VAR_NAME *) x
+=
+(* INTEGER *) 3
+val
+(* VAR_NAME *) y
+=
+(* INTEGER *) 4
+;
+(* VAR_NAME *) x
++
+(* VAR_NAME *) y
+=
+(* INTEGER *) 7

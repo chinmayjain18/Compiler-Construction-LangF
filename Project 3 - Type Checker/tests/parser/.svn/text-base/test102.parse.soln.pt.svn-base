@@ -1,0 +1,10 @@
+datatype List ['a] = Nil
+                   | Cons {'a, List ['a]}
+fun map ['a] ['b] (f : 'a -> 'b) (l : List ['a]) : List ['b] =
+   case l of
+      Nil ['a] => Nil ['b]
+    | Cons ['a] {h, t} => Cons ['b] {f h, (((map ['a]) ['b]) f) t}
+   end
+fun inc (x : Integer) : Integer = x + 1
+;
+(((map [Integer]) [Integer]) inc) (Cons [Integer] {1, Nil [Integer]})

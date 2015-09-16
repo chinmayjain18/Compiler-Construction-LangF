@@ -1,0 +1,2 @@
+(* expression precedence; if vs fn *)
+if True then fn (x: Integer) => x else fn (y: Integer) => y + y

@@ -1,0 +1,4 @@
+test051.lgf:2.0-test051.lgf:2.1 Error: 
+Right operand of '*' not of type Integer.
+  operand: String
+  in: 2 * "False"

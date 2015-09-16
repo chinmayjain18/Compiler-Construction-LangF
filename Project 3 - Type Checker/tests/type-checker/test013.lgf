@@ -1,0 +1,11 @@
+(* integer val decls *)
+val add = fn (a: Integer) (b: Integer) => a + b
+val lt = fn (a: Integer) (b: Integer) => a < b
+val _ : Integer -> Integer -> Integer = add
+type BinOp ['a] = 'a -> 'a -> 'a
+type CmpOp ['a] = 'a -> 'a -> Bool
+val _ : BinOp [Integer] = add
+val _ : CmpOp [Integer] = lt
+val inc : Integer -> Integer = add 1
+;
+lt (inc (add 1 2)) 3

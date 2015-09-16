@@ -1,0 +1,15 @@
+test093.lgf:5.2-test093.lgf:9.5 Error: 
+Non-exhaustive match rules in 'case'.
+  missing: B1
+  in: case x of A1 => "A1" | B2 ... B2" | C1 => "C1" end
+test093.lgf:7.5-test093.lgf:7.8 Error: 
+Argument and pattern in 'case' disagree.
+  argument: T1
+  pattern:  T2
+  in rule: B2 => "B2"
+  in: case x of A1 => "A1" | B2 ... B2" | C1 => "C1" end
+test093.lgf:7.5-test093.lgf:7.8 Error: 
+Redundant pattern in 'case'.
+  pattern: B2
+  in rule: B2 => "B2"
+  in: case x of A1 => "A1" | B2 ... B2" | C1 => "C1" end

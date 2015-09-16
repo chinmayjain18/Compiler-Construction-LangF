@@ -1,0 +1,5 @@
+val
+(* VAR_NAME *) x
+=
+(* INTEGER *) 3
+;

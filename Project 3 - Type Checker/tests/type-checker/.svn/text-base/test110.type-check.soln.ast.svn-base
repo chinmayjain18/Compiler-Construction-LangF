@@ -1,0 +1,186 @@
+datatype T__0000 ['a__0000] = C__0000
+                            | C__0001 {'a__0000}
+fun x__0000 (x__0001 : Integer) : String =
+   (if ((x__0001 : Integer) < (0 : Integer)) : Bool
+       then (("~" : String) ^ (((x__0000 : Integer -> String) ((~ (x__0001 : Integer)) : Integer)) : String)) : String
+       else (if ((x__0001 : Integer) == (0 : Integer)) : Bool
+                then "0" : String
+                else (if ((x__0001 : Integer) == (1 : Integer)) : Bool
+                         then "1" : String
+                         else (if ((x__0001 : Integer) == (2 : Integer)) : Bool
+                                  then "2" : String
+                                  else (if ((x__0001 : Integer) == (3 : Integer)) : Bool
+                                           then "3" : String
+                                           else (if ((x__0001 : Integer) == (4 : Integer)) : Bool
+                                                    then "4" : String
+                                                    else (if ((x__0001 : Integer) == (5 : Integer)) : Bool
+                                                             then "5" : String
+                                                             else (if ((x__0001 : Integer) == (6 : Integer)) : Bool
+                                                                      then "6" : String
+                                                                      else (if ((x__0001 : Integer) == (7 : Integer)) : Bool
+                                                                               then "7" : String
+                                                                               else (if ((x__0001 : Integer) == (8 : Integer)) : Bool
+                                                                                        then "8" : String
+                                                                                        else (if ((x__0001 : Integer)
+                                                                                                  ==
+                                                                                                  (9 : Integer)) : Bool
+                                                                                                 then "9" : String
+                                                                                                 else ((((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           /
+                                                                                                           (10 : Integer)) : Integer)) : String)
+                                                                                                       ^
+                                                                                                       (((x__0000 : Integer
+                                                                                                                    ->
+                                                                                                                    String)
+                                                                                                         (((x__0001 : Integer)
+                                                                                                           %
+                                                                                                           (10 : Integer)) : Integer)) : String)) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String) : String
+val x__0002 (* : Integer *) =
+   ((((subscript : String -> (Integer -> Integer)) ("0" : String)) : Integer -> Integer) (0 : Integer)) : Integer
+val x__0003 (* : Integer *) =
+   ((((subscript : String -> (Integer -> Integer)) ("9" : String)) : Integer -> Integer) (0 : Integer)) : Integer
+fun x__0004 (x__0005 : Integer) : T__0000 [Integer] =
+   (if ((((x__0002 : Integer) <= (x__0005 : Integer)) : Bool) andalso (((x__0005 : Integer) <= (x__0003 : Integer)) : Bool)) : Bool
+       then (C__0001 [Integer] {((x__0005 : Integer) - (x__0002 : Integer)) : Integer}) : T__0000 [Integer]
+       else (C__0000 [Integer]) : T__0000 [Integer]) : T__0000 [Integer]
+fun x__0006 (x__0007 : String) : T__0000 [Integer] =
+   (let
+       val x__0008 (* : Integer *) = ((size : String -> Integer) (x__0007 : String)) : Integer
+       fun x__0009 (x__000A : Integer) (x__000B : Integer) : T__0000 [Integer] =
+          (if ((x__000A : Integer) < (x__0008 : Integer)) : Bool
+              then (case ((x__0004 : Integer -> (T__0000 [Integer]))
+                          (((((subscript : String -> (Integer -> Integer)) (x__0007 : String)) : Integer -> Integer)
+                            (x__000A : Integer)) : Integer)) : T__0000 [Integer] of
+                       C__0000 [Integer] => (C__0000 [Integer]) : T__0000 [Integer]
+                     | C__0001 [Integer] {x__000C (* : Integer *)} =>
+                          ((((x__0009 : Integer -> (Integer -> (T__0000 [Integer])))
+                             (((x__000A : Integer) + (1 : Integer)) : Integer)) : Integer -> (T__0000 [Integer]))
+                           (((((x__000B : Integer) * (10 : Integer)) : Integer) + (x__000C : Integer)) : Integer)) : T__0000 [Integer]
+                    end) : T__0000 [Integer]
+              else (C__0001 [Integer] {x__000B : Integer}) : T__0000 [Integer]) : T__0000 [Integer]
+    in
+       (if ((x__0008 : Integer) > (0 : Integer)) : Bool
+           then ((((x__0009 : Integer -> (Integer -> (T__0000 [Integer]))) (0 : Integer)) : Integer -> (T__0000 [Integer]))
+                 (0 : Integer)) : T__0000 [Integer]
+           else (C__0000 [Integer]) : T__0000 [Integer]) : T__0000 [Integer]
+    end) : T__0000 [Integer]
+val x__000D (* : Integer -> Integer *) =
+   (let
+       val x__000E (* : Array [Array [T__0000 [Integer]]] *) =
+          ((((((array : ['a__0001] -> (Integer -> ('a__0001 -> (Array ['a__0001])))) [Array [T__0000 [Integer]]]) : Integer
+                                                                                                                    ->
+                                                                                                                    ((Array [T__0000 [Integer]])
+                                                                                                                     ->
+                                                                                                                     (Array [Array [T__0000 [Integer]]])))
+             (1 : Integer)) : (Array [T__0000 [Integer]]) -> (Array [Array [T__0000 [Integer]]]))
+           (((((((array : ['a__0002] -> (Integer -> ('a__0002 -> (Array ['a__0002])))) [T__0000 [Integer]]) : Integer
+                                                                                                              ->
+                                                                                                              ((T__0000 [Integer])
+                                                                                                               ->
+                                                                                                               (Array [T__0000 [Integer]])))
+               (2 : Integer)) : (T__0000 [Integer]) -> (Array [T__0000 [Integer]]))
+             ((C__0000 [Integer]) : T__0000 [Integer])) : Array [T__0000 [Integer]])) : Array [Array [T__0000 [Integer]]]
+       fun x__000F (x__0010 : Unit) : Unit =
+          (let
+              val x__0011 (* : Array [T__0000 [Integer]] *) =
+                 ((x__000E : Array [Array [T__0000 [Integer]]]) ! (* [Array [T__0000 [Integer]]] *) (0 : Integer)) : Array [T__0000 [Integer]]
+              val x__0012 (* : Array [T__0000 [Integer]] *) =
+                 ((((((array : ['a__0003] -> (Integer -> ('a__0003 -> (Array ['a__0003])))) [T__0000 [Integer]]) : Integer
+                                                                                                                   ->
+                                                                                                                   ((T__0000 [Integer])
+                                                                                                                    ->
+                                                                                                                    (Array [T__0000 [Integer]])))
+                    (((2 : Integer) * ((# (* [T__0000 [Integer]] *) (x__0011 : Array [T__0000 [Integer]])) : Integer)) : Integer)) : (T__0000 [Integer])
+                                                                                                                                     ->
+                                                                                                                                     (Array [T__0000 [Integer]]))
+                  ((C__0000 [Integer]) : T__0000 [Integer])) : Array [T__0000 [Integer]]
+              fun x__0013 (x__0014 : Integer) : Unit =
+                 (if ((x__0014 : Integer) < ((# (* [T__0000 [Integer]] *) (x__0011 : Array [T__0000 [Integer]])) : Integer)) : Bool
+                     then (((x__0012 : Array [T__0000 [Integer]])
+                            !
+                            (x__0014 : Integer)
+                            := (* [T__0000 [Integer]] *)
+                            (((x__0011 : Array [T__0000 [Integer]]) ! (* [T__0000 [Integer]] *) (x__0014 : Integer)) : T__0000 [Integer])) : T__0000 [Integer];
+                           ((x__0013 : Integer -> Unit) (((x__0014 : Integer) + (1 : Integer)) : Integer)) : Unit) : Unit
+                     else Unit : Unit) : Unit
+              val _ (* : Unit *) = ((x__0013 : Integer -> Unit) (0 : Integer)) : Unit
+              val _ (* : Array [T__0000 [Integer]] *) =
+                 ((x__000E : Array [Array [T__0000 [Integer]]])
+                  !
+                  (0 : Integer)
+                  := (* [Array [T__0000 [Integer]]] *)
+                  (x__0012 : Array [T__0000 [Integer]])) : Array [T__0000 [Integer]]
+           in
+              Unit : Unit
+           end) : Unit
+       val _ (* : T__0000 [Integer] *) =
+          ((((x__000E : Array [Array [T__0000 [Integer]]]) ! (* [Array [T__0000 [Integer]]] *) (0 : Integer)) : Array [T__0000 [Integer]])
+           !
+           (0 : Integer)
+           := (* [T__0000 [Integer]] *)
+           ((C__0001 [Integer] {1 : Integer}) : T__0000 [Integer])) : T__0000 [Integer]
+       val _ (* : T__0000 [Integer] *) =
+          ((((x__000E : Array [Array [T__0000 [Integer]]]) ! (* [Array [T__0000 [Integer]]] *) (0 : Integer)) : Array [T__0000 [Integer]])
+           !
+           (1 : Integer)
+           := (* [T__0000 [Integer]] *)
+           ((C__0001 [Integer] {1 : Integer}) : T__0000 [Integer])) : T__0000 [Integer]
+       fun x__0015 (x__0016 : Integer) : Integer =
+          (if ((x__0016 : Integer) < (0 : Integer)) : Bool
+              then ~1 : Integer
+              else (if ((x__0016 : Integer)
+                        <
+                        ((# (* [T__0000 [Integer]] *)
+                          (((x__000E : Array [Array [T__0000 [Integer]]]) ! (* [Array [T__0000 [Integer]]] *) (0 : Integer)) : Array [T__0000 [Integer]])) : Integer)) : Bool
+                       then (case ((((x__000E : Array [Array [T__0000 [Integer]]])
+                                     ! (* [Array [T__0000 [Integer]]] *)
+                                     (0 : Integer)) : Array [T__0000 [Integer]])
+                                   ! (* [T__0000 [Integer]] *)
+                                   (x__0016 : Integer)) : T__0000 [Integer] of
+                                C__0001 [Integer] {x__0017 (* : Integer *)} => x__0017 : Integer
+                              | C__0000 [Integer] =>
+                                   (let
+                                       val x__0018 (* : Integer *) =
+                                          ((x__0015 : Integer -> Integer) (((x__0016 : Integer) - (1 : Integer)) : Integer)) : Integer
+                                       val x__0019 (* : Integer *) =
+                                          ((x__0015 : Integer -> Integer) (((x__0016 : Integer) - (2 : Integer)) : Integer)) : Integer
+                                       val x__001A (* : Integer *) = ((x__0018 : Integer) + (x__0019 : Integer)) : Integer
+                                       val _ (* : T__0000 [Integer] *) =
+                                          ((((x__000E : Array [Array [T__0000 [Integer]]])
+                                             ! (* [Array [T__0000 [Integer]]] *)
+                                             (0 : Integer)) : Array [T__0000 [Integer]])
+                                           !
+                                           (x__0016 : Integer)
+                                           := (* [T__0000 [Integer]] *)
+                                           ((C__0001 [Integer] {x__001A : Integer}) : T__0000 [Integer])) : T__0000 [Integer]
+                                    in
+                                       x__001A : Integer
+                                    end) : Integer
+                             end) : Integer
+                       else (((x__000F : Unit -> Unit) (Unit : Unit)) : Unit;
+                             ((x__0015 : Integer -> Integer) (x__0016 : Integer)) : Integer) : Integer) : Integer) : Integer
+    in
+       x__0015 : Integer -> Integer
+    end) : Integer -> Integer
+val x__001B (* : String *) =
+   (if ((((argc : Unit -> Integer) (Unit : Unit)) : Integer) > (1 : Integer)) : Bool
+       then ((arg : Integer -> String) (1 : Integer)) : String
+       else "42" : String) : String
+;
+(case ((x__0006 : String -> (T__0000 [Integer])) (x__001B : String)) : T__0000 [Integer] of
+    C__0000 [Integer] => Unit : Unit
+  | C__0001 [Integer] {x__001C (* : Integer *)} =>
+       ((print : String -> Unit)
+        ((("fib(" : String)
+          ^
+          (((((x__0000 : Integer -> String) (x__001C : Integer)) : String)
+            ^
+            (((") = " : String)
+              ^
+              (((((x__0000 : Integer -> String) (((x__000D : Integer -> Integer) (x__001C : Integer)) : Integer)) : String)
+                ^
+                ("\n" : String)) : String)) : String)) : String)) : String)) : Unit
+ end) : Unit

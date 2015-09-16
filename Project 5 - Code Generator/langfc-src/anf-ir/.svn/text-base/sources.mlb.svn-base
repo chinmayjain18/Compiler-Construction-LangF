@@ -1,0 +1,55 @@
+(* langfc-src/anf-ir/sources.mlb
+ *
+ * COPYRIGHT (c) 2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * CSCI-742
+ * S20135,S20145
+ *
+ * MLB file for A-normal form intermediate representation in the LangF
+ * compiler (langfc).
+ *)
+
+local
+
+   $(SML_LIB)/basis/basis.mlb
+   $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+   $(SML_LIB)/smlnj-lib/Controls/controls-lib.mlb
+
+   ../common/sources.mlb
+   ../core-ir/sources.mlb
+
+   anf-ir.sig
+   anf-ir.sml
+
+   type-checker.sig
+   type-checker.sml
+
+   converter.sig
+   converter.sml
+
+   optimization.sig
+   copy-prop.sml
+   flatten-fail.sml
+   inline.sml
+   simplify-case.sml
+   unused.sml
+   value-num.sml
+   optimizer.sml
+
+in
+
+   signature ANF_IR
+   structure AnfIR
+
+   signature ANF_IR_TYPE_CHECKER
+   structure AnfIRTypeChecker
+
+   signature ANF_IR_CONVERTER
+   structure AnfIRConverter
+
+   signature ANF_IR_OPTIMIZATION
+   structure AnfIROptimizer
+
+end

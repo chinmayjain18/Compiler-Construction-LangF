@@ -1,0 +1,5 @@
+val zero = 0
+val one = 1
+fun fact (n:Integer) : Integer =
+   if n <= zero then one else n * fact (n - one)
+; fact 5

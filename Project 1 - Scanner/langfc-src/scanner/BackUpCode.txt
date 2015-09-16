@@ -1,0 +1,233 @@
+| SOME (#"a", strm1) =>
+				 (case charRdr strm1 of
+					SOME (#"n", strm2) =>
+						(case charRdr strm2 of
+							 SOME (#"d", strm3) =>
+								 (case charRdr strm3 of
+									 SOME (c, strm4) => if Char.isSpace c orelse c=#"_" orlese c=#"'"
+															then SOME (T.KW_and "and", strm3)
+														else
+															let
+																val tuple(str, strm) = stringBuilder strm0
+															in
+																SOME (T.VAR_NAME str, strm)
+															end
+									| SOME(#"a", strm4) =>
+										(case charRdr strm4 of
+											 SOME (#"l", strm5) =>
+												(case charRdr strm5 of
+													 SOME (#"s", strm6) =>
+														(case charRdr strm6 of
+															 SOME (#"o", strm7) => 
+																(case charRdr strm7 of	
+																	 SOME(c,strm8) => if Char.isSpace c
+																						then SOME (T.KW_andalso "andalso", strm3))
+																					  else
+																						let
+																							val tuple(str, strm) = stringBuilder strm0
+																						in
+																							SOME (T.VAR_NAME str, strm)
+																						end
+																						
+															| _ => let
+																	val tuple(str,strm) = stringBuilder strm0
+																   in
+																	SOME (T.VAR_NAME str, strm)
+																   end)
+													| _ => let
+															val tuple(str, strm) = stringBuilder strm0
+														   in
+															SOME(T.VAR_NAME str, strm)
+														   end)
+											| _ => let
+													val tuple(str, strm) = stringBuilder strm0
+												   in
+													SOME (T.VAR_NAME str, strm)
+												   end)
+									| _ => let
+											 val tuple(str, strm) = stringBuilder strm0
+										   in
+											 SOME(T.VAR_NAME str, strm)
+										   end)
+							| _ => let
+									 val tuple(str, strm) = stringBuilder strm0
+								   in
+								     SOME(T.VAR_NAME str, strm)
+								   end)
+					| _ => let
+							 val tuple(str, strm) = stringBuilder strm0
+						   in
+							 SOME(T.VAR_NAME str, strm)
+						   end)
+			| SOME (#"c", strm1) =>
+				 (case charRdr strm1 of
+					SOME (#"a", strm2) =>
+						(case charRdr strm2 of
+							 SOME (#"s", strm3) =>
+								 (case charRdr strm3 of
+									 SOME (#"e", strm4) => 
+										(case charRdr strm4 of
+											SOME (c, strm5) => if Char.isSpace c 
+																	then SOME (T.KW_case "case", strm4)
+															   else
+																	let
+																	 val tuple(str, strm) = stringBuilder strm0
+																	in
+																	 SOME (T.VAR_NAME str, strm)
+																	end)
+									| _ => let
+											 val tuple(str, strm) = stringBuilder strm0
+										   in
+											 SOME (T.VAR_NAME str, strm)
+										   end)
+							| _ => let
+									 val tuple(str, strm) = stringBuilder strm0
+								   in
+									 SOME (T.VAR_NAME str, strm)
+								   end)
+					| _ => let
+							 val tuple(str, strm) = stringBuilder strm0
+						   in
+						    SOME (T.VAR_NAME str, strm)
+						   end)
+			| SOME (#"d", strm1) =>
+				 (case charRdr strm1 of
+					SOME (#"a", strm2) =>
+						(case charRdr strm2 of
+							 SOME (#"t", strm3) =>
+								 (case charRdr strm3 of
+									 SOME (#"a", strm4) =>
+										 (case charRdr strm4 of
+											 SOME (#"t", strm5) =>
+												 (case charRdr strm5 of
+													 SOME (#"y", strm6) =>
+														(case charRdr strm6 of
+														 SOME (#"p", strm7) =>
+															 (case charRdr strm7 of
+																 SOME (#"e", strm8) => 
+																	(case charRdr strm8 of
+																		SOME(c,strm9) => if Char.isSpace c
+																							then SOME (T.KW_datatype "datatype", strm8)
+																						 else
+																							let
+																								val tuple(str, strm) = stringBuilder strm0
+																							in
+																								SOME (T.VAR_NAME str, strm)
+																							end)
+																| _ => let
+																		val tuple(str, strm) = stringBuilder strm0
+																	   in
+																		SOME (T.VAR_NAME str, strm)
+																	   end)
+														| _ => let
+																 val tuple(str, strm) = stringBuilder strm0
+															   in
+																 SOME (T.VAR_NAME str, strm)
+															   end)
+													| _ => let
+															 val tuple(str, strm) = stringBuilder strm0
+														   in
+															 SOME (T.VAR_NAME str, strm)
+														   end)
+											| _ => let
+													 val tuple(str, strm) = stringBuilder strm0
+												   in
+												     SOME (T.VAR_NAME str, strm)
+												   end) 
+									| _ => let
+											 val tuple(str, strm) = stringBuilder strm0
+										   in
+											 SOME (T.VAR_NAME str, strm)
+										   end)
+							| _ => let
+									 val tuple(str, strm) = stringBuilder strm0
+								   in
+									 SOME (T.VAR_NAME str, strm)
+								   end)
+					| _ => let
+							 val tuple(str, strm) = stringBuilder strm0
+						   in
+							SOME (T.VAR_NAME str, strm)
+						   end)
+			| SOME (#"e", strm1) =>
+				 (case charRdr strm1 of
+					SOME (#"l", strm2) =>
+						(case charRdr strm2 of
+							 SOME (#"s", strm3) =>
+								 (case charRdr strm3 of
+									 SOME (#"e", strm4) => 
+										(case charRdr strm4 of
+											SOME(c, strm5) => if Char.isSpace c
+																then SOME (T.KW_else "else", strm4)
+															  else
+																let	
+																	val tuple(str, strm) = stringBuilder strm0
+																	
+									| _ => SOME (T.VAR_NAME stringBuilder strm0, strm3))
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm2))
+					| SOME (#"n", strm2) =>
+						 (case charRdr strm2 of
+							 SOME (#"d", strm3) => SOME (T.KW_end, strm3)
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm2))
+					| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))
+			| SOME (#"f", strm1) =>
+				 (case charRdr strm1 of
+					 SOME (#"n", strm2) => SOME (T.KW_fn, strm2)
+					| SOME (#"u", strm2) =>
+						(case charRdr strrm2 of
+							 SOME (#"n", strm3) => SOME (T.KW_fun, strm3)
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm2))
+					| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))
+			| SOME (#"i", strm1) =>
+				 (case charRdr strm1 of
+					 SOME (#"f", strm2) => SOME (T.KW_if, strm2)
+					| SOME (#"n", strm2) => SOME (T.KW_in, strm2)
+					| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))
+			| SOME (#"l", strm1) =>
+				 (case charRdr strm1 of
+					 SOME (#"e", strm2) =>
+						 (case charRdr strm2 of
+							 SOME (#"t", strm3) => SOME (T.KW_let, strm3)
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))
+					| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))
+			| SOME (#"o", strm1) =>
+				 (case charRdr strm1 of
+					 SOME (#"f", strm2) => SOME (T.KW_of, strm2)
+					| SOME (#"r", strm2) =>
+						 (case charRdr strm2 of
+							 SOME (#"e", strm3) =>
+								 (case charRdr strm3 of
+									 SOME (#"l", strm4) =>
+										 (case charRdr strm4 of
+											 SOME (#"s", strm5) =>
+												 (case charRdr strm5 of
+													 SOME (#"e", strm6) => SOME (T.KW_orelse, strm6)
+													| _ => SOME (T.VAR_NAME stringBuilder strm0, strm5))
+											| _ => SOME (T.VAR_NAME stringBuilder strm0, strm4))
+									| _ => SOME (T.VAR_NAME stringBuilder strm0, strm3))
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm2))
+					| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))
+			| SOME (#"t", strm1) =>
+				 (case charRdr strm1 of
+					 SOME (#"h", strm2) =>
+						 (case charRdr strm2 of
+							 SOME (#"e", strm3) =>
+								 (case charRdr strm3 of
+									 SOME (#"n", strm4) => SOME (T.KW_then, strm4)
+									| _ => SOME (T.VAR_NAME stringBuilder strm0, strm3))
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm2))
+					| SOME (#"y", strm2) =>
+						 (case charRdr strm2 of
+							 SOME (#"p", strm3) =>
+								 (case charRdr strm3 of
+									 SOME (#"e", strm4) => SOME (T.KW_type, strm4)
+									| _ => SOME (T.VAR_NAME stringBuilder strm0, strm3))
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm2))
+					| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))
+			| SOME (#"v", strm1) =>
+				 (case charRdr strm1 of
+					 SOME (#"a", strm2) =>
+						 (case charRdr strm2 of
+							 SOME (#"l", strm3) => SOME (T.KW_val, strm3)
+							| _ => SOME (T.VAR_NAME stringBuilder strm0, strm2))
+					| _ => SOME (T.VAR_NAME stringBuilder strm0, strm1))

@@ -1,0 +1,4 @@
+(* expression precedence & associativity ; ^ *)
+val f = fn (s1: String) (s2: String) (s3: String) =>
+  s1 ^ s2 ^ s3
+; 0

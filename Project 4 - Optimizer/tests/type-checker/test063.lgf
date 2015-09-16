@@ -1,0 +1,7 @@
+(* let expression *)
+let
+  val one = 1
+  val two = 2
+in
+  one + two
+end

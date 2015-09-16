@@ -1,0 +1,2 @@
+(* case expression with data constructor pattern *)
+; case Unit of Unit [] {} => False end

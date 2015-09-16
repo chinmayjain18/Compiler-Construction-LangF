@@ -1,0 +1,4 @@
+(* expression precedence & associativity ; fn vs constraint *)
+val f = fn (b1: Bool) (b2: Bool) =>
+  b1 orelse b2 : Bool : Bool
+; 0

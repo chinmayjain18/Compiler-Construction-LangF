@@ -1,0 +1,3 @@
+(* case expression with data constructor pattern with missing sub-pattern *)
+datatype Option ['a] = NONE | SOME {'a}
+; case NONE [Integer] of NONE [Integer] => False | SOME [Integer] {z, } => True end

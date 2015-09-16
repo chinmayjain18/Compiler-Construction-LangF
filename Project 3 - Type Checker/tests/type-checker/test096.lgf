@@ -1,0 +1,5 @@
+(* case expression, non-datatype expression *)
+fun index ['a] (a : Array ['a]) (i : Integer) : 'a =
+  case a of a => a ! i end
+;
+index [Bool] (array [Bool] 1 True) 0

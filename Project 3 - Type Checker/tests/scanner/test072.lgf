@@ -1,0 +1,1 @@
+val a=(argc Unit)val x=a+(a+a)/(a*a)val y=(x/x+x/x+x%x)val z=if(True)then(x)else(~x);z

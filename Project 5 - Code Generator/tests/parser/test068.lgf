@@ -1,0 +1,4 @@
+(* type apply arg *)
+val id = fn ['a] (x: 'a) => x
+val stringId = id [String]
+; stringId "foobar"

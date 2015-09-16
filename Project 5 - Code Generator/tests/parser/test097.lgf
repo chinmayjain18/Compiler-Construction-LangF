@@ -1,0 +1,2 @@
+(* nullary data constructors as atomic expressions *)
+True orelse ~ True orelse ~ False orelse False

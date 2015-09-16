@@ -1,0 +1,7 @@
+(* let expression, with type declaration *)
+let
+  type T = Integer
+  val f = fn (x: Integer) => x
+in
+  f : T -> T
+end

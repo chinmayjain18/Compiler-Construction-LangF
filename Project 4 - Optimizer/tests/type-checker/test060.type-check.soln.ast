@@ -1,0 +1,7 @@
+val _ (* : Unit *) =
+   (((print : String -> Unit) ("Hello" : String)) : Unit;
+    ((print : String -> Unit) (" " : String)) : Unit;
+    ((print : String -> Unit) ("World" : String)) : Unit;
+    ((print : String -> Unit) ("\n" : String)) : Unit) : Unit
+;
+0 : Integer

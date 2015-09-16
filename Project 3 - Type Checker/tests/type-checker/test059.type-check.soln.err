@@ -1,0 +1,28 @@
+test059.lgf:2.0-test059.lgf:2.1 Error: 
+Unbound variable: a.
+  in: a
+test059.lgf:2.0-test059.lgf:2.1 Error: 
+Left operand of '+' not of type Integer.
+  operand: Unit
+  in: a + b
+test059.lgf:2.0-test059.lgf:2.1 Error: 
+Right operand of '+' not of type Integer.
+  operand: Unit
+  in: a + b
+test059.lgf:2.0-test059.lgf:2.5 Error: 
+Right operand of '+' not of type Integer.
+  operand: Unit
+  in: (a + b) + c
+test059.lgf:2.0-test059.lgf:2.9 Error: 
+Right operand of '+' not of type Integer.
+  operand: Unit
+  in: ((a + b) + c) + d
+test059.lgf:2.4-test059.lgf:2.5 Error: 
+Unbound variable: b.
+  in: b
+test059.lgf:2.8-test059.lgf:2.9 Error: 
+Unbound variable: c.
+  in: c
+test059.lgf:2.12-test059.lgf:2.13 Error: 
+Unbound variable: d.
+  in: d

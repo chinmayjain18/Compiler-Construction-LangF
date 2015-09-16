@@ -1,0 +1,4 @@
+(* value apply arg *)
+val add = fn (x: Integer) (y: Integer) => x + y
+val inc = add 1
+; inc 2

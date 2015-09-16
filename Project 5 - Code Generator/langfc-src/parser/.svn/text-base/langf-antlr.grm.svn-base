@@ -1,0 +1,414 @@
+(* langfc-src/scanner-parser/langf-antlr.grm
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * LangF parser specification for ml-antlr.
+ *)
+
+%defs (
+
+(* User declarations; available in semantic actions. *)
+structure PT = ParseTree
+
+fun mkExpLAssoc (exp1, args, argSpan: 'arg -> Source.Span.t, mkNode) =
+  let
+     fun mk (exp1, args) =
+       case args of
+          [] => exp1
+        | arg::args =>
+          let
+             val exp1 =
+               PT.Exp.make (mkNode (exp1, arg),
+                            (#1 (PT.Exp.span exp1), #2 (argSpan arg)))
+          in
+             mk (exp1, args)
+          end
+  in
+     mk (exp1, args)
+  end
+fun mkExpLAssocDisjConj (exp1, exps, mkNode) =
+  mkExpLAssoc (exp1, exps, PT.Exp.span, mkNode)
+fun mkExpLAssocConstraint (exp1, tys) =
+  mkExpLAssoc (exp1, tys, PT.Type.span,
+               fn (exp, ty) =>
+               PT.Exp.E_Constraint (exp, ty))
+fun mkExpLAssocBinOp (exp1, binops_and_exps) =
+  mkExpLAssoc (exp1, binops_and_exps, PT.Exp.span o #2,
+               fn (exp1, (binop, exp2)) =>
+               PT.Exp.E_BinOp (binop, exp1, exp2))
+fun mkExpLAssocApply (exp1, applyargs) =
+  mkExpLAssoc (exp1, applyargs, PT.ApplyArg.span,
+               fn (exp1, applyarg) =>
+               PT.Exp.E_Apply (exp1, applyarg))
+
+);
+
+%name LangFAntlr;
+
+(* Tokens. *)
+%tokens
+  : KW_and        ("and")
+  | KW_andalso    ("andalso")
+  | KW_case       ("case")
+  | KW_datatype   ("datatype")
+  | KW_else       ("else")
+  | KW_end        ("end")
+  | KW_fn         ("fn")
+  | KW_fun        ("fun")
+  | KW_if         ("if")
+  | KW_in         ("in")
+  | KW_let        ("let")
+  | KW_of         ("of")
+  | KW_orelse     ("orelse")
+  | KW_then       ("then")
+  | KW_type       ("type")
+  | KW_val        ("val")
+  | PLUS          ("+")
+  | MINUS         ("-")
+  | ASTERISK      ("*")
+  | SLASH         ("/")
+  | PERCENT       ("%")
+  | TILDE         ("~")
+  | EQEQ          ("==")
+  | LTGT          ("<>")
+  | LTEQ          ("<=")
+  | LT            ("<")
+  | GTEQ          (">=")
+  | GT            (">")
+  | CARET         ("^")
+  | HASH          ("#")
+  | BANG          ("!")
+  | COLON_EQ      (":=")
+  | LPAREN        ("(")
+  | RPAREN        (")")
+  | LSBRACK       ("[")
+  | RSBRACK       ("]")
+  | LCBRACK       ("{")
+  | RCBRACK       ("}")
+  | MINUS_ARROW   ("->")
+  | EQ_ARROW      ("=>")
+  | EQ            ("=")
+  | COLON         (":")
+  | COMMA         (",")
+  | SEMI          (";")
+  | VBAR          ("|")
+  | UNDERSCORE    ("_")
+  | TYVAR_NAME of Atom.atom
+  | CON_NAME of Atom.atom
+  | VAR_NAME of Atom.atom
+  | INTEGER of IntInf.int
+  | STRING of String.string
+  ;
+
+(* Keyword tokens, for error recovery. *)
+%keywords
+    KW_and
+  , KW_andalso
+  , KW_case
+  , KW_datatype
+  , KW_else
+  , KW_end
+  , KW_fn
+  , KW_fun
+  , KW_if
+  , KW_in
+  , KW_let
+  , KW_of
+  , KW_orelse
+  , KW_then
+  , KW_type
+  , KW_val
+  ;
+
+(* Start non-terminal. *)
+%start Program;
+
+(* Rules. *)
+
+Program
+  : Decls=( Decl* ) ";" Exp => (
+      PT.Prog.make ((Decls, Exp), FULL_SPAN) )
+  | Exp => (
+      PT.Prog.make (([], Exp), FULL_SPAN) )
+  ;
+
+Decl
+  : "type" TyConName TypeParams "=" Type => (
+      PT.Decl.make (PT.Decl.D_Type (TyConName, TypeParams, Type), FULL_SPAN) )
+  | "datatype" DataDecl DataDecls=( "and" DataDecl )* => (
+      PT.Decl.make (PT.Decl.D_Data (DataDecl::DataDecls), FULL_SPAN) )
+  | "val" SimplePat TypeOpt=( ":" Type )? "=" Exp => (
+      PT.Decl.make (PT.Decl.D_Val (SimplePat, TypeOpt, Exp), FULL_SPAN) )
+  | "fun" FunDecl FunDecls=( "and" FunDecl )* => (
+      PT.Decl.make (PT.Decl.D_Fun (FunDecl::FunDecls), FULL_SPAN) )
+  ;
+
+TypeParams
+  : (* *) => ( [] )
+  | "[" "]" => ( [] )
+  | "[" TyVarName TyVarNames=( "," TyVarName )* "]" => ( TyVarName::TyVarNames )
+  ;
+
+Type
+  : "[" TyVarName "]" "->" Type => (
+      PT.Type.make (PT.Type.T_TyFn (TyVarName, Type), FULL_SPAN) )
+  | Type=AtomicType TypeOpt=( "->" Type )? => (
+      case TypeOpt of
+         NONE => Type
+       | SOME Type' => PT.Type.make (PT.Type.T_Fn (Type, Type'), FULL_SPAN) )
+  ;
+
+AtomicType
+  : TyConName TypeArgs => (
+      PT.Type.make (PT.Type.T_TyCon (TyConName, TypeArgs), FULL_SPAN) )
+  | TyVarName => (
+      PT.Type.make (PT.Type.T_TyVar TyVarName, FULL_SPAN) )
+  | "(" Type ")" => (
+      PT.Type.make (PT.Type.node Type, FULL_SPAN) )
+  ;
+
+TypeArgs
+  : (* *) => ( [] )
+  | "[" "]" => ( [] )
+  | "[" Type Types=( "," Type )* "]" => ( Type::Types )
+  ;
+
+DataDecl
+  : TyConName TypeParams "=" DaConDecl DaConDecls=( "|" DaConDecl )* => (
+      (TyConName, TypeParams, DaConDecl::DaConDecls) )
+  ;
+
+DaConDecl
+  : DaConName DaConArgTys => ( (DaConName, DaConArgTys) )
+  ;
+
+DaConArgTys
+  : (* *) => ( [] )
+  | "{" "}" => ( [] )
+  | "{" Type Types=( "," Type )* "}" => ( Type::Types )
+  ;
+
+SimplePat
+  : VarName => (
+      PT.SimplePat.make (PT.SimplePat.P_VarName VarName, FULL_SPAN) )
+  | "_" => (
+      PT.SimplePat.make (PT.SimplePat.P_Wild, FULL_SPAN) )
+  ;
+
+FunDecl
+  : VarName Params=( Param )+ ":" Type "=" Exp => ( (VarName, Params, Type, Exp) )
+  ;
+
+Param
+  : "(" VarName ":" Type ")" => (
+      PT.Param.make (PT.Param.P_VarName (VarName, Type), FULL_SPAN) )
+  | "[" TyVarName "]" => (
+      PT.Param.make (PT.Param.P_TyVarName TyVarName, FULL_SPAN) )
+  ;
+
+Exp
+  : "fn" Params=( Param )+ "=>" Exp => (
+      PT.Exp.make (PT.Exp.E_Fn (Params, Exp), FULL_SPAN) )
+  | "if" Exp "then" Exp "else" Exp => (
+      PT.Exp.make (PT.Exp.E_If (Exp1, Exp2, Exp3), FULL_SPAN) )
+  | ConstraintExp => ( ConstraintExp )
+  ;
+
+ConstraintExp
+  : Exp=ComplexExp Types=( ":" Type )* => (
+      mkExpLAssocConstraint (Exp, Types) )
+  ;
+
+ComplexExp
+  : OrelseExp => ( OrelseExp )
+  ;
+
+OrelseExp
+  : Exp=AndalsoExp Exps=( "orelse" AndalsoExp )* => (
+      mkExpLAssocDisjConj (Exp, Exps, PT.Exp.E_Orelse) )
+  ;
+
+AndalsoExp
+  : Exp=IdxUpdExp Exps=( "andalso" IdxUpdExp )* => (
+      mkExpLAssocDisjConj (Exp, Exps, PT.Exp.E_Andalso) )
+  ;
+
+IdxUpdExp
+  : Exp=( CmpExp ) ExpsExp3=( ( IdxOp CmpExp )+ ( ":=" IdxUpdExp )? )? => (
+      case ExpsExp3 of
+          NONE => mkExpLAssocBinOp (Exp, [])
+        | SOME (Exps, NONE) => mkExpLAssocBinOp (Exp, Exps)
+        | SOME (Exps, SOME Exp3) =>
+            let
+              val Exps = List.rev Exps
+              val Exp2 = #2 (List.hd Exps)
+              val Exps = List.rev (List.tl Exps)
+              val Exp1 = mkExpLAssocBinOp (Exp, Exps)
+            in
+              PT.Exp.make (PT.Exp.E_TernOp (PT.TernOp.Upd, Exp1, Exp2, Exp3),
+                           (#1 (PT.Exp.span Exp1), #2 (PT.Exp.span Exp3)))
+            end )
+  ;
+
+IdxOp
+  : "!" => ( PT.BinOp.Idx )
+  ;
+
+CmpExp
+  : Exp=ConcatExp Exps=( CmpOp ConcatExp )* => (
+      mkExpLAssocBinOp (Exp, Exps) )
+  ;
+
+CmpOp
+  : "==" => ( PT.BinOp.Eq )
+  | "<>" => ( PT.BinOp.NEq )
+  | "<=" => ( PT.BinOp.Lte )
+  | "<" => ( PT.BinOp.Lt )
+  | ">=" => ( PT.BinOp.Gte )
+  | ">" => ( PT.BinOp.Gt )
+  ;
+
+ConcatExp
+  : Exp=AddSubExp ExpOpt=( ConcatOp ConcatExp )? => (
+      case ExpOpt of
+         NONE => Exp
+       | SOME (ConcatOp, Exp') =>
+           PT.Exp.make (PT.Exp.E_BinOp (ConcatOp, Exp, Exp'), FULL_SPAN) )
+  ;
+
+ConcatOp
+  : "^" => ( PT.BinOp.Concat )
+  ;
+
+AddSubExp
+  : Exp=MulDivModExp Exps=( AddSubOp MulDivModExp )* => (
+      mkExpLAssocBinOp (Exp, Exps) )
+  ;
+
+AddSubOp
+  : "+" => ( PT.BinOp.Add )
+  | "-" => ( PT.BinOp.Sub )
+  ;
+
+MulDivModExp
+  : Exp=( SimpleExp ) Exps=( MulDivModOp SimpleExp )* => (
+      mkExpLAssocBinOp (Exp, Exps) )
+  ;
+
+MulDivModOp
+  : "*" => ( PT.BinOp.Mul )
+  | "/" => ( PT.BinOp.Div )
+  | "%" => ( PT.BinOp.Mod )
+  ;
+
+SimpleExp
+  : NegLenExp => ( NegLenExp )
+  | DaConExp => ( DaConExp )
+  | ApplyExp => ( ApplyExp )
+  ;
+
+NegLenExp
+  : NegLenOp Exp=( AtomicExp | NullaryDaConExp ) => (
+      PT.Exp.make (PT.Exp.E_UnOp (NegLenOp, Exp), FULL_SPAN) )
+  ;
+
+NegLenOp
+  : "~" => ( PT.UnOp.Neg )
+  | "#" => ( PT.UnOp.Len )
+  ;
+
+DaConExp
+  : DaConName TypeArgs DaConArgs => (
+      PT.Exp.make (PT.Exp.E_DaCon (DaConName, TypeArgs, DaConArgs), FULL_SPAN) )
+  ;
+
+DaConArgs
+  : (* *) => ( [] )
+  | "{" "}" => ( [] )
+  | "{" Exp Exps=( "," Exp )* "}" => ( Exp::Exps )
+  ;
+
+ApplyExp
+  : AtomicExp ApplyArgs=( ApplyArg )* => (
+      mkExpLAssocApply (AtomicExp, ApplyArgs) )
+  ;
+
+ApplyArg
+  : Exp=( AtomicExp | NullaryDaConExp ) => (
+      PT.ApplyArg.make (PT.ApplyArg.A_Exp Exp, FULL_SPAN) )
+  | "[" Type "]" => (
+      PT.ApplyArg.make (PT.ApplyArg.A_Type Type, FULL_SPAN) )
+  ;
+
+NullaryDaConExp
+  : DaConName => (
+       PT.Exp.make (PT.Exp.E_DaCon (DaConName, [], []), FULL_SPAN) )
+  ;
+
+AtomicExp
+  : VarName => (
+      PT.Exp.make (PT.Exp.E_VarName VarName, FULL_SPAN) )
+  | INTEGER => (
+      PT.Exp.make (PT.Exp.E_Integer INTEGER, FULL_SPAN) )
+  | STRING => (
+      PT.Exp.make (PT.Exp.E_String STRING, FULL_SPAN) )
+  | "(" ExpSeq ")" => (
+      case ExpSeq of
+         [Exp] => Exp
+       | _ => PT.Exp.make (PT.Exp.E_Seq ExpSeq, FULL_SPAN) )
+  | "let" Decls=( Decl )+ "in" ExpSeq "end" => (
+      PT.Exp.make (PT.Exp.E_Let (Decls, ExpSeq), FULL_SPAN) )
+  | "case" Exp "of" MatchRule MatchRules=( "|" MatchRule )* "end" => (
+      PT.Exp.make (PT.Exp.E_Case (Exp, MatchRule::MatchRules), FULL_SPAN) )
+  ;
+
+ExpSeq
+  : Exp Exps=( ";" Exp )* => ( Exp::Exps )
+  ;
+
+MatchRule
+  : Pat "=>" Exp => (
+      PT.MatchRule.make ((Pat, Exp), FULL_SPAN) )
+  ;
+
+Pat
+  : DaConName TypeArgs DaConPats => (
+      PT.Pat.make (PT.Pat.P_DaCon (DaConName, TypeArgs, DaConPats), FULL_SPAN) )
+  | SimplePat => (
+      PT.Pat.make (PT.Pat.P_SimplePat SimplePat, FULL_SPAN) )
+  ;
+
+DaConPats
+  : (* *) => ( [] )
+  | "{" "}" => ( [] )
+  | "{" SimplePat SimplePats=( "," SimplePat )* "}" => ( SimplePat::SimplePats )
+  ;
+
+
+TyVarName
+  : TYVAR_NAME => ( PT.TyVarName.make (TYVAR_NAME, FULL_SPAN) )
+  ;
+
+TyConName
+  : CON_NAME => ( PT.TyConName.make (CON_NAME, FULL_SPAN) )
+  ;
+
+DaConName
+  : CON_NAME => ( PT.DaConName.make (CON_NAME, FULL_SPAN) )
+  ;
+
+VarName
+  : VAR_NAME => ( PT.VarName.make (VAR_NAME, FULL_SPAN) )
+  ;

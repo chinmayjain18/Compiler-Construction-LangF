@@ -1,0 +1,6 @@
+(* let expression, with escaping datatype declaration *)
+let
+  datatype T = T {Integer}
+in
+  fn (x: Integer) => T {x}
+end

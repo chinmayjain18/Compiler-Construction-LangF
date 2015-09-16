@@ -1,0 +1,3 @@
+(* datatype decls require > 0 data constructors *)
+datatype Void =
+; 0

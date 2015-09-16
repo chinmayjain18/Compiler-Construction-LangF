@@ -1,0 +1,7 @@
+datatype T = A
+           | B
+;
+case A of
+   A => 0
+ | B => 1
+end

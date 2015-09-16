@@ -1,0 +1,5 @@
+(* orelse expression *)
+val t = 0 == 0
+val f = 0 <> 0
+;
+t orelse f orelse f

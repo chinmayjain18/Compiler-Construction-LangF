@@ -1,0 +1,7 @@
+val (* test097.lgf:1.0-test097.lgf:1.3 *)
+(* VAR_NAME *) s (* test097.lgf:1.4-test097.lgf:1.5 *)
+= (* test097.lgf:1.6-test097.lgf:1.7 *)
+(* STRING *) "hello world!" (* test097.lgf:1.8-test097.lgf:1.24 *)
+; (* test097.lgf:1.25-test097.lgf:1.26 *)
+(* VAR_NAME *) print (* test097.lgf:2.0-test097.lgf:2.5 *)
+(* VAR_NAME *) s (* test097.lgf:2.6-test097.lgf:2.7 *)

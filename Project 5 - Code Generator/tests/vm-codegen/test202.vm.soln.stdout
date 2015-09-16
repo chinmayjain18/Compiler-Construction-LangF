@@ -1,0 +1,5 @@
+isqrt 5 = 2
+isqrt 35 = 5
+isqrt 37 = 6
+isqrt 5634 = 75
+isqrt 56745745 = 7532

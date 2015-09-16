@@ -1,0 +1,3 @@
+val add = fn (x : Integer) (y : Integer) => (x + y)
+;
+(add 1) 2

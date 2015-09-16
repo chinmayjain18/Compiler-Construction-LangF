@@ -1,0 +1,2 @@
+(* arith op, non-integer left *)
+"True" + 1

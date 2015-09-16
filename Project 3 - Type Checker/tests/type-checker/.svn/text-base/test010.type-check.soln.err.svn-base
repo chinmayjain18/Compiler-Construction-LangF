@@ -1,0 +1,3 @@
+test010.lgf:2.12-test010.lgf:2.14 Error: 
+Unbound type constructor: Id.
+  in: Id [Integer]

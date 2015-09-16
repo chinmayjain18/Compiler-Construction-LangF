@@ -1,0 +1,3 @@
+test025.lgf:4.14-test025.lgf:4.23 Error: 
+Type constructor Pair given 1 type arguments but takes 2 type arguments.
+  in: Pair ['a]

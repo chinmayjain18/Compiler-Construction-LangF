@@ -1,0 +1,6 @@
+test034.lgf:3.43-test034.lgf:3.44 Error: 
+Argument type and expression of data constructor Pair disagree.
+  arg type:   String
+  expression: Integer
+  in arg: 1
+  in: Pair [Integer, String] {1, 1}

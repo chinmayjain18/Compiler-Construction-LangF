@@ -1,0 +1,1458 @@
+caj4430cc
+
+
+$ diff -r tests/scanner ../../project/project1/tests/scanner
+
+
+$ make
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C langfc-src
+mlton -const 'Exn.keepHistory true' -output ../bin/.mlton-exec/langfc.mlton langfc.mlb
+Warning: scanner/langf-hand-scanner.sml 57.6.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm1 of (SOME (#"a"  ...  lder strList strm2))
+Warning: scanner/langf-hand-scanner.sml 69.14.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm2 of (SOME (c2,   ...  lder strList strm2))
+Warning: scanner/langf-hand-scanner.sml 72.21.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm3 of (SOME (c3,   ...  lder strList strm2))
+Warning: scanner/langf-hand-scanner.sml 756.14.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm1 of (SOME (c1,   ...  c1 ; scanTok strm1))
+Warning: scanner/langf-hand-scanner.sml 702.9.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm3 of (SOME (c, s  ...  E (T.KW_val, strm3))
+Warning: scanner/langf-hand-scanner.sml 665.11.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm4 of (SOME (c, s  ...   (T.KW_type, strm4))
+Warning: scanner/langf-hand-scanner.sml 635.11.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm4 of (SOME (c, s  ...   (T.KW_then, strm4))
+Warning: scanner/langf-hand-scanner.sml 582.15.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm6 of (SOME (c, s  ...  T.KW_orelse, strm6))
+Warning: scanner/langf-hand-scanner.sml 562.7.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm2 of (SOME (c, s  ...  ME (T.KW_of, strm2))
+Warning: scanner/langf-hand-scanner.sml 534.9.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm3 of (SOME (c, s  ...  E (T.KW_let, strm3))
+Warning: scanner/langf-hand-scanner.sml 511.7.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm2 of (SOME (c, s  ...  ME (T.KW_in, strm2))
+Warning: scanner/langf-hand-scanner.sml 499.7.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm2 of (SOME (c, s  ...  ME (T.KW_if, strm2))
+Warning: scanner/langf-hand-scanner.sml 471.9.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm3 of (SOME (c, s  ...  E (T.KW_fun, strm3))
+Warning: scanner/langf-hand-scanner.sml 457.7.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm2 of (SOME (c, s  ...  ME (T.KW_fn, strm2))
+Warning: scanner/langf-hand-scanner.sml 429.9.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm3 of (SOME (c, s  ...  E (T.KW_end, strm3))
+Warning: scanner/langf-hand-scanner.sml 401.11.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm4 of (SOME (c, s  ...   (T.KW_else, strm4))
+Warning: scanner/langf-hand-scanner.sml 334.18.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm8 of (SOME (c, s  ...  KW_datatype, strm8))
+Warning: scanner/langf-hand-scanner.sml 287.11.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm4 of (SOME (c, s  ...   (T.KW_case, strm4))
+Warning: scanner/langf-hand-scanner.sml 217.17.
+  Case is not exhaustive.
+    missing pattern: NONE
+    in: case charRdr strm7 of (SOME (c, s  ...  .KW_andalso, strm7))
+
+
+Scanner Tests
+=============
+
+
+test000 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test000.scan.err -Ckeep-scan=true -Cstop-scan=true test000.lgf
+
+-----scan.toks-----
+$ diff test000.scan.soln.toks test000.scan.toks
+
+**PASS**
+
+====================
+
+test001 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test001.scan.err -Ckeep-scan=true -Cstop-scan=true test001.lgf
+
+-----scan.toks-----
+$ diff test001.scan.soln.toks test001.scan.toks
+
+**PASS**
+
+====================
+
+test002 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test002.scan.err -Ckeep-scan=true -Cstop-scan=true test002.lgf
+
+-----scan.toks-----
+$ diff test002.scan.soln.toks test002.scan.toks
+
+**PASS**
+
+====================
+
+test003 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test003.scan.err -Ckeep-scan=true -Cstop-scan=true test003.lgf
+
+-----scan.toks-----
+$ diff test003.scan.soln.toks test003.scan.toks
+
+**PASS**
+
+====================
+
+test004 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test004.scan.err -Ckeep-scan=true -Cstop-scan=true test004.lgf
+
+-----scan.toks-----
+$ diff test004.scan.soln.toks test004.scan.toks
+
+**PASS**
+
+====================
+
+test005 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test005.scan.err -Ckeep-scan=true -Cstop-scan=true test005.lgf
+
+-----scan.toks-----
+$ diff test005.scan.soln.toks test005.scan.toks
+
+**PASS**
+
+====================
+
+test006 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test006.scan.err -Ckeep-scan=true -Cstop-scan=true test006.lgf
+
+-----scan.toks-----
+$ diff test006.scan.soln.toks test006.scan.toks
+
+**PASS**
+
+====================
+
+test007 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test007.scan.err -Ckeep-scan=true -Cstop-scan=true test007.lgf
+
+-----scan.toks-----
+$ diff test007.scan.soln.toks test007.scan.toks
+
+**PASS**
+
+====================
+
+test008 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test008.scan.err -Ckeep-scan=true -Cstop-scan=true test008.lgf
+
+-----scan.toks-----
+$ diff test008.scan.soln.toks test008.scan.toks
+
+**PASS**
+
+====================
+
+test009 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test009.scan.err -Ckeep-scan=true -Cstop-scan=true test009.lgf
+
+-----scan.toks-----
+$ diff test009.scan.soln.toks test009.scan.toks
+
+**PASS**
+
+====================
+
+test010 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test010.scan.err -Ckeep-scan=true -Cstop-scan=true test010.lgf
+
+-----scan.toks-----
+$ diff test010.scan.soln.toks test010.scan.toks
+
+**PASS**
+
+====================
+
+test011 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test011.scan.err -Ckeep-scan=true -Cstop-scan=true test011.lgf
+
+-----scan.toks-----
+$ diff test011.scan.soln.toks test011.scan.toks
+
+**PASS**
+
+====================
+
+test012 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test012.scan.err -Ckeep-scan=true -Cstop-scan=true test012.lgf
+
+-----scan.toks-----
+$ diff test012.scan.soln.toks test012.scan.toks
+
+**PASS**
+
+====================
+
+test013 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test013.scan.err -Ckeep-scan=true -Cstop-scan=true test013.lgf
+
+-----scan.toks-----
+$ diff test013.scan.soln.toks test013.scan.toks
+
+**PASS**
+
+====================
+
+test014 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test014.scan.err -Ckeep-scan=true -Cstop-scan=true test014.lgf
+
+-----scan.toks-----
+$ diff test014.scan.soln.toks test014.scan.toks
+
+**PASS**
+
+====================
+
+test015 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test015.scan.err -Ckeep-scan=true -Cstop-scan=true test015.lgf
+
+-----scan.toks-----
+$ diff test015.scan.soln.toks test015.scan.toks
+
+**PASS**
+
+====================
+
+test016 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test016.scan.err -Ckeep-scan=true -Cstop-scan=true test016.lgf
+
+-----scan.toks-----
+$ diff test016.scan.soln.toks test016.scan.toks
+
+**PASS**
+
+====================
+
+test017 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test017.scan.err -Ckeep-scan=true -Cstop-scan=true test017.lgf
+
+-----scan.toks-----
+$ diff test017.scan.soln.toks test017.scan.toks
+
+**PASS**
+
+====================
+
+test018 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test018.scan.err -Ckeep-scan=true -Cstop-scan=true test018.lgf
+
+-----scan.toks-----
+$ diff test018.scan.soln.toks test018.scan.toks
+
+**PASS**
+
+====================
+
+test019 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test019.scan.err -Ckeep-scan=true -Cstop-scan=true test019.lgf
+
+-----scan.toks-----
+$ diff test019.scan.soln.toks test019.scan.toks
+
+**PASS**
+
+====================
+
+test020 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test020.scan.err -Ckeep-scan=true -Cstop-scan=true test020.lgf
+
+-----scan.toks-----
+$ diff test020.scan.soln.toks test020.scan.toks
+
+**PASS**
+
+====================
+
+test021 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test021.scan.err -Ckeep-scan=true -Cstop-scan=true test021.lgf
+
+-----scan.toks-----
+$ diff test021.scan.soln.toks test021.scan.toks
+
+**PASS**
+
+====================
+
+test022 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test022.scan.err -Ckeep-scan=true -Cstop-scan=true test022.lgf
+
+-----scan.toks-----
+$ diff test022.scan.soln.toks test022.scan.toks
+
+**PASS**
+
+====================
+
+test023 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test023.scan.err -Ckeep-scan=true -Cstop-scan=true test023.lgf
+
+-----scan.toks-----
+$ diff test023.scan.soln.toks test023.scan.toks
+
+**PASS**
+
+====================
+
+test024 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test024.scan.err -Ckeep-scan=true -Cstop-scan=true test024.lgf
+
+-----scan.toks-----
+$ diff test024.scan.soln.toks test024.scan.toks
+
+**PASS**
+
+====================
+
+test025 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test025.scan.err -Ckeep-scan=true -Cstop-scan=true test025.lgf
+
+-----scan.toks-----
+$ diff test025.scan.soln.toks test025.scan.toks
+
+**PASS**
+
+====================
+
+test026 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test026.scan.err -Ckeep-scan=true -Cstop-scan=true test026.lgf
+
+-----scan.toks-----
+$ diff test026.scan.soln.toks test026.scan.toks
+
+**PASS**
+
+====================
+
+test027 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test027.scan.err -Ckeep-scan=true -Cstop-scan=true test027.lgf
+
+-----scan.toks-----
+$ diff test027.scan.soln.toks test027.scan.toks
+
+**PASS**
+
+====================
+
+test028 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test028.scan.err -Ckeep-scan=true -Cstop-scan=true test028.lgf
+
+-----scan.toks-----
+$ diff test028.scan.soln.toks test028.scan.toks
+
+**PASS**
+
+====================
+
+test029 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test029.scan.err -Ckeep-scan=true -Cstop-scan=true test029.lgf
+
+-----scan.toks-----
+$ diff test029.scan.soln.toks test029.scan.toks
+
+**PASS**
+
+====================
+
+test030 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test030.scan.err -Ckeep-scan=true -Cstop-scan=true test030.lgf
+
+-----scan.toks-----
+$ diff test030.scan.soln.toks test030.scan.toks
+
+**PASS**
+
+====================
+
+test031 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test031.scan.err -Ckeep-scan=true -Cstop-scan=true test031.lgf
+
+-----scan.toks-----
+$ diff test031.scan.soln.toks test031.scan.toks
+
+**PASS**
+
+====================
+
+test032 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test032.scan.err -Ckeep-scan=true -Cstop-scan=true test032.lgf
+
+-----scan.toks-----
+$ diff test032.scan.soln.toks test032.scan.toks
+
+**PASS**
+
+====================
+
+test033 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test033.scan.err -Ckeep-scan=true -Cstop-scan=true test033.lgf
+
+-----scan.toks-----
+$ diff test033.scan.soln.toks test033.scan.toks
+
+**PASS**
+
+====================
+
+test034 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test034.scan.err -Ckeep-scan=true -Cstop-scan=true test034.lgf
+
+-----scan.toks-----
+$ diff test034.scan.soln.toks test034.scan.toks
+
+**PASS**
+
+====================
+
+test035 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test035.scan.err -Ckeep-scan=true -Cstop-scan=true test035.lgf
+
+-----scan.toks-----
+$ diff test035.scan.soln.toks test035.scan.toks
+
+**PASS**
+
+====================
+
+test036 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test036.scan.err -Ckeep-scan=true -Cstop-scan=true test036.lgf
+
+-----scan.toks-----
+$ diff test036.scan.soln.toks test036.scan.toks
+
+**PASS**
+
+====================
+
+test037 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test037.scan.err -Ckeep-scan=true -Cstop-scan=true test037.lgf
+
+-----scan.toks-----
+$ diff test037.scan.soln.toks test037.scan.toks
+
+**PASS**
+
+====================
+
+test038 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test038.scan.err -Ckeep-scan=true -Cstop-scan=true test038.lgf
+
+-----scan.toks-----
+$ diff test038.scan.soln.toks test038.scan.toks
+
+**PASS**
+
+====================
+
+test039 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test039.scan.err -Ckeep-scan=true -Cstop-scan=true test039.lgf
+
+-----scan.toks-----
+$ diff test039.scan.soln.toks test039.scan.toks
+
+**PASS**
+
+====================
+
+test040 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test040.scan.err -Ckeep-scan=true -Cstop-scan=true test040.lgf
+
+-----scan.toks-----
+$ diff test040.scan.soln.toks test040.scan.toks
+
+**PASS**
+
+====================
+
+test041 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test041.scan.err -Ckeep-scan=true -Cstop-scan=true test041.lgf
+
+-----scan.toks-----
+$ diff test041.scan.soln.toks test041.scan.toks
+
+**PASS**
+
+====================
+
+test042 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test042.scan.err -Ckeep-scan=true -Cstop-scan=true test042.lgf
+
+-----scan.toks-----
+$ diff test042.scan.soln.toks test042.scan.toks
+
+**PASS**
+
+====================
+
+test043 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test043.scan.err -Ckeep-scan=true -Cstop-scan=true test043.lgf
+
+-----scan.toks-----
+$ diff test043.scan.soln.toks test043.scan.toks
+
+**PASS**
+
+====================
+
+test044 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test044.scan.err -Ckeep-scan=true -Cstop-scan=true test044.lgf
+
+-----scan.toks-----
+$ diff test044.scan.soln.toks test044.scan.toks
+
+**PASS**
+
+====================
+
+test045 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test045.scan.err -Ckeep-scan=true -Cstop-scan=true test045.lgf
+
+-----scan.toks-----
+$ diff test045.scan.soln.toks test045.scan.toks
+
+**PASS**
+
+====================
+
+test046 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test046.scan.err -Ckeep-scan=true -Cstop-scan=true test046.lgf
+
+-----scan.toks-----
+$ diff test046.scan.soln.toks test046.scan.toks
+
+**PASS**
+
+====================
+
+test047 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test047.scan.err -Ckeep-scan=true -Cstop-scan=true test047.lgf
+
+-----scan.toks-----
+$ diff test047.scan.soln.toks test047.scan.toks
+
+**PASS**
+
+====================
+
+test048 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test048.scan.err -Ckeep-scan=true -Cstop-scan=true test048.lgf
+
+-----scan.toks-----
+$ diff test048.scan.soln.toks test048.scan.toks
+
+**PASS**
+
+====================
+
+test049 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test049.scan.err -Ckeep-scan=true -Cstop-scan=true test049.lgf
+
+-----scan.toks-----
+$ diff test049.scan.soln.toks test049.scan.toks
+
+**PASS**
+
+====================
+
+test050 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test050.scan.err -Ckeep-scan=true -Cstop-scan=true test050.lgf
+
+-----scan.toks-----
+$ diff test050.scan.soln.toks test050.scan.toks
+
+**PASS**
+
+====================
+
+test051 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test051.scan.err -Ckeep-scan=true -Cstop-scan=true test051.lgf
+
+-----scan.toks-----
+$ diff test051.scan.soln.toks test051.scan.toks
+
+**PASS**
+
+====================
+
+test052 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test052.scan.err -Ckeep-scan=true -Cstop-scan=true test052.lgf
+
+-----scan.toks-----
+$ diff test052.scan.soln.toks test052.scan.toks
+
+**PASS**
+
+====================
+
+test053 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test053.scan.err -Ckeep-scan=true -Cstop-scan=true test053.lgf
+
+-----scan.toks-----
+$ diff test053.scan.soln.toks test053.scan.toks
+
+**PASS**
+
+====================
+
+test054 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test054.scan.err -Ckeep-scan=true -Cstop-scan=true test054.lgf
+
+-----scan.toks-----
+$ diff test054.scan.soln.toks test054.scan.toks
+
+**PASS**
+
+====================
+
+test055 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test055.scan.err -Ckeep-scan=true -Cstop-scan=true test055.lgf
+
+-----scan.toks-----
+$ diff test055.scan.soln.toks test055.scan.toks
+
+**PASS**
+
+====================
+
+test056 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test056.scan.err -Ckeep-scan=true -Cstop-scan=true test056.lgf
+
+-----scan.toks-----
+$ diff test056.scan.soln.toks test056.scan.toks
+
+**PASS**
+
+====================
+
+test057 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test057.scan.err -Ckeep-scan=true -Cstop-scan=true test057.lgf
+
+-----scan.toks-----
+$ diff test057.scan.soln.toks test057.scan.toks
+
+**PASS**
+
+====================
+
+test058 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test058.scan.err -Ckeep-scan=true -Cstop-scan=true test058.lgf
+
+-----scan.toks-----
+$ diff test058.scan.soln.toks test058.scan.toks
+
+**PASS**
+
+====================
+
+test059 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test059.scan.err -Ckeep-scan=true -Cstop-scan=true test059.lgf
+
+-----scan.toks-----
+$ diff test059.scan.soln.toks test059.scan.toks
+
+**PASS**
+
+====================
+
+test060 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test060.scan.err -Ckeep-scan=true -Cstop-scan=true test060.lgf
+
+-----scan.toks-----
+$ diff test060.scan.soln.toks test060.scan.toks
+
+**PASS**
+
+====================
+
+test061 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test061.scan.err -Ckeep-scan=true -Cstop-scan=true test061.lgf
+
+-----scan.toks-----
+$ diff test061.scan.soln.toks test061.scan.toks
+
+**PASS**
+
+====================
+
+test062 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test062.scan.err -Ckeep-scan=true -Cstop-scan=true test062.lgf
+
+-----scan.toks-----
+$ diff test062.scan.soln.toks test062.scan.toks
+
+**PASS**
+
+====================
+
+test063 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test063.scan.err -Ckeep-scan=true -Cstop-scan=true test063.lgf
+
+-----scan.toks-----
+$ diff test063.scan.soln.toks test063.scan.toks
+
+**PASS**
+
+====================
+
+test064 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test064.scan.err -Ckeep-scan=true -Cstop-scan=true test064.lgf
+
+-----scan.toks-----
+$ diff test064.scan.soln.toks test064.scan.toks
+
+**PASS**
+
+====================
+
+test065 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test065.scan.err -Ckeep-scan=true -Cstop-scan=true test065.lgf
+
+-----scan.toks-----
+$ diff test065.scan.soln.toks test065.scan.toks
+
+**PASS**
+
+====================
+
+test066 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test066.scan.err -Ckeep-scan=true -Cstop-scan=true test066.lgf
+
+-----scan.toks-----
+$ diff test066.scan.soln.toks test066.scan.toks
+
+**PASS**
+
+====================
+
+test067 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test067.scan.err -Ckeep-scan=true -Cstop-scan=true test067.lgf
+
+-----scan.toks-----
+$ diff test067.scan.soln.toks test067.scan.toks
+
+**PASS**
+
+====================
+
+test068 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test068.scan.err -Ckeep-scan=true -Cstop-scan=true test068.lgf
+
+-----scan.toks-----
+$ diff test068.scan.soln.toks test068.scan.toks
+
+**PASS**
+
+====================
+
+test069 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test069.scan.err -Ckeep-scan=true -Cstop-scan=true test069.lgf
+
+-----scan.toks-----
+$ diff test069.scan.soln.toks test069.scan.toks
+
+**PASS**
+
+====================
+
+test070 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test070.scan.err -Ckeep-scan=true -Cstop-scan=true test070.lgf
+
+-----scan.toks-----
+$ diff test070.scan.soln.toks test070.scan.toks
+
+**PASS**
+
+====================
+
+test071 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test071.scan.err -Ckeep-scan=true -Cstop-scan=true test071.lgf
+
+-----scan.toks-----
+$ diff test071.scan.soln.toks test071.scan.toks
+
+**PASS**
+
+====================
+
+test072 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test072.scan.err -Ckeep-scan=true -Cstop-scan=true test072.lgf
+
+-----scan.toks-----
+$ diff test072.scan.soln.toks test072.scan.toks
+
+**PASS**
+
+====================
+
+test073 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test073.scan.err -Ckeep-scan=true -Cstop-scan=true test073.lgf
+
+-----scan.toks-----
+$ diff test073.scan.soln.toks test073.scan.toks
+
+**PASS**
+
+====================
+
+test074 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test074.scan.err -Ckeep-scan=true -Cstop-scan=true test074.lgf
+
+-----scan.toks-----
+$ diff test074.scan.soln.toks test074.scan.toks
+
+**PASS**
+
+====================
+
+test075 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test075.scan.err -Ckeep-scan=true -Cstop-scan=true test075.lgf
+
+-----scan.toks-----
+$ diff test075.scan.soln.toks test075.scan.toks
+
+**PASS**
+
+====================
+
+test076 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test076.scan.err -Ckeep-scan=true -Cstop-scan=true test076.lgf
+
+-----scan.toks-----
+$ diff test076.scan.soln.toks test076.scan.toks
+
+**PASS**
+
+====================
+
+test077 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test077.scan.err -Ckeep-scan=true -Cstop-scan=true test077.lgf
+
+-----scan.toks-----
+$ diff test077.scan.soln.toks test077.scan.toks
+
+**PASS**
+
+====================
+
+test078 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test078.scan.err -Ckeep-scan=true -Cstop-scan=true test078.lgf
+
+-----scan.toks-----
+$ diff test078.scan.soln.toks test078.scan.toks
+
+**PASS**
+
+====================
+
+test079 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test079.scan.err -Ckeep-scan=true -Cstop-scan=true test079.lgf
+
+-----scan.toks-----
+$ diff test079.scan.soln.toks test079.scan.toks
+
+**PASS**
+
+====================
+
+test080 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test080.scan.err -Ckeep-scan=true -Cstop-scan=true test080.lgf
+
+-----scan.toks-----
+$ diff test080.scan.soln.toks test080.scan.toks
+
+**PASS**
+
+====================
+
+test081 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test081.scan.err -Ckeep-scan=true -Cstop-scan=true test081.lgf
+
+-----scan.toks-----
+$ diff test081.scan.soln.toks test081.scan.toks
+
+**PASS**
+
+====================
+
+test082 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test082.scan.err -Ckeep-scan=true -Cstop-scan=true test082.lgf
+
+-----scan.toks-----
+$ diff test082.scan.soln.toks test082.scan.toks
+
+**PASS**
+
+====================
+
+test083 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test083.scan.err -Ckeep-scan=true -Cstop-scan=true test083.lgf
+
+-----scan.toks-----
+$ diff test083.scan.soln.toks test083.scan.toks
+
+**PASS**
+
+====================
+
+test084 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test084.scan.err -Ckeep-scan=true -Cstop-scan=true test084.lgf
+
+-----scan.toks-----
+$ diff test084.scan.soln.toks test084.scan.toks
+
+**PASS**
+
+====================
+
+test085 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test085.scan.err -Ckeep-scan=true -Cstop-scan=true test085.lgf
+
+-----scan.toks-----
+$ diff test085.scan.soln.toks test085.scan.toks
+
+**PASS**
+
+====================
+
+test086 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test086.scan.err -Ckeep-scan=true -Cstop-scan=true test086.lgf
+
+-----scan.toks-----
+$ diff test086.scan.soln.toks test086.scan.toks
+
+**PASS**
+
+====================
+
+test087 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test087.scan.err -Ckeep-scan=true -Cstop-scan=true test087.lgf
+
+-----scan.toks-----
+$ diff test087.scan.soln.toks test087.scan.toks
+
+**PASS**
+
+====================
+
+test088 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test088.scan.err -Ckeep-scan=true -Cstop-scan=true test088.lgf
+
+-----scan.toks-----
+$ diff test088.scan.soln.toks test088.scan.toks
+
+**PASS**
+
+====================
+
+test089 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test089.scan.err -Ckeep-scan=true -Cstop-scan=true test089.lgf
+
+-----scan.toks-----
+$ diff test089.scan.soln.toks test089.scan.toks
+
+**PASS**
+
+====================
+
+test090 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test090.scan.err -Ckeep-scan=true -Cstop-scan=true test090.lgf
+
+-----scan.toks-----
+$ diff test090.scan.soln.toks test090.scan.toks
+
+**PASS**
+
+====================
+
+test091 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test091.scan.err -Ckeep-scan=true -Cstop-scan=true test091.lgf
+
+-----scan.toks-----
+$ diff test091.scan.soln.toks test091.scan.toks
+
+**PASS**
+
+====================
+
+test092 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test092.scan.err -Ckeep-scan=true -Cstop-scan=true test092.lgf
+
+-----scan.toks-----
+$ diff test092.scan.soln.toks test092.scan.toks
+
+**PASS**
+
+====================
+
+test093 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test093.scan.err -Ckeep-scan=true -Cstop-scan=true test093.lgf
+
+-----scan.toks-----
+$ diff test093.scan.soln.toks test093.scan.toks
+
+**PASS**
+
+====================
+
+test094 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test094.scan.err -Ckeep-scan=true -Cstop-scan=true test094.lgf
+
+-----scan.toks-----
+$ diff test094.scan.soln.toks test094.scan.toks
+
+**PASS**
+
+====================
+
+test095 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test095.scan.err -Ckeep-scan=true -Cstop-scan=true test095.lgf
+<?> Error: bad character '@'
+
+-----scan.toks-----
+$ diff test095.scan.soln.toks test095.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test095.scan.soln.err test095.scan.err
+
+**PASS**
+
+====================
+
+test096 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test096.scan.err -Ckeep-scan=true -Cstop-scan=true test096.lgf
+<?> Error: bad type name  ' '
+
+-----scan.toks-----
+$ diff test096.scan.soln.toks test096.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test096.scan.soln.err test096.scan.err
+1c1
+< <?> Error: bad character '''
+---
+> <?> Error: bad type name  ' '
+
+**PASS**
+
+====================
+
+test097 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test097.scan.err -Ckeep-scan=true -Cstop-scan=true test097.lgf
+<?> Error: bad escape character 'm'
+
+-----scan.toks-----
+$ diff test097.scan.soln.toks test097.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test097.scan.soln.err test097.scan.err
+1c1
+< <?> Error: bad escape sequence '\m' in string literal
+---
+> <?> Error: bad escape character 'm'
+
+**PASS**
+
+====================
+
+test098 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test098.scan.err -Ckeep-scan=true -Cstop-scan=true test098.lgf
+<?> Error: bad escape character 'w'
+<?> Error: bad escape character '\"'
+
+-----scan.toks-----
+$ diff test098.scan.soln.toks test098.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test098.scan.soln.err test098.scan.err
+1,2c1,2
+< <?> Error: bad escape sequence '\3' in string literal
+< <?> Error: bad escape sequence '\1' in string literal
+---
+> <?> Error: bad escape character 'w'
+> <?> Error: bad escape character '\"'
+
+**PASS**
+
+====================
+
+test099 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test099.scan.err -Ckeep-scan=true -Cstop-scan=true test099.lgf
+<?> Error: bad escape character '9'
+
+-----scan.toks-----
+$ diff test099.scan.soln.toks test099.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test099.scan.soln.err test099.scan.err
+1c1
+< <?> Error: escape sequence '\999' too big in string literal
+---
+> <?> Error: bad escape character '9'
+
+**PASS**
+
+====================
+
+test100 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test100.scan.err -Ckeep-scan=true -Cstop-scan=true test100.lgf
+<?> Error: bad escape character '\t'
+<?> Error: bad escape character '\t'
+
+-----scan.toks-----
+$ diff test100.scan.soln.toks test100.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test100.scan.soln.err test100.scan.err
+1,2c1,2
+< <?> Error: bad character '\t' in string literal
+< <?> Error: bad character '\t' in string literal
+---
+> <?> Error: bad escape character '\t'
+> <?> Error: bad escape character '\t'
+
+**PASS**
+
+====================
+
+test101 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test101.scan.err -Ckeep-scan=true -Cstop-scan=true test101.lgf
+<?> Error: bad escape character '\n'
+<?> Error: bad escape character '\n'
+
+-----scan.toks-----
+$ diff test101.scan.soln.toks test101.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test101.scan.soln.err test101.scan.err
+1,2c1,2
+< <?> Error: bad character '\n' in string literal
+< <?> Error: bad character '\n' in string literal
+---
+> <?> Error: bad escape character '\n'
+> <?> Error: bad escape character '\n'
+
+**PASS**
+
+====================
+
+test102 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test102.scan.err -Ckeep-scan=true -Cstop-scan=true test102.lgf
+<?> Error: unclosed comment found at the end of file '0'
+
+-----scan.toks-----
+$ diff test102.scan.soln.toks test102.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test102.scan.soln.err test102.scan.err
+1c1
+< <?> Error: unterminated comment at eof
+---
+> <?> Error: unclosed comment found at the end of file '0'
+
+**PASS**
+
+====================
+
+test103 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test103.scan.err -Ckeep-scan=true -Cstop-scan=true test103.lgf
+<?> Error: bad escape character '\n'
+<?> Error: bad escape character '\n'
+<?> Error: bad escape character '\n'
+<?> Error: bad escape character '0'
+
+-----scan.toks-----
+$ diff test103.scan.soln.toks test103.scan.toks
+
+**PASS**
+
+-----scan.err-----
+$ diff test103.scan.soln.err test103.scan.err
+1,4c1,4
+< <?> Error: bad character '\n' in string literal
+< <?> Error: bad character '\n' in string literal
+< <?> Error: bad character '\n' in string literal
+< <?> Error: unterminated string literal at eof
+---
+> <?> Error: bad escape character '\n'
+> <?> Error: bad escape character '\n'
+> <?> Error: bad escape character '\n'
+> <?> Error: bad escape character '0'
+
+**PASS**
+
+====================
+
+test104 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test104.scan.err -Ckeep-scan=true -Cstop-scan=true test104.lgf
+
+-----scan.toks-----
+$ diff test104.scan.soln.toks test104.scan.toks
+
+**PASS**
+
+====================
+
+test105 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test105.scan.err -Ckeep-scan=true -Cstop-scan=true test105.lgf
+
+-----scan.toks-----
+$ diff test105.scan.soln.toks test105.scan.toks
+
+**PASS**
+
+====================
+
+test106 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test106.scan.err -Ckeep-scan=true -Cstop-scan=true test106.lgf
+
+-----scan.toks-----
+$ diff test106.scan.soln.toks test106.scan.toks
+
+**PASS**
+
+====================
+
+test107 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test107.scan.err -Ckeep-scan=true -Cstop-scan=true test107.lgf
+
+-----scan.toks-----
+$ diff test107.scan.soln.toks test107.scan.toks
+
+**PASS**
+
+====================
+
+test108 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test108.scan.err -Ckeep-scan=true -Cstop-scan=true test108.lgf
+
+-----scan.toks-----
+$ diff test108.scan.soln.toks test108.scan.toks
+
+**PASS**
+
+====================
+
+test109 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test109.scan.err -Ckeep-scan=true -Cstop-scan=true test109.lgf
+
+-----scan.toks-----
+$ diff test109.scan.soln.toks test109.scan.toks
+
+**PASS**
+
+====================
+
+test110 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test110.scan.err -Ckeep-scan=true -Cstop-scan=true test110.lgf
+
+-----scan.toks-----
+$ diff test110.scan.soln.toks test110.scan.toks
+
+**PASS**
+
+====================
+
+test111 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test111.scan.err -Ckeep-scan=true -Cstop-scan=true test111.lgf
+
+-----scan.toks-----
+$ diff test111.scan.soln.toks test111.scan.toks
+
+**PASS**
+
+====================
+
+test112 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test112.scan.err -Ckeep-scan=true -Cstop-scan=true test112.lgf
+
+-----scan.toks-----
+$ diff test112.scan.soln.toks test112.scan.toks
+
+**PASS**
+
+====================
+
+test113 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false -Cerr-strm-report-file=test113.scan.err -Ckeep-scan=true -Cstop-scan=true test113.lgf
+
+-----scan.toks-----
+$ diff test113.scan.soln.toks test113.scan.toks
+
+**PASS**
+
+====================
+====================
+
+
+
+scanner (toks): 239 / 239  (100%)
+
+scanner (err): 239 / 239  (100%)
+
+
+scanner (tot): 478 / 478  (100%)

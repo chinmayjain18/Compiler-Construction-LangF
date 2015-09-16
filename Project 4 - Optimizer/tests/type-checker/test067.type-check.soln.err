@@ -1,0 +1,4 @@
+test067.lgf:2.0-test067.lgf:6.3 Error: 
+Type constructor escapes the scope of its definition.
+  type constructor: T
+  in: let datatype T = T {Integ ... eger) => (T {x}) end

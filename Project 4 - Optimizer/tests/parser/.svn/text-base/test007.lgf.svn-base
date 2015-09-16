@@ -1,0 +1,4 @@
+(* type decl with binary type constructor type *)
+type Fst ['a, 'b] = 'a
+type T [] = Fst [Integer, Integer]
+; 0

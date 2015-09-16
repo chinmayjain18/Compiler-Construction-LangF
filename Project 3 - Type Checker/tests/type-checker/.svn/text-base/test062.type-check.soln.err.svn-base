@@ -1,0 +1,5 @@
+test062.lgf:2.0-test062.lgf:3.0 Error: 
+Constraint and expression of 'val' disagree.
+  constraint: Unit
+  expression: Integer
+  in: val _ : Unit = (print "He ... rld"; print "\n"; 0)

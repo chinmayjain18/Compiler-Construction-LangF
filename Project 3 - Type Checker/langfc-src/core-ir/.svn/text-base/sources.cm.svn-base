@@ -1,0 +1,48 @@
+(* langfc-src/core-ir/sources.cm
+ *
+ * COPYRIGHT (c) 2011-2015 Matthew Fluet (http://www.cs.rit.edu/~mtf)
+ * All rights reserved.
+ *
+ * Rochester Institute of Technology
+ * 4005-711,CSCI-742
+ * Q20112,Q20122,S20135,S20145
+ *
+ * COPYRIGHT (c) 2009 Matthew Fluet (http://tti-c.org/fluet)
+ * All rights reserved.
+ *
+ * University of Chicago
+ * CMSC 22610
+ * Winter 2009
+ *
+ * CM file for core intermediate representation in the LangF compiler
+ * (langfc).
+ *)
+
+Library
+
+  signature CORE_IR
+  structure CoreIR
+
+  signature CORE_IR_TYPE_CHECKER
+  structure CoreIRTypeChecker
+
+  signature CORE_IR_CONVERTER
+  structure CoreIRConverter
+
+is
+
+  $/basis.cm
+  $/smlnj-lib.cm
+  $/controls-lib.cm
+
+  ../common/sources.cm
+  ../abs-syn-tree/sources.cm
+
+  core-ir.sig
+  core-ir.sml
+
+  type-checker.sig
+  type-checker.sml
+
+  converter.sig
+  converter.sml

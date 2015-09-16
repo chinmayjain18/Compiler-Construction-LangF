@@ -1,0 +1,3 @@
+(* function decl w/ one value param *)
+fun id (x: Integer) : Integer = x
+; 0

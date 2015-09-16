@@ -1,0 +1,5 @@
+test048.lgf:2.1-test048.lgf:2.22 Error: 
+Expression and constraint in ':' disagree.
+  expression: Integer
+  constraint: String
+  in: (0 : Integer) : String

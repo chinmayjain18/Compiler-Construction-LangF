@@ -1,0 +1,35 @@
+fun intToString (i : Integer) : String =
+   if i < 0
+      then "~" ^ (intToString (~ i))
+      else (if i == 0
+               then "0"
+               else (if i == 1
+                        then "1"
+                        else (if i == 2
+                                 then "2"
+                                 else (if i == 3
+                                          then "3"
+                                          else (if i == 4
+                                                   then "4"
+                                                   else (if i == 5
+                                                            then "5"
+                                                            else (if i == 6
+                                                                     then "6"
+                                                                     else (if i == 7
+                                                                              then "7"
+                                                                              else (if i == 8
+                                                                                       then "8"
+                                                                                       else (if i == 9
+                                                                                                then "9"
+                                                                                                else ((intToString (i / 10))
+                                                                                                      ^
+                                                                                                      (intToString (i % 10)))))))))))))
+fun boolToString (b : Bool) : String = if b then "True" else "False"
+val zero = 0
+val one = 1
+fun even (x : Integer) : Bool = if x < zero then even (~ x) else (if x == 0 then True else (odd (x - one)))
+and odd (x : Integer) : Bool = if x < zero then odd (~ x) else (if x == 0 then False else (even (x - one)))
+val n = 101
+val even_n = even n
+;
+(print "even "; print (intToString n); print " = "; print (boolToString even_n); print "\n")

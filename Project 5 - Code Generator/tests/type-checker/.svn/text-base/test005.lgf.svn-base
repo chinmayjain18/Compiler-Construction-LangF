@@ -1,0 +1,3 @@
+(* type decl with binary type constructor *)
+type Fst ['a, 'b] = 'a
+; 0

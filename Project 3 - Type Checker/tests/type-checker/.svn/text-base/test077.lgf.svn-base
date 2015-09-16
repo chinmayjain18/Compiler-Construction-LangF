@@ -1,0 +1,5 @@
+(* syntactic restriction, distinct datatype tycons *)
+datatype T = A | B
+     and T = C | D
+;
+0

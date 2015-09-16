@@ -1,0 +1,3 @@
+(* type decl with fn type *)
+type T [] = Integer -> Integer
+; 0

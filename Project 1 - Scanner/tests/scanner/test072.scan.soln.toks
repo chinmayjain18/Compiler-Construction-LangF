@@ -1,0 +1,57 @@
+val
+(* VAR_NAME *) a
+=
+(
+(* VAR_NAME *) argc
+(* CON_NAME *) Unit
+)
+val
+(* VAR_NAME *) x
+=
+(* VAR_NAME *) a
++
+(
+(* VAR_NAME *) a
++
+(* VAR_NAME *) a
+)
+/
+(
+(* VAR_NAME *) a
+*
+(* VAR_NAME *) a
+)
+val
+(* VAR_NAME *) y
+=
+(
+(* VAR_NAME *) x
+/
+(* VAR_NAME *) x
++
+(* VAR_NAME *) x
+/
+(* VAR_NAME *) x
++
+(* VAR_NAME *) x
+%
+(* VAR_NAME *) x
+)
+val
+(* VAR_NAME *) z
+=
+if
+(
+(* CON_NAME *) True
+)
+then
+(
+(* VAR_NAME *) x
+)
+else
+(
+~
+(* VAR_NAME *) x
+)
+;
+(* VAR_NAME *) z

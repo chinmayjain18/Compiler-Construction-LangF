@@ -1,0 +1,4 @@
+type Id ['a] = 'a
+type T = Id [Integer]
+;
+0

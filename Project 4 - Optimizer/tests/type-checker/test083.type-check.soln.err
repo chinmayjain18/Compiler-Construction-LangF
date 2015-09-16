@@ -1,0 +1,3 @@
+test083.lgf:2.18-test083.lgf:2.37 Error: 
+Integer constant too big: 4611686018427387904.
+  in: 4611686018427387904

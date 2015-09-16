@@ -1,0 +1,2 @@
+val s = "hello world\999";
+print s

@@ -1,0 +1,10 @@
+(* *EXTRA* syntactic restriction, redundant and non-exhaustive patterns *)
+datatype T = A | B | C | D
+fun toString (x: T) : String =
+  case x of
+     A => "A"
+   | B => "B"
+   | A => "A"
+  end
+;
+toString

@@ -1,0 +1,1651 @@
+caj4430cc
+
+
+$ diff -r tests/vm-codegen ../../project/project5/tests/vm-codegen
+
+
+$ make
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C vm-src
+gcc -std=gnu99 -m64 -Wall -g -O  -MM main.c vm.c heap.c load.c runtime-funs.c > .depend
+gcc -std=gnu99 -m64 -Wall -g -O   -c -o main.o main.c
+gcc -std=gnu99 -m64 -Wall -g -O   -c -o vm.o vm.c
+gcc -std=gnu99 -m64 -Wall -g -O   -c -o heap.o heap.c
+gcc -std=gnu99 -m64 -Wall -g -O   -c -o load.o load.c
+gcc -std=gnu99 -m64 -Wall -g -O   -c -o runtime-funs.o runtime-funs.c
+gcc -std=gnu99 -m64 -Wall -g -O -o ../bin/vm main.o vm.o heap.o load.o runtime-funs.o 
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C langfc-src
+ml-ulex scanner/langf-ulex.lex
+[ml-ulex: parsing]
+[ml-ulex: DFA gen]
+ 112 states in full DFA
+[ml-ulex: SML gen]
+ml-antlr parser/langf-antlr.grm
+[ml-antlr: parsing parser/langf-antlr.grm]
+[ml-antlr: checking grammar]
+ 76 nonterminals
+ 117 productions
+ml-yacc parser/langf-yacc.grm
+mlton -const 'Exn.keepHistory true' -output ../bin/.mlton-exec/langfc.mlton langfc.mlb
+mlton -const 'Exn.keepHistory true' -output ../bin/.mlton-exec/langfi.mlton langfi.mlb
+
+
+VM CodeGen Tests
+================
+
+
+test000 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test000.lgf
+$ ../../bin/vm -r test000.bin
+
+-----vm.stdout-----
+$ diff test000.vm.soln.stdout test000.vm.stdout
+
+-----vm.res-----
+$ diff test000.vm.soln.res.canon test000.vm.res.canon
+
+====================
+
+test001 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test001.lgf
+$ ../../bin/vm -r test001.bin
+
+-----vm.stdout-----
+$ diff test001.vm.soln.stdout test001.vm.stdout
+
+-----vm.res-----
+$ diff test001.vm.soln.res.canon test001.vm.res.canon
+
+====================
+
+test002 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test002.lgf
+$ ../../bin/vm -r test002.bin
+
+-----vm.stdout-----
+$ diff test002.vm.soln.stdout test002.vm.stdout
+
+-----vm.res-----
+$ diff test002.vm.soln.res.canon test002.vm.res.canon
+
+====================
+
+test003 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test003.lgf
+$ ../../bin/vm -r test003.bin
+
+-----vm.stdout-----
+$ diff test003.vm.soln.stdout test003.vm.stdout
+
+-----vm.res-----
+$ diff test003.vm.soln.res.canon test003.vm.res.canon
+
+====================
+
+test004 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test004.lgf
+$ ../../bin/vm -r test004.bin
+
+-----vm.stdout-----
+$ diff test004.vm.soln.stdout test004.vm.stdout
+
+-----vm.res-----
+$ diff test004.vm.soln.res.canon test004.vm.res.canon
+
+====================
+
+test005 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test005.lgf
+$ ../../bin/vm -r test005.bin
+
+-----vm.stdout-----
+$ diff test005.vm.soln.stdout test005.vm.stdout
+
+-----vm.res-----
+$ diff test005.vm.soln.res.canon test005.vm.res.canon
+
+====================
+
+test006 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test006.lgf
+$ ../../bin/vm -r test006.bin
+
+-----vm.stdout-----
+$ diff test006.vm.soln.stdout test006.vm.stdout
+
+-----vm.res-----
+$ diff test006.vm.soln.res.canon test006.vm.res.canon
+
+====================
+
+test007 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test007.lgf
+$ ../../bin/vm -r test007.bin
+
+-----vm.stdout-----
+$ diff test007.vm.soln.stdout test007.vm.stdout
+
+-----vm.res-----
+$ diff test007.vm.soln.res.canon test007.vm.res.canon
+
+====================
+
+test008 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test008.lgf
+$ ../../bin/vm -r test008.bin
+
+-----vm.stdout-----
+$ diff test008.vm.soln.stdout test008.vm.stdout
+
+-----vm.res-----
+$ diff test008.vm.soln.res.canon test008.vm.res.canon
+
+====================
+
+test009 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test009.lgf
+$ ../../bin/vm -r test009.bin
+
+-----vm.stdout-----
+$ diff test009.vm.soln.stdout test009.vm.stdout
+
+-----vm.res-----
+$ diff test009.vm.soln.res.canon test009.vm.res.canon
+
+====================
+
+test010 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test010.lgf
+$ ../../bin/vm -r test010.bin
+
+-----vm.stdout-----
+$ diff test010.vm.soln.stdout test010.vm.stdout
+
+-----vm.res-----
+$ diff test010.vm.soln.res.canon test010.vm.res.canon
+
+====================
+
+test011 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test011.lgf
+$ ../../bin/vm -r test011.bin
+
+-----vm.stdout-----
+$ diff test011.vm.soln.stdout test011.vm.stdout
+
+-----vm.res-----
+$ diff test011.vm.soln.res.canon test011.vm.res.canon
+
+====================
+
+test012 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test012.lgf
+$ ../../bin/vm -r test012.bin
+
+-----vm.stdout-----
+$ diff test012.vm.soln.stdout test012.vm.stdout
+
+-----vm.res-----
+$ diff test012.vm.soln.res.canon test012.vm.res.canon
+
+====================
+
+test013 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test013.lgf
+$ ../../bin/vm -r test013.bin
+
+-----vm.stdout-----
+$ diff test013.vm.soln.stdout test013.vm.stdout
+
+-----vm.res-----
+$ diff test013.vm.soln.res.canon test013.vm.res.canon
+
+====================
+
+test014 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test014.lgf
+$ ../../bin/vm -r test014.bin
+
+-----vm.stdout-----
+$ diff test014.vm.soln.stdout test014.vm.stdout
+
+-----vm.res-----
+$ diff test014.vm.soln.res.canon test014.vm.res.canon
+
+====================
+
+test015 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test015.lgf
+$ ../../bin/vm -r test015.bin
+
+-----vm.stdout-----
+$ diff test015.vm.soln.stdout test015.vm.stdout
+
+-----vm.res-----
+$ diff test015.vm.soln.res.canon test015.vm.res.canon
+
+====================
+
+test016 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test016.lgf
+$ ../../bin/vm -r test016.bin
+
+-----vm.stdout-----
+$ diff test016.vm.soln.stdout test016.vm.stdout
+
+-----vm.res-----
+$ diff test016.vm.soln.res.canon test016.vm.res.canon
+
+====================
+
+test017 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test017.lgf
+$ ../../bin/vm -r test017.bin
+
+-----vm.stdout-----
+$ diff test017.vm.soln.stdout test017.vm.stdout
+
+-----vm.res-----
+$ diff test017.vm.soln.res.canon test017.vm.res.canon
+
+====================
+
+test018 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test018.lgf
+$ ../../bin/vm -r test018.bin
+
+-----vm.stdout-----
+$ diff test018.vm.soln.stdout test018.vm.stdout
+
+-----vm.res-----
+$ diff test018.vm.soln.res.canon test018.vm.res.canon
+
+====================
+
+test019 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test019.lgf
+$ ../../bin/vm -r test019.bin
+
+-----vm.stdout-----
+$ diff test019.vm.soln.stdout test019.vm.stdout
+
+-----vm.res-----
+$ diff test019.vm.soln.res.canon test019.vm.res.canon
+
+====================
+
+test020 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test020.lgf
+$ ../../bin/vm -r test020.bin
+
+-----vm.stdout-----
+$ diff test020.vm.soln.stdout test020.vm.stdout
+
+-----vm.res-----
+$ diff test020.vm.soln.res.canon test020.vm.res.canon
+
+====================
+
+test021 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test021.lgf
+$ ../../bin/vm -r test021.bin
+
+-----vm.stdout-----
+$ diff test021.vm.soln.stdout test021.vm.stdout
+
+-----vm.res-----
+$ diff test021.vm.soln.res.canon test021.vm.res.canon
+
+====================
+
+test022 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test022.lgf
+$ ../../bin/vm -r test022.bin
+
+-----vm.stdout-----
+$ diff test022.vm.soln.stdout test022.vm.stdout
+
+-----vm.res-----
+$ diff test022.vm.soln.res.canon test022.vm.res.canon
+
+====================
+
+test023 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false test023.lgf
+$ ../../bin/vm -r test023.bin
+
+-----vm.stdout-----
+$ diff test023.vm.soln.stdout test023.vm.stdout
+
+-----vm.res-----
+$ diff test023.vm.soln.res.canon test023.vm.res.canon
+
+====================
+
+test024 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false test024.lgf
+$ ../../bin/vm -r test024.bin
+
+-----vm.stdout-----
+$ diff test024.vm.soln.stdout test024.vm.stdout
+
+-----vm.res-----
+$ diff test024.vm.soln.res.canon test024.vm.res.canon
+
+====================
+
+test025 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test025.lgf
+$ ../../bin/vm -r test025.bin
+
+-----vm.stdout-----
+$ diff test025.vm.soln.stdout test025.vm.stdout
+
+-----vm.res-----
+$ diff test025.vm.soln.res.canon test025.vm.res.canon
+
+====================
+
+test026 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test026.lgf
+$ ../../bin/vm -r test026.bin
+
+-----vm.stdout-----
+$ diff test026.vm.soln.stdout test026.vm.stdout
+
+-----vm.res-----
+$ diff test026.vm.soln.res.canon test026.vm.res.canon
+
+====================
+
+test027 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test027.lgf
+$ ../../bin/vm -r test027.bin
+
+-----vm.stdout-----
+$ diff test027.vm.soln.stdout test027.vm.stdout
+
+-----vm.res-----
+$ diff test027.vm.soln.res.canon test027.vm.res.canon
+
+====================
+
+test028 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test028.lgf
+$ ../../bin/vm -r test028.bin
+
+-----vm.stdout-----
+$ diff test028.vm.soln.stdout test028.vm.stdout
+
+-----vm.res-----
+$ diff test028.vm.soln.res.canon test028.vm.res.canon
+
+====================
+
+test029 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test029.lgf
+$ ../../bin/vm -r test029.bin
+
+-----vm.stdout-----
+$ diff test029.vm.soln.stdout test029.vm.stdout
+
+-----vm.res-----
+$ diff test029.vm.soln.res.canon test029.vm.res.canon
+
+====================
+
+test030 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test030.lgf
+$ ../../bin/vm -r test030.bin
+
+-----vm.stdout-----
+$ diff test030.vm.soln.stdout test030.vm.stdout
+
+-----vm.res-----
+$ diff test030.vm.soln.res.canon test030.vm.res.canon
+
+====================
+
+test031 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test031.lgf
+$ ../../bin/vm -r test031.bin
+
+-----vm.stdout-----
+$ diff test031.vm.soln.stdout test031.vm.stdout
+
+-----vm.res-----
+$ diff test031.vm.soln.res.canon test031.vm.res.canon
+
+====================
+
+test032 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test032.lgf
+$ ../../bin/vm -r test032.bin
+
+-----vm.stdout-----
+$ diff test032.vm.soln.stdout test032.vm.stdout
+
+-----vm.res-----
+$ diff test032.vm.soln.res.canon test032.vm.res.canon
+
+====================
+
+test033 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test033.lgf
+$ ../../bin/vm -r test033.bin
+
+-----vm.stdout-----
+$ diff test033.vm.soln.stdout test033.vm.stdout
+
+-----vm.res-----
+$ diff test033.vm.soln.res.canon test033.vm.res.canon
+
+====================
+
+test034 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test034.lgf
+$ ../../bin/vm -r test034.bin
+
+-----vm.stdout-----
+$ diff test034.vm.soln.stdout test034.vm.stdout
+
+-----vm.res-----
+$ diff test034.vm.soln.res.canon test034.vm.res.canon
+
+====================
+
+test035 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test035.lgf
+$ ../../bin/vm -r test035.bin
+
+-----vm.stdout-----
+$ diff test035.vm.soln.stdout test035.vm.stdout
+
+-----vm.res-----
+$ diff test035.vm.soln.res.canon test035.vm.res.canon
+
+====================
+
+test036 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test036.lgf
+$ ../../bin/vm -r test036.bin
+
+-----vm.stdout-----
+$ diff test036.vm.soln.stdout test036.vm.stdout
+
+-----vm.res-----
+$ diff test036.vm.soln.res.canon test036.vm.res.canon
+
+====================
+
+test037 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test037.lgf
+$ ../../bin/vm -r test037.bin
+
+-----vm.stdout-----
+$ diff test037.vm.soln.stdout test037.vm.stdout
+
+-----vm.res-----
+$ diff test037.vm.soln.res.canon test037.vm.res.canon
+
+====================
+
+test038 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test038.lgf
+$ ../../bin/vm -r test038.bin
+
+-----vm.stdout-----
+$ diff test038.vm.soln.stdout test038.vm.stdout
+
+-----vm.res-----
+$ diff test038.vm.soln.res.canon test038.vm.res.canon
+
+====================
+
+test039 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test039.lgf
+$ ../../bin/vm -r test039.bin
+
+-----vm.stdout-----
+$ diff test039.vm.soln.stdout test039.vm.stdout
+
+-----vm.res-----
+$ diff test039.vm.soln.res.canon test039.vm.res.canon
+
+====================
+
+test040 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test040.lgf
+$ ../../bin/vm -r test040.bin
+
+-----vm.stdout-----
+$ diff test040.vm.soln.stdout test040.vm.stdout
+
+-----vm.res-----
+$ diff test040.vm.soln.res.canon test040.vm.res.canon
+
+====================
+
+test041 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test041.lgf
+$ ../../bin/vm -r test041.bin
+
+-----vm.stdout-----
+$ diff test041.vm.soln.stdout test041.vm.stdout
+
+-----vm.res-----
+$ diff test041.vm.soln.res.canon test041.vm.res.canon
+
+====================
+
+test042 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test042.lgf
+$ ../../bin/vm -r test042.bin
+
+-----vm.stdout-----
+$ diff test042.vm.soln.stdout test042.vm.stdout
+
+-----vm.res-----
+$ diff test042.vm.soln.res.canon test042.vm.res.canon
+
+====================
+
+test043 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test043.lgf
+$ ../../bin/vm -r test043.bin
+
+-----vm.stdout-----
+$ diff test043.vm.soln.stdout test043.vm.stdout
+
+-----vm.res-----
+$ diff test043.vm.soln.res.canon test043.vm.res.canon
+
+====================
+
+test044 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test044.lgf
+$ ../../bin/vm -r test044.bin
+
+-----vm.stdout-----
+$ diff test044.vm.soln.stdout test044.vm.stdout
+
+-----vm.res-----
+$ diff test044.vm.soln.res.canon test044.vm.res.canon
+
+====================
+
+test045 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test045.lgf
+$ ../../bin/vm -r test045.bin
+
+-----vm.stdout-----
+$ diff test045.vm.soln.stdout test045.vm.stdout
+
+-----vm.res-----
+$ diff test045.vm.soln.res.canon test045.vm.res.canon
+
+====================
+
+test046 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test046.lgf
+$ ../../bin/vm -r test046.bin
+
+-----vm.stdout-----
+$ diff test046.vm.soln.stdout test046.vm.stdout
+
+-----vm.res-----
+$ diff test046.vm.soln.res.canon test046.vm.res.canon
+
+====================
+
+test047 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test047.lgf
+$ ../../bin/vm -r test047.bin
+
+-----vm.stdout-----
+$ diff test047.vm.soln.stdout test047.vm.stdout
+
+-----vm.res-----
+$ diff test047.vm.soln.res.canon test047.vm.res.canon
+
+====================
+
+test048 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test048.lgf
+$ ../../bin/vm -r test048.bin
+
+-----vm.stdout-----
+$ diff test048.vm.soln.stdout test048.vm.stdout
+
+-----vm.res-----
+$ diff test048.vm.soln.res.canon test048.vm.res.canon
+
+====================
+
+test049 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false test049.lgf
+$ ../../bin/vm -r test049.bin
+
+-----vm.stdout-----
+$ diff test049.vm.soln.stdout test049.vm.stdout
+
+-----vm.res-----
+$ diff test049.vm.soln.res.canon test049.vm.res.canon
+
+====================
+
+test050 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false test050.lgf
+$ ../../bin/vm -r test050.bin
+
+-----vm.stdout-----
+$ diff test050.vm.soln.stdout test050.vm.stdout
+
+-----vm.res-----
+$ diff test050.vm.soln.res.canon test050.vm.res.canon
+
+====================
+
+test051 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false test051.lgf
+$ ../../bin/vm -r test051.bin
+
+-----vm.stdout-----
+$ diff test051.vm.soln.stdout test051.vm.stdout
+
+-----vm.res-----
+$ diff test051.vm.soln.res.canon test051.vm.res.canon
+
+====================
+
+test052 (2pts)
+----------
+$ ../../bin/langfc -Cverbose=false test052.lgf
+$ ../../bin/vm -r test052.bin
+
+-----vm.stdout-----
+$ diff test052.vm.soln.stdout test052.vm.stdout
+
+-----vm.res-----
+$ diff test052.vm.soln.res.canon test052.vm.res.canon
+
+====================
+
+test053 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test053.lgf
+$ ../../bin/vm -r test053.bin
+
+-----vm.stdout-----
+$ diff test053.vm.soln.stdout test053.vm.stdout
+
+-----vm.res-----
+$ diff test053.vm.soln.res.canon test053.vm.res.canon
+
+====================
+
+test054 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test054.lgf
+$ ../../bin/vm -r test054.bin
+
+-----vm.stdout-----
+$ diff test054.vm.soln.stdout test054.vm.stdout
+
+-----vm.res-----
+$ diff test054.vm.soln.res.canon test054.vm.res.canon
+
+====================
+
+test055 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test055.lgf
+$ ../../bin/vm -r test055.bin
+
+-----vm.stdout-----
+$ diff test055.vm.soln.stdout test055.vm.stdout
+
+-----vm.res-----
+$ diff test055.vm.soln.res.canon test055.vm.res.canon
+
+====================
+
+test056 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test056.lgf
+$ ../../bin/vm -r test056.bin
+
+-----vm.stdout-----
+$ diff test056.vm.soln.stdout test056.vm.stdout
+
+-----vm.res-----
+$ diff test056.vm.soln.res.canon test056.vm.res.canon
+
+====================
+
+test057 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test057.lgf
+$ ../../bin/vm -r test057.bin
+
+-----vm.stdout-----
+$ diff test057.vm.soln.stdout test057.vm.stdout
+
+-----vm.res-----
+$ diff test057.vm.soln.res.canon test057.vm.res.canon
+
+====================
+
+test058 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test058.lgf
+$ ../../bin/vm -r test058.bin
+
+-----vm.stdout-----
+$ diff test058.vm.soln.stdout test058.vm.stdout
+
+-----vm.res-----
+$ diff test058.vm.soln.res.canon test058.vm.res.canon
+
+====================
+
+test059 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test059.lgf
+$ ../../bin/vm -r test059.bin
+
+-----vm.stdout-----
+$ diff test059.vm.soln.stdout test059.vm.stdout
+
+-----vm.res-----
+$ diff test059.vm.soln.res.canon test059.vm.res.canon
+
+====================
+
+test060 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test060.lgf
+$ ../../bin/vm -r test060.bin
+
+-----vm.stdout-----
+$ diff test060.vm.soln.stdout test060.vm.stdout
+
+-----vm.res-----
+$ diff test060.vm.soln.res.canon test060.vm.res.canon
+
+====================
+
+test061 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test061.lgf
+$ ../../bin/vm -r test061.bin
+
+-----vm.stdout-----
+$ diff test061.vm.soln.stdout test061.vm.stdout
+
+-----vm.res-----
+$ diff test061.vm.soln.res.canon test061.vm.res.canon
+
+====================
+
+test062 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test062.lgf
+$ ../../bin/vm -r test062.bin
+
+-----vm.stdout-----
+$ diff test062.vm.soln.stdout test062.vm.stdout
+
+-----vm.res-----
+$ diff test062.vm.soln.res.canon test062.vm.res.canon
+
+====================
+
+test063 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test063.lgf
+$ ../../bin/vm -r test063.bin
+
+-----vm.stdout-----
+$ diff test063.vm.soln.stdout test063.vm.stdout
+
+-----vm.res-----
+$ diff test063.vm.soln.res.canon test063.vm.res.canon
+
+====================
+
+test064 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test064.lgf
+$ ../../bin/vm -r test064.bin
+
+-----vm.stdout-----
+$ diff test064.vm.soln.stdout test064.vm.stdout
+
+-----vm.res-----
+$ diff test064.vm.soln.res.canon test064.vm.res.canon
+
+====================
+
+test065 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test065.lgf
+$ ../../bin/vm -r test065.bin
+
+-----vm.stdout-----
+$ diff test065.vm.soln.stdout test065.vm.stdout
+
+-----vm.res-----
+$ diff test065.vm.soln.res.canon test065.vm.res.canon
+
+====================
+
+test066 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test066.lgf
+$ ../../bin/vm -r test066.bin
+
+-----vm.stdout-----
+$ diff test066.vm.soln.stdout test066.vm.stdout
+
+-----vm.res-----
+$ diff test066.vm.soln.res.canon test066.vm.res.canon
+
+====================
+
+test067 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test067.lgf
+$ ../../bin/vm -r test067.bin
+
+-----vm.stdout-----
+$ diff test067.vm.soln.stdout test067.vm.stdout
+
+-----vm.res-----
+$ diff test067.vm.soln.res.canon test067.vm.res.canon
+
+====================
+
+test068 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test068.lgf
+$ ../../bin/vm -r test068.bin
+
+-----vm.stdout-----
+$ diff test068.vm.soln.stdout test068.vm.stdout
+
+-----vm.res-----
+$ diff test068.vm.soln.res.canon test068.vm.res.canon
+
+====================
+
+test069 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test069.lgf
+$ ../../bin/vm -r test069.bin
+
+-----vm.stdout-----
+$ diff test069.vm.soln.stdout test069.vm.stdout
+
+-----vm.res-----
+$ diff test069.vm.soln.res.canon test069.vm.res.canon
+
+====================
+
+test070 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test070.lgf
+$ ../../bin/vm -r test070.bin
+
+-----vm.stdout-----
+$ diff test070.vm.soln.stdout test070.vm.stdout
+
+-----vm.res-----
+$ diff test070.vm.soln.res.canon test070.vm.res.canon
+
+====================
+
+test071 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test071.lgf
+$ ../../bin/vm -r test071.bin
+
+-----vm.stdout-----
+$ diff test071.vm.soln.stdout test071.vm.stdout
+
+-----vm.res-----
+$ diff test071.vm.soln.res.canon test071.vm.res.canon
+
+====================
+
+test072 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test072.lgf
+$ ../../bin/vm -r test072.bin
+
+-----vm.stdout-----
+$ diff test072.vm.soln.stdout test072.vm.stdout
+
+-----vm.res-----
+$ diff test072.vm.soln.res.canon test072.vm.res.canon
+
+====================
+
+test073 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test073.lgf
+$ ../../bin/vm -r test073.bin
+
+-----vm.stdout-----
+$ diff test073.vm.soln.stdout test073.vm.stdout
+
+-----vm.res-----
+$ diff test073.vm.soln.res.canon test073.vm.res.canon
+
+====================
+
+test074 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test074.lgf
+$ ../../bin/vm -r test074.bin
+
+-----vm.stdout-----
+$ diff test074.vm.soln.stdout test074.vm.stdout
+
+-----vm.res-----
+$ diff test074.vm.soln.res.canon test074.vm.res.canon
+
+====================
+
+test075 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test075.lgf
+$ ../../bin/vm -r test075.bin
+
+-----vm.stdout-----
+$ diff test075.vm.soln.stdout test075.vm.stdout
+
+-----vm.res-----
+$ diff test075.vm.soln.res.canon test075.vm.res.canon
+
+====================
+
+test076 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test076.lgf
+$ ../../bin/vm -r test076.bin
+
+-----vm.stdout-----
+$ diff test076.vm.soln.stdout test076.vm.stdout
+
+-----vm.res-----
+$ diff test076.vm.soln.res.canon test076.vm.res.canon
+
+====================
+
+test077 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test077.lgf
+$ ../../bin/vm -r test077.bin
+
+-----vm.stdout-----
+$ diff test077.vm.soln.stdout test077.vm.stdout
+
+-----vm.res-----
+$ diff test077.vm.soln.res.canon test077.vm.res.canon
+
+====================
+
+test078 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test078.lgf
+$ ../../bin/vm -r test078.bin
+
+-----vm.stdout-----
+$ diff test078.vm.soln.stdout test078.vm.stdout
+
+-----vm.res-----
+$ diff test078.vm.soln.res.canon test078.vm.res.canon
+
+====================
+
+test079 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test079.lgf
+$ ../../bin/vm -r test079.bin
+
+-----vm.stdout-----
+$ diff test079.vm.soln.stdout test079.vm.stdout
+
+-----vm.res-----
+$ diff test079.vm.soln.res.canon test079.vm.res.canon
+
+====================
+
+test080 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test080.lgf
+$ ../../bin/vm -r test080.bin
+
+-----vm.stdout-----
+$ diff test080.vm.soln.stdout test080.vm.stdout
+
+-----vm.res-----
+$ diff test080.vm.soln.res.canon test080.vm.res.canon
+
+====================
+
+test081 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test081.lgf
+$ ../../bin/vm -r test081.bin
+
+-----vm.stdout-----
+$ diff test081.vm.soln.stdout test081.vm.stdout
+
+-----vm.res-----
+$ diff test081.vm.soln.res.canon test081.vm.res.canon
+
+====================
+
+test082 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test082.lgf
+$ ../../bin/vm -r test082.bin
+
+-----vm.stdout-----
+$ diff test082.vm.soln.stdout test082.vm.stdout
+
+-----vm.res-----
+$ diff test082.vm.soln.res.canon test082.vm.res.canon
+
+====================
+
+test083 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test083.lgf
+$ ../../bin/vm -r test083.bin
+
+-----vm.stdout-----
+$ diff test083.vm.soln.stdout test083.vm.stdout
+
+-----vm.res-----
+$ diff test083.vm.soln.res.canon test083.vm.res.canon
+
+====================
+
+test084 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test084.lgf
+$ ../../bin/vm -r test084.bin
+
+-----vm.stdout-----
+$ diff test084.vm.soln.stdout test084.vm.stdout
+
+-----vm.res-----
+$ diff test084.vm.soln.res.canon test084.vm.res.canon
+
+====================
+
+test085 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test085.lgf
+$ ../../bin/vm -r test085.bin
+
+-----vm.stdout-----
+$ diff test085.vm.soln.stdout test085.vm.stdout
+
+-----vm.res-----
+$ diff test085.vm.soln.res.canon test085.vm.res.canon
+
+====================
+
+test086 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test086.lgf
+$ ../../bin/vm -r test086.bin
+
+-----vm.stdout-----
+$ diff test086.vm.soln.stdout test086.vm.stdout
+
+-----vm.res-----
+$ diff test086.vm.soln.res.canon test086.vm.res.canon
+
+====================
+
+test087 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test087.lgf
+$ ../../bin/vm -r test087.bin
+
+-----vm.stdout-----
+$ diff test087.vm.soln.stdout test087.vm.stdout
+
+-----vm.res-----
+$ diff test087.vm.soln.res.canon test087.vm.res.canon
+
+====================
+
+test088 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test088.lgf
+$ ../../bin/vm -r test088.bin
+
+-----vm.stdout-----
+$ diff test088.vm.soln.stdout test088.vm.stdout
+
+-----vm.res-----
+$ diff test088.vm.soln.res.canon test088.vm.res.canon
+
+====================
+
+test089 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test089.lgf
+$ ../../bin/vm -r test089.bin
+
+-----vm.stdout-----
+$ diff test089.vm.soln.stdout test089.vm.stdout
+
+-----vm.res-----
+$ diff test089.vm.soln.res.canon test089.vm.res.canon
+
+====================
+
+test090 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test090.lgf
+$ ../../bin/vm -r test090.bin
+
+-----vm.stdout-----
+$ diff test090.vm.soln.stdout test090.vm.stdout
+
+-----vm.res-----
+$ diff test090.vm.soln.res.canon test090.vm.res.canon
+
+====================
+
+test091 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test091.lgf
+$ ../../bin/vm -r test091.bin
+
+-----vm.stdout-----
+$ diff test091.vm.soln.stdout test091.vm.stdout
+
+-----vm.res-----
+$ diff test091.vm.soln.res.canon test091.vm.res.canon
+
+====================
+
+test092 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test092.lgf
+$ ../../bin/vm -r test092.bin
+
+-----vm.stdout-----
+$ diff test092.vm.soln.stdout test092.vm.stdout
+
+-----vm.res-----
+$ diff test092.vm.soln.res.canon test092.vm.res.canon
+
+====================
+
+test093 (4pts)
+----------
+$ ../../bin/langfc -Cverbose=false test093.lgf
+$ ../../bin/vm -r test093.bin
+
+-----vm.stdout-----
+$ diff test093.vm.soln.stdout test093.vm.stdout
+
+-----vm.res-----
+$ diff test093.vm.soln.res.canon test093.vm.res.canon
+
+====================
+
+test094 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test094.lgf
+$ ../../bin/vm -r test094.bin
+
+-----vm.stdout-----
+$ diff test094.vm.soln.stdout test094.vm.stdout
+
+-----vm.res-----
+$ diff test094.vm.soln.res.canon test094.vm.res.canon
+
+====================
+
+test095 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test095.lgf
+$ ../../bin/vm -r test095.bin
+
+-----vm.stdout-----
+$ diff test095.vm.soln.stdout test095.vm.stdout
+
+-----vm.res-----
+$ diff test095.vm.soln.res.canon test095.vm.res.canon
+
+====================
+
+test096 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test096.lgf
+$ ../../bin/vm -r test096.bin
+
+-----vm.stdout-----
+$ diff test096.vm.soln.stdout test096.vm.stdout
+
+-----vm.res-----
+$ diff test096.vm.soln.res.canon test096.vm.res.canon
+
+====================
+
+test097 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test097.lgf
+$ ../../bin/vm -r test097.bin
+
+-----vm.stdout-----
+$ diff test097.vm.soln.stdout test097.vm.stdout
+
+-----vm.res-----
+$ diff test097.vm.soln.res.canon test097.vm.res.canon
+
+====================
+
+test098 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test098.lgf
+$ ../../bin/vm -r test098.bin
+
+-----vm.stdout-----
+$ diff test098.vm.soln.stdout test098.vm.stdout
+
+-----vm.res-----
+$ diff test098.vm.soln.res.canon test098.vm.res.canon
+
+====================
+
+test099 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test099.lgf
+$ ../../bin/vm -r test099.bin
+
+-----vm.stdout-----
+$ diff test099.vm.soln.stdout test099.vm.stdout
+
+-----vm.res-----
+$ diff test099.vm.soln.res.canon test099.vm.res.canon
+
+====================
+
+test100 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test100.lgf
+$ ../../bin/vm -r test100.bin
+
+-----vm.stdout-----
+$ diff test100.vm.soln.stdout test100.vm.stdout
+
+-----vm.res-----
+$ diff test100.vm.soln.res.canon test100.vm.res.canon
+
+====================
+
+test101 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test101.lgf
+$ ../../bin/vm -r test101.bin
+
+-----vm.stdout-----
+$ diff test101.vm.soln.stdout test101.vm.stdout
+
+-----vm.res-----
+$ diff test101.vm.soln.res.canon test101.vm.res.canon
+
+====================
+
+test102 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test102.lgf
+$ ../../bin/vm -r test102.bin
+
+-----vm.stdout-----
+$ diff test102.vm.soln.stdout test102.vm.stdout
+
+-----vm.res-----
+$ diff test102.vm.soln.res.canon test102.vm.res.canon
+
+====================
+
+test103 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test103.lgf
+$ ../../bin/vm -r test103.bin
+
+-----vm.stdout-----
+$ diff test103.vm.soln.stdout test103.vm.stdout
+
+-----vm.res-----
+$ diff test103.vm.soln.res.canon test103.vm.res.canon
+
+====================
+
+test104 (3pts)
+----------
+$ ../../bin/langfc -Cverbose=false test104.lgf
+$ ../../bin/vm -r test104.bin
+
+-----vm.stdout-----
+$ diff test104.vm.soln.stdout test104.vm.stdout
+
+-----vm.res-----
+$ diff test104.vm.soln.res.canon test104.vm.res.canon
+
+====================
+
+test105 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test105.lgf
+$ ../../bin/vm -r test105.bin
+
+-----vm.stdout-----
+$ diff test105.vm.soln.stdout test105.vm.stdout
+
+-----vm.res-----
+$ diff test105.vm.soln.res.canon test105.vm.res.canon
+
+====================
+
+test106 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test106.lgf
+$ ../../bin/vm -r test106.bin
+
+-----vm.stdout-----
+$ diff test106.vm.soln.stdout test106.vm.stdout
+
+-----vm.res-----
+$ diff test106.vm.soln.res.canon test106.vm.res.canon
+
+====================
+
+test200 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test200.lgf
+$ ../../bin/vm -r test200.bin
+
+-----vm.stdout-----
+$ diff test200.vm.soln.stdout test200.vm.stdout
+
+-----vm.res-----
+$ diff test200.vm.soln.res.canon test200.vm.res.canon
+
+====================
+
+test201 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test201.lgf
+$ ../../bin/vm -r test201.bin
+
+-----vm.stdout-----
+$ diff test201.vm.soln.stdout test201.vm.stdout
+
+-----vm.res-----
+$ diff test201.vm.soln.res.canon test201.vm.res.canon
+
+====================
+
+test202 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test202.lgf
+$ ../../bin/vm -r test202.bin
+
+-----vm.stdout-----
+$ diff test202.vm.soln.stdout test202.vm.stdout
+
+-----vm.res-----
+$ diff test202.vm.soln.res.canon test202.vm.res.canon
+
+====================
+
+test203 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test203.lgf
+$ ../../bin/vm -r test203.bin
+
+-----vm.stdout-----
+$ diff test203.vm.soln.stdout test203.vm.stdout
+
+-----vm.res-----
+$ diff test203.vm.soln.res.canon test203.vm.res.canon
+
+====================
+
+test204 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test204.lgf
+$ ../../bin/vm -r test204.bin
+
+-----vm.stdout-----
+$ diff test204.vm.soln.stdout test204.vm.stdout
+
+-----vm.res-----
+$ diff test204.vm.soln.res.canon test204.vm.res.canon
+
+====================
+
+test205 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test205.lgf
+$ ../../bin/vm -r test205.bin
+
+-----vm.stdout-----
+$ diff test205.vm.soln.stdout test205.vm.stdout
+
+-----vm.res-----
+$ diff test205.vm.soln.res.canon test205.vm.res.canon
+
+====================
+
+test206 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test206.lgf
+$ ../../bin/vm -r test206.bin
+
+-----vm.stdout-----
+$ diff test206.vm.soln.stdout test206.vm.stdout
+
+-----vm.res-----
+$ diff test206.vm.soln.res.canon test206.vm.res.canon
+
+====================
+
+test207 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test207.lgf
+$ ../../bin/vm -r test207.bin
+
+-----vm.stdout-----
+$ diff test207.vm.soln.stdout test207.vm.stdout
+
+-----vm.res-----
+$ diff test207.vm.soln.res.canon test207.vm.res.canon
+
+====================
+
+test208 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test208.lgf
+$ ../../bin/vm -r test208.bin
+
+-----vm.stdout-----
+$ diff test208.vm.soln.stdout test208.vm.stdout
+
+-----vm.res-----
+$ diff test208.vm.soln.res.canon test208.vm.res.canon
+
+====================
+
+test209 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test209.lgf
+$ ../../bin/vm -r test209.bin
+
+-----vm.stdout-----
+$ diff test209.vm.soln.stdout test209.vm.stdout
+
+-----vm.res-----
+$ diff test209.vm.soln.res.canon test209.vm.res.canon
+
+====================
+
+test210 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test210.lgf
+$ ../../bin/vm -r test210.bin
+
+-----vm.stdout-----
+$ diff test210.vm.soln.stdout test210.vm.stdout
+
+-----vm.res-----
+$ diff test210.vm.soln.res.canon test210.vm.res.canon
+
+====================
+
+test211 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test211.lgf
+$ ../../bin/vm -r test211.bin
+
+-----vm.stdout-----
+$ diff test211.vm.soln.stdout test211.vm.stdout
+
+-----vm.res-----
+$ diff test211.vm.soln.res.canon test211.vm.res.canon
+
+====================
+
+test212 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test212.lgf
+$ ../../bin/vm -r test212.bin
+
+-----vm.stdout-----
+$ diff test212.vm.soln.stdout test212.vm.stdout
+
+-----vm.res-----
+$ diff test212.vm.soln.res.canon test212.vm.res.canon
+
+====================
+
+test213 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test213.lgf
+$ ../../bin/vm -r test213.bin
+
+-----vm.stdout-----
+$ diff test213.vm.soln.stdout test213.vm.stdout
+
+-----vm.res-----
+$ diff test213.vm.soln.res.canon test213.vm.res.canon
+
+====================
+
+test214 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test214.lgf
+$ ../../bin/vm -r test214.bin
+
+-----vm.stdout-----
+$ diff test214.vm.soln.stdout test214.vm.stdout
+
+-----vm.res-----
+$ diff test214.vm.soln.res.canon test214.vm.res.canon
+
+====================
+
+test215 (5pts)
+----------
+$ ../../bin/langfc -Cverbose=false test215.lgf
+$ ../../bin/vm -r test215.bin
+
+-----vm.stdout-----
+$ diff test215.vm.soln.stdout test215.vm.stdout
+
+-----vm.res-----
+$ diff test215.vm.soln.res.canon test215.vm.res.canon
+
+====================
+
+test216 (1pts)
+----------
+$ ../../bin/langfc -Cverbose=false test216.lgf
+$ ../../bin/vm -r test216.bin
+
+-----vm.stdout-----
+$ diff test216.vm.soln.stdout test216.vm.stdout
+
+-----vm.res-----
+$ diff test216.vm.soln.res.canon test216.vm.res.canon
+
+====================
+====================
+
+
+
+vm codegen (tot): 276 / 276  (100%)

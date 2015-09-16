@@ -1,0 +1,2 @@
+(* case expression with variable pattern *)
+; case Unit of z => False end

@@ -1,0 +1,9 @@
+(* polymorphic val decls *)
+val id = fn ['a] (x: 'a) => x
+val _ : ['a] -> 'a -> 'a = id
+val _ : ['b] -> 'b -> 'b = id
+val _ : Integer -> Integer = id [Integer]
+val zero = id [String] 0
+;
+0
+

@@ -1,0 +1,8 @@
+val x__0000 (* : Integer *) = ~4611686018427387904 : Integer
+val x__0001 (* : Integer *) = ~4611686018427387903 : Integer
+val x__0002 (* : Integer *) = ~4611686018427387902 : Integer
+val x__0003 (* : Integer *) = 4611686018427387903 : Integer
+val x__0004 (* : Integer *) = 4611686018427387902 : Integer
+val x__0005 (* : Integer *) = 4611686018427387901 : Integer
+;
+x__0005 : Integer

@@ -1,0 +1,32 @@
+val _ (* : Integer *) = (let in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let val _ (* : Unit *) = Unit : Unit in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let val _ (* : Bool *) = True : Bool in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let val _ (* : Bool *) = False : Bool in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let val _ (* : Unit -> Integer *) = argc : Unit -> Integer in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let val _ (* : Integer -> String *) = arg : Integer -> String in 0 : Integer end) : Integer
+val _ (* : Integer *) =
+   (let
+       val _ (* : ['a__0000] -> (Integer -> ('a__0000 -> (Array ['a__0000]))) *) =
+          array : ['a__0001] -> (Integer -> ('a__0001 -> (Array ['a__0001])))
+    in
+       0 : Integer
+    end) : Integer
+val _ (* : Integer *) =
+   (let
+       val _ (* : ['a__0002] -> (String -> 'a__0002) *) = fail : ['a__0003] -> (String -> 'a__0003)
+    in
+       0 : Integer
+    end) : Integer
+val _ (* : Integer *) = (let val _ (* : String -> Unit *) = print : String -> Unit in 0 : Integer end) : Integer
+val _ (* : Integer *) = (let val _ (* : String -> Integer *) = size : String -> Integer in 0 : Integer end) : Integer
+val _ (* : Integer *) =
+   (let
+       val _ (* : String -> (Integer -> Integer) *) = subscript : String -> (Integer -> Integer)
+    in
+       0 : Integer
+    end) : Integer
+;
+0 : Integer

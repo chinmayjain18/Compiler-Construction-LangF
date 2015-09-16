@@ -1,0 +1,5 @@
+(* orelse expression, non-boolean right *)
+val t = 0 == 0
+val f = 0 <> 0
+;
+t orelse (fn (x: Bool) => x)

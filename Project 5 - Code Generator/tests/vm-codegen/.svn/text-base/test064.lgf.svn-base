@@ -1,0 +1,5 @@
+(* recursive function *)
+fun fact (n: Integer) : Integer =
+  if n <= 1 then 1 else n * (fact (n - 1))
+;
+if (fact 5) == 120 then print "passed\n" else print "failed\n"

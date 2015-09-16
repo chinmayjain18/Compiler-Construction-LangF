@@ -1,0 +1,21 @@
+(* evaluation order *)
+val n = (print "Hello "; fn (x: Integer) => x) (print "world!"; 3)
+val _ = print "\n"
+
+val m = (print "Hello "; 2) + (print "world!"; 3)
+val _ = print "\n"
+
+val b = (print "Hello "; 20) >= (print "world!"; 3)
+val _ = print "\n"
+
+datatype Pair ['a, 'b] = Pair {'a, 'b}
+
+val p = Pair [Integer, Integer]
+             {(print "Hello "; n), (print "world!"; m)}
+val _ = print "\n"
+
+val z = case p of Pair [Integer, Integer] {n, m} => if b then n * m else n + m end
+
+;
+
+(print (if z == 15 then "OK" else "BAD"); print "\n")

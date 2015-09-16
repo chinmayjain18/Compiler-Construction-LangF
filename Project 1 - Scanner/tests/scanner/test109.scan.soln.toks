@@ -1,0 +1,423 @@
+fun
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+:
+(* CON_NAME *) String
+=
+if
+(* VAR_NAME *) i
+<
+(* INTEGER *) 0
+then
+(* STRING *) "~"
+^
+(
+(* VAR_NAME *) intToString
+(
+~
+(* VAR_NAME *) i
+)
+)
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 0
+then
+(* STRING *) "0"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 1
+then
+(* STRING *) "1"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 2
+then
+(* STRING *) "2"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 3
+then
+(* STRING *) "3"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 4
+then
+(* STRING *) "4"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 5
+then
+(* STRING *) "5"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 6
+then
+(* STRING *) "6"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 7
+then
+(* STRING *) "7"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 8
+then
+(* STRING *) "8"
+else
+if
+(* VAR_NAME *) i
+==
+(* INTEGER *) 9
+then
+(* STRING *) "9"
+else
+(
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+/
+(* INTEGER *) 10
+)
+)
+^
+(
+(* VAR_NAME *) intToString
+(
+(* VAR_NAME *) i
+%
+(* INTEGER *) 10
+)
+)
+datatype
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+=
+(* CON_NAME *) Nil
+|
+(* CON_NAME *) Cons
+{
+(* TYVAR_NAME *) 'a
+,
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+}
+fun
+(* VAR_NAME *) foldl
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'b
+]
+(
+(* VAR_NAME *) f
+:
+(* TYVAR_NAME *) 'a
+->
+(* TYVAR_NAME *) 'b
+->
+(* TYVAR_NAME *) 'b
+)
+(
+(* VAR_NAME *) b
+:
+(* TYVAR_NAME *) 'b
+)
+(
+(* VAR_NAME *) l
+:
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+)
+:
+(* TYVAR_NAME *) 'b
+=
+case
+(* VAR_NAME *) l
+of
+(* CON_NAME *) Nil
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* VAR_NAME *) b
+|
+(* CON_NAME *) Cons
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) hd
+,
+(* VAR_NAME *) tl
+}
+=>
+(* VAR_NAME *) foldl
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* TYVAR_NAME *) 'b
+]
+(* VAR_NAME *) f
+(
+(* VAR_NAME *) f
+(* VAR_NAME *) hd
+(* VAR_NAME *) b
+)
+(* VAR_NAME *) tl
+end
+val
+(* VAR_NAME *) rev
+=
+fn
+[
+(* TYVAR_NAME *) 'a
+]
+=>
+(* VAR_NAME *) foldl
+[
+(* TYVAR_NAME *) 'a
+]
+[
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+]
+(
+fn
+(
+(* VAR_NAME *) hd
+:
+(* TYVAR_NAME *) 'a
+)
+(
+(* VAR_NAME *) tl
+:
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+)
+=>
+(* CON_NAME *) Cons
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) hd
+,
+(* VAR_NAME *) tl
+}
+)
+(
+(* CON_NAME *) Nil
+[
+(* TYVAR_NAME *) 'a
+]
+)
+fun
+(* VAR_NAME *) tabulate
+[
+(* TYVAR_NAME *) 'a
+]
+(
+(* VAR_NAME *) n
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) f
+:
+(* CON_NAME *) Integer
+->
+(* TYVAR_NAME *) 'a
+)
+:
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+=
+let
+fun
+(* VAR_NAME *) loop
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) acc
+:
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+)
+:
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+=
+if
+(* VAR_NAME *) i
+<=
+(* VAR_NAME *) n
+then
+(* VAR_NAME *) loop
+(
+(* VAR_NAME *) i
++
+(* INTEGER *) 1
+)
+(
+(* CON_NAME *) Cons
+[
+(* TYVAR_NAME *) 'a
+]
+{
+(* VAR_NAME *) f
+(* VAR_NAME *) i
+,
+(* VAR_NAME *) acc
+}
+)
+else
+(* VAR_NAME *) rev
+[
+(* TYVAR_NAME *) 'a
+]
+(* VAR_NAME *) acc
+in
+if
+(* VAR_NAME *) n
+<
+(* INTEGER *) 0
+then
+(* VAR_NAME *) fail
+[
+(* CON_NAME *) List
+[
+(* TYVAR_NAME *) 'a
+]
+]
+(* STRING *) "tabulate: n < 0"
+else
+(* VAR_NAME *) loop
+(* INTEGER *) 0
+(
+(* CON_NAME *) Nil
+[
+(* TYVAR_NAME *) 'a
+]
+)
+end
+val
+(* VAR_NAME *) n
+=
+(* INTEGER *) 4999
+val
+(* VAR_NAME *) sum_n
+=
+(* VAR_NAME *) foldl
+[
+(* CON_NAME *) Integer
+]
+[
+(* CON_NAME *) Integer
+]
+(
+fn
+(
+(* VAR_NAME *) x
+:
+(* CON_NAME *) Integer
+)
+(
+(* VAR_NAME *) y
+:
+(* CON_NAME *) Integer
+)
+=>
+(* VAR_NAME *) x
++
+(* VAR_NAME *) y
+)
+(* INTEGER *) 0
+(
+(* VAR_NAME *) tabulate
+[
+(* CON_NAME *) Integer
+]
+(* VAR_NAME *) n
+(
+fn
+(
+(* VAR_NAME *) i
+:
+(* CON_NAME *) Integer
+)
+=>
+(* VAR_NAME *) i
+)
+)
+;
+(
+(* VAR_NAME *) print
+(* STRING *) "foldl [Integer] [Integer]\n"
+;
+(* VAR_NAME *) print
+(* STRING *) "      (fn (x: Integer) (y: Integer) => x + y)\n"
+;
+(* VAR_NAME *) print
+(* STRING *) "      0 (tabulate [Integer] "
+;
+(* VAR_NAME *) print
+(
+(* VAR_NAME *) intToString
+(* VAR_NAME *) n
+)
+;
+(* VAR_NAME *) print
+(* STRING *) " (fn (i: Integer) => i)) = "
+;
+(* VAR_NAME *) print
+(
+(* VAR_NAME *) intToString
+(* VAR_NAME *) sum_n
+)
+;
+(* VAR_NAME *) print
+(* STRING *) "\n"
+)
